@@ -1,0 +1,15 @@
+module PostForMe
+  module Models
+    type social_account_disconnect_params =
+      {  } & PostForMe::Internal::Type::request_parameters
+
+    class SocialAccountDisconnectParams < PostForMe::Internal::Type::BaseModel
+      extend PostForMe::Internal::Type::RequestParameters::Converter
+      include PostForMe::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: PostForMe::request_opts) -> void
+
+      def to_hash: -> { request_options: PostForMe::RequestOptions }
+    end
+  end
+end

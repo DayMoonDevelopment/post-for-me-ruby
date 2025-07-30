@@ -1,0 +1,32 @@
+module PostForMe
+  module Models
+    type social_account_update_params =
+      { external_id: String, username: String }
+      & PostForMe::Internal::Type::request_parameters
+
+    class SocialAccountUpdateParams < PostForMe::Internal::Type::BaseModel
+      extend PostForMe::Internal::Type::RequestParameters::Converter
+      include PostForMe::Internal::Type::RequestParameters
+
+      attr_reader external_id: String?
+
+      def external_id=: (String) -> String
+
+      attr_reader username: String?
+
+      def username=: (String) -> String
+
+      def initialize: (
+        ?external_id: String,
+        ?username: String,
+        ?request_options: PostForMe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        external_id: String,
+        username: String,
+        request_options: PostForMe::RequestOptions
+      }
+    end
+  end
+end

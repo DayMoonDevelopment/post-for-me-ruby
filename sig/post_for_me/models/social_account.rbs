@@ -1,0 +1,51 @@
+module PostForMe
+  module Models
+    type social_account =
+      {
+        id: String,
+        external_id: String?,
+        platform: String,
+        status: PostForMe::Models::SocialAccount::status,
+        username: String?
+      }
+
+    class SocialAccount < PostForMe::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor external_id: String?
+
+      attr_accessor platform: String
+
+      attr_accessor status: PostForMe::Models::SocialAccount::status
+
+      attr_accessor username: String?
+
+      def initialize: (
+        id: String,
+        external_id: String?,
+        platform: String,
+        status: PostForMe::Models::SocialAccount::status,
+        username: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        external_id: String?,
+        platform: String,
+        status: PostForMe::Models::SocialAccount::status,
+        username: String?
+      }
+
+      type status = :connected | :disconnected
+
+      module Status
+        extend PostForMe::Internal::Type::Enum
+
+        CONNECTED: :connected
+        DISCONNECTED: :disconnected
+
+        def self?.values: -> ::Array[PostForMe::Models::SocialAccount::status]
+      end
+    end
+  end
+end

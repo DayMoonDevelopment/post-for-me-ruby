@@ -1,0 +1,82 @@
+# frozen_string_literal: true
+
+# Standard libraries.
+# rubocop:disable Lint/RedundantRequireStatement
+require "English"
+require "cgi"
+require "date"
+require "erb"
+require "etc"
+require "json"
+require "net/http"
+require "pathname"
+require "rbconfig"
+require "securerandom"
+require "set"
+require "stringio"
+require "time"
+require "uri"
+# rubocop:enable Lint/RedundantRequireStatement
+
+# We already ship the preferred sorbet manifests in the package itself.
+# `tapioca` currently does not offer us a way to opt out of unnecessary compilation.
+if Object.const_defined?(:Tapioca) &&
+   caller.chain([$PROGRAM_NAME]).chain(ARGV).any?(/tapioca/) &&
+   ARGV.none?(/dsl/)
+  return
+end
+
+# Gems.
+require "connection_pool"
+
+# Package files.
+require_relative "post_for_me/version"
+require_relative "post_for_me/internal/util"
+require_relative "post_for_me/internal/type/converter"
+require_relative "post_for_me/internal/type/unknown"
+require_relative "post_for_me/internal/type/boolean"
+require_relative "post_for_me/internal/type/file_input"
+require_relative "post_for_me/internal/type/enum"
+require_relative "post_for_me/internal/type/union"
+require_relative "post_for_me/internal/type/array_of"
+require_relative "post_for_me/internal/type/hash_of"
+require_relative "post_for_me/internal/type/base_model"
+require_relative "post_for_me/internal/type/base_page"
+require_relative "post_for_me/internal/type/request_parameters"
+require_relative "post_for_me/internal"
+require_relative "post_for_me/request_options"
+require_relative "post_for_me/file_part"
+require_relative "post_for_me/errors"
+require_relative "post_for_me/internal/transport/base_client"
+require_relative "post_for_me/internal/transport/pooled_net_requester"
+require_relative "post_for_me/client"
+require_relative "post_for_me/models/create_social_post"
+require_relative "post_for_me/models/media_create_upload_url_params"
+require_relative "post_for_me/models/media_create_upload_url_response"
+require_relative "post_for_me/models/social_account"
+require_relative "post_for_me/models/social_account_create_auth_url_params"
+require_relative "post_for_me/models/social_account_create_auth_url_response"
+require_relative "post_for_me/models/social_account_disconnect_params"
+require_relative "post_for_me/models/social_account_disconnect_response"
+require_relative "post_for_me/models/social_account_list_params"
+require_relative "post_for_me/models/social_account_list_response"
+require_relative "post_for_me/models/social_account_retrieve_params"
+require_relative "post_for_me/models/social_account_update_params"
+require_relative "post_for_me/models/social_post"
+require_relative "post_for_me/models/social_post_create_params"
+require_relative "post_for_me/models/social_post_delete_params"
+require_relative "post_for_me/models/social_post_delete_response"
+require_relative "post_for_me/models/social_post_list_params"
+require_relative "post_for_me/models/social_post_list_response"
+require_relative "post_for_me/models/social_post_result"
+require_relative "post_for_me/models/social_post_result_list_params"
+require_relative "post_for_me/models/social_post_result_list_response"
+require_relative "post_for_me/models/social_post_result_retrieve_params"
+require_relative "post_for_me/models/social_post_retrieve_params"
+require_relative "post_for_me/models/social_post_update_params"
+require_relative "post_for_me/models/tiktok_configuration"
+require_relative "post_for_me/models"
+require_relative "post_for_me/resources/media"
+require_relative "post_for_me/resources/social_accounts"
+require_relative "post_for_me/resources/social_post_results"
+require_relative "post_for_me/resources/social_posts"

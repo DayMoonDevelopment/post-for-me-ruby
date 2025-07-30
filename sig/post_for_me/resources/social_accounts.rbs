@@ -1,0 +1,40 @@
+module PostForMe
+  module Resources
+    class SocialAccounts
+      def retrieve: (
+        String id,
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::SocialAccount
+
+      def update: (
+        String id,
+        ?external_id: String,
+        ?username: String,
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::SocialAccount
+
+      def list: (
+        ?id: ::Array[String],
+        ?external_id: ::Array[String],
+        ?limit: Float,
+        ?offset: Float,
+        ?platform: ::Array[String],
+        ?username: ::Array[String],
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::Models::SocialAccountListResponse
+
+      def create_auth_url: (
+        platform: String,
+        ?platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData,
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::Models::SocialAccountCreateAuthURLResponse
+
+      def disconnect: (
+        String id,
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::Models::SocialAccountDisconnectResponse
+
+      def initialize: (client: PostForMe::Client) -> void
+    end
+  end
+end

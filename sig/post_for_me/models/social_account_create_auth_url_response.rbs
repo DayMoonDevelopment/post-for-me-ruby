@@ -1,0 +1,16 @@
+module PostForMe
+  module Models
+    type social_account_create_auth_url_response =
+      { platform: String, url: String }
+
+    class SocialAccountCreateAuthURLResponse < PostForMe::Internal::Type::BaseModel
+      attr_accessor platform: String
+
+      attr_accessor url: String
+
+      def initialize: (platform: String, url: String) -> void
+
+      def to_hash: -> { platform: String, url: String }
+    end
+  end
+end

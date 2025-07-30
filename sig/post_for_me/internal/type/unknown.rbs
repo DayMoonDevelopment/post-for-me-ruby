@@ -1,0 +1,26 @@
+module PostForMe
+  module Internal
+    module Type
+      class Unknown
+        extend PostForMe::Internal::Type::Converter
+        extend PostForMe::Internal::Util::SorbetRuntimeSupport
+
+        def self.===: (top other) -> bool
+
+        def self.==: (top other) -> bool
+
+        def self.coerce: (
+          top value,
+          state: PostForMe::Internal::Type::Converter::coerce_state
+        ) -> top
+
+        def self.dump: (
+          top value,
+          state: PostForMe::Internal::Type::Converter::dump_state
+        ) -> top
+
+        def self.to_sorbet_type: -> top
+      end
+    end
+  end
+end

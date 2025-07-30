@@ -1,0 +1,398 @@
+module PostForMe
+  module Models
+    type create_social_post =
+      {
+        caption: String,
+        social_accounts: ::Array[String],
+        account_configurations: ::Array[PostForMe::CreateSocialPost::AccountConfiguration]?,
+        external_id: String?,
+        is_draft: bool?,
+        media: ::Array[PostForMe::CreateSocialPost::Media]?,
+        platform_configurations: PostForMe::CreateSocialPost::PlatformConfigurations?,
+        scheduled_at: Time?
+      }
+
+    class CreateSocialPost < PostForMe::Internal::Type::BaseModel
+      attr_accessor caption: String
+
+      attr_accessor social_accounts: ::Array[String]
+
+      attr_accessor account_configurations: ::Array[PostForMe::CreateSocialPost::AccountConfiguration]?
+
+      attr_accessor external_id: String?
+
+      attr_accessor is_draft: bool?
+
+      attr_accessor media: ::Array[PostForMe::CreateSocialPost::Media]?
+
+      attr_accessor platform_configurations: PostForMe::CreateSocialPost::PlatformConfigurations?
+
+      attr_accessor scheduled_at: Time?
+
+      def initialize: (
+        caption: String,
+        social_accounts: ::Array[String],
+        ?account_configurations: ::Array[PostForMe::CreateSocialPost::AccountConfiguration]?,
+        ?external_id: String?,
+        ?is_draft: bool?,
+        ?media: ::Array[PostForMe::CreateSocialPost::Media]?,
+        ?platform_configurations: PostForMe::CreateSocialPost::PlatformConfigurations?,
+        ?scheduled_at: Time?
+      ) -> void
+
+      def to_hash: -> {
+        caption: String,
+        social_accounts: ::Array[String],
+        account_configurations: ::Array[PostForMe::CreateSocialPost::AccountConfiguration]?,
+        external_id: String?,
+        is_draft: bool?,
+        media: ::Array[PostForMe::CreateSocialPost::Media]?,
+        platform_configurations: PostForMe::CreateSocialPost::PlatformConfigurations?,
+        scheduled_at: Time?
+      }
+
+      type account_configuration =
+        {
+          configuration: PostForMe::CreateSocialPost::AccountConfiguration::Configuration,
+          social_account_id: String
+        }
+
+      class AccountConfiguration < PostForMe::Internal::Type::BaseModel
+        attr_accessor configuration: PostForMe::CreateSocialPost::AccountConfiguration::Configuration
+
+        attr_accessor social_account_id: String
+
+        def initialize: (
+          configuration: PostForMe::CreateSocialPost::AccountConfiguration::Configuration,
+          social_account_id: String
+        ) -> void
+
+        def to_hash: -> {
+          configuration: PostForMe::CreateSocialPost::AccountConfiguration::Configuration,
+          social_account_id: String
+        }
+
+        type configuration =
+          {
+            allow_comment: bool?,
+            allow_duet: bool?,
+            allow_stitch: bool?,
+            board_ids: ::Array[String]?,
+            caption: top?,
+            disclose_branded_content: bool?,
+            disclose_your_brand: bool?,
+            link: String?,
+            location: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::location?,
+            media: ::Array[String]?,
+            privacy_status: String?,
+            title: String?
+          }
+
+        class Configuration < PostForMe::Internal::Type::BaseModel
+          attr_accessor allow_comment: bool?
+
+          attr_accessor allow_duet: bool?
+
+          attr_accessor allow_stitch: bool?
+
+          attr_accessor board_ids: ::Array[String]?
+
+          attr_accessor caption: top?
+
+          attr_accessor disclose_branded_content: bool?
+
+          attr_accessor disclose_your_brand: bool?
+
+          attr_accessor link: String?
+
+          attr_accessor location: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::location?
+
+          attr_accessor media: ::Array[String]?
+
+          attr_accessor privacy_status: String?
+
+          attr_accessor title: String?
+
+          def initialize: (
+            ?allow_comment: bool?,
+            ?allow_duet: bool?,
+            ?allow_stitch: bool?,
+            ?board_ids: ::Array[String]?,
+            ?caption: top?,
+            ?disclose_branded_content: bool?,
+            ?disclose_your_brand: bool?,
+            ?link: String?,
+            ?location: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::location?,
+            ?media: ::Array[String]?,
+            ?privacy_status: String?,
+            ?title: String?
+          ) -> void
+
+          def to_hash: -> {
+            allow_comment: bool?,
+            allow_duet: bool?,
+            allow_stitch: bool?,
+            board_ids: ::Array[String]?,
+            caption: top?,
+            disclose_branded_content: bool?,
+            disclose_your_brand: bool?,
+            link: String?,
+            location: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::location?,
+            media: ::Array[String]?,
+            privacy_status: String?,
+            title: String?
+          }
+
+          type location = :reels | :timeline
+
+          module Location
+            extend PostForMe::Internal::Type::Enum
+
+            REELS: :reels
+            TIMELINE: :timeline
+
+            def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::location]
+          end
+        end
+      end
+
+      type media =
+        { url: String, thumbnail_timestamp_ms: top?, thumbnail_url: top? }
+
+      class Media < PostForMe::Internal::Type::BaseModel
+        attr_accessor url: String
+
+        attr_accessor thumbnail_timestamp_ms: top?
+
+        attr_accessor thumbnail_url: top?
+
+        def initialize: (
+          url: String,
+          ?thumbnail_timestamp_ms: top?,
+          ?thumbnail_url: top?
+        ) -> void
+
+        def to_hash: -> {
+          url: String,
+          thumbnail_timestamp_ms: top?,
+          thumbnail_url: top?
+        }
+      end
+
+      type platform_configurations =
+        {
+          bluesky: PostForMe::CreateSocialPost::PlatformConfigurations::Bluesky?,
+          facebook: PostForMe::CreateSocialPost::PlatformConfigurations::Facebook?,
+          instagram: PostForMe::CreateSocialPost::PlatformConfigurations::Instagram?,
+          linkedin: PostForMe::CreateSocialPost::PlatformConfigurations::Linkedin?,
+          pinterest: PostForMe::CreateSocialPost::PlatformConfigurations::Pinterest?,
+          threads: PostForMe::CreateSocialPost::PlatformConfigurations::Threads?,
+          tiktok: PostForMe::TiktokConfiguration?,
+          tiktok_business: PostForMe::TiktokConfiguration?,
+          x: PostForMe::CreateSocialPost::PlatformConfigurations::X?,
+          youtube: PostForMe::CreateSocialPost::PlatformConfigurations::Youtube?
+        }
+
+      class PlatformConfigurations < PostForMe::Internal::Type::BaseModel
+        attr_accessor bluesky: PostForMe::CreateSocialPost::PlatformConfigurations::Bluesky?
+
+        attr_accessor facebook: PostForMe::CreateSocialPost::PlatformConfigurations::Facebook?
+
+        attr_accessor instagram: PostForMe::CreateSocialPost::PlatformConfigurations::Instagram?
+
+        attr_accessor linkedin: PostForMe::CreateSocialPost::PlatformConfigurations::Linkedin?
+
+        attr_accessor pinterest: PostForMe::CreateSocialPost::PlatformConfigurations::Pinterest?
+
+        attr_accessor threads: PostForMe::CreateSocialPost::PlatformConfigurations::Threads?
+
+        attr_accessor tiktok: PostForMe::TiktokConfiguration?
+
+        attr_accessor tiktok_business: PostForMe::TiktokConfiguration?
+
+        attr_accessor x: PostForMe::CreateSocialPost::PlatformConfigurations::X?
+
+        attr_accessor youtube: PostForMe::CreateSocialPost::PlatformConfigurations::Youtube?
+
+        def initialize: (
+          ?bluesky: PostForMe::CreateSocialPost::PlatformConfigurations::Bluesky?,
+          ?facebook: PostForMe::CreateSocialPost::PlatformConfigurations::Facebook?,
+          ?instagram: PostForMe::CreateSocialPost::PlatformConfigurations::Instagram?,
+          ?linkedin: PostForMe::CreateSocialPost::PlatformConfigurations::Linkedin?,
+          ?pinterest: PostForMe::CreateSocialPost::PlatformConfigurations::Pinterest?,
+          ?threads: PostForMe::CreateSocialPost::PlatformConfigurations::Threads?,
+          ?tiktok: PostForMe::TiktokConfiguration?,
+          ?tiktok_business: PostForMe::TiktokConfiguration?,
+          ?x: PostForMe::CreateSocialPost::PlatformConfigurations::X?,
+          ?youtube: PostForMe::CreateSocialPost::PlatformConfigurations::Youtube?
+        ) -> void
+
+        def to_hash: -> {
+          bluesky: PostForMe::CreateSocialPost::PlatformConfigurations::Bluesky?,
+          facebook: PostForMe::CreateSocialPost::PlatformConfigurations::Facebook?,
+          instagram: PostForMe::CreateSocialPost::PlatformConfigurations::Instagram?,
+          linkedin: PostForMe::CreateSocialPost::PlatformConfigurations::Linkedin?,
+          pinterest: PostForMe::CreateSocialPost::PlatformConfigurations::Pinterest?,
+          threads: PostForMe::CreateSocialPost::PlatformConfigurations::Threads?,
+          tiktok: PostForMe::TiktokConfiguration?,
+          tiktok_business: PostForMe::TiktokConfiguration?,
+          x: PostForMe::CreateSocialPost::PlatformConfigurations::X?,
+          youtube: PostForMe::CreateSocialPost::PlatformConfigurations::Youtube?
+        }
+
+        type bluesky = { caption: top?, media: ::Array[String]? }
+
+        class Bluesky < PostForMe::Internal::Type::BaseModel
+          attr_accessor caption: top?
+
+          attr_accessor media: ::Array[String]?
+
+          def initialize: (?caption: top?, ?media: ::Array[String]?) -> void
+
+          def to_hash: -> { caption: top?, media: ::Array[String]? }
+        end
+
+        type facebook = { caption: top?, media: ::Array[String]? }
+
+        class Facebook < PostForMe::Internal::Type::BaseModel
+          attr_accessor caption: top?
+
+          attr_accessor media: ::Array[String]?
+
+          def initialize: (?caption: top?, ?media: ::Array[String]?) -> void
+
+          def to_hash: -> { caption: top?, media: ::Array[String]? }
+        end
+
+        type instagram = { caption: top?, media: ::Array[String]? }
+
+        class Instagram < PostForMe::Internal::Type::BaseModel
+          attr_accessor caption: top?
+
+          attr_accessor media: ::Array[String]?
+
+          def initialize: (?caption: top?, ?media: ::Array[String]?) -> void
+
+          def to_hash: -> { caption: top?, media: ::Array[String]? }
+        end
+
+        type linkedin = { caption: top?, media: ::Array[String]? }
+
+        class Linkedin < PostForMe::Internal::Type::BaseModel
+          attr_accessor caption: top?
+
+          attr_accessor media: ::Array[String]?
+
+          def initialize: (?caption: top?, ?media: ::Array[String]?) -> void
+
+          def to_hash: -> { caption: top?, media: ::Array[String]? }
+        end
+
+        type pinterest =
+          {
+            board_ids: ::Array[String]?,
+            caption: top?,
+            link: String?,
+            media: ::Array[String]?
+          }
+
+        class Pinterest < PostForMe::Internal::Type::BaseModel
+          attr_accessor board_ids: ::Array[String]?
+
+          attr_accessor caption: top?
+
+          attr_accessor link: String?
+
+          attr_accessor media: ::Array[String]?
+
+          def initialize: (
+            ?board_ids: ::Array[String]?,
+            ?caption: top?,
+            ?link: String?,
+            ?media: ::Array[String]?
+          ) -> void
+
+          def to_hash: -> {
+            board_ids: ::Array[String]?,
+            caption: top?,
+            link: String?,
+            media: ::Array[String]?
+          }
+        end
+
+        type threads =
+          {
+            caption: top?,
+            location: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::location?,
+            media: ::Array[String]?
+          }
+
+        class Threads < PostForMe::Internal::Type::BaseModel
+          attr_accessor caption: top?
+
+          attr_accessor location: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::location?
+
+          attr_accessor media: ::Array[String]?
+
+          def initialize: (
+            ?caption: top?,
+            ?location: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::location?,
+            ?media: ::Array[String]?
+          ) -> void
+
+          def to_hash: -> {
+            caption: top?,
+            location: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::location?,
+            media: ::Array[String]?
+          }
+
+          type location = :reels | :timeline
+
+          module Location
+            extend PostForMe::Internal::Type::Enum
+
+            REELS: :reels
+            TIMELINE: :timeline
+
+            def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::location]
+          end
+        end
+
+        type x = { caption: top?, media: ::Array[String]? }
+
+        class X < PostForMe::Internal::Type::BaseModel
+          attr_accessor caption: top?
+
+          attr_accessor media: ::Array[String]?
+
+          def initialize: (?caption: top?, ?media: ::Array[String]?) -> void
+
+          def to_hash: -> { caption: top?, media: ::Array[String]? }
+        end
+
+        type youtube =
+          { caption: top?, media: ::Array[String]?, title: String? }
+
+        class Youtube < PostForMe::Internal::Type::BaseModel
+          attr_accessor caption: top?
+
+          attr_accessor media: ::Array[String]?
+
+          attr_accessor title: String?
+
+          def initialize: (
+            ?caption: top?,
+            ?media: ::Array[String]?,
+            ?title: String?
+          ) -> void
+
+          def to_hash: -> {
+            caption: top?,
+            media: ::Array[String]?,
+            title: String?
+          }
+        end
+      end
+    end
+  end
+end
