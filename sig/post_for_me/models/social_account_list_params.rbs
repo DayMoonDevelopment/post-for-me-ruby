@@ -1,0 +1,63 @@
+module PostForMe
+  module Models
+    type social_account_list_params =
+      {
+        id: ::Array[String],
+        external_id: ::Array[String],
+        limit: Float,
+        offset: Float,
+        platform: ::Array[String],
+        username: ::Array[String]
+      }
+      & PostForMe::Internal::Type::request_parameters
+
+    class SocialAccountListParams < PostForMe::Internal::Type::BaseModel
+      extend PostForMe::Internal::Type::RequestParameters::Converter
+      include PostForMe::Internal::Type::RequestParameters
+
+      attr_reader id: ::Array[String]?
+
+      def id=: (::Array[String]) -> ::Array[String]
+
+      attr_reader external_id: ::Array[String]?
+
+      def external_id=: (::Array[String]) -> ::Array[String]
+
+      attr_reader limit: Float?
+
+      def limit=: (Float) -> Float
+
+      attr_reader offset: Float?
+
+      def offset=: (Float) -> Float
+
+      attr_reader platform: ::Array[String]?
+
+      def platform=: (::Array[String]) -> ::Array[String]
+
+      attr_reader username: ::Array[String]?
+
+      def username=: (::Array[String]) -> ::Array[String]
+
+      def initialize: (
+        ?id: ::Array[String],
+        ?external_id: ::Array[String],
+        ?limit: Float,
+        ?offset: Float,
+        ?platform: ::Array[String],
+        ?username: ::Array[String],
+        ?request_options: PostForMe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: ::Array[String],
+        external_id: ::Array[String],
+        limit: Float,
+        offset: Float,
+        platform: ::Array[String],
+        username: ::Array[String],
+        request_options: PostForMe::RequestOptions
+      }
+    end
+  end
+end

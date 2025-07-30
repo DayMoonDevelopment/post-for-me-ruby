@@ -1,0 +1,20 @@
+module PostForMe
+  module Resources
+    class SocialPostResults
+      def retrieve: (
+        String id,
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::SocialPostResult
+
+      def list: (
+        ?limit: Float,
+        ?offset: Float,
+        ?platform: ::Array[String],
+        ?post_id: ::Array[String],
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::Models::SocialPostResultListResponse
+
+      def initialize: (client: PostForMe::Client) -> void
+    end
+  end
+end

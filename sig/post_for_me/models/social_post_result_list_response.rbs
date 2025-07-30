@@ -1,0 +1,51 @@
+module PostForMe
+  module Models
+    type social_post_result_list_response =
+      {
+        data: ::Array[PostForMe::SocialPostResult],
+        meta: PostForMe::Models::SocialPostResultListResponse::Meta
+      }
+
+    class SocialPostResultListResponse < PostForMe::Internal::Type::BaseModel
+      attr_accessor data: ::Array[PostForMe::SocialPostResult]
+
+      attr_accessor meta: PostForMe::Models::SocialPostResultListResponse::Meta
+
+      def initialize: (
+        data: ::Array[PostForMe::SocialPostResult],
+        meta: PostForMe::Models::SocialPostResultListResponse::Meta
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[PostForMe::SocialPostResult],
+        meta: PostForMe::Models::SocialPostResultListResponse::Meta
+      }
+
+      type meta = { limit: Float, next_: String?, offset: Float, total: Float }
+
+      class Meta < PostForMe::Internal::Type::BaseModel
+        attr_accessor limit: Float
+
+        attr_accessor next_: String?
+
+        attr_accessor offset: Float
+
+        attr_accessor total: Float
+
+        def initialize: (
+          limit: Float,
+          next_: String?,
+          offset: Float,
+          total: Float
+        ) -> void
+
+        def to_hash: -> {
+          limit: Float,
+          next_: String?,
+          offset: Float,
+          total: Float
+        }
+      end
+    end
+  end
+end

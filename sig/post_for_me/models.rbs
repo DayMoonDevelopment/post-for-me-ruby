@@ -1,0 +1,37 @@
+module PostForMe
+  class CreateSocialPost = PostForMe::Models::CreateSocialPost
+
+  class MediaCreateUploadURLParams = PostForMe::Models::MediaCreateUploadURLParams
+
+  class SocialAccount = PostForMe::Models::SocialAccount
+
+  class SocialAccountCreateAuthURLParams = PostForMe::Models::SocialAccountCreateAuthURLParams
+
+  class SocialAccountDisconnectParams = PostForMe::Models::SocialAccountDisconnectParams
+
+  class SocialAccountListParams = PostForMe::Models::SocialAccountListParams
+
+  class SocialAccountRetrieveParams = PostForMe::Models::SocialAccountRetrieveParams
+
+  class SocialAccountUpdateParams = PostForMe::Models::SocialAccountUpdateParams
+
+  class SocialPost = PostForMe::Models::SocialPost
+
+  class SocialPostCreateParams = PostForMe::Models::SocialPostCreateParams
+
+  class SocialPostDeleteParams = PostForMe::Models::SocialPostDeleteParams
+
+  class SocialPostListParams = PostForMe::Models::SocialPostListParams
+
+  class SocialPostResult = PostForMe::Models::SocialPostResult
+
+  class SocialPostResultListParams = PostForMe::Models::SocialPostResultListParams
+
+  class SocialPostResultRetrieveParams = PostForMe::Models::SocialPostResultRetrieveParams
+
+  class SocialPostRetrieveParams = PostForMe::Models::SocialPostRetrieveParams
+
+  class SocialPostUpdateParams = PostForMe::Models::SocialPostUpdateParams
+
+  class TiktokConfiguration = PostForMe::Models::TiktokConfiguration
+end

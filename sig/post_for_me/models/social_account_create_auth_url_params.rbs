@@ -1,0 +1,105 @@
+module PostForMe
+  module Models
+    type social_account_create_auth_url_params =
+      {
+        platform: String,
+        platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData
+      }
+      & PostForMe::Internal::Type::request_parameters
+
+    class SocialAccountCreateAuthURLParams < PostForMe::Internal::Type::BaseModel
+      extend PostForMe::Internal::Type::RequestParameters::Converter
+      include PostForMe::Internal::Type::RequestParameters
+
+      attr_accessor platform: String
+
+      attr_reader platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData?
+
+      def platform_data=: (
+        PostForMe::SocialAccountCreateAuthURLParams::PlatformData
+      ) -> PostForMe::SocialAccountCreateAuthURLParams::PlatformData
+
+      def initialize: (
+        platform: String,
+        ?platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData,
+        ?request_options: PostForMe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        platform: String,
+        platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData,
+        request_options: PostForMe::RequestOptions
+      }
+
+      type platform_data =
+        {
+          bluesky: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky,
+          linkedin: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin
+        }
+
+      class PlatformData < PostForMe::Internal::Type::BaseModel
+        attr_reader bluesky: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky?
+
+        def bluesky=: (
+          PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky
+        ) -> PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky
+
+        attr_reader linkedin: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin?
+
+        def linkedin=: (
+          PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin
+        ) -> PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin
+
+        def initialize: (
+          ?bluesky: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky,
+          ?linkedin: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin
+        ) -> void
+
+        def to_hash: -> {
+          bluesky: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky,
+          linkedin: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin
+        }
+
+        type bluesky = { app_password: String, handle: String }
+
+        class Bluesky < PostForMe::Internal::Type::BaseModel
+          attr_accessor app_password: String
+
+          attr_accessor handle: String
+
+          def initialize: (app_password: String, handle: String) -> void
+
+          def to_hash: -> { app_password: String, handle: String }
+        end
+
+        type linkedin =
+          {
+            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type
+          }
+
+        class Linkedin < PostForMe::Internal::Type::BaseModel
+          attr_accessor connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type
+
+          def initialize: (
+            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type
+          ) -> void
+
+          def to_hash: -> {
+            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type
+          }
+
+          type connection_type = :personal | :organization
+
+          module ConnectionType
+            extend PostForMe::Internal::Type::Enum
+
+            PERSONAL: :personal
+            ORGANIZATION: :organization
+
+            def self?.values: -> ::Array[PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type]
+          end
+        end
+      end
+    end
+  end
+end

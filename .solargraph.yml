@@ -1,0 +1,11 @@
+---
+max_files: 0
+include:
+  - '*.gemspec'
+  - 'Rakefile'
+  - 'examples/**/*.rb'
+  - 'lib/**/*.rb'
+  - 'test/post_for_me/resource_namespaces.rb'
+  - 'test/post_for_me/test_helper.rb'
+exclude:
+  - 'rbi/**/*'

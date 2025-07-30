@@ -1,0 +1,11 @@
+module PostForMe
+  module Resources
+    class Media
+      def create_upload_url: (
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::Models::MediaCreateUploadURLResponse
+
+      def initialize: (client: PostForMe::Client) -> void
+    end
+  end
+end

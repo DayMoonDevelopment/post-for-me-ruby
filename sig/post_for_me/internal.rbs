@@ -1,0 +1,9 @@
+module PostForMe
+  module Internal
+    extend PostForMe::Internal::Util::SorbetRuntimeSupport
+
+    type file_input = Pathname | StringIO | IO | String | PostForMe::FilePart
+
+    OMIT: Object
+  end
+end

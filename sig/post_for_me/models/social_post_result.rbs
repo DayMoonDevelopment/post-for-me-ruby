@@ -1,0 +1,66 @@
+module PostForMe
+  module Models
+    type social_post_result =
+      {
+        id: String,
+        details: top,
+        error: top,
+        platform_data: PostForMe::SocialPostResult::PlatformData,
+        post_id: String,
+        social_account_id: String,
+        success: bool
+      }
+
+    class SocialPostResult < PostForMe::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor details: top
+
+      attr_accessor error: top
+
+      attr_accessor platform_data: PostForMe::SocialPostResult::PlatformData
+
+      attr_accessor post_id: String
+
+      attr_accessor social_account_id: String
+
+      attr_accessor success: bool
+
+      def initialize: (
+        id: String,
+        details: top,
+        error: top,
+        platform_data: PostForMe::SocialPostResult::PlatformData,
+        post_id: String,
+        social_account_id: String,
+        success: bool
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        details: top,
+        error: top,
+        platform_data: PostForMe::SocialPostResult::PlatformData,
+        post_id: String,
+        social_account_id: String,
+        success: bool
+      }
+
+      type platform_data = { id: String, url: String }
+
+      class PlatformData < PostForMe::Internal::Type::BaseModel
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        attr_reader url: String?
+
+        def url=: (String) -> String
+
+        def initialize: (?id: String, ?url: String) -> void
+
+        def to_hash: -> { id: String, url: String }
+      end
+    end
+  end
+end

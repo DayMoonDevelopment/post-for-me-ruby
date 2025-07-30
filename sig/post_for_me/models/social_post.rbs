@@ -1,0 +1,83 @@
+module PostForMe
+  module Models
+    type social_post =
+      {
+        id: String,
+        account_configurations: ::Array[top]?,
+        caption: String,
+        created_at: String,
+        external_id: String?,
+        media: top?,
+        platform_configurations: top?,
+        scheduled_at: String?,
+        social_accounts: ::Array[String],
+        status: PostForMe::Models::SocialPost::status,
+        updated_at: String
+      }
+
+    class SocialPost < PostForMe::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor account_configurations: ::Array[top]?
+
+      attr_accessor caption: String
+
+      attr_accessor created_at: String
+
+      attr_accessor external_id: String?
+
+      attr_accessor media: top?
+
+      attr_accessor platform_configurations: top?
+
+      attr_accessor scheduled_at: String?
+
+      attr_accessor social_accounts: ::Array[String]
+
+      attr_accessor status: PostForMe::Models::SocialPost::status
+
+      attr_accessor updated_at: String
+
+      def initialize: (
+        id: String,
+        account_configurations: ::Array[top]?,
+        caption: String,
+        created_at: String,
+        external_id: String?,
+        media: top?,
+        platform_configurations: top?,
+        scheduled_at: String?,
+        social_accounts: ::Array[String],
+        status: PostForMe::Models::SocialPost::status,
+        updated_at: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_configurations: ::Array[top]?,
+        caption: String,
+        created_at: String,
+        external_id: String?,
+        media: top?,
+        platform_configurations: top?,
+        scheduled_at: String?,
+        social_accounts: ::Array[String],
+        status: PostForMe::Models::SocialPost::status,
+        updated_at: String
+      }
+
+      type status = :draft | :scheduled | :processing | :processed
+
+      module Status
+        extend PostForMe::Internal::Type::Enum
+
+        DRAFT: :draft
+        SCHEDULED: :scheduled
+        PROCESSING: :processing
+        PROCESSED: :processed
+
+        def self?.values: -> ::Array[PostForMe::Models::SocialPost::status]
+      end
+    end
+  end
+end

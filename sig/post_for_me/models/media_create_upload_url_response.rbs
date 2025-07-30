@@ -1,0 +1,16 @@
+module PostForMe
+  module Models
+    type media_create_upload_url_response =
+      { media_url: String, upload_url: String }
+
+    class MediaCreateUploadURLResponse < PostForMe::Internal::Type::BaseModel
+      attr_accessor media_url: String
+
+      attr_accessor upload_url: String
+
+      def initialize: (media_url: String, upload_url: String) -> void
+
+      def to_hash: -> { media_url: String, upload_url: String }
+    end
+  end
+end

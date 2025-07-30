@@ -1,0 +1,100 @@
+module PostForMe
+  module Models
+    type social_post_list_params =
+      {
+        external_id: ::Array[String],
+        limit: Float,
+        offset: Float,
+        platform: ::Array[PostForMe::Models::SocialPostListParams::platform],
+        status: ::Array[PostForMe::Models::SocialPostListParams::status]
+      }
+      & PostForMe::Internal::Type::request_parameters
+
+    class SocialPostListParams < PostForMe::Internal::Type::BaseModel
+      extend PostForMe::Internal::Type::RequestParameters::Converter
+      include PostForMe::Internal::Type::RequestParameters
+
+      attr_reader external_id: ::Array[String]?
+
+      def external_id=: (::Array[String]) -> ::Array[String]
+
+      attr_reader limit: Float?
+
+      def limit=: (Float) -> Float
+
+      attr_reader offset: Float?
+
+      def offset=: (Float) -> Float
+
+      attr_reader platform: ::Array[PostForMe::Models::SocialPostListParams::platform]?
+
+      def platform=: (
+        ::Array[PostForMe::Models::SocialPostListParams::platform]
+      ) -> ::Array[PostForMe::Models::SocialPostListParams::platform]
+
+      attr_reader status: ::Array[PostForMe::Models::SocialPostListParams::status]?
+
+      def status=: (
+        ::Array[PostForMe::Models::SocialPostListParams::status]
+      ) -> ::Array[PostForMe::Models::SocialPostListParams::status]
+
+      def initialize: (
+        ?external_id: ::Array[String],
+        ?limit: Float,
+        ?offset: Float,
+        ?platform: ::Array[PostForMe::Models::SocialPostListParams::platform],
+        ?status: ::Array[PostForMe::Models::SocialPostListParams::status],
+        ?request_options: PostForMe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        external_id: ::Array[String],
+        limit: Float,
+        offset: Float,
+        platform: ::Array[PostForMe::Models::SocialPostListParams::platform],
+        status: ::Array[PostForMe::Models::SocialPostListParams::status],
+        request_options: PostForMe::RequestOptions
+      }
+
+      type platform =
+        :bluesky
+        | :facebook
+        | :instagram
+        | :linkedin
+        | :pinterest
+        | :threads
+        | :tiktok
+        | :twitter
+        | :youtube
+
+      module Platform
+        extend PostForMe::Internal::Type::Enum
+
+        BLUESKY: :bluesky
+        FACEBOOK: :facebook
+        INSTAGRAM: :instagram
+        LINKEDIN: :linkedin
+        PINTEREST: :pinterest
+        THREADS: :threads
+        TIKTOK: :tiktok
+        TWITTER: :twitter
+        YOUTUBE: :youtube
+
+        def self?.values: -> ::Array[PostForMe::Models::SocialPostListParams::platform]
+      end
+
+      type status = :draft | :scheduled | :processing | :processed
+
+      module Status
+        extend PostForMe::Internal::Type::Enum
+
+        DRAFT: :draft
+        SCHEDULED: :scheduled
+        PROCESSING: :processing
+        PROCESSED: :processed
+
+        def self?.values: -> ::Array[PostForMe::Models::SocialPostListParams::status]
+      end
+    end
+  end
+end

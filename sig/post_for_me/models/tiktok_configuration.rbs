@@ -1,0 +1,60 @@
+module PostForMe
+  module Models
+    type tiktok_configuration =
+      {
+        allow_comment: bool?,
+        allow_duet: bool?,
+        allow_stitch: bool?,
+        caption: top?,
+        disclose_branded_content: bool?,
+        disclose_your_brand: bool?,
+        media: ::Array[String]?,
+        privacy_status: String?,
+        title: String?
+      }
+
+    class TiktokConfiguration < PostForMe::Internal::Type::BaseModel
+      attr_accessor allow_comment: bool?
+
+      attr_accessor allow_duet: bool?
+
+      attr_accessor allow_stitch: bool?
+
+      attr_accessor caption: top?
+
+      attr_accessor disclose_branded_content: bool?
+
+      attr_accessor disclose_your_brand: bool?
+
+      attr_accessor media: ::Array[String]?
+
+      attr_accessor privacy_status: String?
+
+      attr_accessor title: String?
+
+      def initialize: (
+        ?allow_comment: bool?,
+        ?allow_duet: bool?,
+        ?allow_stitch: bool?,
+        ?caption: top?,
+        ?disclose_branded_content: bool?,
+        ?disclose_your_brand: bool?,
+        ?media: ::Array[String]?,
+        ?privacy_status: String?,
+        ?title: String?
+      ) -> void
+
+      def to_hash: -> {
+        allow_comment: bool?,
+        allow_duet: bool?,
+        allow_stitch: bool?,
+        caption: top?,
+        disclose_branded_content: bool?,
+        disclose_your_brand: bool?,
+        media: ::Array[String]?,
+        privacy_status: String?,
+        title: String?
+      }
+    end
+  end
+end

@@ -1,0 +1,51 @@
+module PostForMe
+  module Resources
+    class SocialPosts
+      def create: (
+        caption: String,
+        social_accounts: ::Array[String],
+        ?account_configurations: ::Array[PostForMe::CreateSocialPost::AccountConfiguration]?,
+        ?external_id: String?,
+        ?is_draft: bool?,
+        ?media: ::Array[PostForMe::CreateSocialPost::Media]?,
+        ?platform_configurations: PostForMe::CreateSocialPost::PlatformConfigurations?,
+        ?scheduled_at: Time?,
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::SocialPost
+
+      def retrieve: (
+        String id,
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::SocialPost
+
+      def update: (
+        String id,
+        caption: String,
+        social_accounts: ::Array[String],
+        ?account_configurations: ::Array[PostForMe::CreateSocialPost::AccountConfiguration]?,
+        ?external_id: String?,
+        ?is_draft: bool?,
+        ?media: ::Array[PostForMe::CreateSocialPost::Media]?,
+        ?platform_configurations: PostForMe::CreateSocialPost::PlatformConfigurations?,
+        ?scheduled_at: Time?,
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::SocialPost
+
+      def list: (
+        ?external_id: ::Array[String],
+        ?limit: Float,
+        ?offset: Float,
+        ?platform: ::Array[PostForMe::Models::SocialPostListParams::platform],
+        ?status: ::Array[PostForMe::Models::SocialPostListParams::status],
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::Models::SocialPostListResponse
+
+      def delete: (
+        String id,
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::Models::SocialPostDeleteResponse
+
+      def initialize: (client: PostForMe::Client) -> void
+    end
+  end
+end
