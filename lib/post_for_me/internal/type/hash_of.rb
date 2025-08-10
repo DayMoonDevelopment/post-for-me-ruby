@@ -168,6 +168,7 @@ module PostForMe
         #   @option spec [Boolean] :"nil?"
         def initialize(type_info, spec = {})
           @item_type_fn = PostForMe::Internal::Type::Converter.type_info(type_info || spec)
+          @meta = PostForMe::Internal::Type::Converter.meta_info(type_info, spec)
           @nilable = spec.fetch(:nil?, false)
         end
 
