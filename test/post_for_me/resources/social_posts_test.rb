@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class PostForMe::Test::Resources::SocialPostsTest < PostForMe::Test::ResourceTest
   def test_create_required_params
-    skip("skipped: tests are disabled for the time being")
+    skip("Prism tests are disabled")
 
     response = @post_for_me.social_posts.create(caption: "caption", social_accounts: ["string"])
 
@@ -30,7 +30,7 @@ class PostForMe::Test::Resources::SocialPostsTest < PostForMe::Test::ResourceTes
   end
 
   def test_retrieve
-    skip("skipped: tests are disabled for the time being")
+    skip("Prism tests are disabled")
 
     response = @post_for_me.social_posts.retrieve("id")
 
@@ -56,7 +56,7 @@ class PostForMe::Test::Resources::SocialPostsTest < PostForMe::Test::ResourceTes
   end
 
   def test_update_required_params
-    skip("skipped: tests are disabled for the time being")
+    skip("Prism tests are disabled")
 
     response = @post_for_me.social_posts.update("id", caption: "caption", social_accounts: ["string"])
 
@@ -82,7 +82,7 @@ class PostForMe::Test::Resources::SocialPostsTest < PostForMe::Test::ResourceTes
   end
 
   def test_list
-    skip("skipped: tests are disabled for the time being")
+    skip("Prism tests are disabled")
 
     response = @post_for_me.social_posts.list
 
@@ -99,7 +99,7 @@ class PostForMe::Test::Resources::SocialPostsTest < PostForMe::Test::ResourceTes
   end
 
   def test_delete
-    skip("skipped: tests are disabled for the time being")
+    skip("Prism tests are disabled")
 
     response = @post_for_me.social_posts.delete("id")
 

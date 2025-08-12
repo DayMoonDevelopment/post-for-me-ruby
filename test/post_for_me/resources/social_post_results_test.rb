@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class PostForMe::Test::Resources::SocialPostResultsTest < PostForMe::Test::ResourceTest
   def test_retrieve
-    skip("skipped: tests are disabled for the time being")
+    skip("Prism tests are disabled")
 
     response = @post_for_me.social_post_results.retrieve("id")
 
@@ -26,7 +26,7 @@ class PostForMe::Test::Resources::SocialPostResultsTest < PostForMe::Test::Resou
   end
 
   def test_list
-    skip("skipped: tests are disabled for the time being")
+    skip("Prism tests are disabled")
 
     response = @post_for_me.social_post_results.list
 
