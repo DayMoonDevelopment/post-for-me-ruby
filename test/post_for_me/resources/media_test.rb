@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class PostForMe::Test::Resources::MediaTest < PostForMe::Test::ResourceTest
   def test_create_upload_url
-    skip("skipped: tests are disabled for the time being")
+    skip("Prism tests are disabled")
 
     response = @post_for_me.media.create_upload_url
 
