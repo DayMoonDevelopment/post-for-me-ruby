@@ -8,6 +8,8 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/post-for-me).
 
+The REST API documentation can be found on [api.postforme.dev](https://api.postforme.dev/docs).
+
 ## Installation
 
 To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
@@ -30,9 +32,13 @@ post_for_me = PostForMe::Client.new(
   api_key: ENV["POST_FOR_ME_API_KEY"] # This is the default and can be omitted
 )
 
-response = post_for_me.media.create_upload_url
+social_post = post_for_me.social_posts.create(
+  caption: "My first post!",
+  social_accounts: ["sa_1234"],
+  media: [{url: "https://picsum.photos/1080"}]
+)
 
-puts(response.media_url)
+puts(social_post.id)
 ```
 
 ### Handling errors
@@ -41,7 +47,11 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  media = post_for_me.media.create_upload_url
+  social_post = post_for_me.social_posts.create(
+    caption: "My first post!",
+    social_accounts: ["sa_1234"],
+    media: [{url: "https://picsum.photos/1080"}]
+  )
 rescue PostForMe::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -84,7 +94,12 @@ post_for_me = PostForMe::Client.new(
 )
 
 # Or, configure per-request:
-post_for_me.media.create_upload_url(request_options: {max_retries: 5})
+post_for_me.social_posts.create(
+  caption: "My first post!",
+  social_accounts: ["sa_1234"],
+  media: [{url: "https://picsum.photos/1080"}],
+  request_options: {max_retries: 5}
+)
 ```
 
 ### Timeouts
@@ -98,7 +113,12 @@ post_for_me = PostForMe::Client.new(
 )
 
 # Or, configure per-request:
-post_for_me.media.create_upload_url(request_options: {timeout: 5})
+post_for_me.social_posts.create(
+  caption: "My first post!",
+  social_accounts: ["sa_1234"],
+  media: [{url: "https://picsum.photos/1080"}],
+  request_options: {timeout: 5}
+)
 ```
 
 On timeout, `PostForMe::Errors::APITimeoutError` is raised.
@@ -128,8 +148,11 @@ You can send undocumented parameters to any endpoint, and read undocumented resp
 Note: the `extra_` parameters of the same name overrides the documented parameters.
 
 ```ruby
-response =
-  post_for_me.media.create_upload_url(
+social_post =
+  post_for_me.social_posts.create(
+    caption: "My first post!",
+    social_accounts: ["sa_1234"],
+    media: [{url: "https://picsum.photos/1080"}],
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -137,7 +160,7 @@ response =
     }
   )
 
-puts(response[:my_undocumented_property])
+puts(social_post[:my_undocumented_property])
 ```
 
 #### Undocumented request params
@@ -175,18 +198,30 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-post_for_me.media.create_upload_url
+post_for_me.social_posts.create(
+  caption: "My first post!",
+  social_accounts: ["sa_1234"],
+  media: [PostForMe::CreateSocialPost::Media.new(url: "https://picsum.photos/1080")]
+)
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-post_for_me.media.create_upload_url
+post_for_me.social_posts.create(
+  caption: "My first post!",
+  social_accounts: ["sa_1234"],
+  media: [{url: "https://picsum.photos/1080"}]
+)
 
 # You can also splat a full Params class:
-params = PostForMe::MediaCreateUploadURLParams.new
-post_for_me.media.create_upload_url(**params)
+params = PostForMe::SocialPostCreateParams.new(
+  caption: "My first post!",
+  social_accounts: ["sa_1234"],
+  media: [PostForMe::CreateSocialPost::Media.new(url: "https://picsum.photos/1080")]
+)
+post_for_me.social_posts.create(**params)
 ```
 
 ### Enums
