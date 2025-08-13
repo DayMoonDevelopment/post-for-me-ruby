@@ -7,10 +7,10 @@ Gem::Specification.new do |s|
   s.version = PostForMe::VERSION
   s.summary = "Ruby library to access the Post For Me API"
   s.authors = ["Post For Me"]
-  s.email = ""
+  s.email = "postforme@daymoon.dev"
   s.homepage = "https://gemdocs.org/gems/post-for-me"
   s.metadata["homepage_uri"] = s.homepage
-  s.metadata["source_code_uri"] = "https://github.com/stainless-sdks/post-for-me-ruby"
+  s.metadata["source_code_uri"] = "https://github.com/DayMoonDevelopment/post-for-me-ruby"
   s.metadata["rubygems_mfa_required"] = false.to_s
   s.required_ruby_version = ">= 3.2.0"
 
