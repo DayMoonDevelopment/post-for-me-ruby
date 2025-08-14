@@ -39,6 +39,12 @@ module PostForMe
       #   @return [Boolean, nil]
       optional :disclose_your_brand, PostForMe::Internal::Type::Boolean, nil?: true
 
+      # @!attribute is_ai_generated
+      #   Flag content as AI generated on TikTok
+      #
+      #   @return [Boolean, nil]
+      optional :is_ai_generated, PostForMe::Internal::Type::Boolean, nil?: true
+
       # @!attribute media
       #   Overrides the `media` from the post
       #
@@ -57,7 +63,7 @@ module PostForMe
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, caption: nil, disclose_branded_content: nil, disclose_your_brand: nil, media: nil, privacy_status: nil, title: nil)
+      # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, caption: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, media: nil, privacy_status: nil, title: nil)
       #   @param allow_comment [Boolean, nil] Allow comments on TikTok
       #
       #   @param allow_duet [Boolean, nil] Allow duets on TikTok
@@ -69,6 +75,8 @@ module PostForMe
       #   @param disclose_branded_content [Boolean, nil] Disclose branded content on TikTok
       #
       #   @param disclose_your_brand [Boolean, nil] Disclose your brand on TikTok
+      #
+      #   @param is_ai_generated [Boolean, nil] Flag content as AI generated on TikTok
       #
       #   @param media [Array<String>, nil] Overrides the `media` from the post
       #

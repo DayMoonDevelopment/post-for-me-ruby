@@ -3,36 +3,66 @@ module PostForMe
     type social_account_disconnect_response =
       {
         id: String,
+        access_token: String,
+        access_token_expires_at: Time,
         external_id: String?,
+        metadata: top?,
         platform: String,
+        refresh_token: String?,
+        refresh_token_expires_at: Time?,
         status: PostForMe::Models::SocialAccountDisconnectResponse::status,
+        user_id: String,
         username: String?
       }
 
     class SocialAccountDisconnectResponse < PostForMe::Internal::Type::BaseModel
       attr_accessor id: String
 
+      attr_accessor access_token: String
+
+      attr_accessor access_token_expires_at: Time
+
       attr_accessor external_id: String?
+
+      attr_accessor metadata: top?
 
       attr_accessor platform: String
 
+      attr_accessor refresh_token: String?
+
+      attr_accessor refresh_token_expires_at: Time?
+
       attr_accessor status: PostForMe::Models::SocialAccountDisconnectResponse::status
+
+      attr_accessor user_id: String
 
       attr_accessor username: String?
 
       def initialize: (
         id: String,
+        access_token: String,
+        access_token_expires_at: Time,
         external_id: String?,
+        metadata: top?,
         platform: String,
+        refresh_token: String?,
+        refresh_token_expires_at: Time?,
         status: PostForMe::Models::SocialAccountDisconnectResponse::status,
+        user_id: String,
         username: String?
       ) -> void
 
       def to_hash: -> {
         id: String,
+        access_token: String,
+        access_token_expires_at: Time,
         external_id: String?,
+        metadata: top?,
         platform: String,
+        refresh_token: String?,
+        refresh_token_expires_at: Time?,
         status: PostForMe::Models::SocialAccountDisconnectResponse::status,
+        user_id: String,
         username: String?
       }
 

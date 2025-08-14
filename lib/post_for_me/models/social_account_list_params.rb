@@ -35,7 +35,7 @@ module PostForMe
 
       # @!attribute platform
       #   Filter by platform(s). Multiple values imply OR logic (e.g.,
-      #   ?platform=x&platform=twitter).
+      #   ?platform=x&platform=facebook).
       #
       #   @return [Array<String>, nil]
       optional :platform, PostForMe::Internal::Type::ArrayOf[String]

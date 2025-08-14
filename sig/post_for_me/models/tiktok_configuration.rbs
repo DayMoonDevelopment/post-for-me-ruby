@@ -8,6 +8,7 @@ module PostForMe
         caption: top?,
         disclose_branded_content: bool?,
         disclose_your_brand: bool?,
+        is_ai_generated: bool?,
         media: ::Array[String]?,
         privacy_status: String?,
         title: String?
@@ -26,6 +27,8 @@ module PostForMe
 
       attr_accessor disclose_your_brand: bool?
 
+      attr_accessor is_ai_generated: bool?
+
       attr_accessor media: ::Array[String]?
 
       attr_accessor privacy_status: String?
@@ -39,6 +42,7 @@ module PostForMe
         ?caption: top?,
         ?disclose_branded_content: bool?,
         ?disclose_your_brand: bool?,
+        ?is_ai_generated: bool?,
         ?media: ::Array[String]?,
         ?privacy_status: String?,
         ?title: String?
@@ -51,6 +55,7 @@ module PostForMe
         caption: top?,
         disclose_branded_content: bool?,
         disclose_your_brand: bool?,
+        is_ai_generated: bool?,
         media: ::Array[String]?,
         privacy_status: String?,
         title: String?
