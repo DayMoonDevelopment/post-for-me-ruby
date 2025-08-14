@@ -151,11 +151,7 @@ module PostForMe
             :tiktok,
             PostForMe::SocialPostListParams::Platform::TaggedSymbol
           )
-        TWITTER =
-          T.let(
-            :twitter,
-            PostForMe::SocialPostListParams::Platform::TaggedSymbol
-          )
+        X = T.let(:x, PostForMe::SocialPostListParams::Platform::TaggedSymbol)
         YOUTUBE =
           T.let(
             :youtube,

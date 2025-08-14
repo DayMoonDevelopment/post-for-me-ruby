@@ -32,6 +32,10 @@ module PostForMe
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :disclose_your_brand
 
+      # Flag content as AI generated on TikTok
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :is_ai_generated
+
       # Overrides the `media` from the post
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :media
@@ -52,6 +56,7 @@ module PostForMe
           caption: T.nilable(T.anything),
           disclose_branded_content: T.nilable(T::Boolean),
           disclose_your_brand: T.nilable(T::Boolean),
+          is_ai_generated: T.nilable(T::Boolean),
           media: T.nilable(T::Array[String]),
           privacy_status: T.nilable(String),
           title: T.nilable(String)
@@ -70,6 +75,8 @@ module PostForMe
         disclose_branded_content: nil,
         # Disclose your brand on TikTok
         disclose_your_brand: nil,
+        # Flag content as AI generated on TikTok
+        is_ai_generated: nil,
         # Overrides the `media` from the post
         media: nil,
         # Sets the privacy status for TikTok (private, public)
@@ -88,6 +95,7 @@ module PostForMe
             caption: T.nilable(T.anything),
             disclose_branded_content: T.nilable(T::Boolean),
             disclose_your_brand: T.nilable(T::Boolean),
+            is_ai_generated: T.nilable(T::Boolean),
             media: T.nilable(T::Array[String]),
             privacy_status: T.nilable(String),
             title: T.nilable(String)
