@@ -45,7 +45,7 @@ module PostForMe
       attr_writer :offset
 
       # Filter by platform(s). Multiple values imply OR logic (e.g.,
-      # ?platform=x&platform=twitter).
+      # ?platform=x&platform=facebook).
       sig { returns(T.nilable(T::Array[String])) }
       attr_reader :platform
 
@@ -83,7 +83,7 @@ module PostForMe
         # Number of items to skip
         offset: nil,
         # Filter by platform(s). Multiple values imply OR logic (e.g.,
-        # ?platform=x&platform=twitter).
+        # ?platform=x&platform=facebook).
         platform: nil,
         # Filter by username(s). Multiple values imply OR logic (e.g.,
         # ?username=test&username=test2).

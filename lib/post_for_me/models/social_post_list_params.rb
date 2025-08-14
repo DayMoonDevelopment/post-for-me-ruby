@@ -64,7 +64,7 @@ module PostForMe
         PINTEREST = :pinterest
         THREADS = :threads
         TIKTOK = :tiktok
-        TWITTER = :twitter
+        X = :x
         YOUTUBE = :youtube
 
         # @!method self.values

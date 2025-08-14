@@ -15,9 +15,15 @@ class PostForMe::Test::Resources::SocialAccountsTest < PostForMe::Test::Resource
     assert_pattern do
       response => {
         id: String,
+        access_token: String,
+        access_token_expires_at: Time,
         external_id: String | nil,
+        metadata: PostForMe::Internal::Type::Unknown | nil,
         platform: String,
+        refresh_token: String | nil,
+        refresh_token_expires_at: Time | nil,
         status: PostForMe::SocialAccount::Status,
+        user_id: String,
         username: String | nil
       }
     end
@@ -35,9 +41,15 @@ class PostForMe::Test::Resources::SocialAccountsTest < PostForMe::Test::Resource
     assert_pattern do
       response => {
         id: String,
+        access_token: String,
+        access_token_expires_at: Time,
         external_id: String | nil,
+        metadata: PostForMe::Internal::Type::Unknown | nil,
         platform: String,
+        refresh_token: String | nil,
+        refresh_token_expires_at: Time | nil,
         status: PostForMe::SocialAccount::Status,
+        user_id: String,
         username: String | nil
       }
     end
@@ -89,9 +101,15 @@ class PostForMe::Test::Resources::SocialAccountsTest < PostForMe::Test::Resource
     assert_pattern do
       response => {
         id: String,
+        access_token: String,
+        access_token_expires_at: Time,
         external_id: String | nil,
+        metadata: PostForMe::Internal::Type::Unknown | nil,
         platform: String,
+        refresh_token: String | nil,
+        refresh_token_expires_at: Time | nil,
         status: PostForMe::Models::SocialAccountDisconnectResponse::Status,
+        user_id: String,
         username: String | nil
       }
     end

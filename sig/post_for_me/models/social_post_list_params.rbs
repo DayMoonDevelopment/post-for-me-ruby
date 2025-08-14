@@ -64,7 +64,7 @@ module PostForMe
         | :pinterest
         | :threads
         | :tiktok
-        | :twitter
+        | :x
         | :youtube
 
       module Platform
@@ -77,7 +77,7 @@ module PostForMe
         PINTEREST: :pinterest
         THREADS: :threads
         TIKTOK: :tiktok
-        TWITTER: :twitter
+        X: :x
         YOUTUBE: :youtube
 
         def self?.values: -> ::Array[PostForMe::Models::SocialPostListParams::platform]
