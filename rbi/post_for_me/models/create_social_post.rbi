@@ -217,19 +217,19 @@ module PostForMe
           sig { returns(T.nilable(String)) }
           attr_accessor :link
 
-          # Threads post location
-          sig do
-            returns(
-              T.nilable(
-                PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Location::OrSymbol
-              )
-            )
-          end
-          attr_accessor :location
-
           # Overrides the `media` from the post
           sig { returns(T.nilable(T::Array[String])) }
           attr_accessor :media
+
+          # Post placement for Facebook/Instagram/Threads
+          sig do
+            returns(
+              T.nilable(
+                PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Placement::OrSymbol
+              )
+            )
+          end
+          attr_accessor :placement
 
           # Sets the privacy status for TikTok (private, public)
           sig { returns(T.nilable(String)) }
@@ -250,11 +250,11 @@ module PostForMe
               disclose_branded_content: T.nilable(T::Boolean),
               disclose_your_brand: T.nilable(T::Boolean),
               link: T.nilable(String),
-              location:
-                T.nilable(
-                  PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Location::OrSymbol
-                ),
               media: T.nilable(T::Array[String]),
+              placement:
+                T.nilable(
+                  PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Placement::OrSymbol
+                ),
               privacy_status: T.nilable(String),
               title: T.nilable(String)
             ).returns(T.attached_class)
@@ -276,10 +276,10 @@ module PostForMe
             disclose_your_brand: nil,
             # Pinterest post link
             link: nil,
-            # Threads post location
-            location: nil,
             # Overrides the `media` from the post
             media: nil,
+            # Post placement for Facebook/Instagram/Threads
+            placement: nil,
             # Sets the privacy status for TikTok (private, public)
             privacy_status: nil,
             # Overrides the `title` from the post
@@ -298,11 +298,11 @@ module PostForMe
                 disclose_branded_content: T.nilable(T::Boolean),
                 disclose_your_brand: T.nilable(T::Boolean),
                 link: T.nilable(String),
-                location:
-                  T.nilable(
-                    PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Location::OrSymbol
-                  ),
                 media: T.nilable(T::Array[String]),
+                placement:
+                  T.nilable(
+                    PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Placement::OrSymbol
+                  ),
                 privacy_status: T.nilable(String),
                 title: T.nilable(String)
               }
@@ -311,15 +311,15 @@ module PostForMe
           def to_hash
           end
 
-          # Threads post location
-          module Location
+          # Post placement for Facebook/Instagram/Threads
+          module Placement
             extend PostForMe::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias do
                 T.all(
                   Symbol,
-                  PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Location
+                  PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Placement
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -327,18 +327,23 @@ module PostForMe
             REELS =
               T.let(
                 :reels,
-                PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Location::TaggedSymbol
+                PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Placement::TaggedSymbol
               )
             TIMELINE =
               T.let(
                 :timeline,
-                PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Location::TaggedSymbol
+                PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Placement::TaggedSymbol
+              )
+            STORIES =
+              T.let(
+                :stories,
+                PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Placement::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Location::TaggedSymbol
+                  PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Placement::TaggedSymbol
                 ]
               )
             end
@@ -753,18 +758,34 @@ module PostForMe
           sig { returns(T.nilable(T::Array[String])) }
           attr_accessor :media
 
+          # Facebook post placement
+          sig do
+            returns(
+              T.nilable(
+                PostForMe::CreateSocialPost::PlatformConfigurations::Facebook::Placement::OrSymbol
+              )
+            )
+          end
+          attr_accessor :placement
+
           # Facebook configuration
           sig do
             params(
               caption: T.nilable(T.anything),
-              media: T.nilable(T::Array[String])
+              media: T.nilable(T::Array[String]),
+              placement:
+                T.nilable(
+                  PostForMe::CreateSocialPost::PlatformConfigurations::Facebook::Placement::OrSymbol
+                )
             ).returns(T.attached_class)
           end
           def self.new(
             # Overrides the `caption` from the post
             caption: nil,
             # Overrides the `media` from the post
-            media: nil
+            media: nil,
+            # Facebook post placement
+            placement: nil
           )
           end
 
@@ -772,11 +793,55 @@ module PostForMe
             override.returns(
               {
                 caption: T.nilable(T.anything),
-                media: T.nilable(T::Array[String])
+                media: T.nilable(T::Array[String]),
+                placement:
+                  T.nilable(
+                    PostForMe::CreateSocialPost::PlatformConfigurations::Facebook::Placement::OrSymbol
+                  )
               }
             )
           end
           def to_hash
+          end
+
+          # Facebook post placement
+          module Placement
+            extend PostForMe::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  PostForMe::CreateSocialPost::PlatformConfigurations::Facebook::Placement
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            REELS =
+              T.let(
+                :reels,
+                PostForMe::CreateSocialPost::PlatformConfigurations::Facebook::Placement::TaggedSymbol
+              )
+            STORIES =
+              T.let(
+                :stories,
+                PostForMe::CreateSocialPost::PlatformConfigurations::Facebook::Placement::TaggedSymbol
+              )
+            TIMELINE =
+              T.let(
+                :timeline,
+                PostForMe::CreateSocialPost::PlatformConfigurations::Facebook::Placement::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  PostForMe::CreateSocialPost::PlatformConfigurations::Facebook::Placement::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
 
@@ -793,22 +858,45 @@ module PostForMe
           sig { returns(T.nilable(T.anything)) }
           attr_accessor :caption
 
+          # Instagram usernames to be tagged as a collaborator
+          sig { returns(T.nilable(T::Array[String])) }
+          attr_accessor :collaborators
+
           # Overrides the `media` from the post
           sig { returns(T.nilable(T::Array[String])) }
           attr_accessor :media
+
+          # Instagram post placement
+          sig do
+            returns(
+              T.nilable(
+                PostForMe::CreateSocialPost::PlatformConfigurations::Instagram::Placement::OrSymbol
+              )
+            )
+          end
+          attr_accessor :placement
 
           # Instagram configuration
           sig do
             params(
               caption: T.nilable(T.anything),
-              media: T.nilable(T::Array[String])
+              collaborators: T.nilable(T::Array[String]),
+              media: T.nilable(T::Array[String]),
+              placement:
+                T.nilable(
+                  PostForMe::CreateSocialPost::PlatformConfigurations::Instagram::Placement::OrSymbol
+                )
             ).returns(T.attached_class)
           end
           def self.new(
             # Overrides the `caption` from the post
             caption: nil,
+            # Instagram usernames to be tagged as a collaborator
+            collaborators: nil,
             # Overrides the `media` from the post
-            media: nil
+            media: nil,
+            # Instagram post placement
+            placement: nil
           )
           end
 
@@ -816,11 +904,56 @@ module PostForMe
             override.returns(
               {
                 caption: T.nilable(T.anything),
-                media: T.nilable(T::Array[String])
+                collaborators: T.nilable(T::Array[String]),
+                media: T.nilable(T::Array[String]),
+                placement:
+                  T.nilable(
+                    PostForMe::CreateSocialPost::PlatformConfigurations::Instagram::Placement::OrSymbol
+                  )
               }
             )
           end
           def to_hash
+          end
+
+          # Instagram post placement
+          module Placement
+            extend PostForMe::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  PostForMe::CreateSocialPost::PlatformConfigurations::Instagram::Placement
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            REELS =
+              T.let(
+                :reels,
+                PostForMe::CreateSocialPost::PlatformConfigurations::Instagram::Placement::TaggedSymbol
+              )
+            STORIES =
+              T.let(
+                :stories,
+                PostForMe::CreateSocialPost::PlatformConfigurations::Instagram::Placement::TaggedSymbol
+              )
+            TIMELINE =
+              T.let(
+                :timeline,
+                PostForMe::CreateSocialPost::PlatformConfigurations::Instagram::Placement::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  PostForMe::CreateSocialPost::PlatformConfigurations::Instagram::Placement::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
 
@@ -941,38 +1074,38 @@ module PostForMe
           sig { returns(T.nilable(T.anything)) }
           attr_accessor :caption
 
-          # Threads post location
-          sig do
-            returns(
-              T.nilable(
-                PostForMe::CreateSocialPost::PlatformConfigurations::Threads::Location::OrSymbol
-              )
-            )
-          end
-          attr_accessor :location
-
           # Overrides the `media` from the post
           sig { returns(T.nilable(T::Array[String])) }
           attr_accessor :media
+
+          # Threads post placement
+          sig do
+            returns(
+              T.nilable(
+                PostForMe::CreateSocialPost::PlatformConfigurations::Threads::Placement::OrSymbol
+              )
+            )
+          end
+          attr_accessor :placement
 
           # Threads configuration
           sig do
             params(
               caption: T.nilable(T.anything),
-              location:
+              media: T.nilable(T::Array[String]),
+              placement:
                 T.nilable(
-                  PostForMe::CreateSocialPost::PlatformConfigurations::Threads::Location::OrSymbol
-                ),
-              media: T.nilable(T::Array[String])
+                  PostForMe::CreateSocialPost::PlatformConfigurations::Threads::Placement::OrSymbol
+                )
             ).returns(T.attached_class)
           end
           def self.new(
             # Overrides the `caption` from the post
             caption: nil,
-            # Threads post location
-            location: nil,
             # Overrides the `media` from the post
-            media: nil
+            media: nil,
+            # Threads post placement
+            placement: nil
           )
           end
 
@@ -980,26 +1113,26 @@ module PostForMe
             override.returns(
               {
                 caption: T.nilable(T.anything),
-                location:
+                media: T.nilable(T::Array[String]),
+                placement:
                   T.nilable(
-                    PostForMe::CreateSocialPost::PlatformConfigurations::Threads::Location::OrSymbol
-                  ),
-                media: T.nilable(T::Array[String])
+                    PostForMe::CreateSocialPost::PlatformConfigurations::Threads::Placement::OrSymbol
+                  )
               }
             )
           end
           def to_hash
           end
 
-          # Threads post location
-          module Location
+          # Threads post placement
+          module Placement
             extend PostForMe::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias do
                 T.all(
                   Symbol,
-                  PostForMe::CreateSocialPost::PlatformConfigurations::Threads::Location
+                  PostForMe::CreateSocialPost::PlatformConfigurations::Threads::Placement
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1007,18 +1140,18 @@ module PostForMe
             REELS =
               T.let(
                 :reels,
-                PostForMe::CreateSocialPost::PlatformConfigurations::Threads::Location::TaggedSymbol
+                PostForMe::CreateSocialPost::PlatformConfigurations::Threads::Placement::TaggedSymbol
               )
             TIMELINE =
               T.let(
                 :timeline,
-                PostForMe::CreateSocialPost::PlatformConfigurations::Threads::Location::TaggedSymbol
+                PostForMe::CreateSocialPost::PlatformConfigurations::Threads::Placement::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  PostForMe::CreateSocialPost::PlatformConfigurations::Threads::Location::TaggedSymbol
+                  PostForMe::CreateSocialPost::PlatformConfigurations::Threads::Placement::TaggedSymbol
                 ]
               )
             end
