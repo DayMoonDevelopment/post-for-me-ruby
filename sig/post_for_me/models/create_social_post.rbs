@@ -82,8 +82,8 @@ module PostForMe
             disclose_branded_content: bool?,
             disclose_your_brand: bool?,
             link: String?,
-            location: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::location?,
             media: ::Array[String]?,
+            placement: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::placement?,
             privacy_status: String?,
             title: String?
           }
@@ -105,9 +105,9 @@ module PostForMe
 
           attr_accessor link: String?
 
-          attr_accessor location: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::location?
-
           attr_accessor media: ::Array[String]?
+
+          attr_accessor placement: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::placement?
 
           attr_accessor privacy_status: String?
 
@@ -122,8 +122,8 @@ module PostForMe
             ?disclose_branded_content: bool?,
             ?disclose_your_brand: bool?,
             ?link: String?,
-            ?location: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::location?,
             ?media: ::Array[String]?,
+            ?placement: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::placement?,
             ?privacy_status: String?,
             ?title: String?
           ) -> void
@@ -137,21 +137,22 @@ module PostForMe
             disclose_branded_content: bool?,
             disclose_your_brand: bool?,
             link: String?,
-            location: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::location?,
             media: ::Array[String]?,
+            placement: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::placement?,
             privacy_status: String?,
             title: String?
           }
 
-          type location = :reels | :timeline
+          type placement = :reels | :timeline | :stories
 
-          module Location
+          module Placement
             extend PostForMe::Internal::Type::Enum
 
             REELS: :reels
             TIMELINE: :timeline
+            STORIES: :stories
 
-            def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::location]
+            def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::placement]
           end
         end
       end
@@ -252,28 +253,87 @@ module PostForMe
           def to_hash: -> { caption: top?, media: ::Array[String]? }
         end
 
-        type facebook = { caption: top?, media: ::Array[String]? }
+        type facebook =
+          {
+            caption: top?,
+            media: ::Array[String]?,
+            placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Facebook::placement?
+          }
 
         class Facebook < PostForMe::Internal::Type::BaseModel
           attr_accessor caption: top?
 
           attr_accessor media: ::Array[String]?
 
-          def initialize: (?caption: top?, ?media: ::Array[String]?) -> void
+          attr_accessor placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Facebook::placement?
 
-          def to_hash: -> { caption: top?, media: ::Array[String]? }
+          def initialize: (
+            ?caption: top?,
+            ?media: ::Array[String]?,
+            ?placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Facebook::placement?
+          ) -> void
+
+          def to_hash: -> {
+            caption: top?,
+            media: ::Array[String]?,
+            placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Facebook::placement?
+          }
+
+          type placement = :reels | :stories | :timeline
+
+          module Placement
+            extend PostForMe::Internal::Type::Enum
+
+            REELS: :reels
+            STORIES: :stories
+            TIMELINE: :timeline
+
+            def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::PlatformConfigurations::Facebook::placement]
+          end
         end
 
-        type instagram = { caption: top?, media: ::Array[String]? }
+        type instagram =
+          {
+            caption: top?,
+            collaborators: ::Array[String]?,
+            media: ::Array[String]?,
+            placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Instagram::placement?
+          }
 
         class Instagram < PostForMe::Internal::Type::BaseModel
           attr_accessor caption: top?
 
+          attr_accessor collaborators: ::Array[String]?
+
           attr_accessor media: ::Array[String]?
 
-          def initialize: (?caption: top?, ?media: ::Array[String]?) -> void
+          attr_accessor placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Instagram::placement?
 
-          def to_hash: -> { caption: top?, media: ::Array[String]? }
+          def initialize: (
+            ?caption: top?,
+            ?collaborators: ::Array[String]?,
+            ?media: ::Array[String]?,
+            ?placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Instagram::placement?
+          ) -> void
+
+          def to_hash: -> {
+            caption: top?,
+            collaborators: ::Array[String]?,
+            media: ::Array[String]?,
+            placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Instagram::placement?
+          }
+
+          type placement = :reels | :stories | :timeline
+
+          module Placement
+            extend PostForMe::Internal::Type::Enum
+
+            REELS: :reels
+            STORIES: :stories
+            TIMELINE: :timeline
+
+            def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::PlatformConfigurations::Instagram::placement]
+          end
         end
 
         type linkedin = { caption: top?, media: ::Array[String]? }
@@ -323,38 +383,38 @@ module PostForMe
         type threads =
           {
             caption: top?,
-            location: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::location?,
-            media: ::Array[String]?
+            media: ::Array[String]?,
+            placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::placement?
           }
 
         class Threads < PostForMe::Internal::Type::BaseModel
           attr_accessor caption: top?
 
-          attr_accessor location: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::location?
-
           attr_accessor media: ::Array[String]?
+
+          attr_accessor placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::placement?
 
           def initialize: (
             ?caption: top?,
-            ?location: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::location?,
-            ?media: ::Array[String]?
+            ?media: ::Array[String]?,
+            ?placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::placement?
           ) -> void
 
           def to_hash: -> {
             caption: top?,
-            location: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::location?,
-            media: ::Array[String]?
+            media: ::Array[String]?,
+            placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::placement?
           }
 
-          type location = :reels | :timeline
+          type placement = :reels | :timeline
 
-          module Location
+          module Placement
             extend PostForMe::Internal::Type::Enum
 
             REELS: :reels
             TIMELINE: :timeline
 
-            def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::location]
+            def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::placement]
           end
         end
 
