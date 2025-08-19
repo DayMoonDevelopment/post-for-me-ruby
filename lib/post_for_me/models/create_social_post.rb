@@ -150,19 +150,19 @@ module PostForMe
           #   @return [String, nil]
           optional :link, String, nil?: true
 
-          # @!attribute location
-          #   Threads post location
-          #
-          #   @return [Symbol, PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Location, nil]
-          optional :location,
-                   enum: -> { PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Location },
-                   nil?: true
-
           # @!attribute media
           #   Overrides the `media` from the post
           #
           #   @return [Array<String>, nil]
           optional :media, PostForMe::Internal::Type::ArrayOf[String], nil?: true
+
+          # @!attribute placement
+          #   Post placement for Facebook/Instagram/Threads
+          #
+          #   @return [Symbol, PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Placement, nil]
+          optional :placement,
+                   enum: -> { PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Placement },
+                   nil?: true
 
           # @!attribute privacy_status
           #   Sets the privacy status for TikTok (private, public)
@@ -176,7 +176,7 @@ module PostForMe
           #   @return [String, nil]
           optional :title, String, nil?: true
 
-          # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, board_ids: nil, caption: nil, disclose_branded_content: nil, disclose_your_brand: nil, link: nil, location: nil, media: nil, privacy_status: nil, title: nil)
+          # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, board_ids: nil, caption: nil, disclose_branded_content: nil, disclose_your_brand: nil, link: nil, media: nil, placement: nil, privacy_status: nil, title: nil)
           #   Configuration for the social account
           #
           #   @param allow_comment [Boolean, nil] Allow comments on TikTok
@@ -195,22 +195,23 @@ module PostForMe
           #
           #   @param link [String, nil] Pinterest post link
           #
-          #   @param location [Symbol, PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Location, nil] Threads post location
-          #
           #   @param media [Array<String>, nil] Overrides the `media` from the post
+          #
+          #   @param placement [Symbol, PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Placement, nil] Post placement for Facebook/Instagram/Threads
           #
           #   @param privacy_status [String, nil] Sets the privacy status for TikTok (private, public)
           #
           #   @param title [String, nil] Overrides the `title` from the post
 
-          # Threads post location
+          # Post placement for Facebook/Instagram/Threads
           #
-          # @see PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration#location
-          module Location
+          # @see PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration#placement
+          module Placement
             extend PostForMe::Internal::Type::Enum
 
             REELS = :reels
             TIMELINE = :timeline
+            STORIES = :stories
 
             # @!method self.values
             #   @return [Array<Symbol>]
@@ -366,12 +367,36 @@ module PostForMe
           #   @return [Array<String>, nil]
           optional :media, PostForMe::Internal::Type::ArrayOf[String], nil?: true
 
-          # @!method initialize(caption: nil, media: nil)
+          # @!attribute placement
+          #   Facebook post placement
+          #
+          #   @return [Symbol, PostForMe::Models::CreateSocialPost::PlatformConfigurations::Facebook::Placement, nil]
+          optional :placement,
+                   enum: -> { PostForMe::CreateSocialPost::PlatformConfigurations::Facebook::Placement },
+                   nil?: true
+
+          # @!method initialize(caption: nil, media: nil, placement: nil)
           #   Facebook configuration
           #
           #   @param caption [Object, nil] Overrides the `caption` from the post
           #
           #   @param media [Array<String>, nil] Overrides the `media` from the post
+          #
+          #   @param placement [Symbol, PostForMe::Models::CreateSocialPost::PlatformConfigurations::Facebook::Placement, nil] Facebook post placement
+
+          # Facebook post placement
+          #
+          # @see PostForMe::Models::CreateSocialPost::PlatformConfigurations::Facebook#placement
+          module Placement
+            extend PostForMe::Internal::Type::Enum
+
+            REELS = :reels
+            STORIES = :stories
+            TIMELINE = :timeline
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
 
         # @see PostForMe::Models::CreateSocialPost::PlatformConfigurations#instagram
@@ -382,18 +407,50 @@ module PostForMe
           #   @return [Object, nil]
           optional :caption, PostForMe::Internal::Type::Unknown, nil?: true
 
+          # @!attribute collaborators
+          #   Instagram usernames to be tagged as a collaborator
+          #
+          #   @return [Array<String>, nil]
+          optional :collaborators, PostForMe::Internal::Type::ArrayOf[String], nil?: true
+
           # @!attribute media
           #   Overrides the `media` from the post
           #
           #   @return [Array<String>, nil]
           optional :media, PostForMe::Internal::Type::ArrayOf[String], nil?: true
 
-          # @!method initialize(caption: nil, media: nil)
+          # @!attribute placement
+          #   Instagram post placement
+          #
+          #   @return [Symbol, PostForMe::Models::CreateSocialPost::PlatformConfigurations::Instagram::Placement, nil]
+          optional :placement,
+                   enum: -> { PostForMe::CreateSocialPost::PlatformConfigurations::Instagram::Placement },
+                   nil?: true
+
+          # @!method initialize(caption: nil, collaborators: nil, media: nil, placement: nil)
           #   Instagram configuration
           #
           #   @param caption [Object, nil] Overrides the `caption` from the post
           #
+          #   @param collaborators [Array<String>, nil] Instagram usernames to be tagged as a collaborator
+          #
           #   @param media [Array<String>, nil] Overrides the `media` from the post
+          #
+          #   @param placement [Symbol, PostForMe::Models::CreateSocialPost::PlatformConfigurations::Instagram::Placement, nil] Instagram post placement
+
+          # Instagram post placement
+          #
+          # @see PostForMe::Models::CreateSocialPost::PlatformConfigurations::Instagram#placement
+          module Placement
+            extend PostForMe::Internal::Type::Enum
+
+            REELS = :reels
+            STORIES = :stories
+            TIMELINE = :timeline
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
 
         # @see PostForMe::Models::CreateSocialPost::PlatformConfigurations#linkedin
@@ -464,33 +521,33 @@ module PostForMe
           #   @return [Object, nil]
           optional :caption, PostForMe::Internal::Type::Unknown, nil?: true
 
-          # @!attribute location
-          #   Threads post location
-          #
-          #   @return [Symbol, PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::Location, nil]
-          optional :location,
-                   enum: -> { PostForMe::CreateSocialPost::PlatformConfigurations::Threads::Location },
-                   nil?: true
-
           # @!attribute media
           #   Overrides the `media` from the post
           #
           #   @return [Array<String>, nil]
           optional :media, PostForMe::Internal::Type::ArrayOf[String], nil?: true
 
-          # @!method initialize(caption: nil, location: nil, media: nil)
+          # @!attribute placement
+          #   Threads post placement
+          #
+          #   @return [Symbol, PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::Placement, nil]
+          optional :placement,
+                   enum: -> { PostForMe::CreateSocialPost::PlatformConfigurations::Threads::Placement },
+                   nil?: true
+
+          # @!method initialize(caption: nil, media: nil, placement: nil)
           #   Threads configuration
           #
           #   @param caption [Object, nil] Overrides the `caption` from the post
           #
-          #   @param location [Symbol, PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::Location, nil] Threads post location
-          #
           #   @param media [Array<String>, nil] Overrides the `media` from the post
-
-          # Threads post location
           #
-          # @see PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads#location
-          module Location
+          #   @param placement [Symbol, PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::Placement, nil] Threads post placement
+
+          # Threads post placement
+          #
+          # @see PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads#placement
+          module Placement
             extend PostForMe::Internal::Type::Enum
 
             REELS = :reels
