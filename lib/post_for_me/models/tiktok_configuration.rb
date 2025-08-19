@@ -45,6 +45,13 @@ module PostForMe
       #   @return [Boolean, nil]
       optional :is_ai_generated, PostForMe::Internal::Type::Boolean, nil?: true
 
+      # @!attribute is_draft
+      #   Will create a draft upload to TikTok, posting will need to be completed from
+      #   within the app
+      #
+      #   @return [Boolean, nil]
+      optional :is_draft, PostForMe::Internal::Type::Boolean, nil?: true
+
       # @!attribute media
       #   Overrides the `media` from the post
       #
@@ -63,7 +70,10 @@ module PostForMe
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, caption: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, media: nil, privacy_status: nil, title: nil)
+      # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, caption: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, media: nil, privacy_status: nil, title: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {PostForMe::Models::TiktokConfiguration} for more details.
+      #
       #   @param allow_comment [Boolean, nil] Allow comments on TikTok
       #
       #   @param allow_duet [Boolean, nil] Allow duets on TikTok
@@ -77,6 +87,8 @@ module PostForMe
       #   @param disclose_your_brand [Boolean, nil] Disclose your brand on TikTok
       #
       #   @param is_ai_generated [Boolean, nil] Flag content as AI generated on TikTok
+      #
+      #   @param is_draft [Boolean, nil] Will create a draft upload to TikTok, posting will need to be completed from wit
       #
       #   @param media [Array<String>, nil] Overrides the `media` from the post
       #

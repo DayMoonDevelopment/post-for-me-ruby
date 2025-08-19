@@ -144,6 +144,19 @@ module PostForMe
           #   @return [Boolean, nil]
           optional :disclose_your_brand, PostForMe::Internal::Type::Boolean, nil?: true
 
+          # @!attribute is_ai_generated
+          #   Flag content as AI generated on TikTok
+          #
+          #   @return [Boolean, nil]
+          optional :is_ai_generated, PostForMe::Internal::Type::Boolean, nil?: true
+
+          # @!attribute is_draft
+          #   Will create a draft upload to TikTok, posting will need to be completed from
+          #   within the app
+          #
+          #   @return [Boolean, nil]
+          optional :is_draft, PostForMe::Internal::Type::Boolean, nil?: true
+
           # @!attribute link
           #   Pinterest post link
           #
@@ -176,7 +189,11 @@ module PostForMe
           #   @return [String, nil]
           optional :title, String, nil?: true
 
-          # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, board_ids: nil, caption: nil, disclose_branded_content: nil, disclose_your_brand: nil, link: nil, media: nil, placement: nil, privacy_status: nil, title: nil)
+          # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, board_ids: nil, caption: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, link: nil, media: nil, placement: nil, privacy_status: nil, title: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration} for
+          #   more details.
+          #
           #   Configuration for the social account
           #
           #   @param allow_comment [Boolean, nil] Allow comments on TikTok
@@ -192,6 +209,10 @@ module PostForMe
           #   @param disclose_branded_content [Boolean, nil] Disclose branded content on TikTok
           #
           #   @param disclose_your_brand [Boolean, nil] Disclose your brand on TikTok
+          #
+          #   @param is_ai_generated [Boolean, nil] Flag content as AI generated on TikTok
+          #
+          #   @param is_draft [Boolean, nil] Will create a draft upload to TikTok, posting will need to be completed from wit
           #
           #   @param link [String, nil] Pinterest post link
           #

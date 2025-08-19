@@ -81,6 +81,8 @@ module PostForMe
             caption: top?,
             disclose_branded_content: bool?,
             disclose_your_brand: bool?,
+            is_ai_generated: bool?,
+            is_draft: bool?,
             link: String?,
             media: ::Array[String]?,
             placement: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::placement?,
@@ -103,6 +105,10 @@ module PostForMe
 
           attr_accessor disclose_your_brand: bool?
 
+          attr_accessor is_ai_generated: bool?
+
+          attr_accessor is_draft: bool?
+
           attr_accessor link: String?
 
           attr_accessor media: ::Array[String]?
@@ -121,6 +127,8 @@ module PostForMe
             ?caption: top?,
             ?disclose_branded_content: bool?,
             ?disclose_your_brand: bool?,
+            ?is_ai_generated: bool?,
+            ?is_draft: bool?,
             ?link: String?,
             ?media: ::Array[String]?,
             ?placement: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::placement?,
@@ -136,6 +144,8 @@ module PostForMe
             caption: top?,
             disclose_branded_content: bool?,
             disclose_your_brand: bool?,
+            is_ai_generated: bool?,
+            is_draft: bool?,
             link: String?,
             media: ::Array[String]?,
             placement: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::placement?,
