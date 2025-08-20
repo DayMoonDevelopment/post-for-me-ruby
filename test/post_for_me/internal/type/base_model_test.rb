@@ -157,6 +157,7 @@ end
 class PostForMe::Test::EnumModelTest < Minitest::Test
   class E0
     include PostForMe::Internal::Type::Enum
+
     attr_reader :values
 
     def initialize(*values) = (@values = values)
@@ -476,6 +477,7 @@ class PostForMe::Test::UnionTest < Minitest::Test
 
   module U1
     extend PostForMe::Internal::Type::Union
+
     variant const: :a
     variant const: 2
   end
@@ -492,6 +494,7 @@ class PostForMe::Test::UnionTest < Minitest::Test
 
   module U2
     extend PostForMe::Internal::Type::Union
+
     discriminator :type
 
     variant :a, M1
@@ -500,6 +503,7 @@ class PostForMe::Test::UnionTest < Minitest::Test
 
   module U3
     extend PostForMe::Internal::Type::Union
+
     discriminator :type
 
     variant :a, M1
@@ -508,6 +512,7 @@ class PostForMe::Test::UnionTest < Minitest::Test
 
   module U4
     extend PostForMe::Internal::Type::Union
+
     discriminator :type
 
     variant String
@@ -601,6 +606,7 @@ end
 class PostForMe::Test::BaseModelQoLTest < Minitest::Test
   class E0
     include PostForMe::Internal::Type::Enum
+
     attr_reader :values
 
     def initialize(*values) = (@values = values)

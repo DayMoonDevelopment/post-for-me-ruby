@@ -36,10 +36,7 @@ module PostForMe
       #   Filter by post status. Multiple values imply OR logic.
       #
       #   @return [Array<Symbol, PostForMe::Models::SocialPostListParams::Status>, nil]
-      optional :status,
-               -> {
-                 PostForMe::Internal::Type::ArrayOf[enum: PostForMe::SocialPostListParams::Status]
-               }
+      optional :status, -> { PostForMe::Internal::Type::ArrayOf[enum: PostForMe::SocialPostListParams::Status] }
 
       # @!method initialize(external_id: nil, limit: nil, offset: nil, platform: nil, status: nil, request_options: {})
       #   @param external_id [Array<String>] Filter by external ID. Multiple values imply OR logic.
