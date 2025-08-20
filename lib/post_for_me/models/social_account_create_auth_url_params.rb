@@ -76,9 +76,7 @@ module PostForMe
           #
           #   @return [Symbol, PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::ConnectionType]
           required :connection_type,
-                   enum: -> {
-                     PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::ConnectionType
-                   }
+                   enum: -> { PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::ConnectionType }
 
           # @!method initialize(connection_type:)
           #   Some parameter documentations has been truncated, see
