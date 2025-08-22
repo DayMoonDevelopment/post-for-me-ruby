@@ -89,9 +89,11 @@ module PostForMe
       # login/authorization page. Upon successful authentication, they are redirected
       # back to your application
       #
-      # @overload create_auth_url(platform:, platform_data: nil, request_options: {})
+      # @overload create_auth_url(platform:, external_id: nil, platform_data: nil, request_options: {})
       #
       # @param platform [String] The social account provider
+      #
+      # @param external_id [String] Your unique identifier for the social account
       #
       # @param platform_data [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData] Additional data needed for the provider
       #

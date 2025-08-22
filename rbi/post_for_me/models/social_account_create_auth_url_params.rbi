@@ -18,6 +18,13 @@ module PostForMe
       sig { returns(String) }
       attr_accessor :platform
 
+      # Your unique identifier for the social account
+      sig { returns(T.nilable(String)) }
+      attr_reader :external_id
+
+      sig { params(external_id: String).void }
+      attr_writer :external_id
+
       # Additional data needed for the provider
       sig do
         returns(
@@ -37,6 +44,7 @@ module PostForMe
       sig do
         params(
           platform: String,
+          external_id: String,
           platform_data:
             PostForMe::SocialAccountCreateAuthURLParams::PlatformData::OrHash,
           request_options: PostForMe::RequestOptions::OrHash
@@ -45,6 +53,8 @@ module PostForMe
       def self.new(
         # The social account provider
         platform:,
+        # Your unique identifier for the social account
+        external_id: nil,
         # Additional data needed for the provider
         platform_data: nil,
         request_options: {}
@@ -55,6 +65,7 @@ module PostForMe
         override.returns(
           {
             platform: String,
+            external_id: String,
             platform_data:
               PostForMe::SocialAccountCreateAuthURLParams::PlatformData,
             request_options: PostForMe::RequestOptions
