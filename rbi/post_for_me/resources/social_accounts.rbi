@@ -77,6 +77,7 @@ module PostForMe
       sig do
         params(
           platform: String,
+          external_id: String,
           platform_data:
             PostForMe::SocialAccountCreateAuthURLParams::PlatformData::OrHash,
           request_options: PostForMe::RequestOptions::OrHash
@@ -85,6 +86,8 @@ module PostForMe
       def create_auth_url(
         # The social account provider
         platform:,
+        # Your unique identifier for the social account
+        external_id: nil,
         # Additional data needed for the provider
         platform_data: nil,
         request_options: {}

@@ -13,14 +13,22 @@ module PostForMe
       #   @return [String]
       required :platform, String
 
+      # @!attribute external_id
+      #   Your unique identifier for the social account
+      #
+      #   @return [String, nil]
+      optional :external_id, String
+
       # @!attribute platform_data
       #   Additional data needed for the provider
       #
       #   @return [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData, nil]
       optional :platform_data, -> { PostForMe::SocialAccountCreateAuthURLParams::PlatformData }
 
-      # @!method initialize(platform:, platform_data: nil, request_options: {})
+      # @!method initialize(platform:, external_id: nil, platform_data: nil, request_options: {})
       #   @param platform [String] The social account provider
+      #
+      #   @param external_id [String] Your unique identifier for the social account
       #
       #   @param platform_data [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData] Additional data needed for the provider
       #

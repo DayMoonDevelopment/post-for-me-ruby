@@ -25,6 +25,7 @@ module PostForMe
 
       def create_auth_url: (
         platform: String,
+        ?external_id: String,
         ?platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData,
         ?request_options: PostForMe::request_opts
       ) -> PostForMe::Models::SocialAccountCreateAuthURLResponse

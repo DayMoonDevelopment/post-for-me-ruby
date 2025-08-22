@@ -3,6 +3,7 @@ module PostForMe
     type social_account_create_auth_url_params =
       {
         platform: String,
+        external_id: String,
         platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData
       }
       & PostForMe::Internal::Type::request_parameters
@@ -13,6 +14,10 @@ module PostForMe
 
       attr_accessor platform: String
 
+      attr_reader external_id: String?
+
+      def external_id=: (String) -> String
+
       attr_reader platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData?
 
       def platform_data=: (
@@ -21,12 +26,14 @@ module PostForMe
 
       def initialize: (
         platform: String,
+        ?external_id: String,
         ?platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData,
         ?request_options: PostForMe::request_opts
       ) -> void
 
       def to_hash: -> {
         platform: String,
+        external_id: String,
         platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData,
         request_options: PostForMe::RequestOptions
       }
