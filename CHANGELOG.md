@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.5 (2025-08-22)
+
+Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
+
+### Features
+
+* **api:** api update ([0eae2d6](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/0eae2d659f9b0faeb3e8bcddb12a273343314e3d))
+
+
+### Bug Fixes
+
+* bump sorbet version and fix new type errors from the breaking change ([c6ab64c](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/c6ab64c6459562d58a4858b6a9a47e9a1cdf6c73))
+
 ## 0.1.0-alpha.4 (2025-08-18)
 
 Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)

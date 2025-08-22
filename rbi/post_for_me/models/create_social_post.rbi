@@ -213,6 +213,15 @@ module PostForMe
           sig { returns(T.nilable(T::Boolean)) }
           attr_accessor :disclose_your_brand
 
+          # Flag content as AI generated on TikTok
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_accessor :is_ai_generated
+
+          # Will create a draft upload to TikTok, posting will need to be completed from
+          # within the app
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_accessor :is_draft
+
           # Pinterest post link
           sig { returns(T.nilable(String)) }
           attr_accessor :link
@@ -249,6 +258,8 @@ module PostForMe
               caption: T.nilable(T.anything),
               disclose_branded_content: T.nilable(T::Boolean),
               disclose_your_brand: T.nilable(T::Boolean),
+              is_ai_generated: T.nilable(T::Boolean),
+              is_draft: T.nilable(T::Boolean),
               link: T.nilable(String),
               media: T.nilable(T::Array[String]),
               placement:
@@ -274,6 +285,11 @@ module PostForMe
             disclose_branded_content: nil,
             # Disclose your brand on TikTok
             disclose_your_brand: nil,
+            # Flag content as AI generated on TikTok
+            is_ai_generated: nil,
+            # Will create a draft upload to TikTok, posting will need to be completed from
+            # within the app
+            is_draft: nil,
             # Pinterest post link
             link: nil,
             # Overrides the `media` from the post
@@ -297,6 +313,8 @@ module PostForMe
                 caption: T.nilable(T.anything),
                 disclose_branded_content: T.nilable(T::Boolean),
                 disclose_your_brand: T.nilable(T::Boolean),
+                is_ai_generated: T.nilable(T::Boolean),
+                is_draft: T.nilable(T::Boolean),
                 link: T.nilable(String),
                 media: T.nilable(T::Array[String]),
                 placement:
