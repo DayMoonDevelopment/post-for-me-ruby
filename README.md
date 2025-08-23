@@ -229,23 +229,25 @@ post_for_me.social_posts.create(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :reels
-puts(PostForMe::FacebookConfigurationDto::Placement::REELS)
+# :facebook
+puts(PostForMe::SocialAccountCreateParams::Platform::FACEBOOK)
 
-# Revealed type: `T.all(PostForMe::FacebookConfigurationDto::Placement, Symbol)`
-T.reveal_type(PostForMe::FacebookConfigurationDto::Placement::REELS)
+# Revealed type: `T.all(PostForMe::SocialAccountCreateParams::Platform, Symbol)`
+T.reveal_type(PostForMe::SocialAccountCreateParams::Platform::FACEBOOK)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
-PostForMe::FacebookConfigurationDto.new(
-  placement: PostForMe::FacebookConfigurationDto::Placement::REELS,
+# Using the enum constants preserves the tagged type information:
+post_for_me.social_accounts.create(
+  platform: PostForMe::SocialAccountCreateParams::Platform::FACEBOOK,
   # …
 )
 
-PostForMe::FacebookConfigurationDto.new(
-  placement: :reels,
+# Literal values are also permissible:
+post_for_me.social_accounts.create(
+  platform: :facebook,
   # …
 )
 ```

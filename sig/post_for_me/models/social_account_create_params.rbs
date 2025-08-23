@@ -1,0 +1,97 @@
+module PostForMe
+  module Models
+    type social_account_create_params =
+      {
+        access_token: String,
+        access_token_expires_at: Time,
+        platform: PostForMe::Models::SocialAccountCreateParams::platform,
+        user_id: String,
+        external_id: String?,
+        metadata: top,
+        refresh_token: String?,
+        refresh_token_expires_at: Time?,
+        username: String?
+      }
+      & PostForMe::Internal::Type::request_parameters
+
+    class SocialAccountCreateParams < PostForMe::Internal::Type::BaseModel
+      extend PostForMe::Internal::Type::RequestParameters::Converter
+      include PostForMe::Internal::Type::RequestParameters
+
+      attr_accessor access_token: String
+
+      attr_accessor access_token_expires_at: Time
+
+      attr_accessor platform: PostForMe::Models::SocialAccountCreateParams::platform
+
+      attr_accessor user_id: String
+
+      attr_accessor external_id: String?
+
+      attr_reader metadata: top?
+
+      def metadata=: (top) -> top
+
+      attr_accessor refresh_token: String?
+
+      attr_accessor refresh_token_expires_at: Time?
+
+      attr_accessor username: String?
+
+      def initialize: (
+        access_token: String,
+        access_token_expires_at: Time,
+        platform: PostForMe::Models::SocialAccountCreateParams::platform,
+        user_id: String,
+        ?external_id: String?,
+        ?metadata: top,
+        ?refresh_token: String?,
+        ?refresh_token_expires_at: Time?,
+        ?username: String?,
+        ?request_options: PostForMe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        access_token: String,
+        access_token_expires_at: Time,
+        platform: PostForMe::Models::SocialAccountCreateParams::platform,
+        user_id: String,
+        external_id: String?,
+        metadata: top,
+        refresh_token: String?,
+        refresh_token_expires_at: Time?,
+        username: String?,
+        request_options: PostForMe::RequestOptions
+      }
+
+      type platform =
+        :facebook
+        | :instagram
+        | :x
+        | :tiktok
+        | :youtube
+        | :pinterest
+        | :linkedin
+        | :bluesky
+        | :threads
+        | :tiktok_business
+
+      module Platform
+        extend PostForMe::Internal::Type::Enum
+
+        FACEBOOK: :facebook
+        INSTAGRAM: :instagram
+        X: :x
+        TIKTOK: :tiktok
+        YOUTUBE: :youtube
+        PINTEREST: :pinterest
+        LINKEDIN: :linkedin
+        BLUESKY: :bluesky
+        THREADS: :threads
+        TIKTOK_BUSINESS: :tiktok_business
+
+        def self?.values: -> ::Array[PostForMe::Models::SocialAccountCreateParams::platform]
+      end
+    end
+  end
+end

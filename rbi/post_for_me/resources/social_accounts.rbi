@@ -3,6 +3,45 @@
 module PostForMe
   module Resources
     class SocialAccounts
+      # If a social account with the same platform and user_id already exists, it will
+      # be updated. If not, a new social account will be created.
+      sig do
+        params(
+          access_token: String,
+          access_token_expires_at: Time,
+          platform: PostForMe::SocialAccountCreateParams::Platform::OrSymbol,
+          user_id: String,
+          external_id: T.nilable(String),
+          metadata: T.anything,
+          refresh_token: T.nilable(String),
+          refresh_token_expires_at: T.nilable(Time),
+          username: T.nilable(String),
+          request_options: PostForMe::RequestOptions::OrHash
+        ).returns(PostForMe::SocialAccount)
+      end
+      def create(
+        # The access token of the social account
+        access_token:,
+        # The access token expiration date of the social account
+        access_token_expires_at:,
+        # The platform of the social account
+        platform:,
+        # The user id of the social account
+        user_id:,
+        # The external id of the social account
+        external_id: nil,
+        # The metadata of the social account
+        metadata: nil,
+        # The refresh token of the social account
+        refresh_token: nil,
+        # The refresh token expiration date of the social account
+        refresh_token_expires_at: nil,
+        # The platform's username of the social account
+        username: nil,
+        request_options: {}
+      )
+      end
+
       # Get social account by ID
       sig do
         params(
