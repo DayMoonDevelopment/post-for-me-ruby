@@ -15,14 +15,14 @@ class PostForMe::Test::Resources::SocialPostsTest < PostForMe::Test::ResourceTes
     assert_pattern do
       response => {
         id: String,
-        account_configurations: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::Unknown]) | nil,
+        account_configurations: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPost::AccountConfiguration]) | nil,
         caption: String,
         created_at: String,
         external_id: String | nil,
-        media: PostForMe::Internal::Type::Unknown | nil,
-        platform_configurations: PostForMe::Internal::Type::Unknown | nil,
+        media: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPost::Media]) | nil,
+        platform_configurations: PostForMe::PlatformConfigurationsDto | nil,
         scheduled_at: String | nil,
-        social_accounts: ^(PostForMe::Internal::Type::ArrayOf[String]),
+        social_accounts: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialAccount]),
         status: PostForMe::SocialPost::Status,
         updated_at: String
       }
@@ -41,14 +41,14 @@ class PostForMe::Test::Resources::SocialPostsTest < PostForMe::Test::ResourceTes
     assert_pattern do
       response => {
         id: String,
-        account_configurations: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::Unknown]) | nil,
+        account_configurations: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPost::AccountConfiguration]) | nil,
         caption: String,
         created_at: String,
         external_id: String | nil,
-        media: PostForMe::Internal::Type::Unknown | nil,
-        platform_configurations: PostForMe::Internal::Type::Unknown | nil,
+        media: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPost::Media]) | nil,
+        platform_configurations: PostForMe::PlatformConfigurationsDto | nil,
         scheduled_at: String | nil,
-        social_accounts: ^(PostForMe::Internal::Type::ArrayOf[String]),
+        social_accounts: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialAccount]),
         status: PostForMe::SocialPost::Status,
         updated_at: String
       }
@@ -67,14 +67,14 @@ class PostForMe::Test::Resources::SocialPostsTest < PostForMe::Test::ResourceTes
     assert_pattern do
       response => {
         id: String,
-        account_configurations: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::Unknown]) | nil,
+        account_configurations: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPost::AccountConfiguration]) | nil,
         caption: String,
         created_at: String,
         external_id: String | nil,
-        media: PostForMe::Internal::Type::Unknown | nil,
-        platform_configurations: PostForMe::Internal::Type::Unknown | nil,
+        media: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPost::Media]) | nil,
+        platform_configurations: PostForMe::PlatformConfigurationsDto | nil,
         scheduled_at: String | nil,
-        social_accounts: ^(PostForMe::Internal::Type::ArrayOf[String]),
+        social_accounts: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialAccount]),
         status: PostForMe::SocialPost::Status,
         updated_at: String
       }

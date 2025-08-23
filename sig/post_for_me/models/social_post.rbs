@@ -3,14 +3,14 @@ module PostForMe
     type social_post =
       {
         id: String,
-        account_configurations: ::Array[top]?,
+        account_configurations: ::Array[PostForMe::SocialPost::AccountConfiguration]?,
         caption: String,
         created_at: String,
         external_id: String?,
-        media: top?,
-        platform_configurations: top?,
+        media: ::Array[PostForMe::SocialPost::Media]?,
+        platform_configurations: PostForMe::PlatformConfigurationsDto?,
         scheduled_at: String?,
-        social_accounts: ::Array[String],
+        social_accounts: ::Array[PostForMe::SocialAccount],
         status: PostForMe::Models::SocialPost::status,
         updated_at: String
       }
@@ -18,7 +18,7 @@ module PostForMe
     class SocialPost < PostForMe::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor account_configurations: ::Array[top]?
+      attr_accessor account_configurations: ::Array[PostForMe::SocialPost::AccountConfiguration]?
 
       attr_accessor caption: String
 
@@ -26,13 +26,13 @@ module PostForMe
 
       attr_accessor external_id: String?
 
-      attr_accessor media: top?
+      attr_accessor media: ::Array[PostForMe::SocialPost::Media]?
 
-      attr_accessor platform_configurations: top?
+      attr_accessor platform_configurations: PostForMe::PlatformConfigurationsDto?
 
       attr_accessor scheduled_at: String?
 
-      attr_accessor social_accounts: ::Array[String]
+      attr_accessor social_accounts: ::Array[PostForMe::SocialAccount]
 
       attr_accessor status: PostForMe::Models::SocialPost::status
 
@@ -40,31 +40,170 @@ module PostForMe
 
       def initialize: (
         id: String,
-        account_configurations: ::Array[top]?,
+        account_configurations: ::Array[PostForMe::SocialPost::AccountConfiguration]?,
         caption: String,
         created_at: String,
         external_id: String?,
-        media: top?,
-        platform_configurations: top?,
+        media: ::Array[PostForMe::SocialPost::Media]?,
+        platform_configurations: PostForMe::PlatformConfigurationsDto?,
         scheduled_at: String?,
-        social_accounts: ::Array[String],
+        social_accounts: ::Array[PostForMe::SocialAccount],
         status: PostForMe::Models::SocialPost::status,
         updated_at: String
       ) -> void
 
       def to_hash: -> {
         id: String,
-        account_configurations: ::Array[top]?,
+        account_configurations: ::Array[PostForMe::SocialPost::AccountConfiguration]?,
         caption: String,
         created_at: String,
         external_id: String?,
-        media: top?,
-        platform_configurations: top?,
+        media: ::Array[PostForMe::SocialPost::Media]?,
+        platform_configurations: PostForMe::PlatformConfigurationsDto?,
         scheduled_at: String?,
-        social_accounts: ::Array[String],
+        social_accounts: ::Array[PostForMe::SocialAccount],
         status: PostForMe::Models::SocialPost::status,
         updated_at: String
       }
+
+      type account_configuration =
+        {
+          configuration: PostForMe::SocialPost::AccountConfiguration::Configuration,
+          social_account_id: String
+        }
+
+      class AccountConfiguration < PostForMe::Internal::Type::BaseModel
+        attr_accessor configuration: PostForMe::SocialPost::AccountConfiguration::Configuration
+
+        attr_accessor social_account_id: String
+
+        def initialize: (
+          configuration: PostForMe::SocialPost::AccountConfiguration::Configuration,
+          social_account_id: String
+        ) -> void
+
+        def to_hash: -> {
+          configuration: PostForMe::SocialPost::AccountConfiguration::Configuration,
+          social_account_id: String
+        }
+
+        type configuration =
+          {
+            allow_comment: bool?,
+            allow_duet: bool?,
+            allow_stitch: bool?,
+            board_ids: ::Array[String]?,
+            caption: top?,
+            disclose_branded_content: bool?,
+            disclose_your_brand: bool?,
+            is_ai_generated: bool?,
+            is_draft: bool?,
+            link: String?,
+            media: ::Array[String]?,
+            placement: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::placement?,
+            privacy_status: String?,
+            title: String?
+          }
+
+        class Configuration < PostForMe::Internal::Type::BaseModel
+          attr_accessor allow_comment: bool?
+
+          attr_accessor allow_duet: bool?
+
+          attr_accessor allow_stitch: bool?
+
+          attr_accessor board_ids: ::Array[String]?
+
+          attr_accessor caption: top?
+
+          attr_accessor disclose_branded_content: bool?
+
+          attr_accessor disclose_your_brand: bool?
+
+          attr_accessor is_ai_generated: bool?
+
+          attr_accessor is_draft: bool?
+
+          attr_accessor link: String?
+
+          attr_accessor media: ::Array[String]?
+
+          attr_accessor placement: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::placement?
+
+          attr_accessor privacy_status: String?
+
+          attr_accessor title: String?
+
+          def initialize: (
+            ?allow_comment: bool?,
+            ?allow_duet: bool?,
+            ?allow_stitch: bool?,
+            ?board_ids: ::Array[String]?,
+            ?caption: top?,
+            ?disclose_branded_content: bool?,
+            ?disclose_your_brand: bool?,
+            ?is_ai_generated: bool?,
+            ?is_draft: bool?,
+            ?link: String?,
+            ?media: ::Array[String]?,
+            ?placement: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::placement?,
+            ?privacy_status: String?,
+            ?title: String?
+          ) -> void
+
+          def to_hash: -> {
+            allow_comment: bool?,
+            allow_duet: bool?,
+            allow_stitch: bool?,
+            board_ids: ::Array[String]?,
+            caption: top?,
+            disclose_branded_content: bool?,
+            disclose_your_brand: bool?,
+            is_ai_generated: bool?,
+            is_draft: bool?,
+            link: String?,
+            media: ::Array[String]?,
+            placement: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::placement?,
+            privacy_status: String?,
+            title: String?
+          }
+
+          type placement = :reels | :timeline | :stories
+
+          module Placement
+            extend PostForMe::Internal::Type::Enum
+
+            REELS: :reels
+            TIMELINE: :timeline
+            STORIES: :stories
+
+            def self?.values: -> ::Array[PostForMe::Models::SocialPost::AccountConfiguration::Configuration::placement]
+          end
+        end
+      end
+
+      type media =
+        { url: String, thumbnail_timestamp_ms: top?, thumbnail_url: top? }
+
+      class Media < PostForMe::Internal::Type::BaseModel
+        attr_accessor url: String
+
+        attr_accessor thumbnail_timestamp_ms: top?
+
+        attr_accessor thumbnail_url: top?
+
+        def initialize: (
+          url: String,
+          ?thumbnail_timestamp_ms: top?,
+          ?thumbnail_url: top?
+        ) -> void
+
+        def to_hash: -> {
+          url: String,
+          thumbnail_timestamp_ms: top?,
+          thumbnail_url: top?
+        }
+      end
 
       type status = :draft | :scheduled | :processing | :processed
 
