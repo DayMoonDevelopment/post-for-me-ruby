@@ -2,7 +2,7 @@
 
 module PostForMe
   module Models
-    # @see PostForMe::Resources::SocialAccounts#retrieve
+    # @see PostForMe::Resources::SocialAccounts#create
     class SocialAccount < PostForMe::Internal::Type::BaseModel
       # @!attribute id
       #   The unique identifier of the social account

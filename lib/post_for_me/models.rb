@@ -59,6 +59,8 @@ module PostForMe
 
   SocialAccountCreateAuthURLParams = PostForMe::Models::SocialAccountCreateAuthURLParams
 
+  SocialAccountCreateParams = PostForMe::Models::SocialAccountCreateParams
+
   SocialAccountDisconnectParams = PostForMe::Models::SocialAccountDisconnectParams
 
   SocialAccountListParams = PostForMe::Models::SocialAccountListParams

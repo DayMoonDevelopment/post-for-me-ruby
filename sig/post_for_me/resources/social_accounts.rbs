@@ -1,6 +1,19 @@
 module PostForMe
   module Resources
     class SocialAccounts
+      def create: (
+        access_token: String,
+        access_token_expires_at: Time,
+        platform: PostForMe::Models::SocialAccountCreateParams::platform,
+        user_id: String,
+        ?external_id: String?,
+        ?metadata: top,
+        ?refresh_token: String?,
+        ?refresh_token_expires_at: Time?,
+        ?username: String?,
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::SocialAccount
+
       def retrieve: (
         String id,
         ?request_options: PostForMe::request_opts
