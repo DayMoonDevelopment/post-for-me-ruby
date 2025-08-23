@@ -8,7 +8,7 @@ module PostForMe
         external_id: String?,
         is_draft: bool?,
         media: ::Array[PostForMe::CreateSocialPost::Media]?,
-        platform_configurations: PostForMe::CreateSocialPost::PlatformConfigurations?,
+        platform_configurations: PostForMe::PlatformConfigurationsDto?,
         scheduled_at: Time?
       }
 
@@ -25,7 +25,7 @@ module PostForMe
 
       attr_accessor media: ::Array[PostForMe::CreateSocialPost::Media]?
 
-      attr_accessor platform_configurations: PostForMe::CreateSocialPost::PlatformConfigurations?
+      attr_accessor platform_configurations: PostForMe::PlatformConfigurationsDto?
 
       attr_accessor scheduled_at: Time?
 
@@ -36,7 +36,7 @@ module PostForMe
         ?external_id: String?,
         ?is_draft: bool?,
         ?media: ::Array[PostForMe::CreateSocialPost::Media]?,
-        ?platform_configurations: PostForMe::CreateSocialPost::PlatformConfigurations?,
+        ?platform_configurations: PostForMe::PlatformConfigurationsDto?,
         ?scheduled_at: Time?
       ) -> void
 
@@ -47,7 +47,7 @@ module PostForMe
         external_id: String?,
         is_draft: bool?,
         media: ::Array[PostForMe::CreateSocialPost::Media]?,
-        platform_configurations: PostForMe::CreateSocialPost::PlatformConfigurations?,
+        platform_configurations: PostForMe::PlatformConfigurationsDto?,
         scheduled_at: Time?
       }
 
@@ -188,280 +188,6 @@ module PostForMe
           thumbnail_timestamp_ms: top?,
           thumbnail_url: top?
         }
-      end
-
-      type platform_configurations =
-        {
-          bluesky: PostForMe::CreateSocialPost::PlatformConfigurations::Bluesky?,
-          facebook: PostForMe::CreateSocialPost::PlatformConfigurations::Facebook?,
-          instagram: PostForMe::CreateSocialPost::PlatformConfigurations::Instagram?,
-          linkedin: PostForMe::CreateSocialPost::PlatformConfigurations::Linkedin?,
-          pinterest: PostForMe::CreateSocialPost::PlatformConfigurations::Pinterest?,
-          threads: PostForMe::CreateSocialPost::PlatformConfigurations::Threads?,
-          tiktok: PostForMe::TiktokConfiguration?,
-          tiktok_business: PostForMe::TiktokConfiguration?,
-          x: PostForMe::CreateSocialPost::PlatformConfigurations::X?,
-          youtube: PostForMe::CreateSocialPost::PlatformConfigurations::Youtube?
-        }
-
-      class PlatformConfigurations < PostForMe::Internal::Type::BaseModel
-        attr_accessor bluesky: PostForMe::CreateSocialPost::PlatformConfigurations::Bluesky?
-
-        attr_accessor facebook: PostForMe::CreateSocialPost::PlatformConfigurations::Facebook?
-
-        attr_accessor instagram: PostForMe::CreateSocialPost::PlatformConfigurations::Instagram?
-
-        attr_accessor linkedin: PostForMe::CreateSocialPost::PlatformConfigurations::Linkedin?
-
-        attr_accessor pinterest: PostForMe::CreateSocialPost::PlatformConfigurations::Pinterest?
-
-        attr_accessor threads: PostForMe::CreateSocialPost::PlatformConfigurations::Threads?
-
-        attr_accessor tiktok: PostForMe::TiktokConfiguration?
-
-        attr_accessor tiktok_business: PostForMe::TiktokConfiguration?
-
-        attr_accessor x: PostForMe::CreateSocialPost::PlatformConfigurations::X?
-
-        attr_accessor youtube: PostForMe::CreateSocialPost::PlatformConfigurations::Youtube?
-
-        def initialize: (
-          ?bluesky: PostForMe::CreateSocialPost::PlatformConfigurations::Bluesky?,
-          ?facebook: PostForMe::CreateSocialPost::PlatformConfigurations::Facebook?,
-          ?instagram: PostForMe::CreateSocialPost::PlatformConfigurations::Instagram?,
-          ?linkedin: PostForMe::CreateSocialPost::PlatformConfigurations::Linkedin?,
-          ?pinterest: PostForMe::CreateSocialPost::PlatformConfigurations::Pinterest?,
-          ?threads: PostForMe::CreateSocialPost::PlatformConfigurations::Threads?,
-          ?tiktok: PostForMe::TiktokConfiguration?,
-          ?tiktok_business: PostForMe::TiktokConfiguration?,
-          ?x: PostForMe::CreateSocialPost::PlatformConfigurations::X?,
-          ?youtube: PostForMe::CreateSocialPost::PlatformConfigurations::Youtube?
-        ) -> void
-
-        def to_hash: -> {
-          bluesky: PostForMe::CreateSocialPost::PlatformConfigurations::Bluesky?,
-          facebook: PostForMe::CreateSocialPost::PlatformConfigurations::Facebook?,
-          instagram: PostForMe::CreateSocialPost::PlatformConfigurations::Instagram?,
-          linkedin: PostForMe::CreateSocialPost::PlatformConfigurations::Linkedin?,
-          pinterest: PostForMe::CreateSocialPost::PlatformConfigurations::Pinterest?,
-          threads: PostForMe::CreateSocialPost::PlatformConfigurations::Threads?,
-          tiktok: PostForMe::TiktokConfiguration?,
-          tiktok_business: PostForMe::TiktokConfiguration?,
-          x: PostForMe::CreateSocialPost::PlatformConfigurations::X?,
-          youtube: PostForMe::CreateSocialPost::PlatformConfigurations::Youtube?
-        }
-
-        type bluesky = { caption: top?, media: ::Array[String]? }
-
-        class Bluesky < PostForMe::Internal::Type::BaseModel
-          attr_accessor caption: top?
-
-          attr_accessor media: ::Array[String]?
-
-          def initialize: (?caption: top?, ?media: ::Array[String]?) -> void
-
-          def to_hash: -> { caption: top?, media: ::Array[String]? }
-        end
-
-        type facebook =
-          {
-            caption: top?,
-            media: ::Array[String]?,
-            placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Facebook::placement?
-          }
-
-        class Facebook < PostForMe::Internal::Type::BaseModel
-          attr_accessor caption: top?
-
-          attr_accessor media: ::Array[String]?
-
-          attr_accessor placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Facebook::placement?
-
-          def initialize: (
-            ?caption: top?,
-            ?media: ::Array[String]?,
-            ?placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Facebook::placement?
-          ) -> void
-
-          def to_hash: -> {
-            caption: top?,
-            media: ::Array[String]?,
-            placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Facebook::placement?
-          }
-
-          type placement = :reels | :stories | :timeline
-
-          module Placement
-            extend PostForMe::Internal::Type::Enum
-
-            REELS: :reels
-            STORIES: :stories
-            TIMELINE: :timeline
-
-            def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::PlatformConfigurations::Facebook::placement]
-          end
-        end
-
-        type instagram =
-          {
-            caption: top?,
-            collaborators: ::Array[String]?,
-            media: ::Array[String]?,
-            placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Instagram::placement?
-          }
-
-        class Instagram < PostForMe::Internal::Type::BaseModel
-          attr_accessor caption: top?
-
-          attr_accessor collaborators: ::Array[String]?
-
-          attr_accessor media: ::Array[String]?
-
-          attr_accessor placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Instagram::placement?
-
-          def initialize: (
-            ?caption: top?,
-            ?collaborators: ::Array[String]?,
-            ?media: ::Array[String]?,
-            ?placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Instagram::placement?
-          ) -> void
-
-          def to_hash: -> {
-            caption: top?,
-            collaborators: ::Array[String]?,
-            media: ::Array[String]?,
-            placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Instagram::placement?
-          }
-
-          type placement = :reels | :stories | :timeline
-
-          module Placement
-            extend PostForMe::Internal::Type::Enum
-
-            REELS: :reels
-            STORIES: :stories
-            TIMELINE: :timeline
-
-            def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::PlatformConfigurations::Instagram::placement]
-          end
-        end
-
-        type linkedin = { caption: top?, media: ::Array[String]? }
-
-        class Linkedin < PostForMe::Internal::Type::BaseModel
-          attr_accessor caption: top?
-
-          attr_accessor media: ::Array[String]?
-
-          def initialize: (?caption: top?, ?media: ::Array[String]?) -> void
-
-          def to_hash: -> { caption: top?, media: ::Array[String]? }
-        end
-
-        type pinterest =
-          {
-            board_ids: ::Array[String]?,
-            caption: top?,
-            link: String?,
-            media: ::Array[String]?
-          }
-
-        class Pinterest < PostForMe::Internal::Type::BaseModel
-          attr_accessor board_ids: ::Array[String]?
-
-          attr_accessor caption: top?
-
-          attr_accessor link: String?
-
-          attr_accessor media: ::Array[String]?
-
-          def initialize: (
-            ?board_ids: ::Array[String]?,
-            ?caption: top?,
-            ?link: String?,
-            ?media: ::Array[String]?
-          ) -> void
-
-          def to_hash: -> {
-            board_ids: ::Array[String]?,
-            caption: top?,
-            link: String?,
-            media: ::Array[String]?
-          }
-        end
-
-        type threads =
-          {
-            caption: top?,
-            media: ::Array[String]?,
-            placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::placement?
-          }
-
-        class Threads < PostForMe::Internal::Type::BaseModel
-          attr_accessor caption: top?
-
-          attr_accessor media: ::Array[String]?
-
-          attr_accessor placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::placement?
-
-          def initialize: (
-            ?caption: top?,
-            ?media: ::Array[String]?,
-            ?placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::placement?
-          ) -> void
-
-          def to_hash: -> {
-            caption: top?,
-            media: ::Array[String]?,
-            placement: PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::placement?
-          }
-
-          type placement = :reels | :timeline
-
-          module Placement
-            extend PostForMe::Internal::Type::Enum
-
-            REELS: :reels
-            TIMELINE: :timeline
-
-            def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::PlatformConfigurations::Threads::placement]
-          end
-        end
-
-        type x = { caption: top?, media: ::Array[String]? }
-
-        class X < PostForMe::Internal::Type::BaseModel
-          attr_accessor caption: top?
-
-          attr_accessor media: ::Array[String]?
-
-          def initialize: (?caption: top?, ?media: ::Array[String]?) -> void
-
-          def to_hash: -> { caption: top?, media: ::Array[String]? }
-        end
-
-        type youtube =
-          { caption: top?, media: ::Array[String]?, title: String? }
-
-        class Youtube < PostForMe::Internal::Type::BaseModel
-          attr_accessor caption: top?
-
-          attr_accessor media: ::Array[String]?
-
-          attr_accessor title: String?
-
-          def initialize: (
-            ?caption: top?,
-            ?media: ::Array[String]?,
-            ?title: String?
-          ) -> void
-
-          def to_hash: -> {
-            caption: top?,
-            media: ::Array[String]?,
-            title: String?
-          }
-        end
       end
     end
   end

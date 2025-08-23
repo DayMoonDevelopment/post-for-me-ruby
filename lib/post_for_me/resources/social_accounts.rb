@@ -3,6 +3,45 @@
 module PostForMe
   module Resources
     class SocialAccounts
+      # If a social account with the same platform and user_id already exists, it will
+      # be updated. If not, a new social account will be created.
+      #
+      # @overload create(access_token:, access_token_expires_at:, platform:, user_id:, external_id: nil, metadata: nil, refresh_token: nil, refresh_token_expires_at: nil, username: nil, request_options: {})
+      #
+      # @param access_token [String] The access token of the social account
+      #
+      # @param access_token_expires_at [Time] The access token expiration date of the social account
+      #
+      # @param platform [Symbol, PostForMe::Models::SocialAccountCreateParams::Platform] The platform of the social account
+      #
+      # @param user_id [String] The user id of the social account
+      #
+      # @param external_id [String, nil] The external id of the social account
+      #
+      # @param metadata [Object] The metadata of the social account
+      #
+      # @param refresh_token [String, nil] The refresh token of the social account
+      #
+      # @param refresh_token_expires_at [Time, nil] The refresh token expiration date of the social account
+      #
+      # @param username [String, nil] The platform's username of the social account
+      #
+      # @param request_options [PostForMe::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [PostForMe::Models::SocialAccount]
+      #
+      # @see PostForMe::Models::SocialAccountCreateParams
+      def create(params)
+        parsed, options = PostForMe::SocialAccountCreateParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: "v1/social-accounts",
+          body: parsed,
+          model: PostForMe::SocialAccount,
+          options: options
+        )
+      end
+
       # Get social account by ID
       #
       # @overload retrieve(id, request_options: {})
@@ -89,9 +128,11 @@ module PostForMe
       # login/authorization page. Upon successful authentication, they are redirected
       # back to your application
       #
-      # @overload create_auth_url(platform:, platform_data: nil, request_options: {})
+      # @overload create_auth_url(platform:, external_id: nil, platform_data: nil, request_options: {})
       #
       # @param platform [String] The social account provider
+      #
+      # @param external_id [String] Your unique identifier for the social account
       #
       # @param platform_data [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData] Additional data needed for the provider
       #

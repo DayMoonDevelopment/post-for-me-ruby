@@ -1,0 +1,65 @@
+module PostForMe
+  module Models
+    type platform_configurations_dto =
+      {
+        bluesky: PostForMe::BlueskyConfigurationDto?,
+        facebook: PostForMe::FacebookConfigurationDto?,
+        instagram: PostForMe::InstagramConfigurationDto?,
+        linkedin: PostForMe::LinkedinConfigurationDto?,
+        pinterest: PostForMe::PinterestConfigurationDto?,
+        threads: PostForMe::ThreadsConfigurationDto?,
+        tiktok: PostForMe::TiktokConfiguration?,
+        tiktok_business: PostForMe::TiktokConfiguration?,
+        x: PostForMe::TwitterConfigurationDto?,
+        youtube: PostForMe::YoutubeConfigurationDto?
+      }
+
+    class PlatformConfigurationsDto < PostForMe::Internal::Type::BaseModel
+      attr_accessor bluesky: PostForMe::BlueskyConfigurationDto?
+
+      attr_accessor facebook: PostForMe::FacebookConfigurationDto?
+
+      attr_accessor instagram: PostForMe::InstagramConfigurationDto?
+
+      attr_accessor linkedin: PostForMe::LinkedinConfigurationDto?
+
+      attr_accessor pinterest: PostForMe::PinterestConfigurationDto?
+
+      attr_accessor threads: PostForMe::ThreadsConfigurationDto?
+
+      attr_accessor tiktok: PostForMe::TiktokConfiguration?
+
+      attr_accessor tiktok_business: PostForMe::TiktokConfiguration?
+
+      attr_accessor x: PostForMe::TwitterConfigurationDto?
+
+      attr_accessor youtube: PostForMe::YoutubeConfigurationDto?
+
+      def initialize: (
+        ?bluesky: PostForMe::BlueskyConfigurationDto?,
+        ?facebook: PostForMe::FacebookConfigurationDto?,
+        ?instagram: PostForMe::InstagramConfigurationDto?,
+        ?linkedin: PostForMe::LinkedinConfigurationDto?,
+        ?pinterest: PostForMe::PinterestConfigurationDto?,
+        ?threads: PostForMe::ThreadsConfigurationDto?,
+        ?tiktok: PostForMe::TiktokConfiguration?,
+        ?tiktok_business: PostForMe::TiktokConfiguration?,
+        ?x: PostForMe::TwitterConfigurationDto?,
+        ?youtube: PostForMe::YoutubeConfigurationDto?
+      ) -> void
+
+      def to_hash: -> {
+        bluesky: PostForMe::BlueskyConfigurationDto?,
+        facebook: PostForMe::FacebookConfigurationDto?,
+        instagram: PostForMe::InstagramConfigurationDto?,
+        linkedin: PostForMe::LinkedinConfigurationDto?,
+        pinterest: PostForMe::PinterestConfigurationDto?,
+        threads: PostForMe::ThreadsConfigurationDto?,
+        tiktok: PostForMe::TiktokConfiguration?,
+        tiktok_business: PostForMe::TiktokConfiguration?,
+        x: PostForMe::TwitterConfigurationDto?,
+        youtube: PostForMe::YoutubeConfigurationDto?
+      }
+    end
+  end
+end

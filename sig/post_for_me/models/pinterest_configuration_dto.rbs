@@ -1,0 +1,35 @@
+module PostForMe
+  module Models
+    type pinterest_configuration_dto =
+      {
+        board_ids: ::Array[String]?,
+        caption: top?,
+        link: String?,
+        media: ::Array[String]?
+      }
+
+    class PinterestConfigurationDto < PostForMe::Internal::Type::BaseModel
+      attr_accessor board_ids: ::Array[String]?
+
+      attr_accessor caption: top?
+
+      attr_accessor link: String?
+
+      attr_accessor media: ::Array[String]?
+
+      def initialize: (
+        ?board_ids: ::Array[String]?,
+        ?caption: top?,
+        ?link: String?,
+        ?media: ::Array[String]?
+      ) -> void
+
+      def to_hash: -> {
+        board_ids: ::Array[String]?,
+        caption: top?,
+        link: String?,
+        media: ::Array[String]?
+      }
+    end
+  end
+end

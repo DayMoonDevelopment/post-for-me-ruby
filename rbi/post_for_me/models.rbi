@@ -1,14 +1,28 @@
 # typed: strong
 
 module PostForMe
+  BlueskyConfigurationDto = PostForMe::Models::BlueskyConfigurationDto
+
   CreateSocialPost = PostForMe::Models::CreateSocialPost
 
+  FacebookConfigurationDto = PostForMe::Models::FacebookConfigurationDto
+
+  InstagramConfigurationDto = PostForMe::Models::InstagramConfigurationDto
+
+  LinkedinConfigurationDto = PostForMe::Models::LinkedinConfigurationDto
+
   MediaCreateUploadURLParams = PostForMe::Models::MediaCreateUploadURLParams
+
+  PinterestConfigurationDto = PostForMe::Models::PinterestConfigurationDto
+
+  PlatformConfigurationsDto = PostForMe::Models::PlatformConfigurationsDto
 
   SocialAccount = PostForMe::Models::SocialAccount
 
   SocialAccountCreateAuthURLParams =
     PostForMe::Models::SocialAccountCreateAuthURLParams
+
+  SocialAccountCreateParams = PostForMe::Models::SocialAccountCreateParams
 
   SocialAccountDisconnectParams =
     PostForMe::Models::SocialAccountDisconnectParams
@@ -38,5 +52,11 @@ module PostForMe
 
   SocialPostUpdateParams = PostForMe::Models::SocialPostUpdateParams
 
+  ThreadsConfigurationDto = PostForMe::Models::ThreadsConfigurationDto
+
   TiktokConfiguration = PostForMe::Models::TiktokConfiguration
+
+  TwitterConfigurationDto = PostForMe::Models::TwitterConfigurationDto
+
+  YoutubeConfigurationDto = PostForMe::Models::YoutubeConfigurationDto
 end

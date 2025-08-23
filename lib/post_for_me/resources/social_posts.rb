@@ -22,7 +22,7 @@ module PostForMe
       #
       # @param media [Array<PostForMe::Models::CreateSocialPost::Media>, nil] Array of media URLs associated with the post
       #
-      # @param platform_configurations [PostForMe::Models::CreateSocialPost::PlatformConfigurations, nil] Platform-specific configurations for the post
+      # @param platform_configurations [PostForMe::Models::PlatformConfigurationsDto, nil] Platform-specific configurations for the post
       #
       # @param scheduled_at [Time, nil] Scheduled date and time for the post, setting to null or undefined will post ins
       #
@@ -83,7 +83,7 @@ module PostForMe
       #
       # @param media [Array<PostForMe::Models::CreateSocialPost::Media>, nil] Array of media URLs associated with the post
       #
-      # @param platform_configurations [PostForMe::Models::CreateSocialPost::PlatformConfigurations, nil] Platform-specific configurations for the post
+      # @param platform_configurations [PostForMe::Models::PlatformConfigurationsDto, nil] Platform-specific configurations for the post
       #
       # @param scheduled_at [Time, nil] Scheduled date and time for the post, setting to null or undefined will post ins
       #

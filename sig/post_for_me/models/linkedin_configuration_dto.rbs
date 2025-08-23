@@ -1,0 +1,15 @@
+module PostForMe
+  module Models
+    type linkedin_configuration_dto = { caption: top?, media: ::Array[String]? }
+
+    class LinkedinConfigurationDto < PostForMe::Internal::Type::BaseModel
+      attr_accessor caption: top?
+
+      attr_accessor media: ::Array[String]?
+
+      def initialize: (?caption: top?, ?media: ::Array[String]?) -> void
+
+      def to_hash: -> { caption: top?, media: ::Array[String]? }
+    end
+  end
+end

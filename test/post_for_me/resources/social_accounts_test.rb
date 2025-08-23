@@ -3,6 +3,38 @@
 require_relative "../test_helper"
 
 class PostForMe::Test::Resources::SocialAccountsTest < PostForMe::Test::ResourceTest
+  def test_create_required_params
+    skip("Prism tests are disabled")
+
+    response =
+      @post_for_me.social_accounts.create(
+        access_token: "access_token",
+        access_token_expires_at: "2019-12-27T18:11:19.117Z",
+        platform: :facebook,
+        user_id: "user_id"
+      )
+
+    assert_pattern do
+      response => PostForMe::SocialAccount
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        access_token: String,
+        access_token_expires_at: Time,
+        external_id: String | nil,
+        metadata: PostForMe::Internal::Type::Unknown | nil,
+        platform: String,
+        refresh_token: String | nil,
+        refresh_token_expires_at: Time | nil,
+        status: PostForMe::SocialAccount::Status,
+        user_id: String,
+        username: String | nil
+      }
+    end
+  end
+
   def test_retrieve
     skip("Prism tests are disabled")
 

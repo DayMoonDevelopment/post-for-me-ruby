@@ -8,7 +8,7 @@ module PostForMe
         ?external_id: String?,
         ?is_draft: bool?,
         ?media: ::Array[PostForMe::CreateSocialPost::Media]?,
-        ?platform_configurations: PostForMe::CreateSocialPost::PlatformConfigurations?,
+        ?platform_configurations: PostForMe::PlatformConfigurationsDto?,
         ?scheduled_at: Time?,
         ?request_options: PostForMe::request_opts
       ) -> PostForMe::SocialPost
@@ -26,7 +26,7 @@ module PostForMe
         ?external_id: String?,
         ?is_draft: bool?,
         ?media: ::Array[PostForMe::CreateSocialPost::Media]?,
-        ?platform_configurations: PostForMe::CreateSocialPost::PlatformConfigurations?,
+        ?platform_configurations: PostForMe::PlatformConfigurationsDto?,
         ?scheduled_at: Time?,
         ?request_options: PostForMe::request_opts
       ) -> PostForMe::SocialPost

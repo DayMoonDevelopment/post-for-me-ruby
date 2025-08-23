@@ -17,7 +17,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "post-for-me", "~> 0.1.0.pre.alpha.5"
+gem "post-for-me", "~> 0.1.0.pre.alpha.6"
 ```
 
 <!-- x-release-please-end -->
@@ -229,23 +229,25 @@ post_for_me.social_posts.create(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :draft
-puts(PostForMe::SocialPost::Status::DRAFT)
+# :facebook
+puts(PostForMe::SocialAccountCreateParams::Platform::FACEBOOK)
 
-# Revealed type: `T.all(PostForMe::SocialPost::Status, Symbol)`
-T.reveal_type(PostForMe::SocialPost::Status::DRAFT)
+# Revealed type: `T.all(PostForMe::SocialAccountCreateParams::Platform, Symbol)`
+T.reveal_type(PostForMe::SocialAccountCreateParams::Platform::FACEBOOK)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
-PostForMe::SocialPost.new(
-  status: PostForMe::SocialPost::Status::DRAFT,
+# Using the enum constants preserves the tagged type information:
+post_for_me.social_accounts.create(
+  platform: PostForMe::SocialAccountCreateParams::Platform::FACEBOOK,
   # …
 )
 
-PostForMe::SocialPost.new(
-  status: :draft,
+# Literal values are also permissible:
+post_for_me.social_accounts.create(
+  platform: :facebook,
   # …
 )
 ```
