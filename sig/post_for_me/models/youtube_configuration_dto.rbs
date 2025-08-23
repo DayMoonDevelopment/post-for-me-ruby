@@ -1,0 +1,22 @@
+module PostForMe
+  module Models
+    type youtube_configuration_dto =
+      { caption: top?, media: ::Array[String]?, title: String? }
+
+    class YoutubeConfigurationDto < PostForMe::Internal::Type::BaseModel
+      attr_accessor caption: top?
+
+      attr_accessor media: ::Array[String]?
+
+      attr_accessor title: String?
+
+      def initialize: (
+        ?caption: top?,
+        ?media: ::Array[String]?,
+        ?title: String?
+      ) -> void
+
+      def to_hash: -> { caption: top?, media: ::Array[String]?, title: String? }
+    end
+  end
+end

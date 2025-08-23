@@ -39,9 +39,21 @@ module PostForMe
     mod.define_sorbet_constant!(const) { T.type_alias { mod.to_sorbet_type } }
   end
 
+  BlueskyConfigurationDto = PostForMe::Models::BlueskyConfigurationDto
+
   CreateSocialPost = PostForMe::Models::CreateSocialPost
 
+  FacebookConfigurationDto = PostForMe::Models::FacebookConfigurationDto
+
+  InstagramConfigurationDto = PostForMe::Models::InstagramConfigurationDto
+
+  LinkedinConfigurationDto = PostForMe::Models::LinkedinConfigurationDto
+
   MediaCreateUploadURLParams = PostForMe::Models::MediaCreateUploadURLParams
+
+  PinterestConfigurationDto = PostForMe::Models::PinterestConfigurationDto
+
+  PlatformConfigurationsDto = PostForMe::Models::PlatformConfigurationsDto
 
   SocialAccount = PostForMe::Models::SocialAccount
 
@@ -73,5 +85,11 @@ module PostForMe
 
   SocialPostUpdateParams = PostForMe::Models::SocialPostUpdateParams
 
+  ThreadsConfigurationDto = PostForMe::Models::ThreadsConfigurationDto
+
   TiktokConfiguration = PostForMe::Models::TiktokConfiguration
+
+  TwitterConfigurationDto = PostForMe::Models::TwitterConfigurationDto
+
+  YoutubeConfigurationDto = PostForMe::Models::YoutubeConfigurationDto
 end

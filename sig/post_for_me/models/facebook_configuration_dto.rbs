@@ -1,0 +1,42 @@
+module PostForMe
+  module Models
+    type facebook_configuration_dto =
+      {
+        caption: top?,
+        media: ::Array[String]?,
+        placement: PostForMe::Models::FacebookConfigurationDto::placement?
+      }
+
+    class FacebookConfigurationDto < PostForMe::Internal::Type::BaseModel
+      attr_accessor caption: top?
+
+      attr_accessor media: ::Array[String]?
+
+      attr_accessor placement: PostForMe::Models::FacebookConfigurationDto::placement?
+
+      def initialize: (
+        ?caption: top?,
+        ?media: ::Array[String]?,
+        ?placement: PostForMe::Models::FacebookConfigurationDto::placement?
+      ) -> void
+
+      def to_hash: -> {
+        caption: top?,
+        media: ::Array[String]?,
+        placement: PostForMe::Models::FacebookConfigurationDto::placement?
+      }
+
+      type placement = :reels | :stories | :timeline
+
+      module Placement
+        extend PostForMe::Internal::Type::Enum
+
+        REELS: :reels
+        STORIES: :stories
+        TIMELINE: :timeline
+
+        def self?.values: -> ::Array[PostForMe::Models::FacebookConfigurationDto::placement]
+      end
+    end
+  end
+end

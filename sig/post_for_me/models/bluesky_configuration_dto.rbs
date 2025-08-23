@@ -1,0 +1,15 @@
+module PostForMe
+  module Models
+    type bluesky_configuration_dto = { caption: top?, media: ::Array[String]? }
+
+    class BlueskyConfigurationDto < PostForMe::Internal::Type::BaseModel
+      attr_accessor caption: top?
+
+      attr_accessor media: ::Array[String]?
+
+      def initialize: (?caption: top?, ?media: ::Array[String]?) -> void
+
+      def to_hash: -> { caption: top?, media: ::Array[String]? }
+    end
+  end
+end
