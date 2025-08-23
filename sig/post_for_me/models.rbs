@@ -1,7 +1,19 @@
 module PostForMe
+  class BlueskyConfigurationDto = PostForMe::Models::BlueskyConfigurationDto
+
   class CreateSocialPost = PostForMe::Models::CreateSocialPost
 
+  class FacebookConfigurationDto = PostForMe::Models::FacebookConfigurationDto
+
+  class InstagramConfigurationDto = PostForMe::Models::InstagramConfigurationDto
+
+  class LinkedinConfigurationDto = PostForMe::Models::LinkedinConfigurationDto
+
   class MediaCreateUploadURLParams = PostForMe::Models::MediaCreateUploadURLParams
+
+  class PinterestConfigurationDto = PostForMe::Models::PinterestConfigurationDto
+
+  class PlatformConfigurationsDto = PostForMe::Models::PlatformConfigurationsDto
 
   class SocialAccount = PostForMe::Models::SocialAccount
 
@@ -33,5 +45,11 @@ module PostForMe
 
   class SocialPostUpdateParams = PostForMe::Models::SocialPostUpdateParams
 
+  class ThreadsConfigurationDto = PostForMe::Models::ThreadsConfigurationDto
+
   class TiktokConfiguration = PostForMe::Models::TiktokConfiguration
+
+  class TwitterConfigurationDto = PostForMe::Models::TwitterConfigurationDto
+
+  class YoutubeConfigurationDto = PostForMe::Models::YoutubeConfigurationDto
 end

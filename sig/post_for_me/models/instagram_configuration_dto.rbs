@@ -1,0 +1,47 @@
+module PostForMe
+  module Models
+    type instagram_configuration_dto =
+      {
+        caption: top?,
+        collaborators: ::Array[String]?,
+        media: ::Array[String]?,
+        placement: PostForMe::Models::InstagramConfigurationDto::placement?
+      }
+
+    class InstagramConfigurationDto < PostForMe::Internal::Type::BaseModel
+      attr_accessor caption: top?
+
+      attr_accessor collaborators: ::Array[String]?
+
+      attr_accessor media: ::Array[String]?
+
+      attr_accessor placement: PostForMe::Models::InstagramConfigurationDto::placement?
+
+      def initialize: (
+        ?caption: top?,
+        ?collaborators: ::Array[String]?,
+        ?media: ::Array[String]?,
+        ?placement: PostForMe::Models::InstagramConfigurationDto::placement?
+      ) -> void
+
+      def to_hash: -> {
+        caption: top?,
+        collaborators: ::Array[String]?,
+        media: ::Array[String]?,
+        placement: PostForMe::Models::InstagramConfigurationDto::placement?
+      }
+
+      type placement = :reels | :stories | :timeline
+
+      module Placement
+        extend PostForMe::Internal::Type::Enum
+
+        REELS: :reels
+        STORIES: :stories
+        TIMELINE: :timeline
+
+        def self?.values: -> ::Array[PostForMe::Models::InstagramConfigurationDto::placement]
+      end
+    end
+  end
+end

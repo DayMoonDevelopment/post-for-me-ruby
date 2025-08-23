@@ -19,9 +19,7 @@ module PostForMe
           media:
             T.nilable(T::Array[PostForMe::CreateSocialPost::Media::OrHash]),
           platform_configurations:
-            T.nilable(
-              PostForMe::CreateSocialPost::PlatformConfigurations::OrHash
-            ),
+            T.nilable(PostForMe::PlatformConfigurationsDto::OrHash),
           scheduled_at: T.nilable(Time),
           request_options: PostForMe::RequestOptions::OrHash
         ).returns(PostForMe::SocialPost)
@@ -79,9 +77,7 @@ module PostForMe
           media:
             T.nilable(T::Array[PostForMe::CreateSocialPost::Media::OrHash]),
           platform_configurations:
-            T.nilable(
-              PostForMe::CreateSocialPost::PlatformConfigurations::OrHash
-            ),
+            T.nilable(PostForMe::PlatformConfigurationsDto::OrHash),
           scheduled_at: T.nilable(Time),
           request_options: PostForMe::RequestOptions::OrHash
         ).returns(PostForMe::SocialPost)

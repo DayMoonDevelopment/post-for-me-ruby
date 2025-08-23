@@ -1,0 +1,41 @@
+module PostForMe
+  module Models
+    type threads_configuration_dto =
+      {
+        caption: top?,
+        media: ::Array[String]?,
+        placement: PostForMe::Models::ThreadsConfigurationDto::placement?
+      }
+
+    class ThreadsConfigurationDto < PostForMe::Internal::Type::BaseModel
+      attr_accessor caption: top?
+
+      attr_accessor media: ::Array[String]?
+
+      attr_accessor placement: PostForMe::Models::ThreadsConfigurationDto::placement?
+
+      def initialize: (
+        ?caption: top?,
+        ?media: ::Array[String]?,
+        ?placement: PostForMe::Models::ThreadsConfigurationDto::placement?
+      ) -> void
+
+      def to_hash: -> {
+        caption: top?,
+        media: ::Array[String]?,
+        placement: PostForMe::Models::ThreadsConfigurationDto::placement?
+      }
+
+      type placement = :reels | :timeline
+
+      module Placement
+        extend PostForMe::Internal::Type::Enum
+
+        REELS: :reels
+        TIMELINE: :timeline
+
+        def self?.values: -> ::Array[PostForMe::Models::ThreadsConfigurationDto::placement]
+      end
+    end
+  end
+end
