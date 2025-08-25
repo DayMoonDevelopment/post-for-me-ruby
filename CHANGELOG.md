@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.7 (2025-08-25)
+
+Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
+
+### Chores
+
+* add json schema comment for rubocop.yml ([ee87501](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/ee8750167bee18e813616a6c2ee65c62014dddd1))
+
 ## 0.1.0-alpha.6 (2025-08-23)
 
 Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
