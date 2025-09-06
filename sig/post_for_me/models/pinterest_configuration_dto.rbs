@@ -5,7 +5,7 @@ module PostForMe
         board_ids: ::Array[String]?,
         caption: top?,
         link: String?,
-        media: ::Array[String]?
+        media: ::Array[PostForMe::PinterestConfigurationDto::Media]?
       }
 
     class PinterestConfigurationDto < PostForMe::Internal::Type::BaseModel
@@ -15,21 +15,44 @@ module PostForMe
 
       attr_accessor link: String?
 
-      attr_accessor media: ::Array[String]?
+      attr_accessor media: ::Array[PostForMe::PinterestConfigurationDto::Media]?
 
       def initialize: (
         ?board_ids: ::Array[String]?,
         ?caption: top?,
         ?link: String?,
-        ?media: ::Array[String]?
+        ?media: ::Array[PostForMe::PinterestConfigurationDto::Media]?
       ) -> void
 
       def to_hash: -> {
         board_ids: ::Array[String]?,
         caption: top?,
         link: String?,
-        media: ::Array[String]?
+        media: ::Array[PostForMe::PinterestConfigurationDto::Media]?
       }
+
+      type media =
+        { url: String, thumbnail_timestamp_ms: top?, thumbnail_url: top? }
+
+      class Media < PostForMe::Internal::Type::BaseModel
+        attr_accessor url: String
+
+        attr_accessor thumbnail_timestamp_ms: top?
+
+        attr_accessor thumbnail_url: top?
+
+        def initialize: (
+          url: String,
+          ?thumbnail_timestamp_ms: top?,
+          ?thumbnail_url: top?
+        ) -> void
+
+        def to_hash: -> {
+          url: String,
+          thumbnail_timestamp_ms: top?,
+          thumbnail_url: top?
+        }
+      end
     end
   end
 end
