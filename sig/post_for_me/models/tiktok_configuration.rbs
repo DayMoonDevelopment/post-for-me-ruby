@@ -10,7 +10,7 @@ module PostForMe
         disclose_your_brand: bool?,
         is_ai_generated: bool?,
         is_draft: bool?,
-        media: ::Array[String]?,
+        media: ::Array[PostForMe::TiktokConfiguration::Media]?,
         privacy_status: String?,
         title: String?
       }
@@ -32,7 +32,7 @@ module PostForMe
 
       attr_accessor is_draft: bool?
 
-      attr_accessor media: ::Array[String]?
+      attr_accessor media: ::Array[PostForMe::TiktokConfiguration::Media]?
 
       attr_accessor privacy_status: String?
 
@@ -47,7 +47,7 @@ module PostForMe
         ?disclose_your_brand: bool?,
         ?is_ai_generated: bool?,
         ?is_draft: bool?,
-        ?media: ::Array[String]?,
+        ?media: ::Array[PostForMe::TiktokConfiguration::Media]?,
         ?privacy_status: String?,
         ?title: String?
       ) -> void
@@ -61,10 +61,33 @@ module PostForMe
         disclose_your_brand: bool?,
         is_ai_generated: bool?,
         is_draft: bool?,
-        media: ::Array[String]?,
+        media: ::Array[PostForMe::TiktokConfiguration::Media]?,
         privacy_status: String?,
         title: String?
       }
+
+      type media =
+        { url: String, thumbnail_timestamp_ms: top?, thumbnail_url: top? }
+
+      class Media < PostForMe::Internal::Type::BaseModel
+        attr_accessor url: String
+
+        attr_accessor thumbnail_timestamp_ms: top?
+
+        attr_accessor thumbnail_url: top?
+
+        def initialize: (
+          url: String,
+          ?thumbnail_timestamp_ms: top?,
+          ?thumbnail_url: top?
+        ) -> void
+
+        def to_hash: -> {
+          url: String,
+          thumbnail_timestamp_ms: top?,
+          thumbnail_url: top?
+        }
+      end
     end
   end
 end

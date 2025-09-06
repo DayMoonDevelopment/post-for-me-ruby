@@ -18,8 +18,10 @@ module PostForMe
       # @!attribute media
       #   Overrides the `media` from the post
       #
-      #   @return [Array<String>, nil]
-      optional :media, PostForMe::Internal::Type::ArrayOf[String], nil?: true
+      #   @return [Array<PostForMe::Models::InstagramConfigurationDto::Media>, nil]
+      optional :media,
+               -> { PostForMe::Internal::Type::ArrayOf[PostForMe::InstagramConfigurationDto::Media] },
+               nil?: true
 
       # @!attribute placement
       #   Instagram post placement
@@ -32,9 +34,36 @@ module PostForMe
       #
       #   @param collaborators [Array<String>, nil] Instagram usernames to be tagged as a collaborator
       #
-      #   @param media [Array<String>, nil] Overrides the `media` from the post
+      #   @param media [Array<PostForMe::Models::InstagramConfigurationDto::Media>, nil] Overrides the `media` from the post
       #
       #   @param placement [Symbol, PostForMe::Models::InstagramConfigurationDto::Placement, nil] Instagram post placement
+
+      class Media < PostForMe::Internal::Type::BaseModel
+        # @!attribute url
+        #   Public URL of the media
+        #
+        #   @return [String]
+        required :url, String
+
+        # @!attribute thumbnail_timestamp_ms
+        #   Timestamp in milliseconds of frame to use as thumbnail for the media
+        #
+        #   @return [Object, nil]
+        optional :thumbnail_timestamp_ms, PostForMe::Internal::Type::Unknown, nil?: true
+
+        # @!attribute thumbnail_url
+        #   Public URL of the thumbnail for the media
+        #
+        #   @return [Object, nil]
+        optional :thumbnail_url, PostForMe::Internal::Type::Unknown, nil?: true
+
+        # @!method initialize(url:, thumbnail_timestamp_ms: nil, thumbnail_url: nil)
+        #   @param url [String] Public URL of the media
+        #
+        #   @param thumbnail_timestamp_ms [Object, nil] Timestamp in milliseconds of frame to use as thumbnail for the media
+        #
+        #   @param thumbnail_url [Object, nil] Public URL of the thumbnail for the media
+      end
 
       # Instagram post placement
       #

@@ -1,15 +1,48 @@
 module PostForMe
   module Models
-    type twitter_configuration_dto = { caption: top?, media: ::Array[String]? }
+    type twitter_configuration_dto =
+      {
+        caption: top?,
+        media: ::Array[PostForMe::TwitterConfigurationDto::Media]?
+      }
 
     class TwitterConfigurationDto < PostForMe::Internal::Type::BaseModel
       attr_accessor caption: top?
 
-      attr_accessor media: ::Array[String]?
+      attr_accessor media: ::Array[PostForMe::TwitterConfigurationDto::Media]?
 
-      def initialize: (?caption: top?, ?media: ::Array[String]?) -> void
+      def initialize: (
+        ?caption: top?,
+        ?media: ::Array[PostForMe::TwitterConfigurationDto::Media]?
+      ) -> void
 
-      def to_hash: -> { caption: top?, media: ::Array[String]? }
+      def to_hash: -> {
+        caption: top?,
+        media: ::Array[PostForMe::TwitterConfigurationDto::Media]?
+      }
+
+      type media =
+        { url: String, thumbnail_timestamp_ms: top?, thumbnail_url: top? }
+
+      class Media < PostForMe::Internal::Type::BaseModel
+        attr_accessor url: String
+
+        attr_accessor thumbnail_timestamp_ms: top?
+
+        attr_accessor thumbnail_url: top?
+
+        def initialize: (
+          url: String,
+          ?thumbnail_timestamp_ms: top?,
+          ?thumbnail_url: top?
+        ) -> void
+
+        def to_hash: -> {
+          url: String,
+          thumbnail_timestamp_ms: top?,
+          thumbnail_url: top?
+        }
+      end
     end
   end
 end
