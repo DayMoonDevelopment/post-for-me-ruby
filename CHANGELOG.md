@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.8 (2025-09-06)
+
+Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
+
+### Features
+
+* **api:** api update ([b15e35d](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/b15e35d20fbac883c45ae3241b432b2fcbc8219e))
+
 ## 0.1.0-alpha.7 (2025-08-25)
 
 Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
