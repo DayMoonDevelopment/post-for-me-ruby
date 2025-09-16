@@ -133,6 +133,12 @@ module PostForMe
           #   @return [Boolean, nil]
           optional :allow_stitch, PostForMe::Internal::Type::Boolean, nil?: true
 
+          # @!attribute auto_add_music
+          #   Will automatically add music to photo posts on TikTok
+          #
+          #   @return [Boolean, nil]
+          optional :auto_add_music, PostForMe::Internal::Type::Boolean, nil?: true
+
           # @!attribute board_ids
           #   Pinterest board IDs
           #
@@ -202,7 +208,7 @@ module PostForMe
           #   @return [String, nil]
           optional :title, String, nil?: true
 
-          # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, board_ids: nil, caption: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, link: nil, media: nil, placement: nil, privacy_status: nil, title: nil)
+          # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, auto_add_music: nil, board_ids: nil, caption: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, link: nil, media: nil, placement: nil, privacy_status: nil, title: nil)
           #   Some parameter documentations has been truncated, see
           #   {PostForMe::Models::SocialPost::AccountConfiguration::Configuration} for more
           #   details.
@@ -214,6 +220,8 @@ module PostForMe
           #   @param allow_duet [Boolean, nil] Allow duets on TikTok
           #
           #   @param allow_stitch [Boolean, nil] Allow stitch on TikTok
+          #
+          #   @param auto_add_music [Boolean, nil] Will automatically add music to photo posts on TikTok
           #
           #   @param board_ids [Array<String>, nil] Pinterest board IDs
           #

@@ -191,6 +191,10 @@ module PostForMe
           sig { returns(T.nilable(T::Boolean)) }
           attr_accessor :allow_stitch
 
+          # Will automatically add music to photo posts on TikTok
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_accessor :auto_add_music
+
           # Pinterest board IDs
           sig { returns(T.nilable(T::Array[String])) }
           attr_accessor :board_ids
@@ -248,6 +252,7 @@ module PostForMe
               allow_comment: T.nilable(T::Boolean),
               allow_duet: T.nilable(T::Boolean),
               allow_stitch: T.nilable(T::Boolean),
+              auto_add_music: T.nilable(T::Boolean),
               board_ids: T.nilable(T::Array[String]),
               caption: T.nilable(T.anything),
               disclose_branded_content: T.nilable(T::Boolean),
@@ -271,6 +276,8 @@ module PostForMe
             allow_duet: nil,
             # Allow stitch on TikTok
             allow_stitch: nil,
+            # Will automatically add music to photo posts on TikTok
+            auto_add_music: nil,
             # Pinterest board IDs
             board_ids: nil,
             # Overrides the `caption` from the post
@@ -303,6 +310,7 @@ module PostForMe
                 allow_comment: T.nilable(T::Boolean),
                 allow_duet: T.nilable(T::Boolean),
                 allow_stitch: T.nilable(T::Boolean),
+                auto_add_music: T.nilable(T::Boolean),
                 board_ids: T.nilable(T::Array[String]),
                 caption: T.nilable(T.anything),
                 disclose_branded_content: T.nilable(T::Boolean),
