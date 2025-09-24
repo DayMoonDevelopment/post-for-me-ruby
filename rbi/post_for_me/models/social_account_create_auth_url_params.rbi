@@ -102,6 +102,24 @@ module PostForMe
         end
         attr_writer :bluesky
 
+        # Additional data for connecting instagram accounts
+        sig do
+          returns(
+            T.nilable(
+              PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram
+            )
+          )
+        end
+        attr_reader :instagram
+
+        sig do
+          params(
+            instagram:
+              PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram::OrHash
+          ).void
+        end
+        attr_writer :instagram
+
         # Additional data for connecting linkedin accounts
         sig do
           returns(
@@ -125,6 +143,8 @@ module PostForMe
           params(
             bluesky:
               PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky::OrHash,
+            instagram:
+              PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram::OrHash,
             linkedin:
               PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::OrHash
           ).returns(T.attached_class)
@@ -132,6 +152,8 @@ module PostForMe
         def self.new(
           # Additional data needed for connecting bluesky accounts
           bluesky: nil,
+          # Additional data for connecting instagram accounts
+          instagram: nil,
           # Additional data for connecting linkedin accounts
           linkedin: nil
         )
@@ -142,6 +164,8 @@ module PostForMe
             {
               bluesky:
                 PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky,
+              instagram:
+                PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram,
               linkedin:
                 PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin
             }
@@ -183,6 +207,86 @@ module PostForMe
 
           sig { override.returns({ app_password: String, handle: String }) }
           def to_hash
+          end
+        end
+
+        class Instagram < PostForMe::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram,
+                PostForMe::Internal::AnyHash
+              )
+            end
+
+          # The type of connection; instagram for using login with instagram, facebook for
+          # using login with facebook.
+          sig do
+            returns(
+              PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram::ConnectionType::OrSymbol
+            )
+          end
+          attr_accessor :connection_type
+
+          # Additional data for connecting instagram accounts
+          sig do
+            params(
+              connection_type:
+                PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram::ConnectionType::OrSymbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The type of connection; instagram for using login with instagram, facebook for
+            # using login with facebook.
+            connection_type:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                connection_type:
+                  PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram::ConnectionType::OrSymbol
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # The type of connection; instagram for using login with instagram, facebook for
+          # using login with facebook.
+          module ConnectionType
+            extend PostForMe::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram::ConnectionType
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            INSTAGRAM =
+              T.let(
+                :instagram,
+                PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram::ConnectionType::TaggedSymbol
+              )
+            FACEBOOK =
+              T.let(
+                :facebook,
+                PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram::ConnectionType::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram::ConnectionType::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
 

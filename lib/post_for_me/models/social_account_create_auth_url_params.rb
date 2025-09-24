@@ -41,16 +41,24 @@ module PostForMe
         #   @return [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Bluesky, nil]
         optional :bluesky, -> { PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky }
 
+        # @!attribute instagram
+        #   Additional data for connecting instagram accounts
+        #
+        #   @return [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram, nil]
+        optional :instagram, -> { PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram }
+
         # @!attribute linkedin
         #   Additional data for connecting linkedin accounts
         #
         #   @return [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin, nil]
         optional :linkedin, -> { PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin }
 
-        # @!method initialize(bluesky: nil, linkedin: nil)
+        # @!method initialize(bluesky: nil, instagram: nil, linkedin: nil)
         #   Additional data needed for the provider
         #
         #   @param bluesky [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Bluesky] Additional data needed for connecting bluesky accounts
+        #
+        #   @param instagram [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram] Additional data for connecting instagram accounts
         #
         #   @param linkedin [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin] Additional data for connecting linkedin accounts
 
@@ -74,6 +82,40 @@ module PostForMe
           #   @param app_password [String] The app password of the account
           #
           #   @param handle [String] The handle of the account
+        end
+
+        # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData#instagram
+        class Instagram < PostForMe::Internal::Type::BaseModel
+          # @!attribute connection_type
+          #   The type of connection; instagram for using login with instagram, facebook for
+          #   using login with facebook.
+          #
+          #   @return [Symbol, PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::ConnectionType]
+          required :connection_type,
+                   enum: -> { PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram::ConnectionType }
+
+          # @!method initialize(connection_type:)
+          #   Some parameter documentations has been truncated, see
+          #   {PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram}
+          #   for more details.
+          #
+          #   Additional data for connecting instagram accounts
+          #
+          #   @param connection_type [Symbol, PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::ConnectionType] The type of connection; instagram for using login with instagram, facebook for u
+
+          # The type of connection; instagram for using login with instagram, facebook for
+          # using login with facebook.
+          #
+          # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram#connection_type
+          module ConnectionType
+            extend PostForMe::Internal::Type::Enum
+
+            INSTAGRAM = :instagram
+            FACEBOOK = :facebook
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
 
         # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData#linkedin
