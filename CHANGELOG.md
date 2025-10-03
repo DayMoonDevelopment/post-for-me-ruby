@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.1.0-alpha.9 (2025-10-03)
+
+Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
+
+### Features
+
+* **api:** api update ([29166f7](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/29166f7dd2eebd6f9a49e99c553f4212233879e9))
+* **api:** api update ([c75db7a](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/c75db7ab2fcc16f9e831ed1722e837d4dc1fbd91))
+* **api:** api update ([11635c1](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/11635c16438bf92c6aec3d4c524f09768bf8f2cc))
+* expose response headers for both streams and errors ([c4a0864](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/c4a0864dab0421eca1ba510038376497ca4c3d1f))
+
+
+### Bug Fixes
+
+* coroutine leaks from connection pool ([5ca79a4](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/5ca79a4bbab523051dbecd1f48eb95ad5bf93af7))
+* shorten multipart boundary sep to less than RFC specificed max length ([e467fe7](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/e467fe77aacf67eeff2f4abd38177476c925c411))
+
+
+### Performance Improvements
+
+* faster code formatting ([58bee30](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/58bee30eb5b12ee89f3271e386d425d119641227))
+
+
+### Chores
+
+* allow fast-format to use bsd sed as well ([b753209](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/b7532090e9056a27ce382fe54965a90a1bf65cce))
+* do not install brew dependencies in ./scripts/bootstrap by default ([ba2ba3c](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/ba2ba3cc8fa0b6e756a840035bcd6f30054a1831))
+* **internal:** codegen related update ([11c589f](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/11c589fc01e8a1c650e271dffb5c9bd9ef2f4da3))
+* **internal:** codegen related update ([6e6de4f](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/6e6de4f6f1424334a37de60918ea43190593d522))
+
 ## 0.1.0-alpha.8 (2025-09-06)
 
 Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
