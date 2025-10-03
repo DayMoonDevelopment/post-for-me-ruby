@@ -21,6 +21,12 @@ module PostForMe
       #   @return [Boolean, nil]
       optional :allow_stitch, PostForMe::Internal::Type::Boolean, nil?: true
 
+      # @!attribute auto_add_music
+      #   Will automatically add music to photo posts
+      #
+      #   @return [Boolean, nil]
+      optional :auto_add_music, PostForMe::Internal::Type::Boolean, nil?: true
+
       # @!attribute caption
       #   Overrides the `caption` from the post
       #
@@ -72,7 +78,7 @@ module PostForMe
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, caption: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, media: nil, privacy_status: nil, title: nil)
+      # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, auto_add_music: nil, caption: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, media: nil, privacy_status: nil, title: nil)
       #   Some parameter documentations has been truncated, see
       #   {PostForMe::Models::TiktokConfiguration} for more details.
       #
@@ -81,6 +87,8 @@ module PostForMe
       #   @param allow_duet [Boolean, nil] Allow duets on TikTok
       #
       #   @param allow_stitch [Boolean, nil] Allow stitch on TikTok
+      #
+      #   @param auto_add_music [Boolean, nil] Will automatically add music to photo posts
       #
       #   @param caption [Object, nil] Overrides the `caption` from the post
       #
@@ -105,6 +113,14 @@ module PostForMe
         #   @return [String]
         required :url, String
 
+        # @!attribute tags
+        #   List of tags to attach to the media
+        #
+        #   @return [Array<PostForMe::Models::TiktokConfiguration::Media::Tag>, nil]
+        optional :tags,
+                 -> { PostForMe::Internal::Type::ArrayOf[PostForMe::TiktokConfiguration::Media::Tag] },
+                 nil?: true
+
         # @!attribute thumbnail_timestamp_ms
         #   Timestamp in milliseconds of frame to use as thumbnail for the media
         #
@@ -117,12 +133,90 @@ module PostForMe
         #   @return [Object, nil]
         optional :thumbnail_url, PostForMe::Internal::Type::Unknown, nil?: true
 
-        # @!method initialize(url:, thumbnail_timestamp_ms: nil, thumbnail_url: nil)
+        # @!method initialize(url:, tags: nil, thumbnail_timestamp_ms: nil, thumbnail_url: nil)
         #   @param url [String] Public URL of the media
+        #
+        #   @param tags [Array<PostForMe::Models::TiktokConfiguration::Media::Tag>, nil] List of tags to attach to the media
         #
         #   @param thumbnail_timestamp_ms [Object, nil] Timestamp in milliseconds of frame to use as thumbnail for the media
         #
         #   @param thumbnail_url [Object, nil] Public URL of the thumbnail for the media
+
+        class Tag < PostForMe::Internal::Type::BaseModel
+          # @!attribute id
+          #   Facebook User ID, Instagram Username or Instagram product id to tag
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!attribute platform
+          #   The platform for the tags
+          #
+          #   @return [Symbol, PostForMe::Models::TiktokConfiguration::Media::Tag::Platform]
+          required :platform, enum: -> { PostForMe::TiktokConfiguration::Media::Tag::Platform }
+
+          # @!attribute type
+          #   The type of tag, user to tag accounts, product to tag products (only supported
+          #   for instagram)
+          #
+          #   @return [Symbol, PostForMe::Models::TiktokConfiguration::Media::Tag::Type]
+          required :type, enum: -> { PostForMe::TiktokConfiguration::Media::Tag::Type }
+
+          # @!attribute x
+          #   Percentage distance from left edge of the image, Not required for videos or
+          #   stories
+          #
+          #   @return [Float, nil]
+          optional :x, Float
+
+          # @!attribute y_
+          #   Percentage distance from top edge of the image, Not required for videos or
+          #   stories
+          #
+          #   @return [Float, nil]
+          optional :y_, Float, api_name: :y
+
+          # @!method initialize(id:, platform:, type:, x: nil, y_: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {PostForMe::Models::TiktokConfiguration::Media::Tag} for more details.
+          #
+          #   @param id [String] Facebook User ID, Instagram Username or Instagram product id to tag
+          #
+          #   @param platform [Symbol, PostForMe::Models::TiktokConfiguration::Media::Tag::Platform] The platform for the tags
+          #
+          #   @param type [Symbol, PostForMe::Models::TiktokConfiguration::Media::Tag::Type] The type of tag, user to tag accounts, product to tag products (only supported f
+          #
+          #   @param x [Float] Percentage distance from left edge of the image, Not required for videos or stor
+          #
+          #   @param y_ [Float] Percentage distance from top edge of the image, Not required for videos or stori
+
+          # The platform for the tags
+          #
+          # @see PostForMe::Models::TiktokConfiguration::Media::Tag#platform
+          module Platform
+            extend PostForMe::Internal::Type::Enum
+
+            FACEBOOK = :facebook
+            INSTAGRAM = :instagram
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # The type of tag, user to tag accounts, product to tag products (only supported
+          # for instagram)
+          #
+          # @see PostForMe::Models::TiktokConfiguration::Media::Tag#type
+          module Type
+            extend PostForMe::Internal::Type::Enum
+
+            USER = :user
+            PRODUCT = :product
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+        end
       end
     end
   end

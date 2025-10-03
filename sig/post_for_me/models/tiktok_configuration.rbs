@@ -5,6 +5,7 @@ module PostForMe
         allow_comment: bool?,
         allow_duet: bool?,
         allow_stitch: bool?,
+        auto_add_music: bool?,
         caption: top?,
         disclose_branded_content: bool?,
         disclose_your_brand: bool?,
@@ -21,6 +22,8 @@ module PostForMe
       attr_accessor allow_duet: bool?
 
       attr_accessor allow_stitch: bool?
+
+      attr_accessor auto_add_music: bool?
 
       attr_accessor caption: top?
 
@@ -42,6 +45,7 @@ module PostForMe
         ?allow_comment: bool?,
         ?allow_duet: bool?,
         ?allow_stitch: bool?,
+        ?auto_add_music: bool?,
         ?caption: top?,
         ?disclose_branded_content: bool?,
         ?disclose_your_brand: bool?,
@@ -56,6 +60,7 @@ module PostForMe
         allow_comment: bool?,
         allow_duet: bool?,
         allow_stitch: bool?,
+        auto_add_music: bool?,
         caption: top?,
         disclose_branded_content: bool?,
         disclose_your_brand: bool?,
@@ -67,10 +72,17 @@ module PostForMe
       }
 
       type media =
-        { url: String, thumbnail_timestamp_ms: top?, thumbnail_url: top? }
+        {
+          url: String,
+          tags: ::Array[PostForMe::TiktokConfiguration::Media::Tag]?,
+          thumbnail_timestamp_ms: top?,
+          thumbnail_url: top?
+        }
 
       class Media < PostForMe::Internal::Type::BaseModel
         attr_accessor url: String
+
+        attr_accessor tags: ::Array[PostForMe::TiktokConfiguration::Media::Tag]?
 
         attr_accessor thumbnail_timestamp_ms: top?
 
@@ -78,15 +90,80 @@ module PostForMe
 
         def initialize: (
           url: String,
+          ?tags: ::Array[PostForMe::TiktokConfiguration::Media::Tag]?,
           ?thumbnail_timestamp_ms: top?,
           ?thumbnail_url: top?
         ) -> void
 
         def to_hash: -> {
           url: String,
+          tags: ::Array[PostForMe::TiktokConfiguration::Media::Tag]?,
           thumbnail_timestamp_ms: top?,
           thumbnail_url: top?
         }
+
+        type tag =
+          {
+            id: String,
+            platform: PostForMe::Models::TiktokConfiguration::Media::Tag::platform,
+            type: PostForMe::Models::TiktokConfiguration::Media::Tag::type_,
+            x: Float,
+            y_: Float
+          }
+
+        class Tag < PostForMe::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor platform: PostForMe::Models::TiktokConfiguration::Media::Tag::platform
+
+          attr_accessor type: PostForMe::Models::TiktokConfiguration::Media::Tag::type_
+
+          attr_reader x: Float?
+
+          def x=: (Float) -> Float
+
+          attr_reader y_: Float?
+
+          def y_=: (Float) -> Float
+
+          def initialize: (
+            id: String,
+            platform: PostForMe::Models::TiktokConfiguration::Media::Tag::platform,
+            type: PostForMe::Models::TiktokConfiguration::Media::Tag::type_,
+            ?x: Float,
+            ?y_: Float
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            platform: PostForMe::Models::TiktokConfiguration::Media::Tag::platform,
+            type: PostForMe::Models::TiktokConfiguration::Media::Tag::type_,
+            x: Float,
+            y_: Float
+          }
+
+          type platform = :facebook | :instagram
+
+          module Platform
+            extend PostForMe::Internal::Type::Enum
+
+            FACEBOOK: :facebook
+            INSTAGRAM: :instagram
+
+            def self?.values: -> ::Array[PostForMe::Models::TiktokConfiguration::Media::Tag::platform]
+          end
+
+          type type_ = :user | :product
+
+          module Type
+            extend PostForMe::Internal::Type::Enum
+
+            USER: :user
+            PRODUCT: :product
+
+            def self?.values: -> ::Array[PostForMe::Models::TiktokConfiguration::Media::Tag::type_]
+          end
+        end
       end
     end
   end

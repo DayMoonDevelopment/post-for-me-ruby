@@ -41,6 +41,7 @@ module PostForMe
       type platform_data =
         {
           bluesky: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky,
+          instagram: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram,
           linkedin: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin
         }
 
@@ -51,6 +52,12 @@ module PostForMe
           PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky
         ) -> PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky
 
+        attr_reader instagram: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram?
+
+        def instagram=: (
+          PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram
+        ) -> PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram
+
         attr_reader linkedin: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin?
 
         def linkedin=: (
@@ -59,11 +66,13 @@ module PostForMe
 
         def initialize: (
           ?bluesky: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky,
+          ?instagram: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram,
           ?linkedin: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin
         ) -> void
 
         def to_hash: -> {
           bluesky: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky,
+          instagram: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram,
           linkedin: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin
         }
 
@@ -77,6 +86,34 @@ module PostForMe
           def initialize: (app_password: String, handle: String) -> void
 
           def to_hash: -> { app_password: String, handle: String }
+        end
+
+        type instagram =
+          {
+            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::connection_type
+          }
+
+        class Instagram < PostForMe::Internal::Type::BaseModel
+          attr_accessor connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::connection_type
+
+          def initialize: (
+            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::connection_type
+          ) -> void
+
+          def to_hash: -> {
+            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::connection_type
+          }
+
+          type connection_type = :instagram | :facebook
+
+          module ConnectionType
+            extend PostForMe::Internal::Type::Enum
+
+            INSTAGRAM: :instagram
+            FACEBOOK: :facebook
+
+            def self?.values: -> ::Array[PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::connection_type]
+          end
         end
 
         type linkedin =
