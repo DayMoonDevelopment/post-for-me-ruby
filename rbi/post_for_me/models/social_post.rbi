@@ -218,6 +218,18 @@ module PostForMe
           sig { returns(T.nilable(T.anything)) }
           attr_accessor :caption
 
+          # List of page ids or users to invite as collaborators for a Video Reel (Instagram
+          # and Facebook)
+          sig { returns(T.nilable(T::Array[T::Array[T.anything]])) }
+          attr_accessor :collaborators
+
+          # Id of the twitter community to post to
+          sig { returns(T.nilable(String)) }
+          attr_reader :community_id
+
+          sig { params(community_id: String).void }
+          attr_writer :community_id
+
           # Disclose branded content on TikTok
           sig { returns(T.nilable(T::Boolean)) }
           attr_accessor :disclose_branded_content
@@ -239,6 +251,11 @@ module PostForMe
           sig { returns(T.nilable(String)) }
           attr_accessor :link
 
+          # Page id with a location that you want to tag the image or video with (Instagram
+          # and Facebook)
+          sig { returns(T.nilable(String)) }
+          attr_accessor :location
+
           # Overrides the `media` from the post
           sig { returns(T.nilable(T::Array[String])) }
           attr_accessor :media
@@ -253,9 +270,48 @@ module PostForMe
           end
           attr_accessor :placement
 
+          # Poll options for the twitter
+          sig do
+            returns(
+              T.nilable(
+                PostForMe::SocialPost::AccountConfiguration::Configuration::Poll
+              )
+            )
+          end
+          attr_reader :poll
+
+          sig do
+            params(
+              poll:
+                PostForMe::SocialPost::AccountConfiguration::Configuration::Poll::OrHash
+            ).void
+          end
+          attr_writer :poll
+
           # Sets the privacy status for TikTok (private, public)
           sig { returns(T.nilable(String)) }
           attr_accessor :privacy_status
+
+          # Id of the tweet you want to quote
+          sig { returns(T.nilable(String)) }
+          attr_reader :quote_tweet_id
+
+          sig { params(quote_tweet_id: String).void }
+          attr_writer :quote_tweet_id
+
+          # Who can reply to the tweet
+          sig do
+            returns(
+              T.nilable(
+                PostForMe::SocialPost::AccountConfiguration::Configuration::ReplySettings::TaggedSymbol
+              )
+            )
+          end
+          attr_accessor :reply_settings
+
+          # If false Instagram video posts will only be shown in the Reels tab
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_accessor :share_to_feed
 
           # Overrides the `title` from the post
           sig { returns(T.nilable(String)) }
@@ -270,17 +326,28 @@ module PostForMe
               auto_add_music: T.nilable(T::Boolean),
               board_ids: T.nilable(T::Array[String]),
               caption: T.nilable(T.anything),
+              collaborators: T.nilable(T::Array[T::Array[T.anything]]),
+              community_id: String,
               disclose_branded_content: T.nilable(T::Boolean),
               disclose_your_brand: T.nilable(T::Boolean),
               is_ai_generated: T.nilable(T::Boolean),
               is_draft: T.nilable(T::Boolean),
               link: T.nilable(String),
+              location: T.nilable(String),
               media: T.nilable(T::Array[String]),
               placement:
                 T.nilable(
                   PostForMe::SocialPost::AccountConfiguration::Configuration::Placement::OrSymbol
                 ),
+              poll:
+                PostForMe::SocialPost::AccountConfiguration::Configuration::Poll::OrHash,
               privacy_status: T.nilable(String),
+              quote_tweet_id: String,
+              reply_settings:
+                T.nilable(
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::ReplySettings::OrSymbol
+                ),
+              share_to_feed: T.nilable(T::Boolean),
               title: T.nilable(String)
             ).returns(T.attached_class)
           end
@@ -297,6 +364,11 @@ module PostForMe
             board_ids: nil,
             # Overrides the `caption` from the post
             caption: nil,
+            # List of page ids or users to invite as collaborators for a Video Reel (Instagram
+            # and Facebook)
+            collaborators: nil,
+            # Id of the twitter community to post to
+            community_id: nil,
             # Disclose branded content on TikTok
             disclose_branded_content: nil,
             # Disclose your brand on TikTok
@@ -308,12 +380,23 @@ module PostForMe
             is_draft: nil,
             # Pinterest post link
             link: nil,
+            # Page id with a location that you want to tag the image or video with (Instagram
+            # and Facebook)
+            location: nil,
             # Overrides the `media` from the post
             media: nil,
             # Post placement for Facebook/Instagram/Threads
             placement: nil,
+            # Poll options for the twitter
+            poll: nil,
             # Sets the privacy status for TikTok (private, public)
             privacy_status: nil,
+            # Id of the tweet you want to quote
+            quote_tweet_id: nil,
+            # Who can reply to the tweet
+            reply_settings: nil,
+            # If false Instagram video posts will only be shown in the Reels tab
+            share_to_feed: nil,
             # Overrides the `title` from the post
             title: nil
           )
@@ -328,17 +411,28 @@ module PostForMe
                 auto_add_music: T.nilable(T::Boolean),
                 board_ids: T.nilable(T::Array[String]),
                 caption: T.nilable(T.anything),
+                collaborators: T.nilable(T::Array[T::Array[T.anything]]),
+                community_id: String,
                 disclose_branded_content: T.nilable(T::Boolean),
                 disclose_your_brand: T.nilable(T::Boolean),
                 is_ai_generated: T.nilable(T::Boolean),
                 is_draft: T.nilable(T::Boolean),
                 link: T.nilable(String),
+                location: T.nilable(String),
                 media: T.nilable(T::Array[String]),
                 placement:
                   T.nilable(
                     PostForMe::SocialPost::AccountConfiguration::Configuration::Placement::TaggedSymbol
                   ),
+                poll:
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::Poll,
                 privacy_status: T.nilable(String),
+                quote_tweet_id: String,
+                reply_settings:
+                  T.nilable(
+                    PostForMe::SocialPost::AccountConfiguration::Configuration::ReplySettings::TaggedSymbol
+                  ),
+                share_to_feed: T.nilable(T::Boolean),
                 title: T.nilable(String)
               }
             )
@@ -385,6 +479,164 @@ module PostForMe
             def self.values
             end
           end
+
+          class Poll < PostForMe::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::Poll,
+                  PostForMe::Internal::AnyHash
+                )
+              end
+
+            # Duration of the poll in minutes
+            sig { returns(Float) }
+            attr_accessor :duration_minutes
+
+            # The choices of the poll, requiring 2-4 options
+            sig { returns(T::Array[String]) }
+            attr_accessor :options
+
+            # Who can reply to the tweet
+            sig do
+              returns(
+                T.nilable(
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::Poll::ReplySettings::TaggedSymbol
+                )
+              )
+            end
+            attr_reader :reply_settings
+
+            sig do
+              params(
+                reply_settings:
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::Poll::ReplySettings::OrSymbol
+              ).void
+            end
+            attr_writer :reply_settings
+
+            # Poll options for the twitter
+            sig do
+              params(
+                duration_minutes: Float,
+                options: T::Array[String],
+                reply_settings:
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::Poll::ReplySettings::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Duration of the poll in minutes
+              duration_minutes:,
+              # The choices of the poll, requiring 2-4 options
+              options:,
+              # Who can reply to the tweet
+              reply_settings: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  duration_minutes: Float,
+                  options: T::Array[String],
+                  reply_settings:
+                    PostForMe::SocialPost::AccountConfiguration::Configuration::Poll::ReplySettings::TaggedSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # Who can reply to the tweet
+            module ReplySettings
+              extend PostForMe::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    PostForMe::SocialPost::AccountConfiguration::Configuration::Poll::ReplySettings
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              FOLLOWING =
+                T.let(
+                  :following,
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::Poll::ReplySettings::TaggedSymbol
+                )
+              MENTIONED_USERS =
+                T.let(
+                  :mentionedUsers,
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::Poll::ReplySettings::TaggedSymbol
+                )
+              SUBSCRIBERS =
+                T.let(
+                  :subscribers,
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::Poll::ReplySettings::TaggedSymbol
+                )
+              VERIFIED =
+                T.let(
+                  :verified,
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::Poll::ReplySettings::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    PostForMe::SocialPost::AccountConfiguration::Configuration::Poll::ReplySettings::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          # Who can reply to the tweet
+          module ReplySettings
+            extend PostForMe::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::ReplySettings
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            FOLLOWING =
+              T.let(
+                :following,
+                PostForMe::SocialPost::AccountConfiguration::Configuration::ReplySettings::TaggedSymbol
+              )
+            MENTIONED_USERS =
+              T.let(
+                :mentionedUsers,
+                PostForMe::SocialPost::AccountConfiguration::Configuration::ReplySettings::TaggedSymbol
+              )
+            SUBSCRIBERS =
+              T.let(
+                :subscribers,
+                PostForMe::SocialPost::AccountConfiguration::Configuration::ReplySettings::TaggedSymbol
+              )
+            VERIFIED =
+              T.let(
+                :verified,
+                PostForMe::SocialPost::AccountConfiguration::Configuration::ReplySettings::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::ReplySettings::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
         end
       end
 
@@ -398,6 +650,10 @@ module PostForMe
         sig { returns(String) }
         attr_accessor :url
 
+        # List of tags to attach to the media
+        sig { returns(T.nilable(T::Array[PostForMe::SocialPost::Media::Tag])) }
+        attr_accessor :tags
+
         # Timestamp in milliseconds of frame to use as thumbnail for the media
         sig { returns(T.nilable(T.anything)) }
         attr_accessor :thumbnail_timestamp_ms
@@ -409,6 +665,8 @@ module PostForMe
         sig do
           params(
             url: String,
+            tags:
+              T.nilable(T::Array[PostForMe::SocialPost::Media::Tag::OrHash]),
             thumbnail_timestamp_ms: T.nilable(T.anything),
             thumbnail_url: T.nilable(T.anything)
           ).returns(T.attached_class)
@@ -416,6 +674,8 @@ module PostForMe
         def self.new(
           # Public URL of the media
           url:,
+          # List of tags to attach to the media
+          tags: nil,
           # Timestamp in milliseconds of frame to use as thumbnail for the media
           thumbnail_timestamp_ms: nil,
           # Public URL of the thumbnail for the media
@@ -427,12 +687,158 @@ module PostForMe
           override.returns(
             {
               url: String,
+              tags: T.nilable(T::Array[PostForMe::SocialPost::Media::Tag]),
               thumbnail_timestamp_ms: T.nilable(T.anything),
               thumbnail_url: T.nilable(T.anything)
             }
           )
         end
         def to_hash
+        end
+
+        class Tag < PostForMe::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                PostForMe::SocialPost::Media::Tag,
+                PostForMe::Internal::AnyHash
+              )
+            end
+
+          # Facebook User ID, Instagram Username or Instagram product id to tag
+          sig { returns(String) }
+          attr_accessor :id
+
+          # The platform for the tags
+          sig do
+            returns(PostForMe::SocialPost::Media::Tag::Platform::TaggedSymbol)
+          end
+          attr_accessor :platform
+
+          # The type of tag, user to tag accounts, product to tag products (only supported
+          # for instagram)
+          sig { returns(PostForMe::SocialPost::Media::Tag::Type::TaggedSymbol) }
+          attr_accessor :type
+
+          # Percentage distance from left edge of the image, Not required for videos or
+          # stories
+          sig { returns(T.nilable(Float)) }
+          attr_reader :x
+
+          sig { params(x: Float).void }
+          attr_writer :x
+
+          # Percentage distance from top edge of the image, Not required for videos or
+          # stories
+          sig { returns(T.nilable(Float)) }
+          attr_reader :y_
+
+          sig { params(y_: Float).void }
+          attr_writer :y_
+
+          sig do
+            params(
+              id: String,
+              platform: PostForMe::SocialPost::Media::Tag::Platform::OrSymbol,
+              type: PostForMe::SocialPost::Media::Tag::Type::OrSymbol,
+              x: Float,
+              y_: Float
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Facebook User ID, Instagram Username or Instagram product id to tag
+            id:,
+            # The platform for the tags
+            platform:,
+            # The type of tag, user to tag accounts, product to tag products (only supported
+            # for instagram)
+            type:,
+            # Percentage distance from left edge of the image, Not required for videos or
+            # stories
+            x: nil,
+            # Percentage distance from top edge of the image, Not required for videos or
+            # stories
+            y_: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                id: String,
+                platform:
+                  PostForMe::SocialPost::Media::Tag::Platform::TaggedSymbol,
+                type: PostForMe::SocialPost::Media::Tag::Type::TaggedSymbol,
+                x: Float,
+                y_: Float
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # The platform for the tags
+          module Platform
+            extend PostForMe::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(Symbol, PostForMe::SocialPost::Media::Tag::Platform)
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            FACEBOOK =
+              T.let(
+                :facebook,
+                PostForMe::SocialPost::Media::Tag::Platform::TaggedSymbol
+              )
+            INSTAGRAM =
+              T.let(
+                :instagram,
+                PostForMe::SocialPost::Media::Tag::Platform::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  PostForMe::SocialPost::Media::Tag::Platform::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          # The type of tag, user to tag accounts, product to tag products (only supported
+          # for instagram)
+          module Type
+            extend PostForMe::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(Symbol, PostForMe::SocialPost::Media::Tag::Type)
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            USER =
+              T.let(
+                :user,
+                PostForMe::SocialPost::Media::Tag::Type::TaggedSymbol
+              )
+            PRODUCT =
+              T.let(
+                :product,
+                PostForMe::SocialPost::Media::Tag::Type::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[PostForMe::SocialPost::Media::Tag::Type::TaggedSymbol]
+              )
+            end
+            def self.values
+            end
+          end
         end
       end
 
