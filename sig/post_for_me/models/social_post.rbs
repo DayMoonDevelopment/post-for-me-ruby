@@ -95,14 +95,21 @@ module PostForMe
             auto_add_music: bool?,
             board_ids: ::Array[String]?,
             caption: top?,
+            collaborators: ::Array[::Array[top]]?,
+            community_id: String,
             disclose_branded_content: bool?,
             disclose_your_brand: bool?,
             is_ai_generated: bool?,
             is_draft: bool?,
             link: String?,
+            location: String?,
             media: ::Array[String]?,
             placement: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::placement?,
+            poll: PostForMe::SocialPost::AccountConfiguration::Configuration::Poll,
             privacy_status: String?,
+            quote_tweet_id: String,
+            reply_settings: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::reply_settings?,
+            share_to_feed: bool?,
             title: String?
           }
 
@@ -119,6 +126,12 @@ module PostForMe
 
           attr_accessor caption: top?
 
+          attr_accessor collaborators: ::Array[::Array[top]]?
+
+          attr_reader community_id: String?
+
+          def community_id=: (String) -> String
+
           attr_accessor disclose_branded_content: bool?
 
           attr_accessor disclose_your_brand: bool?
@@ -129,11 +142,27 @@ module PostForMe
 
           attr_accessor link: String?
 
+          attr_accessor location: String?
+
           attr_accessor media: ::Array[String]?
 
           attr_accessor placement: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::placement?
 
+          attr_reader poll: PostForMe::SocialPost::AccountConfiguration::Configuration::Poll?
+
+          def poll=: (
+            PostForMe::SocialPost::AccountConfiguration::Configuration::Poll
+          ) -> PostForMe::SocialPost::AccountConfiguration::Configuration::Poll
+
           attr_accessor privacy_status: String?
+
+          attr_reader quote_tweet_id: String?
+
+          def quote_tweet_id=: (String) -> String
+
+          attr_accessor reply_settings: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::reply_settings?
+
+          attr_accessor share_to_feed: bool?
 
           attr_accessor title: String?
 
@@ -144,14 +173,21 @@ module PostForMe
             ?auto_add_music: bool?,
             ?board_ids: ::Array[String]?,
             ?caption: top?,
+            ?collaborators: ::Array[::Array[top]]?,
+            ?community_id: String,
             ?disclose_branded_content: bool?,
             ?disclose_your_brand: bool?,
             ?is_ai_generated: bool?,
             ?is_draft: bool?,
             ?link: String?,
+            ?location: String?,
             ?media: ::Array[String]?,
             ?placement: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::placement?,
+            ?poll: PostForMe::SocialPost::AccountConfiguration::Configuration::Poll,
             ?privacy_status: String?,
+            ?quote_tweet_id: String,
+            ?reply_settings: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::reply_settings?,
+            ?share_to_feed: bool?,
             ?title: String?
           ) -> void
 
@@ -162,14 +198,21 @@ module PostForMe
             auto_add_music: bool?,
             board_ids: ::Array[String]?,
             caption: top?,
+            collaborators: ::Array[::Array[top]]?,
+            community_id: String,
             disclose_branded_content: bool?,
             disclose_your_brand: bool?,
             is_ai_generated: bool?,
             is_draft: bool?,
             link: String?,
+            location: String?,
             media: ::Array[String]?,
             placement: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::placement?,
+            poll: PostForMe::SocialPost::AccountConfiguration::Configuration::Poll,
             privacy_status: String?,
+            quote_tweet_id: String,
+            reply_settings: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::reply_settings?,
+            share_to_feed: bool?,
             title: String?
           }
 
@@ -184,14 +227,80 @@ module PostForMe
 
             def self?.values: -> ::Array[PostForMe::Models::SocialPost::AccountConfiguration::Configuration::placement]
           end
+
+          type poll =
+            {
+              duration_minutes: Float,
+              options: ::Array[String],
+              reply_settings: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Poll::reply_settings
+            }
+
+          class Poll < PostForMe::Internal::Type::BaseModel
+            attr_accessor duration_minutes: Float
+
+            attr_accessor options: ::Array[String]
+
+            attr_reader reply_settings: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Poll::reply_settings?
+
+            def reply_settings=: (
+              PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Poll::reply_settings
+            ) -> PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Poll::reply_settings
+
+            def initialize: (
+              duration_minutes: Float,
+              options: ::Array[String],
+              ?reply_settings: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Poll::reply_settings
+            ) -> void
+
+            def to_hash: -> {
+              duration_minutes: Float,
+              options: ::Array[String],
+              reply_settings: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Poll::reply_settings
+            }
+
+            type reply_settings =
+              :following | :mentionedUsers | :subscribers | :verified
+
+            module ReplySettings
+              extend PostForMe::Internal::Type::Enum
+
+              FOLLOWING: :following
+              MENTIONED_USERS: :mentionedUsers
+              SUBSCRIBERS: :subscribers
+              VERIFIED: :verified
+
+              def self?.values: -> ::Array[PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Poll::reply_settings]
+            end
+          end
+
+          type reply_settings =
+            :following | :mentionedUsers | :subscribers | :verified
+
+          module ReplySettings
+            extend PostForMe::Internal::Type::Enum
+
+            FOLLOWING: :following
+            MENTIONED_USERS: :mentionedUsers
+            SUBSCRIBERS: :subscribers
+            VERIFIED: :verified
+
+            def self?.values: -> ::Array[PostForMe::Models::SocialPost::AccountConfiguration::Configuration::reply_settings]
+          end
         end
       end
 
       type media =
-        { url: String, thumbnail_timestamp_ms: top?, thumbnail_url: top? }
+        {
+          url: String,
+          tags: ::Array[PostForMe::SocialPost::Media::Tag]?,
+          thumbnail_timestamp_ms: top?,
+          thumbnail_url: top?
+        }
 
       class Media < PostForMe::Internal::Type::BaseModel
         attr_accessor url: String
+
+        attr_accessor tags: ::Array[PostForMe::SocialPost::Media::Tag]?
 
         attr_accessor thumbnail_timestamp_ms: top?
 
@@ -199,15 +308,80 @@ module PostForMe
 
         def initialize: (
           url: String,
+          ?tags: ::Array[PostForMe::SocialPost::Media::Tag]?,
           ?thumbnail_timestamp_ms: top?,
           ?thumbnail_url: top?
         ) -> void
 
         def to_hash: -> {
           url: String,
+          tags: ::Array[PostForMe::SocialPost::Media::Tag]?,
           thumbnail_timestamp_ms: top?,
           thumbnail_url: top?
         }
+
+        type tag =
+          {
+            id: String,
+            platform: PostForMe::Models::SocialPost::Media::Tag::platform,
+            type: PostForMe::Models::SocialPost::Media::Tag::type_,
+            x: Float,
+            y_: Float
+          }
+
+        class Tag < PostForMe::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor platform: PostForMe::Models::SocialPost::Media::Tag::platform
+
+          attr_accessor type: PostForMe::Models::SocialPost::Media::Tag::type_
+
+          attr_reader x: Float?
+
+          def x=: (Float) -> Float
+
+          attr_reader y_: Float?
+
+          def y_=: (Float) -> Float
+
+          def initialize: (
+            id: String,
+            platform: PostForMe::Models::SocialPost::Media::Tag::platform,
+            type: PostForMe::Models::SocialPost::Media::Tag::type_,
+            ?x: Float,
+            ?y_: Float
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            platform: PostForMe::Models::SocialPost::Media::Tag::platform,
+            type: PostForMe::Models::SocialPost::Media::Tag::type_,
+            x: Float,
+            y_: Float
+          }
+
+          type platform = :facebook | :instagram
+
+          module Platform
+            extend PostForMe::Internal::Type::Enum
+
+            FACEBOOK: :facebook
+            INSTAGRAM: :instagram
+
+            def self?.values: -> ::Array[PostForMe::Models::SocialPost::Media::Tag::platform]
+          end
+
+          type type_ = :user | :product
+
+          module Type
+            extend PostForMe::Internal::Type::Enum
+
+            USER: :user
+            PRODUCT: :product
+
+            def self?.values: -> ::Array[PostForMe::Models::SocialPost::Media::Tag::type_]
+          end
+        end
       end
 
       type status = :draft | :scheduled | :processing | :processed

@@ -151,6 +151,21 @@ module PostForMe
           #   @return [Object, nil]
           optional :caption, PostForMe::Internal::Type::Unknown, nil?: true
 
+          # @!attribute collaborators
+          #   List of page ids or users to invite as collaborators for a Video Reel (Instagram
+          #   and Facebook)
+          #
+          #   @return [Array<Array<Object>>, nil]
+          optional :collaborators,
+                   PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::Unknown]],
+                   nil?: true
+
+          # @!attribute community_id
+          #   Id of the twitter community to post to
+          #
+          #   @return [String, nil]
+          optional :community_id, String
+
           # @!attribute disclose_branded_content
           #   Disclose branded content on TikTok
           #
@@ -182,6 +197,13 @@ module PostForMe
           #   @return [String, nil]
           optional :link, String, nil?: true
 
+          # @!attribute location
+          #   Page id with a location that you want to tag the image or video with (Instagram
+          #   and Facebook)
+          #
+          #   @return [String, nil]
+          optional :location, String, nil?: true
+
           # @!attribute media
           #   Overrides the `media` from the post
           #
@@ -196,11 +218,37 @@ module PostForMe
                    enum: -> { PostForMe::SocialPost::AccountConfiguration::Configuration::Placement },
                    nil?: true
 
+          # @!attribute poll
+          #   Poll options for the twitter
+          #
+          #   @return [PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Poll, nil]
+          optional :poll, -> { PostForMe::SocialPost::AccountConfiguration::Configuration::Poll }
+
           # @!attribute privacy_status
           #   Sets the privacy status for TikTok (private, public)
           #
           #   @return [String, nil]
           optional :privacy_status, String, nil?: true
+
+          # @!attribute quote_tweet_id
+          #   Id of the tweet you want to quote
+          #
+          #   @return [String, nil]
+          optional :quote_tweet_id, String
+
+          # @!attribute reply_settings
+          #   Who can reply to the tweet
+          #
+          #   @return [Symbol, PostForMe::Models::SocialPost::AccountConfiguration::Configuration::ReplySettings, nil]
+          optional :reply_settings,
+                   enum: -> { PostForMe::SocialPost::AccountConfiguration::Configuration::ReplySettings },
+                   nil?: true
+
+          # @!attribute share_to_feed
+          #   If false Instagram video posts will only be shown in the Reels tab
+          #
+          #   @return [Boolean, nil]
+          optional :share_to_feed, PostForMe::Internal::Type::Boolean, nil?: true
 
           # @!attribute title
           #   Overrides the `title` from the post
@@ -208,7 +256,7 @@ module PostForMe
           #   @return [String, nil]
           optional :title, String, nil?: true
 
-          # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, auto_add_music: nil, board_ids: nil, caption: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, link: nil, media: nil, placement: nil, privacy_status: nil, title: nil)
+          # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, auto_add_music: nil, board_ids: nil, caption: nil, collaborators: nil, community_id: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, link: nil, location: nil, media: nil, placement: nil, poll: nil, privacy_status: nil, quote_tweet_id: nil, reply_settings: nil, share_to_feed: nil, title: nil)
           #   Some parameter documentations has been truncated, see
           #   {PostForMe::Models::SocialPost::AccountConfiguration::Configuration} for more
           #   details.
@@ -227,6 +275,10 @@ module PostForMe
           #
           #   @param caption [Object, nil] Overrides the `caption` from the post
           #
+          #   @param collaborators [Array<Array<Object>>, nil] List of page ids or users to invite as collaborators for a Video Reel (Instagram
+          #
+          #   @param community_id [String] Id of the twitter community to post to
+          #
           #   @param disclose_branded_content [Boolean, nil] Disclose branded content on TikTok
           #
           #   @param disclose_your_brand [Boolean, nil] Disclose your brand on TikTok
@@ -237,11 +289,21 @@ module PostForMe
           #
           #   @param link [String, nil] Pinterest post link
           #
+          #   @param location [String, nil] Page id with a location that you want to tag the image or video with (Instagram
+          #
           #   @param media [Array<String>, nil] Overrides the `media` from the post
           #
           #   @param placement [Symbol, PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Placement, nil] Post placement for Facebook/Instagram/Threads
           #
+          #   @param poll [PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Poll] Poll options for the twitter
+          #
           #   @param privacy_status [String, nil] Sets the privacy status for TikTok (private, public)
+          #
+          #   @param quote_tweet_id [String] Id of the tweet you want to quote
+          #
+          #   @param reply_settings [Symbol, PostForMe::Models::SocialPost::AccountConfiguration::Configuration::ReplySettings, nil] Who can reply to the tweet
+          #
+          #   @param share_to_feed [Boolean, nil] If false Instagram video posts will only be shown in the Reels tab
           #
           #   @param title [String, nil] Overrides the `title` from the post
 
@@ -258,6 +320,67 @@ module PostForMe
             # @!method self.values
             #   @return [Array<Symbol>]
           end
+
+          # @see PostForMe::Models::SocialPost::AccountConfiguration::Configuration#poll
+          class Poll < PostForMe::Internal::Type::BaseModel
+            # @!attribute duration_minutes
+            #   Duration of the poll in minutes
+            #
+            #   @return [Float]
+            required :duration_minutes, Float
+
+            # @!attribute options
+            #   The choices of the poll, requiring 2-4 options
+            #
+            #   @return [Array<String>]
+            required :options, PostForMe::Internal::Type::ArrayOf[String]
+
+            # @!attribute reply_settings
+            #   Who can reply to the tweet
+            #
+            #   @return [Symbol, PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Poll::ReplySettings, nil]
+            optional :reply_settings,
+                     enum: -> { PostForMe::SocialPost::AccountConfiguration::Configuration::Poll::ReplySettings }
+
+            # @!method initialize(duration_minutes:, options:, reply_settings: nil)
+            #   Poll options for the twitter
+            #
+            #   @param duration_minutes [Float] Duration of the poll in minutes
+            #
+            #   @param options [Array<String>] The choices of the poll, requiring 2-4 options
+            #
+            #   @param reply_settings [Symbol, PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Poll::ReplySettings] Who can reply to the tweet
+
+            # Who can reply to the tweet
+            #
+            # @see PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Poll#reply_settings
+            module ReplySettings
+              extend PostForMe::Internal::Type::Enum
+
+              FOLLOWING = :following
+              MENTIONED_USERS = :mentionedUsers
+              SUBSCRIBERS = :subscribers
+              VERIFIED = :verified
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
+
+          # Who can reply to the tweet
+          #
+          # @see PostForMe::Models::SocialPost::AccountConfiguration::Configuration#reply_settings
+          module ReplySettings
+            extend PostForMe::Internal::Type::Enum
+
+            FOLLOWING = :following
+            MENTIONED_USERS = :mentionedUsers
+            SUBSCRIBERS = :subscribers
+            VERIFIED = :verified
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
       end
 
@@ -267,6 +390,16 @@ module PostForMe
         #
         #   @return [String]
         required :url, String
+
+        # @!attribute tags
+        #   List of tags to attach to the media
+        #
+        #   @return [Array<PostForMe::Models::SocialPost::Media::Tag>, nil]
+        optional :tags,
+                 -> {
+                   PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPost::Media::Tag]
+                 },
+                 nil?: true
 
         # @!attribute thumbnail_timestamp_ms
         #   Timestamp in milliseconds of frame to use as thumbnail for the media
@@ -280,12 +413,90 @@ module PostForMe
         #   @return [Object, nil]
         optional :thumbnail_url, PostForMe::Internal::Type::Unknown, nil?: true
 
-        # @!method initialize(url:, thumbnail_timestamp_ms: nil, thumbnail_url: nil)
+        # @!method initialize(url:, tags: nil, thumbnail_timestamp_ms: nil, thumbnail_url: nil)
         #   @param url [String] Public URL of the media
+        #
+        #   @param tags [Array<PostForMe::Models::SocialPost::Media::Tag>, nil] List of tags to attach to the media
         #
         #   @param thumbnail_timestamp_ms [Object, nil] Timestamp in milliseconds of frame to use as thumbnail for the media
         #
         #   @param thumbnail_url [Object, nil] Public URL of the thumbnail for the media
+
+        class Tag < PostForMe::Internal::Type::BaseModel
+          # @!attribute id
+          #   Facebook User ID, Instagram Username or Instagram product id to tag
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!attribute platform
+          #   The platform for the tags
+          #
+          #   @return [Symbol, PostForMe::Models::SocialPost::Media::Tag::Platform]
+          required :platform, enum: -> { PostForMe::SocialPost::Media::Tag::Platform }
+
+          # @!attribute type
+          #   The type of tag, user to tag accounts, product to tag products (only supported
+          #   for instagram)
+          #
+          #   @return [Symbol, PostForMe::Models::SocialPost::Media::Tag::Type]
+          required :type, enum: -> { PostForMe::SocialPost::Media::Tag::Type }
+
+          # @!attribute x
+          #   Percentage distance from left edge of the image, Not required for videos or
+          #   stories
+          #
+          #   @return [Float, nil]
+          optional :x, Float
+
+          # @!attribute y_
+          #   Percentage distance from top edge of the image, Not required for videos or
+          #   stories
+          #
+          #   @return [Float, nil]
+          optional :y_, Float, api_name: :y
+
+          # @!method initialize(id:, platform:, type:, x: nil, y_: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {PostForMe::Models::SocialPost::Media::Tag} for more details.
+          #
+          #   @param id [String] Facebook User ID, Instagram Username or Instagram product id to tag
+          #
+          #   @param platform [Symbol, PostForMe::Models::SocialPost::Media::Tag::Platform] The platform for the tags
+          #
+          #   @param type [Symbol, PostForMe::Models::SocialPost::Media::Tag::Type] The type of tag, user to tag accounts, product to tag products (only supported f
+          #
+          #   @param x [Float] Percentage distance from left edge of the image, Not required for videos or stor
+          #
+          #   @param y_ [Float] Percentage distance from top edge of the image, Not required for videos or stori
+
+          # The platform for the tags
+          #
+          # @see PostForMe::Models::SocialPost::Media::Tag#platform
+          module Platform
+            extend PostForMe::Internal::Type::Enum
+
+            FACEBOOK = :facebook
+            INSTAGRAM = :instagram
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # The type of tag, user to tag accounts, product to tag products (only supported
+          # for instagram)
+          #
+          # @see PostForMe::Models::SocialPost::Media::Tag#type
+          module Type
+            extend PostForMe::Internal::Type::Enum
+
+            USER = :user
+            PRODUCT = :product
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+        end
       end
 
       # Current status of the post: draft, processed, scheduled, or processing
