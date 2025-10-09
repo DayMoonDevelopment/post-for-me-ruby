@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.10 (2025-10-09)
+
+Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
+
+### Chores
+
+* ignore linter error for tests having large collections ([8b60378](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/8b60378131cc5ff32c7dc2e96aa3d7db84280d6b))
+
 ## 0.1.0-alpha.9 (2025-10-03)
 
 Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
