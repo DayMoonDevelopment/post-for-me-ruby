@@ -32,6 +32,10 @@ module PostForMe
       sig { returns(String) }
       attr_accessor :platform
 
+      # The platform's profile photo of the social account
+      sig { returns(T.nilable(String)) }
+      attr_accessor :profile_photo_url
+
       # The refresh token of the social account
       sig { returns(T.nilable(String)) }
       attr_accessor :refresh_token
@@ -60,6 +64,7 @@ module PostForMe
           external_id: T.nilable(String),
           metadata: T.nilable(T.anything),
           platform: String,
+          profile_photo_url: T.nilable(String),
           refresh_token: T.nilable(String),
           refresh_token_expires_at: T.nilable(Time),
           status: PostForMe::SocialAccount::Status::OrSymbol,
@@ -80,6 +85,8 @@ module PostForMe
         metadata:,
         # The platform of the social account
         platform:,
+        # The platform's profile photo of the social account
+        profile_photo_url:,
         # The refresh token of the social account
         refresh_token:,
         # The refresh token expiration date of the social account
@@ -102,6 +109,7 @@ module PostForMe
             external_id: T.nilable(String),
             metadata: T.nilable(T.anything),
             platform: String,
+            profile_photo_url: T.nilable(String),
             refresh_token: T.nilable(String),
             refresh_token_expires_at: T.nilable(Time),
             status: PostForMe::SocialAccount::Status::TaggedSymbol,
