@@ -8,6 +8,7 @@ module PostForMe
         external_id: String?,
         metadata: top?,
         platform: String,
+        profile_photo_url: String?,
         refresh_token: String?,
         refresh_token_expires_at: Time?,
         status: PostForMe::Models::SocialAccount::status,
@@ -28,6 +29,8 @@ module PostForMe
 
       attr_accessor platform: String
 
+      attr_accessor profile_photo_url: String?
+
       attr_accessor refresh_token: String?
 
       attr_accessor refresh_token_expires_at: Time?
@@ -45,6 +48,7 @@ module PostForMe
         external_id: String?,
         metadata: top?,
         platform: String,
+        profile_photo_url: String?,
         refresh_token: String?,
         refresh_token_expires_at: Time?,
         status: PostForMe::Models::SocialAccount::status,
@@ -59,6 +63,7 @@ module PostForMe
         external_id: String?,
         metadata: top?,
         platform: String,
+        profile_photo_url: String?,
         refresh_token: String?,
         refresh_token_expires_at: Time?,
         status: PostForMe::Models::SocialAccount::status,

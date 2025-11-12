@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.1.0-alpha.10 (2025-11-05)
+
+Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
+
+### Features
+
+* **api:** api update ([129bf08](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/129bf0849de95a151f9fb756f8ae18feee7ca85b))
+* handle thread interrupts in the core HTTP client ([67a9096](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/67a9096a8cdf6200f708a3f58063405bceb7f7ca))
+
+
+### Bug Fixes
+
+* absolutely qualified uris should always override the default ([2f8e594](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/2f8e594d99b3c79d12b6e6dcb50d1928df5af7c0))
+* better thread safety via early initializing SSL store during HTTP client creation ([b9e0151](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/b9e01515a5ff7e201462dded310b312800a0276d))
+* should not reuse buffers for `IO.copy_stream` interop ([4a8bedd](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/4a8bedda953dabf110a699a183b62d338713b44f))
+
+
+### Chores
+
+* bump dependency version and update sorbet types ([936adc6](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/936adc671f5a30e84245daa790743dd9183b0a17))
+* ignore linter error for tests having large collections ([8b60378](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/8b60378131cc5ff32c7dc2e96aa3d7db84280d6b))
+
 ## 0.1.0-alpha.9 (2025-10-03)
 
 Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
