@@ -25,12 +25,26 @@ module PostForMe
       #   @return [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData, nil]
       optional :platform_data, -> { PostForMe::SocialAccountCreateAuthURLParams::PlatformData }
 
-      # @!method initialize(platform:, external_id: nil, platform_data: nil, request_options: {})
+      # @!attribute redirect_url_override
+      #   Override the default redirect URL for the OAuth flow. If provided, this URL will
+      #   be used instead of our redirect URL. Make sure this URL is included in your
+      #   app's authorized redirect urls. This override will not work when using our
+      #   system credientals.
+      #
+      #   @return [String, nil]
+      optional :redirect_url_override, String
+
+      # @!method initialize(platform:, external_id: nil, platform_data: nil, redirect_url_override: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {PostForMe::Models::SocialAccountCreateAuthURLParams} for more details.
+      #
       #   @param platform [String] The social account provider
       #
       #   @param external_id [String] Your unique identifier for the social account
       #
       #   @param platform_data [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData] Additional data needed for the provider
+      #
+      #   @param redirect_url_override [String] Override the default redirect URL for the OAuth flow. If provided, this URL will
       #
       #   @param request_options [PostForMe::RequestOptions, Hash{Symbol=>Object}]
 

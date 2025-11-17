@@ -41,12 +41,23 @@ module PostForMe
       end
       attr_writer :platform_data
 
+      # Override the default redirect URL for the OAuth flow. If provided, this URL will
+      # be used instead of our redirect URL. Make sure this URL is included in your
+      # app's authorized redirect urls. This override will not work when using our
+      # system credientals.
+      sig { returns(T.nilable(String)) }
+      attr_reader :redirect_url_override
+
+      sig { params(redirect_url_override: String).void }
+      attr_writer :redirect_url_override
+
       sig do
         params(
           platform: String,
           external_id: String,
           platform_data:
             PostForMe::SocialAccountCreateAuthURLParams::PlatformData::OrHash,
+          redirect_url_override: String,
           request_options: PostForMe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -57,6 +68,11 @@ module PostForMe
         external_id: nil,
         # Additional data needed for the provider
         platform_data: nil,
+        # Override the default redirect URL for the OAuth flow. If provided, this URL will
+        # be used instead of our redirect URL. Make sure this URL is included in your
+        # app's authorized redirect urls. This override will not work when using our
+        # system credientals.
+        redirect_url_override: nil,
         request_options: {}
       )
       end
@@ -68,6 +84,7 @@ module PostForMe
             external_id: String,
             platform_data:
               PostForMe::SocialAccountCreateAuthURLParams::PlatformData,
+            redirect_url_override: String,
             request_options: PostForMe::RequestOptions
           }
         )
