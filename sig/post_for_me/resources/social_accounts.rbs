@@ -40,6 +40,7 @@ module PostForMe
         platform: String,
         ?external_id: String,
         ?platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData,
+        ?redirect_url_override: String,
         ?request_options: PostForMe::request_opts
       ) -> PostForMe::Models::SocialAccountCreateAuthURLResponse
 

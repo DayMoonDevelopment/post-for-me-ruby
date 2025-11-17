@@ -4,7 +4,8 @@ module PostForMe
       {
         platform: String,
         external_id: String,
-        platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData
+        platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData,
+        redirect_url_override: String
       }
       & PostForMe::Internal::Type::request_parameters
 
@@ -24,10 +25,15 @@ module PostForMe
         PostForMe::SocialAccountCreateAuthURLParams::PlatformData
       ) -> PostForMe::SocialAccountCreateAuthURLParams::PlatformData
 
+      attr_reader redirect_url_override: String?
+
+      def redirect_url_override=: (String) -> String
+
       def initialize: (
         platform: String,
         ?external_id: String,
         ?platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData,
+        ?redirect_url_override: String,
         ?request_options: PostForMe::request_opts
       ) -> void
 
@@ -35,6 +41,7 @@ module PostForMe
         platform: String,
         external_id: String,
         platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData,
+        redirect_url_override: String,
         request_options: PostForMe::RequestOptions
       }
 
