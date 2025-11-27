@@ -316,8 +316,9 @@ module PostForMe
               )
             end
 
-          # The type of connection; personal for posting on behalf of the user only,
-          # organization for posting on behalf of both an organization and the user
+          # The type of connection; If using our provided credentials always use
+          # "organization". If using your own crednetials then only use "organization" if
+          # you are using the Community API
           sig do
             returns(
               PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::ConnectionType::OrSymbol
@@ -333,8 +334,9 @@ module PostForMe
             ).returns(T.attached_class)
           end
           def self.new(
-            # The type of connection; personal for posting on behalf of the user only,
-            # organization for posting on behalf of both an organization and the user
+            # The type of connection; If using our provided credentials always use
+            # "organization". If using your own crednetials then only use "organization" if
+            # you are using the Community API
             connection_type:
           )
           end
@@ -350,8 +352,9 @@ module PostForMe
           def to_hash
           end
 
-          # The type of connection; personal for posting on behalf of the user only,
-          # organization for posting on behalf of both an organization and the user
+          # The type of connection; If using our provided credentials always use
+          # "organization". If using your own crednetials then only use "organization" if
+          # you are using the Community API
           module ConnectionType
             extend PostForMe::Internal::Type::Enum
 
