@@ -135,8 +135,9 @@ module PostForMe
         # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData#linkedin
         class Linkedin < PostForMe::Internal::Type::BaseModel
           # @!attribute connection_type
-          #   The type of connection; personal for posting on behalf of the user only,
-          #   organization for posting on behalf of both an organization and the user
+          #   The type of connection; If using our provided credentials always use
+          #   "organization". If using your own crednetials then only use "organization" if
+          #   you are using the Community API
           #
           #   @return [Symbol, PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::ConnectionType]
           required :connection_type,
@@ -149,10 +150,11 @@ module PostForMe
           #
           #   Additional data for connecting linkedin accounts
           #
-          #   @param connection_type [Symbol, PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::ConnectionType] The type of connection; personal for posting on behalf of the user only, organiz
+          #   @param connection_type [Symbol, PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::ConnectionType] The type of connection; If using our provided credentials always use "organizati
 
-          # The type of connection; personal for posting on behalf of the user only,
-          # organization for posting on behalf of both an organization and the user
+          # The type of connection; If using our provided credentials always use
+          # "organization". If using your own crednetials then only use "organization" if
+          # you are using the Community API
           #
           # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin#connection_type
           module ConnectionType
