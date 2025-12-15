@@ -4,6 +4,7 @@ module PostForMe
       {
         platform: String,
         external_id: String,
+        permissions: ::Array[PostForMe::Models::SocialAccountCreateAuthURLParams::permission],
         platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData,
         redirect_url_override: String
       }
@@ -19,6 +20,12 @@ module PostForMe
 
       def external_id=: (String) -> String
 
+      attr_reader permissions: ::Array[PostForMe::Models::SocialAccountCreateAuthURLParams::permission]?
+
+      def permissions=: (
+        ::Array[PostForMe::Models::SocialAccountCreateAuthURLParams::permission]
+      ) -> ::Array[PostForMe::Models::SocialAccountCreateAuthURLParams::permission]
+
       attr_reader platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData?
 
       def platform_data=: (
@@ -32,6 +39,7 @@ module PostForMe
       def initialize: (
         platform: String,
         ?external_id: String,
+        ?permissions: ::Array[PostForMe::Models::SocialAccountCreateAuthURLParams::permission],
         ?platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData,
         ?redirect_url_override: String,
         ?request_options: PostForMe::request_opts
@@ -40,16 +48,34 @@ module PostForMe
       def to_hash: -> {
         platform: String,
         external_id: String,
+        permissions: ::Array[PostForMe::Models::SocialAccountCreateAuthURLParams::permission],
         platform_data: PostForMe::SocialAccountCreateAuthURLParams::PlatformData,
         redirect_url_override: String,
         request_options: PostForMe::RequestOptions
       }
 
+      type permission = :posts | :feeds
+
+      module Permission
+        extend PostForMe::Internal::Type::Enum
+
+        POSTS: :posts
+        FEEDS: :feeds
+
+        def self?.values: -> ::Array[PostForMe::Models::SocialAccountCreateAuthURLParams::permission]
+      end
+
       type platform_data =
         {
           bluesky: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky,
+          facebook: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Facebook,
           instagram: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram,
-          linkedin: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin
+          linkedin: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin,
+          pinterest: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Pinterest,
+          threads: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Threads,
+          tiktok: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Tiktok,
+          tiktok_business: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness,
+          youtube: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Youtube
         }
 
       class PlatformData < PostForMe::Internal::Type::BaseModel
@@ -58,6 +84,12 @@ module PostForMe
         def bluesky=: (
           PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky
         ) -> PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky
+
+        attr_reader facebook: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Facebook?
+
+        def facebook=: (
+          PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Facebook
+        ) -> PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Facebook
 
         attr_reader instagram: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram?
 
@@ -71,16 +103,58 @@ module PostForMe
           PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin
         ) -> PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin
 
+        attr_reader pinterest: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Pinterest?
+
+        def pinterest=: (
+          PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Pinterest
+        ) -> PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Pinterest
+
+        attr_reader threads: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Threads?
+
+        def threads=: (
+          PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Threads
+        ) -> PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Threads
+
+        attr_reader tiktok: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Tiktok?
+
+        def tiktok=: (
+          PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Tiktok
+        ) -> PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Tiktok
+
+        attr_reader tiktok_business: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness?
+
+        def tiktok_business=: (
+          PostForMe::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness
+        ) -> PostForMe::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness
+
+        attr_reader youtube: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Youtube?
+
+        def youtube=: (
+          PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Youtube
+        ) -> PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Youtube
+
         def initialize: (
           ?bluesky: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky,
+          ?facebook: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Facebook,
           ?instagram: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram,
-          ?linkedin: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin
+          ?linkedin: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin,
+          ?pinterest: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Pinterest,
+          ?threads: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Threads,
+          ?tiktok: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Tiktok,
+          ?tiktok_business: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness,
+          ?youtube: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Youtube
         ) -> void
 
         def to_hash: -> {
           bluesky: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Bluesky,
+          facebook: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Facebook,
           instagram: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram,
-          linkedin: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin
+          linkedin: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin,
+          pinterest: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Pinterest,
+          threads: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Threads,
+          tiktok: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Tiktok,
+          tiktok_business: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness,
+          youtube: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Youtube
         }
 
         type bluesky = { app_password: String, handle: String }
@@ -95,20 +169,43 @@ module PostForMe
           def to_hash: -> { app_password: String, handle: String }
         end
 
+        type facebook = { permission_overrides: ::Array[::Array[top]] }
+
+        class Facebook < PostForMe::Internal::Type::BaseModel
+          attr_reader permission_overrides: ::Array[::Array[top]]?
+
+          def permission_overrides=: (
+            ::Array[::Array[top]]
+          ) -> ::Array[::Array[top]]
+
+          def initialize: (?permission_overrides: ::Array[::Array[top]]) -> void
+
+          def to_hash: -> { permission_overrides: ::Array[::Array[top]] }
+        end
+
         type instagram =
           {
-            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::connection_type
+            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::connection_type,
+            permission_overrides: ::Array[::Array[top]]
           }
 
         class Instagram < PostForMe::Internal::Type::BaseModel
           attr_accessor connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::connection_type
 
+          attr_reader permission_overrides: ::Array[::Array[top]]?
+
+          def permission_overrides=: (
+            ::Array[::Array[top]]
+          ) -> ::Array[::Array[top]]
+
           def initialize: (
-            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::connection_type
+            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::connection_type,
+            ?permission_overrides: ::Array[::Array[top]]
           ) -> void
 
           def to_hash: -> {
-            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::connection_type
+            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::connection_type,
+            permission_overrides: ::Array[::Array[top]]
           }
 
           type connection_type = :instagram | :facebook
@@ -125,18 +222,27 @@ module PostForMe
 
         type linkedin =
           {
-            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type
+            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type,
+            permission_overrides: ::Array[::Array[top]]
           }
 
         class Linkedin < PostForMe::Internal::Type::BaseModel
           attr_accessor connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type
 
+          attr_reader permission_overrides: ::Array[::Array[top]]?
+
+          def permission_overrides=: (
+            ::Array[::Array[top]]
+          ) -> ::Array[::Array[top]]
+
           def initialize: (
-            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type
+            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type,
+            ?permission_overrides: ::Array[::Array[top]]
           ) -> void
 
           def to_hash: -> {
-            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type
+            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type,
+            permission_overrides: ::Array[::Array[top]]
           }
 
           type connection_type = :personal | :organization
@@ -149,6 +255,76 @@ module PostForMe
 
             def self?.values: -> ::Array[PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type]
           end
+        end
+
+        type pinterest = { permission_overrides: ::Array[::Array[top]] }
+
+        class Pinterest < PostForMe::Internal::Type::BaseModel
+          attr_reader permission_overrides: ::Array[::Array[top]]?
+
+          def permission_overrides=: (
+            ::Array[::Array[top]]
+          ) -> ::Array[::Array[top]]
+
+          def initialize: (?permission_overrides: ::Array[::Array[top]]) -> void
+
+          def to_hash: -> { permission_overrides: ::Array[::Array[top]] }
+        end
+
+        type threads = { permission_overrides: ::Array[::Array[top]] }
+
+        class Threads < PostForMe::Internal::Type::BaseModel
+          attr_reader permission_overrides: ::Array[::Array[top]]?
+
+          def permission_overrides=: (
+            ::Array[::Array[top]]
+          ) -> ::Array[::Array[top]]
+
+          def initialize: (?permission_overrides: ::Array[::Array[top]]) -> void
+
+          def to_hash: -> { permission_overrides: ::Array[::Array[top]] }
+        end
+
+        type tiktok = { permission_overrides: ::Array[::Array[top]] }
+
+        class Tiktok < PostForMe::Internal::Type::BaseModel
+          attr_reader permission_overrides: ::Array[::Array[top]]?
+
+          def permission_overrides=: (
+            ::Array[::Array[top]]
+          ) -> ::Array[::Array[top]]
+
+          def initialize: (?permission_overrides: ::Array[::Array[top]]) -> void
+
+          def to_hash: -> { permission_overrides: ::Array[::Array[top]] }
+        end
+
+        type tiktok_business = { permission_overrides: ::Array[::Array[top]] }
+
+        class TiktokBusiness < PostForMe::Internal::Type::BaseModel
+          attr_reader permission_overrides: ::Array[::Array[top]]?
+
+          def permission_overrides=: (
+            ::Array[::Array[top]]
+          ) -> ::Array[::Array[top]]
+
+          def initialize: (?permission_overrides: ::Array[::Array[top]]) -> void
+
+          def to_hash: -> { permission_overrides: ::Array[::Array[top]] }
+        end
+
+        type youtube = { permission_overrides: ::Array[::Array[top]] }
+
+        class Youtube < PostForMe::Internal::Type::BaseModel
+          attr_reader permission_overrides: ::Array[::Array[top]]?
+
+          def permission_overrides=: (
+            ::Array[::Array[top]]
+          ) -> ::Array[::Array[top]]
+
+          def initialize: (?permission_overrides: ::Array[::Array[top]]) -> void
+
+          def to_hash: -> { permission_overrides: ::Array[::Array[top]] }
         end
       end
     end
