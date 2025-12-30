@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.1.0-alpha.11 (2025-12-30)
+
+Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
+
+### Features
+
+* **api:** Adding account feed endpoint ([7ce9691](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/7ce9691b9e4e111c934bed1c09d9ccbfbc4b7c9d))
+* **api:** api update ([8a5f7ea](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/8a5f7ea61dc9b9484e9f6c380f375564a9800ead))
+* **api:** api update ([64ca219](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/64ca219193b85a3f605c9bd705d2eb3cc7ac4433))
+* **api:** api update ([6ebb7cc](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/6ebb7cc2b9c3bf0938e7b985a3ff1d5d0f73a092))
+
+
+### Bug Fixes
+
+* calling `break` out of streams should be instantaneous ([14f7017](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/14f70172ad4f58f195c95315c1634c41cb87c00f))
+* issue where json.parse errors when receiving HTTP 204 with nobody ([fdc1690](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/fdc16902862fec1eb612d9a9f82d9c4f4acd3a6e))
+
+
+### Chores
+
+* explicitly require "base64" gem ([ca97f9c](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/ca97f9c65134f8532190e9daeaba12db30171971))
+
 ## 0.1.0-alpha.10 (2025-11-05)
 
 Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
