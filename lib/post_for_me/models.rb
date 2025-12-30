@@ -55,6 +55,8 @@ module PostForMe
 
   PlatformConfigurationsDto = PostForMe::Models::PlatformConfigurationsDto
 
+  PlatformPost = PostForMe::Models::PlatformPost
+
   SocialAccount = PostForMe::Models::SocialAccount
 
   SocialAccountCreateAuthURLParams = PostForMe::Models::SocialAccountCreateAuthURLParams
@@ -62,6 +64,8 @@ module PostForMe
   SocialAccountCreateParams = PostForMe::Models::SocialAccountCreateParams
 
   SocialAccountDisconnectParams = PostForMe::Models::SocialAccountDisconnectParams
+
+  SocialAccountFeedListParams = PostForMe::Models::SocialAccountFeedListParams
 
   SocialAccountListParams = PostForMe::Models::SocialAccountListParams
 

@@ -1,0 +1,75 @@
+module PostForMe
+  module Models
+    type social_account_feed_list_params =
+      {
+        cursor: String,
+        expand: ::Array[PostForMe::Models::SocialAccountFeedListParams::expand],
+        external_post_id: ::Array[String],
+        limit: Float,
+        platform_post_id: ::Array[String],
+        social_post_id: ::Array[String]
+      }
+      & PostForMe::Internal::Type::request_parameters
+
+    class SocialAccountFeedListParams < PostForMe::Internal::Type::BaseModel
+      extend PostForMe::Internal::Type::RequestParameters::Converter
+      include PostForMe::Internal::Type::RequestParameters
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader expand: ::Array[PostForMe::Models::SocialAccountFeedListParams::expand]?
+
+      def expand=: (
+        ::Array[PostForMe::Models::SocialAccountFeedListParams::expand]
+      ) -> ::Array[PostForMe::Models::SocialAccountFeedListParams::expand]
+
+      attr_reader external_post_id: ::Array[String]?
+
+      def external_post_id=: (::Array[String]) -> ::Array[String]
+
+      attr_reader limit: Float?
+
+      def limit=: (Float) -> Float
+
+      attr_reader platform_post_id: ::Array[String]?
+
+      def platform_post_id=: (::Array[String]) -> ::Array[String]
+
+      attr_reader social_post_id: ::Array[String]?
+
+      def social_post_id=: (::Array[String]) -> ::Array[String]
+
+      def initialize: (
+        ?cursor: String,
+        ?expand: ::Array[PostForMe::Models::SocialAccountFeedListParams::expand],
+        ?external_post_id: ::Array[String],
+        ?limit: Float,
+        ?platform_post_id: ::Array[String],
+        ?social_post_id: ::Array[String],
+        ?request_options: PostForMe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String,
+        expand: ::Array[PostForMe::Models::SocialAccountFeedListParams::expand],
+        external_post_id: ::Array[String],
+        limit: Float,
+        platform_post_id: ::Array[String],
+        social_post_id: ::Array[String],
+        request_options: PostForMe::RequestOptions
+      }
+
+      type expand = :metrics
+
+      module Expand
+        extend PostForMe::Internal::Type::Enum
+
+        METRICS: :metrics
+
+        def self?.values: -> ::Array[PostForMe::Models::SocialAccountFeedListParams::expand]
+      end
+    end
+  end
+end

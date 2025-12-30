@@ -123,18 +123,25 @@ module PostForMe
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {PostForMe::Models::SocialAccountCreateAuthURLParams} for more details.
+      #
       # Generates a URL that initiates the authentication flow for a user's social media
       # account. When visited, the user is redirected to the selected social platform's
       # login/authorization page. Upon successful authentication, they are redirected
       # back to your application
       #
-      # @overload create_auth_url(platform:, external_id: nil, platform_data: nil, request_options: {})
+      # @overload create_auth_url(platform:, external_id: nil, permissions: nil, platform_data: nil, redirect_url_override: nil, request_options: {})
       #
       # @param platform [String] The social account provider
       #
       # @param external_id [String] Your unique identifier for the social account
       #
+      # @param permissions [Array<Symbol, PostForMe::Models::SocialAccountCreateAuthURLParams::Permission>] List of permissions you want to allow. Will default to only post permissions. Yo
+      #
       # @param platform_data [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData] Additional data needed for the provider
+      #
+      # @param redirect_url_override [String] Override the default redirect URL for the OAuth flow. If provided, this URL will
       #
       # @param request_options [PostForMe::RequestOptions, Hash{Symbol=>Object}, nil]
       #

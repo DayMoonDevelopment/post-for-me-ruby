@@ -117,8 +117,13 @@ module PostForMe
         params(
           platform: String,
           external_id: String,
+          permissions:
+            T::Array[
+              PostForMe::SocialAccountCreateAuthURLParams::Permission::OrSymbol
+            ],
           platform_data:
             PostForMe::SocialAccountCreateAuthURLParams::PlatformData::OrHash,
+          redirect_url_override: String,
           request_options: PostForMe::RequestOptions::OrHash
         ).returns(PostForMe::Models::SocialAccountCreateAuthURLResponse)
       end
@@ -127,8 +132,16 @@ module PostForMe
         platform:,
         # Your unique identifier for the social account
         external_id: nil,
+        # List of permissions you want to allow. Will default to only post permissions.
+        # You must include the "feeds" permission to request an account feed and metrics
+        permissions: nil,
         # Additional data needed for the provider
         platform_data: nil,
+        # Override the default redirect URL for the OAuth flow. If provided, this URL will
+        # be used instead of our redirect URL. Make sure this URL is included in your
+        # app's authorized redirect urls. This override will not work when using our
+        # system credientals.
+        redirect_url_override: nil,
         request_options: {}
       )
       end
