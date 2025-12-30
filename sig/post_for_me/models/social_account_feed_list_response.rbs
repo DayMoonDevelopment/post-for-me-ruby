@@ -1,0 +1,54 @@
+module PostForMe
+  module Models
+    type social_account_feed_list_response =
+      {
+        data: ::Array[PostForMe::PlatformPost],
+        meta: PostForMe::Models::SocialAccountFeedListResponse::Meta
+      }
+
+    class SocialAccountFeedListResponse < PostForMe::Internal::Type::BaseModel
+      attr_accessor data: ::Array[PostForMe::PlatformPost]
+
+      attr_accessor meta: PostForMe::Models::SocialAccountFeedListResponse::Meta
+
+      def initialize: (
+        data: ::Array[PostForMe::PlatformPost],
+        meta: PostForMe::Models::SocialAccountFeedListResponse::Meta
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[PostForMe::PlatformPost],
+        meta: PostForMe::Models::SocialAccountFeedListResponse::Meta
+      }
+
+      type meta =
+        { cursor: String, limit: Float, next_: String?, has_more: bool }
+
+      class Meta < PostForMe::Internal::Type::BaseModel
+        attr_accessor cursor: String
+
+        attr_accessor limit: Float
+
+        attr_accessor next_: String?
+
+        attr_reader has_more: bool?
+
+        def has_more=: (bool) -> bool
+
+        def initialize: (
+          cursor: String,
+          limit: Float,
+          next_: String?,
+          ?has_more: bool
+        ) -> void
+
+        def to_hash: -> {
+          cursor: String,
+          limit: Float,
+          next_: String?,
+          has_more: bool
+        }
+      end
+    end
+  end
+end

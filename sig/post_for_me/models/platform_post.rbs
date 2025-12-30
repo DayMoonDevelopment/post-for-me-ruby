@@ -1,0 +1,660 @@
+module PostForMe
+  module Models
+    type platform_post =
+      {
+        caption: String,
+        media: ::Array[::Array[top]],
+        platform: String,
+        platform_account_id: String,
+        platform_post_id: String,
+        platform_url: String,
+        social_account_id: String,
+        external_account_id: String?,
+        external_post_id: String?,
+        metrics: PostForMe::Models::PlatformPost::metrics,
+        posted_at: Time,
+        social_post_id: String?,
+        social_post_result_id: String?
+      }
+
+    class PlatformPost < PostForMe::Internal::Type::BaseModel
+      attr_accessor caption: String
+
+      attr_accessor media: ::Array[::Array[top]]
+
+      attr_accessor platform: String
+
+      attr_accessor platform_account_id: String
+
+      attr_accessor platform_post_id: String
+
+      attr_accessor platform_url: String
+
+      attr_accessor social_account_id: String
+
+      attr_accessor external_account_id: String?
+
+      attr_accessor external_post_id: String?
+
+      attr_reader metrics: PostForMe::Models::PlatformPost::metrics?
+
+      def metrics=: (
+        PostForMe::Models::PlatformPost::metrics
+      ) -> PostForMe::Models::PlatformPost::metrics
+
+      attr_reader posted_at: Time?
+
+      def posted_at=: (Time) -> Time
+
+      attr_accessor social_post_id: String?
+
+      attr_accessor social_post_result_id: String?
+
+      def initialize: (
+        caption: String,
+        media: ::Array[::Array[top]],
+        platform: String,
+        platform_account_id: String,
+        platform_post_id: String,
+        platform_url: String,
+        social_account_id: String,
+        ?external_account_id: String?,
+        ?external_post_id: String?,
+        ?metrics: PostForMe::Models::PlatformPost::metrics,
+        ?posted_at: Time,
+        ?social_post_id: String?,
+        ?social_post_result_id: String?
+      ) -> void
+
+      def to_hash: -> {
+        caption: String,
+        media: ::Array[::Array[top]],
+        platform: String,
+        platform_account_id: String,
+        platform_post_id: String,
+        platform_url: String,
+        social_account_id: String,
+        external_account_id: String?,
+        external_post_id: String?,
+        metrics: PostForMe::Models::PlatformPost::metrics,
+        posted_at: Time,
+        social_post_id: String?,
+        social_post_result_id: String?
+      }
+
+      type metrics =
+        PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto
+        | PostForMe::PlatformPost::Metrics::TikTokPostMetricsDto
+        | PostForMe::PlatformPost::Metrics::InstagramPostMetricsDto
+        | PostForMe::PlatformPost::Metrics::YouTubePostMetricsDto
+
+      module Metrics
+        extend PostForMe::Internal::Type::Union
+
+        type tik_tok_business_metrics_dto =
+          {
+            address_clicks: Float,
+            app_download_clicks: Float,
+            audience_cities: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::AudienceCity],
+            audience_countries: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::AudienceCountry],
+            audience_genders: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::AudienceGender],
+            audience_types: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::AudienceType],
+            average_time_watched: Float,
+            comments: Float,
+            email_clicks: Float,
+            engagement_likes: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::EngagementLike],
+            favorites: Float,
+            full_video_watched_rate: Float,
+            impression_sources: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::ImpressionSource],
+            lead_submissions: Float,
+            likes: Float,
+            new_followers: Float,
+            phone_number_clicks: Float,
+            profile_views: Float,
+            reach: Float,
+            shares: Float,
+            total_time_watched: Float,
+            video_view_retention: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::VideoViewRetention],
+            video_views: Float,
+            website_clicks: Float
+          }
+
+        class TikTokBusinessMetricsDto < PostForMe::Internal::Type::BaseModel
+          attr_accessor address_clicks: Float
+
+          attr_accessor app_download_clicks: Float
+
+          attr_accessor audience_cities: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::AudienceCity]
+
+          attr_accessor audience_countries: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::AudienceCountry]
+
+          attr_accessor audience_genders: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::AudienceGender]
+
+          attr_accessor audience_types: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::AudienceType]
+
+          attr_accessor average_time_watched: Float
+
+          attr_accessor comments: Float
+
+          attr_accessor email_clicks: Float
+
+          attr_accessor engagement_likes: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::EngagementLike]
+
+          attr_accessor favorites: Float
+
+          attr_accessor full_video_watched_rate: Float
+
+          attr_accessor impression_sources: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::ImpressionSource]
+
+          attr_accessor lead_submissions: Float
+
+          attr_accessor likes: Float
+
+          attr_accessor new_followers: Float
+
+          attr_accessor phone_number_clicks: Float
+
+          attr_accessor profile_views: Float
+
+          attr_accessor reach: Float
+
+          attr_accessor shares: Float
+
+          attr_accessor total_time_watched: Float
+
+          attr_accessor video_view_retention: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::VideoViewRetention]
+
+          attr_accessor video_views: Float
+
+          attr_accessor website_clicks: Float
+
+          def initialize: (
+            address_clicks: Float,
+            app_download_clicks: Float,
+            audience_cities: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::AudienceCity],
+            audience_countries: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::AudienceCountry],
+            audience_genders: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::AudienceGender],
+            audience_types: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::AudienceType],
+            average_time_watched: Float,
+            comments: Float,
+            email_clicks: Float,
+            engagement_likes: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::EngagementLike],
+            favorites: Float,
+            full_video_watched_rate: Float,
+            impression_sources: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::ImpressionSource],
+            lead_submissions: Float,
+            likes: Float,
+            new_followers: Float,
+            phone_number_clicks: Float,
+            profile_views: Float,
+            reach: Float,
+            shares: Float,
+            total_time_watched: Float,
+            video_view_retention: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::VideoViewRetention],
+            video_views: Float,
+            website_clicks: Float
+          ) -> void
+
+          def to_hash: -> {
+            address_clicks: Float,
+            app_download_clicks: Float,
+            audience_cities: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::AudienceCity],
+            audience_countries: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::AudienceCountry],
+            audience_genders: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::AudienceGender],
+            audience_types: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::AudienceType],
+            average_time_watched: Float,
+            comments: Float,
+            email_clicks: Float,
+            engagement_likes: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::EngagementLike],
+            favorites: Float,
+            full_video_watched_rate: Float,
+            impression_sources: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::ImpressionSource],
+            lead_submissions: Float,
+            likes: Float,
+            new_followers: Float,
+            phone_number_clicks: Float,
+            profile_views: Float,
+            reach: Float,
+            shares: Float,
+            total_time_watched: Float,
+            video_view_retention: ::Array[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::VideoViewRetention],
+            video_views: Float,
+            website_clicks: Float
+          }
+
+          type audience_city = { city_name: String, percentage: Float }
+
+          class AudienceCity < PostForMe::Internal::Type::BaseModel
+            attr_accessor city_name: String
+
+            attr_accessor percentage: Float
+
+            def initialize: (city_name: String, percentage: Float) -> void
+
+            def to_hash: -> { city_name: String, percentage: Float }
+          end
+
+          type audience_country = { country: String, percentage: Float }
+
+          class AudienceCountry < PostForMe::Internal::Type::BaseModel
+            attr_accessor country: String
+
+            attr_accessor percentage: Float
+
+            def initialize: (country: String, percentage: Float) -> void
+
+            def to_hash: -> { country: String, percentage: Float }
+          end
+
+          type audience_gender = { gender: String, percentage: Float }
+
+          class AudienceGender < PostForMe::Internal::Type::BaseModel
+            attr_accessor gender: String
+
+            attr_accessor percentage: Float
+
+            def initialize: (gender: String, percentage: Float) -> void
+
+            def to_hash: -> { gender: String, percentage: Float }
+          end
+
+          type audience_type = { percentage: Float, type: String }
+
+          class AudienceType < PostForMe::Internal::Type::BaseModel
+            attr_accessor percentage: Float
+
+            attr_accessor type: String
+
+            def initialize: (percentage: Float, type: String) -> void
+
+            def to_hash: -> { percentage: Float, type: String }
+          end
+
+          type engagement_like = { percentage: Float, second: String }
+
+          class EngagementLike < PostForMe::Internal::Type::BaseModel
+            attr_accessor percentage: Float
+
+            attr_accessor second: String
+
+            def initialize: (percentage: Float, second: String) -> void
+
+            def to_hash: -> { percentage: Float, second: String }
+          end
+
+          type impression_source =
+            { impression_source: String, percentage: Float }
+
+          class ImpressionSource < PostForMe::Internal::Type::BaseModel
+            attr_accessor impression_source: String
+
+            attr_accessor percentage: Float
+
+            def initialize: (
+              impression_source: String,
+              percentage: Float
+            ) -> void
+
+            def to_hash: -> { impression_source: String, percentage: Float }
+          end
+
+          type video_view_retention = { percentage: Float, second: String }
+
+          class VideoViewRetention < PostForMe::Internal::Type::BaseModel
+            attr_accessor percentage: Float
+
+            attr_accessor second: String
+
+            def initialize: (percentage: Float, second: String) -> void
+
+            def to_hash: -> { percentage: Float, second: String }
+          end
+        end
+
+        type tik_tok_post_metrics_dto =
+          {
+            comment_count: Float,
+            like_count: Float,
+            share_count: Float,
+            view_count: Float
+          }
+
+        class TikTokPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          attr_accessor comment_count: Float
+
+          attr_accessor like_count: Float
+
+          attr_accessor share_count: Float
+
+          attr_accessor view_count: Float
+
+          def initialize: (
+            comment_count: Float,
+            like_count: Float,
+            share_count: Float,
+            view_count: Float
+          ) -> void
+
+          def to_hash: -> {
+            comment_count: Float,
+            like_count: Float,
+            share_count: Float,
+            view_count: Float
+          }
+        end
+
+        type instagram_post_metrics_dto =
+          {
+            comments: Float,
+            follows: Float,
+            ig_reels_avg_watch_time: Float,
+            ig_reels_video_view_total_time: Float,
+            likes: Float,
+            navigation: Float,
+            profile_activity: Float,
+            profile_visits: Float,
+            reach: Float,
+            replies: Float,
+            saved: Float,
+            shares: Float,
+            total_interactions: Float,
+            views: Float
+          }
+
+        class InstagramPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          attr_reader comments: Float?
+
+          def comments=: (Float) -> Float
+
+          attr_reader follows: Float?
+
+          def follows=: (Float) -> Float
+
+          attr_reader ig_reels_avg_watch_time: Float?
+
+          def ig_reels_avg_watch_time=: (Float) -> Float
+
+          attr_reader ig_reels_video_view_total_time: Float?
+
+          def ig_reels_video_view_total_time=: (Float) -> Float
+
+          attr_reader likes: Float?
+
+          def likes=: (Float) -> Float
+
+          attr_reader navigation: Float?
+
+          def navigation=: (Float) -> Float
+
+          attr_reader profile_activity: Float?
+
+          def profile_activity=: (Float) -> Float
+
+          attr_reader profile_visits: Float?
+
+          def profile_visits=: (Float) -> Float
+
+          attr_reader reach: Float?
+
+          def reach=: (Float) -> Float
+
+          attr_reader replies: Float?
+
+          def replies=: (Float) -> Float
+
+          attr_reader saved: Float?
+
+          def saved=: (Float) -> Float
+
+          attr_reader shares: Float?
+
+          def shares=: (Float) -> Float
+
+          attr_reader total_interactions: Float?
+
+          def total_interactions=: (Float) -> Float
+
+          attr_reader views: Float?
+
+          def views=: (Float) -> Float
+
+          def initialize: (
+            ?comments: Float,
+            ?follows: Float,
+            ?ig_reels_avg_watch_time: Float,
+            ?ig_reels_video_view_total_time: Float,
+            ?likes: Float,
+            ?navigation: Float,
+            ?profile_activity: Float,
+            ?profile_visits: Float,
+            ?reach: Float,
+            ?replies: Float,
+            ?saved: Float,
+            ?shares: Float,
+            ?total_interactions: Float,
+            ?views: Float
+          ) -> void
+
+          def to_hash: -> {
+            comments: Float,
+            follows: Float,
+            ig_reels_avg_watch_time: Float,
+            ig_reels_video_view_total_time: Float,
+            likes: Float,
+            navigation: Float,
+            profile_activity: Float,
+            profile_visits: Float,
+            reach: Float,
+            replies: Float,
+            saved: Float,
+            shares: Float,
+            total_interactions: Float,
+            views: Float
+          }
+        end
+
+        type you_tube_post_metrics_dto =
+          {
+            comments: Float,
+            dislikes: Float,
+            likes: Float,
+            views: Float,
+            annotation_clickable_impressions: Float,
+            annotation_clicks: Float,
+            annotation_click_through_rate: Float,
+            annotation_closable_impressions: Float,
+            annotation_close_rate: Float,
+            annotation_closes: Float,
+            annotation_impressions: Float,
+            average_view_duration: Float,
+            average_view_percentage: Float,
+            card_click_rate: Float,
+            card_clicks: Float,
+            card_impressions: Float,
+            card_teaser_click_rate: Float,
+            card_teaser_clicks: Float,
+            card_teaser_impressions: Float,
+            engaged_views: Float,
+            estimated_minutes_watched: Float,
+            estimated_red_minutes_watched: Float,
+            red_views: Float,
+            shares: Float,
+            subscribers_gained: Float,
+            subscribers_lost: Float,
+            videos_added_to_playlists: Float,
+            videos_removed_from_playlists: Float
+          }
+
+        class YouTubePostMetricsDto < PostForMe::Internal::Type::BaseModel
+          attr_accessor comments: Float
+
+          attr_accessor dislikes: Float
+
+          attr_accessor likes: Float
+
+          attr_accessor views: Float
+
+          attr_reader annotation_clickable_impressions: Float?
+
+          def annotation_clickable_impressions=: (Float) -> Float
+
+          attr_reader annotation_clicks: Float?
+
+          def annotation_clicks=: (Float) -> Float
+
+          attr_reader annotation_click_through_rate: Float?
+
+          def annotation_click_through_rate=: (Float) -> Float
+
+          attr_reader annotation_closable_impressions: Float?
+
+          def annotation_closable_impressions=: (Float) -> Float
+
+          attr_reader annotation_close_rate: Float?
+
+          def annotation_close_rate=: (Float) -> Float
+
+          attr_reader annotation_closes: Float?
+
+          def annotation_closes=: (Float) -> Float
+
+          attr_reader annotation_impressions: Float?
+
+          def annotation_impressions=: (Float) -> Float
+
+          attr_reader average_view_duration: Float?
+
+          def average_view_duration=: (Float) -> Float
+
+          attr_reader average_view_percentage: Float?
+
+          def average_view_percentage=: (Float) -> Float
+
+          attr_reader card_click_rate: Float?
+
+          def card_click_rate=: (Float) -> Float
+
+          attr_reader card_clicks: Float?
+
+          def card_clicks=: (Float) -> Float
+
+          attr_reader card_impressions: Float?
+
+          def card_impressions=: (Float) -> Float
+
+          attr_reader card_teaser_click_rate: Float?
+
+          def card_teaser_click_rate=: (Float) -> Float
+
+          attr_reader card_teaser_clicks: Float?
+
+          def card_teaser_clicks=: (Float) -> Float
+
+          attr_reader card_teaser_impressions: Float?
+
+          def card_teaser_impressions=: (Float) -> Float
+
+          attr_reader engaged_views: Float?
+
+          def engaged_views=: (Float) -> Float
+
+          attr_reader estimated_minutes_watched: Float?
+
+          def estimated_minutes_watched=: (Float) -> Float
+
+          attr_reader estimated_red_minutes_watched: Float?
+
+          def estimated_red_minutes_watched=: (Float) -> Float
+
+          attr_reader red_views: Float?
+
+          def red_views=: (Float) -> Float
+
+          attr_reader shares: Float?
+
+          def shares=: (Float) -> Float
+
+          attr_reader subscribers_gained: Float?
+
+          def subscribers_gained=: (Float) -> Float
+
+          attr_reader subscribers_lost: Float?
+
+          def subscribers_lost=: (Float) -> Float
+
+          attr_reader videos_added_to_playlists: Float?
+
+          def videos_added_to_playlists=: (Float) -> Float
+
+          attr_reader videos_removed_from_playlists: Float?
+
+          def videos_removed_from_playlists=: (Float) -> Float
+
+          def initialize: (
+            comments: Float,
+            dislikes: Float,
+            likes: Float,
+            views: Float,
+            ?annotation_clickable_impressions: Float,
+            ?annotation_clicks: Float,
+            ?annotation_click_through_rate: Float,
+            ?annotation_closable_impressions: Float,
+            ?annotation_close_rate: Float,
+            ?annotation_closes: Float,
+            ?annotation_impressions: Float,
+            ?average_view_duration: Float,
+            ?average_view_percentage: Float,
+            ?card_click_rate: Float,
+            ?card_clicks: Float,
+            ?card_impressions: Float,
+            ?card_teaser_click_rate: Float,
+            ?card_teaser_clicks: Float,
+            ?card_teaser_impressions: Float,
+            ?engaged_views: Float,
+            ?estimated_minutes_watched: Float,
+            ?estimated_red_minutes_watched: Float,
+            ?red_views: Float,
+            ?shares: Float,
+            ?subscribers_gained: Float,
+            ?subscribers_lost: Float,
+            ?videos_added_to_playlists: Float,
+            ?videos_removed_from_playlists: Float
+          ) -> void
+
+          def to_hash: -> {
+            comments: Float,
+            dislikes: Float,
+            likes: Float,
+            views: Float,
+            annotation_clickable_impressions: Float,
+            annotation_clicks: Float,
+            annotation_click_through_rate: Float,
+            annotation_closable_impressions: Float,
+            annotation_close_rate: Float,
+            annotation_closes: Float,
+            annotation_impressions: Float,
+            average_view_duration: Float,
+            average_view_percentage: Float,
+            card_click_rate: Float,
+            card_clicks: Float,
+            card_impressions: Float,
+            card_teaser_click_rate: Float,
+            card_teaser_clicks: Float,
+            card_teaser_impressions: Float,
+            engaged_views: Float,
+            estimated_minutes_watched: Float,
+            estimated_red_minutes_watched: Float,
+            red_views: Float,
+            shares: Float,
+            subscribers_gained: Float,
+            subscribers_lost: Float,
+            videos_added_to_playlists: Float,
+            videos_removed_from_playlists: Float
+          }
+        end
+
+        def self?.variants: -> ::Array[PostForMe::Models::PlatformPost::metrics]
+      end
+    end
+  end
+end

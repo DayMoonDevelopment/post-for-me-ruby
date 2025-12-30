@@ -25,6 +25,9 @@ module PostForMe
     sig { returns(PostForMe::Resources::SocialAccounts) }
     attr_reader :social_accounts
 
+    sig { returns(PostForMe::Resources::SocialAccountFeeds) }
+    attr_reader :social_account_feeds
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

@@ -30,6 +30,9 @@ module PostForMe
     # @return [PostForMe::Resources::SocialAccounts]
     attr_reader :social_accounts
 
+    # @return [PostForMe::Resources::SocialAccountFeeds]
+    attr_reader :social_account_feeds
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -81,6 +84,7 @@ module PostForMe
       @social_posts = PostForMe::Resources::SocialPosts.new(client: self)
       @social_post_results = PostForMe::Resources::SocialPostResults.new(client: self)
       @social_accounts = PostForMe::Resources::SocialAccounts.new(client: self)
+      @social_account_feeds = PostForMe::Resources::SocialAccountFeeds.new(client: self)
     end
   end
 end
