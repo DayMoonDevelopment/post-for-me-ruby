@@ -18,6 +18,8 @@ module PostForMe
 
     attr_reader social_accounts: PostForMe::Resources::SocialAccounts
 
+    attr_reader social_account_feeds: PostForMe::Resources::SocialAccountFeeds
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (
