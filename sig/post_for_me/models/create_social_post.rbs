@@ -88,10 +88,11 @@ module PostForMe
             is_draft: bool?,
             link: String?,
             location: String?,
+            made_for_kids: bool?,
             media: ::Array[String]?,
             placement: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::placement?,
             poll: PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Poll,
-            privacy_status: String?,
+            privacy_status: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::privacy_status?,
             quote_tweet_id: String,
             reply_settings: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::reply_settings?,
             share_to_feed: bool?,
@@ -129,6 +130,8 @@ module PostForMe
 
           attr_accessor location: String?
 
+          attr_accessor made_for_kids: bool?
+
           attr_accessor media: ::Array[String]?
 
           attr_accessor placement: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::placement?
@@ -139,7 +142,7 @@ module PostForMe
             PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Poll
           ) -> PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Poll
 
-          attr_accessor privacy_status: String?
+          attr_accessor privacy_status: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::privacy_status?
 
           attr_reader quote_tweet_id: String?
 
@@ -166,10 +169,11 @@ module PostForMe
             ?is_draft: bool?,
             ?link: String?,
             ?location: String?,
+            ?made_for_kids: bool?,
             ?media: ::Array[String]?,
             ?placement: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::placement?,
             ?poll: PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Poll,
-            ?privacy_status: String?,
+            ?privacy_status: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::privacy_status?,
             ?quote_tweet_id: String,
             ?reply_settings: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::reply_settings?,
             ?share_to_feed: bool?,
@@ -191,10 +195,11 @@ module PostForMe
             is_draft: bool?,
             link: String?,
             location: String?,
+            made_for_kids: bool?,
             media: ::Array[String]?,
             placement: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::placement?,
             poll: PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Poll,
-            privacy_status: String?,
+            privacy_status: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::privacy_status?,
             quote_tweet_id: String,
             reply_settings: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::reply_settings?,
             share_to_feed: bool?,
@@ -256,6 +261,18 @@ module PostForMe
 
               def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Poll::reply_settings]
             end
+          end
+
+          type privacy_status = :public | :private | :unlisted
+
+          module PrivacyStatus
+            extend PostForMe::Internal::Type::Enum
+
+            PUBLIC: :public
+            PRIVATE: :private
+            UNLISTED: :unlisted
+
+            def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::privacy_status]
           end
 
           type reply_settings =

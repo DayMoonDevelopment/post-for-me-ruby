@@ -204,6 +204,12 @@ module PostForMe
           #   @return [String, nil]
           optional :location, String, nil?: true
 
+          # @!attribute made_for_kids
+          #   If true will notify YouTube the video is intended for kids, defaults to false
+          #
+          #   @return [Boolean, nil]
+          optional :made_for_kids, PostForMe::Internal::Type::Boolean, nil?: true
+
           # @!attribute media
           #   Overrides the `media` from the post
           #
@@ -225,10 +231,13 @@ module PostForMe
           optional :poll, -> { PostForMe::SocialPost::AccountConfiguration::Configuration::Poll }
 
           # @!attribute privacy_status
-          #   Sets the privacy status for TikTok (private, public)
+          #   Sets the privacy status for TikTok (private, public), or YouTube (private,
+          #   public, unlisted)
           #
-          #   @return [String, nil]
-          optional :privacy_status, String, nil?: true
+          #   @return [Symbol, PostForMe::Models::SocialPost::AccountConfiguration::Configuration::PrivacyStatus, nil]
+          optional :privacy_status,
+                   enum: -> { PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus },
+                   nil?: true
 
           # @!attribute quote_tweet_id
           #   Id of the tweet you want to quote
@@ -256,7 +265,7 @@ module PostForMe
           #   @return [String, nil]
           optional :title, String, nil?: true
 
-          # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, auto_add_music: nil, board_ids: nil, caption: nil, collaborators: nil, community_id: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, link: nil, location: nil, media: nil, placement: nil, poll: nil, privacy_status: nil, quote_tweet_id: nil, reply_settings: nil, share_to_feed: nil, title: nil)
+          # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, auto_add_music: nil, board_ids: nil, caption: nil, collaborators: nil, community_id: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, link: nil, location: nil, made_for_kids: nil, media: nil, placement: nil, poll: nil, privacy_status: nil, quote_tweet_id: nil, reply_settings: nil, share_to_feed: nil, title: nil)
           #   Some parameter documentations has been truncated, see
           #   {PostForMe::Models::SocialPost::AccountConfiguration::Configuration} for more
           #   details.
@@ -291,13 +300,15 @@ module PostForMe
           #
           #   @param location [String, nil] Page id with a location that you want to tag the image or video with (Instagram
           #
+          #   @param made_for_kids [Boolean, nil] If true will notify YouTube the video is intended for kids, defaults to false
+          #
           #   @param media [Array<String>, nil] Overrides the `media` from the post
           #
           #   @param placement [Symbol, PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Placement, nil] Post placement for Facebook/Instagram/Threads
           #
           #   @param poll [PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Poll] Poll options for the twitter
           #
-          #   @param privacy_status [String, nil] Sets the privacy status for TikTok (private, public)
+          #   @param privacy_status [Symbol, PostForMe::Models::SocialPost::AccountConfiguration::Configuration::PrivacyStatus, nil] Sets the privacy status for TikTok (private, public), or YouTube (private, publi
           #
           #   @param quote_tweet_id [String] Id of the tweet you want to quote
           #
@@ -365,6 +376,21 @@ module PostForMe
               # @!method self.values
               #   @return [Array<Symbol>]
             end
+          end
+
+          # Sets the privacy status for TikTok (private, public), or YouTube (private,
+          # public, unlisted)
+          #
+          # @see PostForMe::Models::SocialPost::AccountConfiguration::Configuration#privacy_status
+          module PrivacyStatus
+            extend PostForMe::Internal::Type::Enum
+
+            PUBLIC = :public
+            PRIVATE = :private
+            UNLISTED = :unlisted
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # Who can reply to the tweet

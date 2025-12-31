@@ -256,6 +256,10 @@ module PostForMe
           sig { returns(T.nilable(String)) }
           attr_accessor :location
 
+          # If true will notify YouTube the video is intended for kids, defaults to false
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_accessor :made_for_kids
+
           # Overrides the `media` from the post
           sig { returns(T.nilable(T::Array[String])) }
           attr_accessor :media
@@ -288,8 +292,15 @@ module PostForMe
           end
           attr_writer :poll
 
-          # Sets the privacy status for TikTok (private, public)
-          sig { returns(T.nilable(String)) }
+          # Sets the privacy status for TikTok (private, public), or YouTube (private,
+          # public, unlisted)
+          sig do
+            returns(
+              T.nilable(
+                PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus::TaggedSymbol
+              )
+            )
+          end
           attr_accessor :privacy_status
 
           # Id of the tweet you want to quote
@@ -334,6 +345,7 @@ module PostForMe
               is_draft: T.nilable(T::Boolean),
               link: T.nilable(String),
               location: T.nilable(String),
+              made_for_kids: T.nilable(T::Boolean),
               media: T.nilable(T::Array[String]),
               placement:
                 T.nilable(
@@ -341,7 +353,10 @@ module PostForMe
                 ),
               poll:
                 PostForMe::SocialPost::AccountConfiguration::Configuration::Poll::OrHash,
-              privacy_status: T.nilable(String),
+              privacy_status:
+                T.nilable(
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus::OrSymbol
+                ),
               quote_tweet_id: String,
               reply_settings:
                 T.nilable(
@@ -383,13 +398,16 @@ module PostForMe
             # Page id with a location that you want to tag the image or video with (Instagram
             # and Facebook)
             location: nil,
+            # If true will notify YouTube the video is intended for kids, defaults to false
+            made_for_kids: nil,
             # Overrides the `media` from the post
             media: nil,
             # Post placement for Facebook/Instagram/Threads
             placement: nil,
             # Poll options for the twitter
             poll: nil,
-            # Sets the privacy status for TikTok (private, public)
+            # Sets the privacy status for TikTok (private, public), or YouTube (private,
+            # public, unlisted)
             privacy_status: nil,
             # Id of the tweet you want to quote
             quote_tweet_id: nil,
@@ -419,6 +437,7 @@ module PostForMe
                 is_draft: T.nilable(T::Boolean),
                 link: T.nilable(String),
                 location: T.nilable(String),
+                made_for_kids: T.nilable(T::Boolean),
                 media: T.nilable(T::Array[String]),
                 placement:
                   T.nilable(
@@ -426,7 +445,10 @@ module PostForMe
                   ),
                 poll:
                   PostForMe::SocialPost::AccountConfiguration::Configuration::Poll,
-                privacy_status: T.nilable(String),
+                privacy_status:
+                  T.nilable(
+                    PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus::TaggedSymbol
+                  ),
                 quote_tweet_id: String,
                 reply_settings:
                   T.nilable(
@@ -590,6 +612,47 @@ module PostForMe
               end
               def self.values
               end
+            end
+          end
+
+          # Sets the privacy status for TikTok (private, public), or YouTube (private,
+          # public, unlisted)
+          module PrivacyStatus
+            extend PostForMe::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            PUBLIC =
+              T.let(
+                :public,
+                PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus::TaggedSymbol
+              )
+            PRIVATE =
+              T.let(
+                :private,
+                PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus::TaggedSymbol
+              )
+            UNLISTED =
+              T.let(
+                :unlisted,
+                PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
             end
           end
 
