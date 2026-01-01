@@ -246,7 +246,15 @@ module PostForMe
           attr_accessor :made_for_kids
 
           # Overrides the `media` from the post
-          sig { returns(T.nilable(T::Array[String])) }
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media
+                ]
+              )
+            )
+          end
           attr_accessor :media
 
           # Post placement for Facebook/Instagram/Threads
@@ -331,7 +339,12 @@ module PostForMe
               link: T.nilable(String),
               location: T.nilable(String),
               made_for_kids: T.nilable(T::Boolean),
-              media: T.nilable(T::Array[String]),
+              media:
+                T.nilable(
+                  T::Array[
+                    PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::OrHash
+                  ]
+                ),
               placement:
                 T.nilable(
                   PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Placement::OrSymbol
@@ -423,7 +436,12 @@ module PostForMe
                 link: T.nilable(String),
                 location: T.nilable(String),
                 made_for_kids: T.nilable(T::Boolean),
-                media: T.nilable(T::Array[String]),
+                media:
+                  T.nilable(
+                    T::Array[
+                      PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media
+                    ]
+                  ),
                 placement:
                   T.nilable(
                     PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Placement::OrSymbol
@@ -445,6 +463,245 @@ module PostForMe
             )
           end
           def to_hash
+          end
+
+          class Media < PostForMe::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media,
+                  PostForMe::Internal::AnyHash
+                )
+              end
+
+            # Public URL of the media
+            sig { returns(String) }
+            attr_accessor :url
+
+            # List of tags to attach to the media
+            sig do
+              returns(
+                T.nilable(
+                  T::Array[
+                    PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag
+                  ]
+                )
+              )
+            end
+            attr_accessor :tags
+
+            # Timestamp in milliseconds of frame to use as thumbnail for the media
+            sig { returns(T.nilable(T.anything)) }
+            attr_accessor :thumbnail_timestamp_ms
+
+            # Public URL of the thumbnail for the media
+            sig { returns(T.nilable(T.anything)) }
+            attr_accessor :thumbnail_url
+
+            sig do
+              params(
+                url: String,
+                tags:
+                  T.nilable(
+                    T::Array[
+                      PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::OrHash
+                    ]
+                  ),
+                thumbnail_timestamp_ms: T.nilable(T.anything),
+                thumbnail_url: T.nilable(T.anything)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Public URL of the media
+              url:,
+              # List of tags to attach to the media
+              tags: nil,
+              # Timestamp in milliseconds of frame to use as thumbnail for the media
+              thumbnail_timestamp_ms: nil,
+              # Public URL of the thumbnail for the media
+              thumbnail_url: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  url: String,
+                  tags:
+                    T.nilable(
+                      T::Array[
+                        PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag
+                      ]
+                    ),
+                  thumbnail_timestamp_ms: T.nilable(T.anything),
+                  thumbnail_url: T.nilable(T.anything)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Tag < PostForMe::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag,
+                    PostForMe::Internal::AnyHash
+                  )
+                end
+
+              # Facebook User ID, Instagram Username or Instagram product id to tag
+              sig { returns(String) }
+              attr_accessor :id
+
+              # The platform for the tags
+              sig do
+                returns(
+                  PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::Platform::OrSymbol
+                )
+              end
+              attr_accessor :platform
+
+              # The type of tag, user to tag accounts, product to tag products (only supported
+              # for instagram)
+              sig do
+                returns(
+                  PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::Type::OrSymbol
+                )
+              end
+              attr_accessor :type
+
+              # Percentage distance from left edge of the image, Not required for videos or
+              # stories
+              sig { returns(T.nilable(Float)) }
+              attr_reader :x
+
+              sig { params(x: Float).void }
+              attr_writer :x
+
+              # Percentage distance from top edge of the image, Not required for videos or
+              # stories
+              sig { returns(T.nilable(Float)) }
+              attr_reader :y_
+
+              sig { params(y_: Float).void }
+              attr_writer :y_
+
+              sig do
+                params(
+                  id: String,
+                  platform:
+                    PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::Platform::OrSymbol,
+                  type:
+                    PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::Type::OrSymbol,
+                  x: Float,
+                  y_: Float
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Facebook User ID, Instagram Username or Instagram product id to tag
+                id:,
+                # The platform for the tags
+                platform:,
+                # The type of tag, user to tag accounts, product to tag products (only supported
+                # for instagram)
+                type:,
+                # Percentage distance from left edge of the image, Not required for videos or
+                # stories
+                x: nil,
+                # Percentage distance from top edge of the image, Not required for videos or
+                # stories
+                y_: nil
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    id: String,
+                    platform:
+                      PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::Platform::OrSymbol,
+                    type:
+                      PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::Type::OrSymbol,
+                    x: Float,
+                    y_: Float
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # The platform for the tags
+              module Platform
+                extend PostForMe::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::Platform
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                FACEBOOK =
+                  T.let(
+                    :facebook,
+                    PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::Platform::TaggedSymbol
+                  )
+                INSTAGRAM =
+                  T.let(
+                    :instagram,
+                    PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::Platform::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::Platform::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # The type of tag, user to tag accounts, product to tag products (only supported
+              # for instagram)
+              module Type
+                extend PostForMe::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::Type
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                USER =
+                  T.let(
+                    :user,
+                    PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::Type::TaggedSymbol
+                  )
+                PRODUCT =
+                  T.let(
+                    :product,
+                    PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::Type::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::Type::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+            end
           end
 
           # Post placement for Facebook/Instagram/Threads
