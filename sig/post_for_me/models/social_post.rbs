@@ -104,7 +104,7 @@ module PostForMe
             link: String?,
             location: String?,
             made_for_kids: bool?,
-            media: ::Array[String]?,
+            media: ::Array[PostForMe::SocialPost::AccountConfiguration::Configuration::Media]?,
             placement: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::placement?,
             poll: PostForMe::SocialPost::AccountConfiguration::Configuration::Poll,
             privacy_status: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::privacy_status?,
@@ -147,7 +147,7 @@ module PostForMe
 
           attr_accessor made_for_kids: bool?
 
-          attr_accessor media: ::Array[String]?
+          attr_accessor media: ::Array[PostForMe::SocialPost::AccountConfiguration::Configuration::Media]?
 
           attr_accessor placement: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::placement?
 
@@ -185,7 +185,7 @@ module PostForMe
             ?link: String?,
             ?location: String?,
             ?made_for_kids: bool?,
-            ?media: ::Array[String]?,
+            ?media: ::Array[PostForMe::SocialPost::AccountConfiguration::Configuration::Media]?,
             ?placement: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::placement?,
             ?poll: PostForMe::SocialPost::AccountConfiguration::Configuration::Poll,
             ?privacy_status: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::privacy_status?,
@@ -211,7 +211,7 @@ module PostForMe
             link: String?,
             location: String?,
             made_for_kids: bool?,
-            media: ::Array[String]?,
+            media: ::Array[PostForMe::SocialPost::AccountConfiguration::Configuration::Media]?,
             placement: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::placement?,
             poll: PostForMe::SocialPost::AccountConfiguration::Configuration::Poll,
             privacy_status: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::privacy_status?,
@@ -220,6 +220,101 @@ module PostForMe
             share_to_feed: bool?,
             title: String?
           }
+
+          type media =
+            {
+              url: String,
+              tags: ::Array[PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag]?,
+              thumbnail_timestamp_ms: top?,
+              thumbnail_url: top?
+            }
+
+          class Media < PostForMe::Internal::Type::BaseModel
+            attr_accessor url: String
+
+            attr_accessor tags: ::Array[PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag]?
+
+            attr_accessor thumbnail_timestamp_ms: top?
+
+            attr_accessor thumbnail_url: top?
+
+            def initialize: (
+              url: String,
+              ?tags: ::Array[PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag]?,
+              ?thumbnail_timestamp_ms: top?,
+              ?thumbnail_url: top?
+            ) -> void
+
+            def to_hash: -> {
+              url: String,
+              tags: ::Array[PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag]?,
+              thumbnail_timestamp_ms: top?,
+              thumbnail_url: top?
+            }
+
+            type tag =
+              {
+                id: String,
+                platform: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Media::Tag::platform,
+                type: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Media::Tag::type_,
+                x: Float,
+                y_: Float
+              }
+
+            class Tag < PostForMe::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor platform: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Media::Tag::platform
+
+              attr_accessor type: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Media::Tag::type_
+
+              attr_reader x: Float?
+
+              def x=: (Float) -> Float
+
+              attr_reader y_: Float?
+
+              def y_=: (Float) -> Float
+
+              def initialize: (
+                id: String,
+                platform: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Media::Tag::platform,
+                type: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Media::Tag::type_,
+                ?x: Float,
+                ?y_: Float
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                platform: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Media::Tag::platform,
+                type: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Media::Tag::type_,
+                x: Float,
+                y_: Float
+              }
+
+              type platform = :facebook | :instagram
+
+              module Platform
+                extend PostForMe::Internal::Type::Enum
+
+                FACEBOOK: :facebook
+                INSTAGRAM: :instagram
+
+                def self?.values: -> ::Array[PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Media::Tag::platform]
+              end
+
+              type type_ = :user | :product
+
+              module Type
+                extend PostForMe::Internal::Type::Enum
+
+                USER: :user
+                PRODUCT: :product
+
+                def self?.values: -> ::Array[PostForMe::Models::SocialPost::AccountConfiguration::Configuration::Media::Tag::type_]
+              end
+            end
+          end
 
           type placement = :reels | :timeline | :stories
 
