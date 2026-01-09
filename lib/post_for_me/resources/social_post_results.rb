@@ -28,7 +28,7 @@ module PostForMe
       #
       # Get a paginated result for post results based on the applied filters
       #
-      # @overload list(limit: nil, offset: nil, platform: nil, post_id: nil, request_options: {})
+      # @overload list(limit: nil, offset: nil, platform: nil, post_id: nil, social_account_id: nil, request_options: {})
       #
       # @param limit [Float] Number of items to return
       #
@@ -37,6 +37,8 @@ module PostForMe
       # @param platform [Array<String>] Filter by platform(s). Multiple values imply OR logic (e.g., ?platform=x&platfor
       #
       # @param post_id [Array<String>] Filter by post IDs. Multiple values imply OR logic (e.g., ?post_id=123&post_id=4
+      #
+      # @param social_account_id [Array<String>] Filter by social account ID(s). Multiple values imply OR logic (e.g., ?social_ac
       #
       # @param request_options [PostForMe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
