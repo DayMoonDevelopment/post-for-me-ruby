@@ -44,12 +44,21 @@ module PostForMe
       sig { params(post_id: T::Array[String]).void }
       attr_writer :post_id
 
+      # Filter by social account ID(s). Multiple values imply OR logic (e.g.,
+      # ?social_account_id=123&social_account_id=456).
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_reader :social_account_id
+
+      sig { params(social_account_id: T::Array[String]).void }
+      attr_writer :social_account_id
+
       sig do
         params(
           limit: Float,
           offset: Float,
           platform: T::Array[String],
           post_id: T::Array[String],
+          social_account_id: T::Array[String],
           request_options: PostForMe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -64,6 +73,9 @@ module PostForMe
         # Filter by post IDs. Multiple values imply OR logic (e.g.,
         # ?post_id=123&post_id=456).
         post_id: nil,
+        # Filter by social account ID(s). Multiple values imply OR logic (e.g.,
+        # ?social_account_id=123&social_account_id=456).
+        social_account_id: nil,
         request_options: {}
       )
       end
@@ -75,6 +87,7 @@ module PostForMe
             offset: Float,
             platform: T::Array[String],
             post_id: T::Array[String],
+            social_account_id: T::Array[String],
             request_options: PostForMe::RequestOptions
           }
         )
