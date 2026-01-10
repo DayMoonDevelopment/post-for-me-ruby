@@ -24,6 +24,7 @@ module PostForMe
           offset: Float,
           platform: T::Array[String],
           post_id: T::Array[String],
+          social_account_id: T::Array[String],
           request_options: PostForMe::RequestOptions::OrHash
         ).returns(PostForMe::Models::SocialPostResultListResponse)
       end
@@ -38,6 +39,9 @@ module PostForMe
         # Filter by post IDs. Multiple values imply OR logic (e.g.,
         # ?post_id=123&post_id=456).
         post_id: nil,
+        # Filter by social account ID(s). Multiple values imply OR logic (e.g.,
+        # ?social_account_id=123&social_account_id=456).
+        social_account_id: nil,
         request_options: {}
       )
       end

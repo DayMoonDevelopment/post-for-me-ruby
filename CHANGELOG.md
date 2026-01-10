@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.1.0-alpha.12 (2026-01-10)
+
+Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
+
+### Features
+
+* **api:** api update ([221b4e5](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/221b4e5aa11b4475baf32ecefcf1ef556aaa9da5))
+* **api:** api update ([0f252a9](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/0f252a956af996885532141d41c781025928732e))
+* **api:** api update ([4da33ad](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/4da33ad42d0208f2bee2a825b57fd69c5041a99a))
+
+
+### Chores
+
+* **internal:** codegen related update ([bfe1b4e](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/bfe1b4eaca2f6a9163bad0e4e305185b86b265a2))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([e1292ef](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/e1292efcda83a13b0f9bc5abc492c00dbf8ebae8))
+
 ## 0.1.0-alpha.11 (2025-12-30)
 
 Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)

@@ -6,6 +6,7 @@ module PostForMe
         limit: Float,
         offset: Float,
         platform: ::Array[PostForMe::Models::SocialPostListParams::platform],
+        social_account_id: ::Array[String],
         status: ::Array[PostForMe::Models::SocialPostListParams::status]
       }
       & PostForMe::Internal::Type::request_parameters
@@ -32,6 +33,10 @@ module PostForMe
         ::Array[PostForMe::Models::SocialPostListParams::platform]
       ) -> ::Array[PostForMe::Models::SocialPostListParams::platform]
 
+      attr_reader social_account_id: ::Array[String]?
+
+      def social_account_id=: (::Array[String]) -> ::Array[String]
+
       attr_reader status: ::Array[PostForMe::Models::SocialPostListParams::status]?
 
       def status=: (
@@ -43,6 +48,7 @@ module PostForMe
         ?limit: Float,
         ?offset: Float,
         ?platform: ::Array[PostForMe::Models::SocialPostListParams::platform],
+        ?social_account_id: ::Array[String],
         ?status: ::Array[PostForMe::Models::SocialPostListParams::status],
         ?request_options: PostForMe::request_opts
       ) -> void
@@ -52,6 +58,7 @@ module PostForMe
         limit: Float,
         offset: Float,
         platform: ::Array[PostForMe::Models::SocialPostListParams::platform],
+        social_account_id: ::Array[String],
         status: ::Array[PostForMe::Models::SocialPostListParams::status],
         request_options: PostForMe::RequestOptions
       }

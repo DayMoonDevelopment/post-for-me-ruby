@@ -256,8 +256,20 @@ module PostForMe
           sig { returns(T.nilable(String)) }
           attr_accessor :location
 
+          # If true will notify YouTube the video is intended for kids, defaults to false
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_accessor :made_for_kids
+
           # Overrides the `media` from the post
-          sig { returns(T.nilable(T::Array[String])) }
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::Media
+                ]
+              )
+            )
+          end
           attr_accessor :media
 
           # Post placement for Facebook/Instagram/Threads
@@ -288,8 +300,15 @@ module PostForMe
           end
           attr_writer :poll
 
-          # Sets the privacy status for TikTok (private, public)
-          sig { returns(T.nilable(String)) }
+          # Sets the privacy status for TikTok (private, public), or YouTube (private,
+          # public, unlisted)
+          sig do
+            returns(
+              T.nilable(
+                PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus::TaggedSymbol
+              )
+            )
+          end
           attr_accessor :privacy_status
 
           # Id of the tweet you want to quote
@@ -334,14 +353,23 @@ module PostForMe
               is_draft: T.nilable(T::Boolean),
               link: T.nilable(String),
               location: T.nilable(String),
-              media: T.nilable(T::Array[String]),
+              made_for_kids: T.nilable(T::Boolean),
+              media:
+                T.nilable(
+                  T::Array[
+                    PostForMe::SocialPost::AccountConfiguration::Configuration::Media::OrHash
+                  ]
+                ),
               placement:
                 T.nilable(
                   PostForMe::SocialPost::AccountConfiguration::Configuration::Placement::OrSymbol
                 ),
               poll:
                 PostForMe::SocialPost::AccountConfiguration::Configuration::Poll::OrHash,
-              privacy_status: T.nilable(String),
+              privacy_status:
+                T.nilable(
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus::OrSymbol
+                ),
               quote_tweet_id: String,
               reply_settings:
                 T.nilable(
@@ -383,13 +411,16 @@ module PostForMe
             # Page id with a location that you want to tag the image or video with (Instagram
             # and Facebook)
             location: nil,
+            # If true will notify YouTube the video is intended for kids, defaults to false
+            made_for_kids: nil,
             # Overrides the `media` from the post
             media: nil,
             # Post placement for Facebook/Instagram/Threads
             placement: nil,
             # Poll options for the twitter
             poll: nil,
-            # Sets the privacy status for TikTok (private, public)
+            # Sets the privacy status for TikTok (private, public), or YouTube (private,
+            # public, unlisted)
             privacy_status: nil,
             # Id of the tweet you want to quote
             quote_tweet_id: nil,
@@ -419,14 +450,23 @@ module PostForMe
                 is_draft: T.nilable(T::Boolean),
                 link: T.nilable(String),
                 location: T.nilable(String),
-                media: T.nilable(T::Array[String]),
+                made_for_kids: T.nilable(T::Boolean),
+                media:
+                  T.nilable(
+                    T::Array[
+                      PostForMe::SocialPost::AccountConfiguration::Configuration::Media
+                    ]
+                  ),
                 placement:
                   T.nilable(
                     PostForMe::SocialPost::AccountConfiguration::Configuration::Placement::TaggedSymbol
                   ),
                 poll:
                   PostForMe::SocialPost::AccountConfiguration::Configuration::Poll,
-                privacy_status: T.nilable(String),
+                privacy_status:
+                  T.nilable(
+                    PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus::TaggedSymbol
+                  ),
                 quote_tweet_id: String,
                 reply_settings:
                   T.nilable(
@@ -438,6 +478,245 @@ module PostForMe
             )
           end
           def to_hash
+          end
+
+          class Media < PostForMe::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::Media,
+                  PostForMe::Internal::AnyHash
+                )
+              end
+
+            # Public URL of the media
+            sig { returns(String) }
+            attr_accessor :url
+
+            # List of tags to attach to the media
+            sig do
+              returns(
+                T.nilable(
+                  T::Array[
+                    PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag
+                  ]
+                )
+              )
+            end
+            attr_accessor :tags
+
+            # Timestamp in milliseconds of frame to use as thumbnail for the media
+            sig { returns(T.nilable(T.anything)) }
+            attr_accessor :thumbnail_timestamp_ms
+
+            # Public URL of the thumbnail for the media
+            sig { returns(T.nilable(T.anything)) }
+            attr_accessor :thumbnail_url
+
+            sig do
+              params(
+                url: String,
+                tags:
+                  T.nilable(
+                    T::Array[
+                      PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag::OrHash
+                    ]
+                  ),
+                thumbnail_timestamp_ms: T.nilable(T.anything),
+                thumbnail_url: T.nilable(T.anything)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Public URL of the media
+              url:,
+              # List of tags to attach to the media
+              tags: nil,
+              # Timestamp in milliseconds of frame to use as thumbnail for the media
+              thumbnail_timestamp_ms: nil,
+              # Public URL of the thumbnail for the media
+              thumbnail_url: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  url: String,
+                  tags:
+                    T.nilable(
+                      T::Array[
+                        PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag
+                      ]
+                    ),
+                  thumbnail_timestamp_ms: T.nilable(T.anything),
+                  thumbnail_url: T.nilable(T.anything)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Tag < PostForMe::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag,
+                    PostForMe::Internal::AnyHash
+                  )
+                end
+
+              # Facebook User ID, Instagram Username or Instagram product id to tag
+              sig { returns(String) }
+              attr_accessor :id
+
+              # The platform for the tags
+              sig do
+                returns(
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag::Platform::TaggedSymbol
+                )
+              end
+              attr_accessor :platform
+
+              # The type of tag, user to tag accounts, product to tag products (only supported
+              # for instagram)
+              sig do
+                returns(
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag::Type::TaggedSymbol
+                )
+              end
+              attr_accessor :type
+
+              # Percentage distance from left edge of the image, Not required for videos or
+              # stories
+              sig { returns(T.nilable(Float)) }
+              attr_reader :x
+
+              sig { params(x: Float).void }
+              attr_writer :x
+
+              # Percentage distance from top edge of the image, Not required for videos or
+              # stories
+              sig { returns(T.nilable(Float)) }
+              attr_reader :y_
+
+              sig { params(y_: Float).void }
+              attr_writer :y_
+
+              sig do
+                params(
+                  id: String,
+                  platform:
+                    PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag::Platform::OrSymbol,
+                  type:
+                    PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag::Type::OrSymbol,
+                  x: Float,
+                  y_: Float
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Facebook User ID, Instagram Username or Instagram product id to tag
+                id:,
+                # The platform for the tags
+                platform:,
+                # The type of tag, user to tag accounts, product to tag products (only supported
+                # for instagram)
+                type:,
+                # Percentage distance from left edge of the image, Not required for videos or
+                # stories
+                x: nil,
+                # Percentage distance from top edge of the image, Not required for videos or
+                # stories
+                y_: nil
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    id: String,
+                    platform:
+                      PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag::Platform::TaggedSymbol,
+                    type:
+                      PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag::Type::TaggedSymbol,
+                    x: Float,
+                    y_: Float
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # The platform for the tags
+              module Platform
+                extend PostForMe::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag::Platform
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                FACEBOOK =
+                  T.let(
+                    :facebook,
+                    PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag::Platform::TaggedSymbol
+                  )
+                INSTAGRAM =
+                  T.let(
+                    :instagram,
+                    PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag::Platform::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag::Platform::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # The type of tag, user to tag accounts, product to tag products (only supported
+              # for instagram)
+              module Type
+                extend PostForMe::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag::Type
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                USER =
+                  T.let(
+                    :user,
+                    PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag::Type::TaggedSymbol
+                  )
+                PRODUCT =
+                  T.let(
+                    :product,
+                    PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag::Type::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      PostForMe::SocialPost::AccountConfiguration::Configuration::Media::Tag::Type::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+            end
           end
 
           # Post placement for Facebook/Instagram/Threads
@@ -590,6 +869,47 @@ module PostForMe
               end
               def self.values
               end
+            end
+          end
+
+          # Sets the privacy status for TikTok (private, public), or YouTube (private,
+          # public, unlisted)
+          module PrivacyStatus
+            extend PostForMe::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            PUBLIC =
+              T.let(
+                :public,
+                PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus::TaggedSymbol
+              )
+            PRIVATE =
+              T.let(
+                :private,
+                PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus::TaggedSymbol
+              )
+            UNLISTED =
+              T.let(
+                :unlisted,
+                PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  PostForMe::SocialPost::AccountConfiguration::Configuration::PrivacyStatus::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
             end
           end
 

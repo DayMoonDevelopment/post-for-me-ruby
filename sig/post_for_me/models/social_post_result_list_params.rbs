@@ -5,7 +5,8 @@ module PostForMe
         limit: Float,
         offset: Float,
         platform: ::Array[String],
-        post_id: ::Array[String]
+        post_id: ::Array[String],
+        social_account_id: ::Array[String]
       }
       & PostForMe::Internal::Type::request_parameters
 
@@ -29,11 +30,16 @@ module PostForMe
 
       def post_id=: (::Array[String]) -> ::Array[String]
 
+      attr_reader social_account_id: ::Array[String]?
+
+      def social_account_id=: (::Array[String]) -> ::Array[String]
+
       def initialize: (
         ?limit: Float,
         ?offset: Float,
         ?platform: ::Array[String],
         ?post_id: ::Array[String],
+        ?social_account_id: ::Array[String],
         ?request_options: PostForMe::request_opts
       ) -> void
 
@@ -42,6 +48,7 @@ module PostForMe
         offset: Float,
         platform: ::Array[String],
         post_id: ::Array[String],
+        social_account_id: ::Array[String],
         request_options: PostForMe::RequestOptions
       }
     end

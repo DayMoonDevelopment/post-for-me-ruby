@@ -11,6 +11,7 @@ module PostForMe
         ?offset: Float,
         ?platform: ::Array[String],
         ?post_id: ::Array[String],
+        ?social_account_id: ::Array[String],
         ?request_options: PostForMe::request_opts
       ) -> PostForMe::Models::SocialPostResultListResponse
 

@@ -88,10 +88,11 @@ module PostForMe
             is_draft: bool?,
             link: String?,
             location: String?,
-            media: ::Array[String]?,
+            made_for_kids: bool?,
+            media: ::Array[PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media]?,
             placement: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::placement?,
             poll: PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Poll,
-            privacy_status: String?,
+            privacy_status: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::privacy_status?,
             quote_tweet_id: String,
             reply_settings: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::reply_settings?,
             share_to_feed: bool?,
@@ -129,7 +130,9 @@ module PostForMe
 
           attr_accessor location: String?
 
-          attr_accessor media: ::Array[String]?
+          attr_accessor made_for_kids: bool?
+
+          attr_accessor media: ::Array[PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media]?
 
           attr_accessor placement: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::placement?
 
@@ -139,7 +142,7 @@ module PostForMe
             PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Poll
           ) -> PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Poll
 
-          attr_accessor privacy_status: String?
+          attr_accessor privacy_status: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::privacy_status?
 
           attr_reader quote_tweet_id: String?
 
@@ -166,10 +169,11 @@ module PostForMe
             ?is_draft: bool?,
             ?link: String?,
             ?location: String?,
-            ?media: ::Array[String]?,
+            ?made_for_kids: bool?,
+            ?media: ::Array[PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media]?,
             ?placement: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::placement?,
             ?poll: PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Poll,
-            ?privacy_status: String?,
+            ?privacy_status: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::privacy_status?,
             ?quote_tweet_id: String,
             ?reply_settings: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::reply_settings?,
             ?share_to_feed: bool?,
@@ -191,15 +195,111 @@ module PostForMe
             is_draft: bool?,
             link: String?,
             location: String?,
-            media: ::Array[String]?,
+            made_for_kids: bool?,
+            media: ::Array[PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media]?,
             placement: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::placement?,
             poll: PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Poll,
-            privacy_status: String?,
+            privacy_status: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::privacy_status?,
             quote_tweet_id: String,
             reply_settings: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::reply_settings?,
             share_to_feed: bool?,
             title: String?
           }
+
+          type media =
+            {
+              url: String,
+              tags: ::Array[PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag]?,
+              thumbnail_timestamp_ms: top?,
+              thumbnail_url: top?
+            }
+
+          class Media < PostForMe::Internal::Type::BaseModel
+            attr_accessor url: String
+
+            attr_accessor tags: ::Array[PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag]?
+
+            attr_accessor thumbnail_timestamp_ms: top?
+
+            attr_accessor thumbnail_url: top?
+
+            def initialize: (
+              url: String,
+              ?tags: ::Array[PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag]?,
+              ?thumbnail_timestamp_ms: top?,
+              ?thumbnail_url: top?
+            ) -> void
+
+            def to_hash: -> {
+              url: String,
+              tags: ::Array[PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag]?,
+              thumbnail_timestamp_ms: top?,
+              thumbnail_url: top?
+            }
+
+            type tag =
+              {
+                id: String,
+                platform: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::platform,
+                type: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::type_,
+                x: Float,
+                y_: Float
+              }
+
+            class Tag < PostForMe::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor platform: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::platform
+
+              attr_accessor type: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::type_
+
+              attr_reader x: Float?
+
+              def x=: (Float) -> Float
+
+              attr_reader y_: Float?
+
+              def y_=: (Float) -> Float
+
+              def initialize: (
+                id: String,
+                platform: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::platform,
+                type: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::type_,
+                ?x: Float,
+                ?y_: Float
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                platform: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::platform,
+                type: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::type_,
+                x: Float,
+                y_: Float
+              }
+
+              type platform = :facebook | :instagram
+
+              module Platform
+                extend PostForMe::Internal::Type::Enum
+
+                FACEBOOK: :facebook
+                INSTAGRAM: :instagram
+
+                def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::platform]
+              end
+
+              type type_ = :user | :product
+
+              module Type
+                extend PostForMe::Internal::Type::Enum
+
+                USER: :user
+                PRODUCT: :product
+
+                def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag::type_]
+              end
+            end
+          end
 
           type placement = :reels | :timeline | :stories
 
@@ -256,6 +356,18 @@ module PostForMe
 
               def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Poll::reply_settings]
             end
+          end
+
+          type privacy_status = :public | :private | :unlisted
+
+          module PrivacyStatus
+            extend PostForMe::Internal::Type::Enum
+
+            PUBLIC: :public
+            PRIVATE: :private
+            UNLISTED: :unlisted
+
+            def self?.values: -> ::Array[PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::privacy_status]
           end
 
           type reply_settings =

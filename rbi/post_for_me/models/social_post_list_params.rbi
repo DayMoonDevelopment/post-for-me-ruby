@@ -50,6 +50,13 @@ module PostForMe
       end
       attr_writer :platform
 
+      # Filter by social account ID. Multiple values imply OR logic.
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_reader :social_account_id
+
+      sig { params(social_account_id: T::Array[String]).void }
+      attr_writer :social_account_id
+
       # Filter by post status. Multiple values imply OR logic.
       sig do
         returns(
@@ -72,6 +79,7 @@ module PostForMe
           offset: Float,
           platform:
             T::Array[PostForMe::SocialPostListParams::Platform::OrSymbol],
+          social_account_id: T::Array[String],
           status: T::Array[PostForMe::SocialPostListParams::Status::OrSymbol],
           request_options: PostForMe::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -85,6 +93,8 @@ module PostForMe
         offset: nil,
         # Filter by platforms. Multiple values imply OR logic.
         platform: nil,
+        # Filter by social account ID. Multiple values imply OR logic.
+        social_account_id: nil,
         # Filter by post status. Multiple values imply OR logic.
         status: nil,
         request_options: {}
@@ -99,6 +109,7 @@ module PostForMe
             offset: Float,
             platform:
               T::Array[PostForMe::SocialPostListParams::Platform::OrSymbol],
+            social_account_id: T::Array[String],
             status: T::Array[PostForMe::SocialPostListParams::Status::OrSymbol],
             request_options: PostForMe::RequestOptions
           }
