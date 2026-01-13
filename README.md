@@ -26,7 +26,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "post-for-me", "~> 0.1.0.pre.alpha.11"
+gem "post-for-me", "~> 0.1.0.pre.alpha.12"
 ```
 
 <!-- x-release-please-end -->
