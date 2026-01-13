@@ -36,6 +36,7 @@ module PostForMe
         ?limit: Float,
         ?offset: Float,
         ?platform: ::Array[PostForMe::Models::SocialPostListParams::platform],
+        ?social_account_id: ::Array[String],
         ?status: ::Array[PostForMe::Models::SocialPostListParams::status],
         ?request_options: PostForMe::request_opts
       ) -> PostForMe::Models::SocialPostListResponse

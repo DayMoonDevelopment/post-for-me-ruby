@@ -3,26 +3,36 @@ module PostForMe
     type youtube_configuration_dto =
       {
         caption: top?,
+        made_for_kids: bool?,
         media: ::Array[PostForMe::YoutubeConfigurationDto::Media]?,
+        privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?,
         title: String?
       }
 
     class YoutubeConfigurationDto < PostForMe::Internal::Type::BaseModel
       attr_accessor caption: top?
 
+      attr_accessor made_for_kids: bool?
+
       attr_accessor media: ::Array[PostForMe::YoutubeConfigurationDto::Media]?
+
+      attr_accessor privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?
 
       attr_accessor title: String?
 
       def initialize: (
         ?caption: top?,
+        ?made_for_kids: bool?,
         ?media: ::Array[PostForMe::YoutubeConfigurationDto::Media]?,
+        ?privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?,
         ?title: String?
       ) -> void
 
       def to_hash: -> {
         caption: top?,
+        made_for_kids: bool?,
         media: ::Array[PostForMe::YoutubeConfigurationDto::Media]?,
+        privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?,
         title: String?
       }
 
@@ -119,6 +129,18 @@ module PostForMe
             def self?.values: -> ::Array[PostForMe::Models::YoutubeConfigurationDto::Media::Tag::type_]
           end
         end
+      end
+
+      type privacy_status = :public | :private | :unlisted
+
+      module PrivacyStatus
+        extend PostForMe::Internal::Type::Enum
+
+        PUBLIC: :public
+        PRIVATE: :private
+        UNLISTED: :unlisted
+
+        def self?.values: -> ::Array[PostForMe::Models::YoutubeConfigurationDto::privacy_status]
       end
     end
   end

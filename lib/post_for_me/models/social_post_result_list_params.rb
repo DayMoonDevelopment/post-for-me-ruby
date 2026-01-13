@@ -33,7 +33,14 @@ module PostForMe
       #   @return [Array<String>, nil]
       optional :post_id, PostForMe::Internal::Type::ArrayOf[String]
 
-      # @!method initialize(limit: nil, offset: nil, platform: nil, post_id: nil, request_options: {})
+      # @!attribute social_account_id
+      #   Filter by social account ID(s). Multiple values imply OR logic (e.g.,
+      #   ?social_account_id=123&social_account_id=456).
+      #
+      #   @return [Array<String>, nil]
+      optional :social_account_id, PostForMe::Internal::Type::ArrayOf[String]
+
+      # @!method initialize(limit: nil, offset: nil, platform: nil, post_id: nil, social_account_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {PostForMe::Models::SocialPostResultListParams} for more details.
       #
@@ -44,6 +51,8 @@ module PostForMe
       #   @param platform [Array<String>] Filter by platform(s). Multiple values imply OR logic (e.g., ?platform=x&platfor
       #
       #   @param post_id [Array<String>] Filter by post IDs. Multiple values imply OR logic (e.g., ?post_id=123&post_id=4
+      #
+      #   @param social_account_id [Array<String>] Filter by social account ID(s). Multiple values imply OR logic (e.g., ?social_ac
       #
       #   @param request_options [PostForMe::RequestOptions, Hash{Symbol=>Object}]
     end
