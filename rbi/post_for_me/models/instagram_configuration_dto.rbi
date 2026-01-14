@@ -43,6 +43,18 @@ module PostForMe
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :share_to_feed
 
+      # Instagram trial reel type, when passed will be created as a trial reel. If
+      # manual the trial reel can be manually graduated in the native app. If perfomance
+      # the trial reel will be automatically graduated if the trial reel performs well.
+      sig do
+        returns(
+          T.nilable(
+            PostForMe::InstagramConfigurationDto::TrialReelType::OrSymbol
+          )
+        )
+      end
+      attr_accessor :trial_reel_type
+
       sig do
         params(
           caption: T.nilable(T.anything),
@@ -56,7 +68,11 @@ module PostForMe
             T.nilable(
               PostForMe::InstagramConfigurationDto::Placement::OrSymbol
             ),
-          share_to_feed: T.nilable(T::Boolean)
+          share_to_feed: T.nilable(T::Boolean),
+          trial_reel_type:
+            T.nilable(
+              PostForMe::InstagramConfigurationDto::TrialReelType::OrSymbol
+            )
         ).returns(T.attached_class)
       end
       def self.new(
@@ -71,7 +87,11 @@ module PostForMe
         # Instagram post placement
         placement: nil,
         # If false video posts will only be shown in the Reels tab
-        share_to_feed: nil
+        share_to_feed: nil,
+        # Instagram trial reel type, when passed will be created as a trial reel. If
+        # manual the trial reel can be manually graduated in the native app. If perfomance
+        # the trial reel will be automatically graduated if the trial reel performs well.
+        trial_reel_type: nil
       )
       end
 
@@ -87,7 +107,11 @@ module PostForMe
               T.nilable(
                 PostForMe::InstagramConfigurationDto::Placement::OrSymbol
               ),
-            share_to_feed: T.nilable(T::Boolean)
+            share_to_feed: T.nilable(T::Boolean),
+            trial_reel_type:
+              T.nilable(
+                PostForMe::InstagramConfigurationDto::TrialReelType::OrSymbol
+              )
           }
         )
       end
@@ -359,6 +383,40 @@ module PostForMe
           override.returns(
             T::Array[
               PostForMe::InstagramConfigurationDto::Placement::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # Instagram trial reel type, when passed will be created as a trial reel. If
+      # manual the trial reel can be manually graduated in the native app. If perfomance
+      # the trial reel will be automatically graduated if the trial reel performs well.
+      module TrialReelType
+        extend PostForMe::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, PostForMe::InstagramConfigurationDto::TrialReelType)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        MANUAL =
+          T.let(
+            :manual,
+            PostForMe::InstagramConfigurationDto::TrialReelType::TaggedSymbol
+          )
+        PERFORMANCE =
+          T.let(
+            :performance,
+            PostForMe::InstagramConfigurationDto::TrialReelType::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              PostForMe::InstagramConfigurationDto::TrialReelType::TaggedSymbol
             ]
           )
         end
