@@ -41,7 +41,18 @@ module PostForMe
       #   @return [Boolean, nil]
       optional :share_to_feed, PostForMe::Internal::Type::Boolean, nil?: true
 
-      # @!method initialize(caption: nil, collaborators: nil, location: nil, media: nil, placement: nil, share_to_feed: nil)
+      # @!attribute trial_reel_type
+      #   Instagram trial reel type, when passed will be created as a trial reel. If
+      #   manual the trial reel can be manually graduated in the native app. If perfomance
+      #   the trial reel will be automatically graduated if the trial reel performs well.
+      #
+      #   @return [Symbol, PostForMe::Models::InstagramConfigurationDto::TrialReelType, nil]
+      optional :trial_reel_type, enum: -> { PostForMe::InstagramConfigurationDto::TrialReelType }, nil?: true
+
+      # @!method initialize(caption: nil, collaborators: nil, location: nil, media: nil, placement: nil, share_to_feed: nil, trial_reel_type: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {PostForMe::Models::InstagramConfigurationDto} for more details.
+      #
       #   @param caption [Object, nil] Overrides the `caption` from the post
       #
       #   @param collaborators [Array<String>, nil] Instagram usernames to be tagged as a collaborator
@@ -53,6 +64,8 @@ module PostForMe
       #   @param placement [Symbol, PostForMe::Models::InstagramConfigurationDto::Placement, nil] Instagram post placement
       #
       #   @param share_to_feed [Boolean, nil] If false video posts will only be shown in the Reels tab
+      #
+      #   @param trial_reel_type [Symbol, PostForMe::Models::InstagramConfigurationDto::TrialReelType, nil] Instagram trial reel type, when passed will be created as a trial reel. If manua
 
       class Media < PostForMe::Internal::Type::BaseModel
         # @!attribute url
@@ -176,6 +189,21 @@ module PostForMe
         REELS = :reels
         STORIES = :stories
         TIMELINE = :timeline
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Instagram trial reel type, when passed will be created as a trial reel. If
+      # manual the trial reel can be manually graduated in the native app. If perfomance
+      # the trial reel will be automatically graduated if the trial reel performs well.
+      #
+      # @see PostForMe::Models::InstagramConfigurationDto#trial_reel_type
+      module TrialReelType
+        extend PostForMe::Internal::Type::Enum
+
+        MANUAL = :manual
+        PERFORMANCE = :performance
 
         # @!method self.values
         #   @return [Array<Symbol>]

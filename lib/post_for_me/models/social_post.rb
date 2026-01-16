@@ -269,7 +269,17 @@ module PostForMe
           #   @return [String, nil]
           optional :title, String, nil?: true
 
-          # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, auto_add_music: nil, board_ids: nil, caption: nil, collaborators: nil, community_id: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, link: nil, location: nil, made_for_kids: nil, media: nil, placement: nil, poll: nil, privacy_status: nil, quote_tweet_id: nil, reply_settings: nil, share_to_feed: nil, title: nil)
+          # @!attribute trial_reel_type
+          #   Instagram trial reel type, when passed will be created as a trial reel. If
+          #   manual the trial reel can be manually graduated in the native app. If perfomance
+          #   the trial reel will be automatically graduated if the trial reel performs well.
+          #
+          #   @return [Symbol, PostForMe::Models::SocialPost::AccountConfiguration::Configuration::TrialReelType, nil]
+          optional :trial_reel_type,
+                   enum: -> { PostForMe::SocialPost::AccountConfiguration::Configuration::TrialReelType },
+                   nil?: true
+
+          # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, auto_add_music: nil, board_ids: nil, caption: nil, collaborators: nil, community_id: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, link: nil, location: nil, made_for_kids: nil, media: nil, placement: nil, poll: nil, privacy_status: nil, quote_tweet_id: nil, reply_settings: nil, share_to_feed: nil, title: nil, trial_reel_type: nil)
           #   Some parameter documentations has been truncated, see
           #   {PostForMe::Models::SocialPost::AccountConfiguration::Configuration} for more
           #   details.
@@ -321,6 +331,8 @@ module PostForMe
           #   @param share_to_feed [Boolean, nil] If false Instagram video posts will only be shown in the Reels tab
           #
           #   @param title [String, nil] Overrides the `title` from the post
+          #
+          #   @param trial_reel_type [Symbol, PostForMe::Models::SocialPost::AccountConfiguration::Configuration::TrialReelType, nil] Instagram trial reel type, when passed will be created as a trial reel. If manua
 
           class Media < PostForMe::Internal::Type::BaseModel
             # @!attribute url
@@ -524,6 +536,21 @@ module PostForMe
             MENTIONED_USERS = :mentionedUsers
             SUBSCRIBERS = :subscribers
             VERIFIED = :verified
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # Instagram trial reel type, when passed will be created as a trial reel. If
+          # manual the trial reel can be manually graduated in the native app. If perfomance
+          # the trial reel will be automatically graduated if the trial reel performs well.
+          #
+          # @see PostForMe::Models::SocialPost::AccountConfiguration::Configuration#trial_reel_type
+          module TrialReelType
+            extend PostForMe::Internal::Type::Enum
+
+            MANUAL = :manual
+            PERFORMANCE = :performance
 
             # @!method self.values
             #   @return [Array<Symbol>]

@@ -7,7 +7,8 @@ module PostForMe
         location: String?,
         media: ::Array[PostForMe::InstagramConfigurationDto::Media]?,
         placement: PostForMe::Models::InstagramConfigurationDto::placement?,
-        share_to_feed: bool?
+        share_to_feed: bool?,
+        trial_reel_type: PostForMe::Models::InstagramConfigurationDto::trial_reel_type?
       }
 
     class InstagramConfigurationDto < PostForMe::Internal::Type::BaseModel
@@ -23,13 +24,16 @@ module PostForMe
 
       attr_accessor share_to_feed: bool?
 
+      attr_accessor trial_reel_type: PostForMe::Models::InstagramConfigurationDto::trial_reel_type?
+
       def initialize: (
         ?caption: top?,
         ?collaborators: ::Array[String]?,
         ?location: String?,
         ?media: ::Array[PostForMe::InstagramConfigurationDto::Media]?,
         ?placement: PostForMe::Models::InstagramConfigurationDto::placement?,
-        ?share_to_feed: bool?
+        ?share_to_feed: bool?,
+        ?trial_reel_type: PostForMe::Models::InstagramConfigurationDto::trial_reel_type?
       ) -> void
 
       def to_hash: -> {
@@ -38,7 +42,8 @@ module PostForMe
         location: String?,
         media: ::Array[PostForMe::InstagramConfigurationDto::Media]?,
         placement: PostForMe::Models::InstagramConfigurationDto::placement?,
-        share_to_feed: bool?
+        share_to_feed: bool?,
+        trial_reel_type: PostForMe::Models::InstagramConfigurationDto::trial_reel_type?
       }
 
       type media =
@@ -146,6 +151,17 @@ module PostForMe
         TIMELINE: :timeline
 
         def self?.values: -> ::Array[PostForMe::Models::InstagramConfigurationDto::placement]
+      end
+
+      type trial_reel_type = :manual | :performance
+
+      module TrialReelType
+        extend PostForMe::Internal::Type::Enum
+
+        MANUAL: :manual
+        PERFORMANCE: :performance
+
+        def self?.values: -> ::Array[PostForMe::Models::InstagramConfigurationDto::trial_reel_type]
       end
     end
   end

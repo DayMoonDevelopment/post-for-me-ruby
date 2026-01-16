@@ -111,7 +111,8 @@ module PostForMe
             quote_tweet_id: String,
             reply_settings: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::reply_settings?,
             share_to_feed: bool?,
-            title: String?
+            title: String?,
+            trial_reel_type: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::trial_reel_type?
           }
 
         class Configuration < PostForMe::Internal::Type::BaseModel
@@ -169,6 +170,8 @@ module PostForMe
 
           attr_accessor title: String?
 
+          attr_accessor trial_reel_type: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::trial_reel_type?
+
           def initialize: (
             ?allow_comment: bool?,
             ?allow_duet: bool?,
@@ -192,7 +195,8 @@ module PostForMe
             ?quote_tweet_id: String,
             ?reply_settings: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::reply_settings?,
             ?share_to_feed: bool?,
-            ?title: String?
+            ?title: String?,
+            ?trial_reel_type: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::trial_reel_type?
           ) -> void
 
           def to_hash: -> {
@@ -218,7 +222,8 @@ module PostForMe
             quote_tweet_id: String,
             reply_settings: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::reply_settings?,
             share_to_feed: bool?,
-            title: String?
+            title: String?,
+            trial_reel_type: PostForMe::Models::SocialPost::AccountConfiguration::Configuration::trial_reel_type?
           }
 
           type media =
@@ -397,6 +402,17 @@ module PostForMe
             VERIFIED: :verified
 
             def self?.values: -> ::Array[PostForMe::Models::SocialPost::AccountConfiguration::Configuration::reply_settings]
+          end
+
+          type trial_reel_type = :manual | :performance
+
+          module TrialReelType
+            extend PostForMe::Internal::Type::Enum
+
+            MANUAL: :manual
+            PERFORMANCE: :performance
+
+            def self?.values: -> ::Array[PostForMe::Models::SocialPost::AccountConfiguration::Configuration::trial_reel_type]
           end
         end
       end
