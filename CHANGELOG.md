@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.14 (2026-01-17)
+
+Full Changelog: [v0.1.0-alpha.13...v0.1.0-alpha.14](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.13...v0.1.0-alpha.14)
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([3f272ee](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/3f272ee29b955d61ca8a911b1e13784fb0f1e3ae))
+
 ## 0.1.0-alpha.13 (2026-01-14)
 
 Full Changelog: [v0.1.0-alpha.12...v0.1.0-alpha.13](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.12...v0.1.0-alpha.13)
