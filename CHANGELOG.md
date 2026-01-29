@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.15 (2026-01-29)
+
+Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
+
+### Features
+
+* **api:** api update ([68ba713](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/68ba7133d697f4d9a98250ec8c1c7cb20b78be94))
+
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([ddd4033](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/ddd4033d7e5b3478d2fe543641ba7af90a5192e7))
+
 ## 0.1.0-alpha.14 (2026-01-17)
 
 Full Changelog: [v0.1.0-alpha.13...v0.1.0-alpha.14](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.13...v0.1.0-alpha.14)
