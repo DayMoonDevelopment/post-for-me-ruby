@@ -87,6 +87,10 @@ module PostForMe
         | PostForMe::PlatformPost::Metrics::TikTokPostMetricsDto
         | PostForMe::PlatformPost::Metrics::InstagramPostMetricsDto
         | PostForMe::PlatformPost::Metrics::YouTubePostMetricsDto
+        | PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto
+        | PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto
+        | PostForMe::PlatformPost::Metrics::ThreadsPostMetricsDto
+        | top
 
       module Metrics
         extend PostForMe::Internal::Type::Union
@@ -650,6 +654,632 @@ module PostForMe
             subscribers_lost: Float,
             videos_added_to_playlists: Float,
             videos_removed_from_playlists: Float
+          }
+        end
+
+        type facebook_post_metrics_dto =
+          {
+            activity_by_action_type: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionType],
+            activity_by_action_type_unique: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionTypeUnique],
+            comments: Float,
+            fan_reach: Float,
+            media_views: Float,
+            nonviral_reach: Float,
+            organic_reach: Float,
+            paid_reach: Float,
+            reach: Float,
+            reactions_anger: Float,
+            reactions_by_type: top,
+            reactions_haha: Float,
+            reactions_like: Float,
+            reactions_love: Float,
+            reactions_sorry: Float,
+            reactions_total: Float,
+            reactions_wow: Float,
+            shares: Float,
+            video_avg_time_watched: Float,
+            video_complete_views_organic: Float,
+            video_complete_views_organic_unique: Float,
+            video_complete_views_paid: Float,
+            video_complete_views_paid_unique: Float,
+            video_length: Float,
+            video_retention_graph_autoplayed: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphAutoplayed],
+            video_retention_graph_clicked_to_play: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphClickedToPlay],
+            video_social_actions_unique: Float,
+            video_view_time: Float,
+            video_view_time_by_age_gender: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByAgeGender],
+            video_view_time_by_country: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByCountry],
+            video_view_time_by_distribution_type: top,
+            video_view_time_by_region: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByRegion],
+            video_view_time_organic: Float,
+            video_views: Float,
+            :video_views_15s => Float,
+            :video_views_60s => Float,
+            video_views_autoplayed: Float,
+            video_views_by_distribution_type: top,
+            video_views_clicked_to_play: Float,
+            video_views_organic: Float,
+            video_views_organic_unique: Float,
+            video_views_paid: Float,
+            video_views_paid_unique: Float,
+            video_views_sound_on: Float,
+            video_views_unique: Float,
+            viral_reach: Float
+          }
+
+        class FacebookPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          attr_reader activity_by_action_type: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionType]?
+
+          def activity_by_action_type=: (
+            ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionType]
+          ) -> ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionType]
+
+          attr_reader activity_by_action_type_unique: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionTypeUnique]?
+
+          def activity_by_action_type_unique=: (
+            ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionTypeUnique]
+          ) -> ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionTypeUnique]
+
+          attr_reader comments: Float?
+
+          def comments=: (Float) -> Float
+
+          attr_reader fan_reach: Float?
+
+          def fan_reach=: (Float) -> Float
+
+          attr_reader media_views: Float?
+
+          def media_views=: (Float) -> Float
+
+          attr_reader nonviral_reach: Float?
+
+          def nonviral_reach=: (Float) -> Float
+
+          attr_reader organic_reach: Float?
+
+          def organic_reach=: (Float) -> Float
+
+          attr_reader paid_reach: Float?
+
+          def paid_reach=: (Float) -> Float
+
+          attr_reader reach: Float?
+
+          def reach=: (Float) -> Float
+
+          attr_reader reactions_anger: Float?
+
+          def reactions_anger=: (Float) -> Float
+
+          attr_reader reactions_by_type: top?
+
+          def reactions_by_type=: (top) -> top
+
+          attr_reader reactions_haha: Float?
+
+          def reactions_haha=: (Float) -> Float
+
+          attr_reader reactions_like: Float?
+
+          def reactions_like=: (Float) -> Float
+
+          attr_reader reactions_love: Float?
+
+          def reactions_love=: (Float) -> Float
+
+          attr_reader reactions_sorry: Float?
+
+          def reactions_sorry=: (Float) -> Float
+
+          attr_reader reactions_total: Float?
+
+          def reactions_total=: (Float) -> Float
+
+          attr_reader reactions_wow: Float?
+
+          def reactions_wow=: (Float) -> Float
+
+          attr_reader shares: Float?
+
+          def shares=: (Float) -> Float
+
+          attr_reader video_avg_time_watched: Float?
+
+          def video_avg_time_watched=: (Float) -> Float
+
+          attr_reader video_complete_views_organic: Float?
+
+          def video_complete_views_organic=: (Float) -> Float
+
+          attr_reader video_complete_views_organic_unique: Float?
+
+          def video_complete_views_organic_unique=: (Float) -> Float
+
+          attr_reader video_complete_views_paid: Float?
+
+          def video_complete_views_paid=: (Float) -> Float
+
+          attr_reader video_complete_views_paid_unique: Float?
+
+          def video_complete_views_paid_unique=: (Float) -> Float
+
+          attr_reader video_length: Float?
+
+          def video_length=: (Float) -> Float
+
+          attr_reader video_retention_graph_autoplayed: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphAutoplayed]?
+
+          def video_retention_graph_autoplayed=: (
+            ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphAutoplayed]
+          ) -> ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphAutoplayed]
+
+          attr_reader video_retention_graph_clicked_to_play: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphClickedToPlay]?
+
+          def video_retention_graph_clicked_to_play=: (
+            ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphClickedToPlay]
+          ) -> ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphClickedToPlay]
+
+          attr_reader video_social_actions_unique: Float?
+
+          def video_social_actions_unique=: (Float) -> Float
+
+          attr_reader video_view_time: Float?
+
+          def video_view_time=: (Float) -> Float
+
+          attr_reader video_view_time_by_age_gender: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByAgeGender]?
+
+          def video_view_time_by_age_gender=: (
+            ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByAgeGender]
+          ) -> ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByAgeGender]
+
+          attr_reader video_view_time_by_country: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByCountry]?
+
+          def video_view_time_by_country=: (
+            ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByCountry]
+          ) -> ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByCountry]
+
+          attr_reader video_view_time_by_distribution_type: top?
+
+          def video_view_time_by_distribution_type=: (top) -> top
+
+          attr_reader video_view_time_by_region: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByRegion]?
+
+          def video_view_time_by_region=: (
+            ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByRegion]
+          ) -> ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByRegion]
+
+          attr_reader video_view_time_organic: Float?
+
+          def video_view_time_organic=: (Float) -> Float
+
+          attr_reader video_views: Float?
+
+          def video_views=: (Float) -> Float
+
+          attr_reader video_views_15s: Float?
+
+          def video_views_15s=: (Float) -> Float
+
+          attr_reader video_views_60s: Float?
+
+          def video_views_60s=: (Float) -> Float
+
+          attr_reader video_views_autoplayed: Float?
+
+          def video_views_autoplayed=: (Float) -> Float
+
+          attr_reader video_views_by_distribution_type: top?
+
+          def video_views_by_distribution_type=: (top) -> top
+
+          attr_reader video_views_clicked_to_play: Float?
+
+          def video_views_clicked_to_play=: (Float) -> Float
+
+          attr_reader video_views_organic: Float?
+
+          def video_views_organic=: (Float) -> Float
+
+          attr_reader video_views_organic_unique: Float?
+
+          def video_views_organic_unique=: (Float) -> Float
+
+          attr_reader video_views_paid: Float?
+
+          def video_views_paid=: (Float) -> Float
+
+          attr_reader video_views_paid_unique: Float?
+
+          def video_views_paid_unique=: (Float) -> Float
+
+          attr_reader video_views_sound_on: Float?
+
+          def video_views_sound_on=: (Float) -> Float
+
+          attr_reader video_views_unique: Float?
+
+          def video_views_unique=: (Float) -> Float
+
+          attr_reader viral_reach: Float?
+
+          def viral_reach=: (Float) -> Float
+
+          def initialize: (
+            ?activity_by_action_type: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionType],
+            ?activity_by_action_type_unique: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionTypeUnique],
+            ?comments: Float,
+            ?fan_reach: Float,
+            ?media_views: Float,
+            ?nonviral_reach: Float,
+            ?organic_reach: Float,
+            ?paid_reach: Float,
+            ?reach: Float,
+            ?reactions_anger: Float,
+            ?reactions_by_type: top,
+            ?reactions_haha: Float,
+            ?reactions_like: Float,
+            ?reactions_love: Float,
+            ?reactions_sorry: Float,
+            ?reactions_total: Float,
+            ?reactions_wow: Float,
+            ?shares: Float,
+            ?video_avg_time_watched: Float,
+            ?video_complete_views_organic: Float,
+            ?video_complete_views_organic_unique: Float,
+            ?video_complete_views_paid: Float,
+            ?video_complete_views_paid_unique: Float,
+            ?video_length: Float,
+            ?video_retention_graph_autoplayed: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphAutoplayed],
+            ?video_retention_graph_clicked_to_play: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphClickedToPlay],
+            ?video_social_actions_unique: Float,
+            ?video_view_time: Float,
+            ?video_view_time_by_age_gender: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByAgeGender],
+            ?video_view_time_by_country: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByCountry],
+            ?video_view_time_by_distribution_type: top,
+            ?video_view_time_by_region: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByRegion],
+            ?video_view_time_organic: Float,
+            ?video_views: Float,
+            ?video_views_15s: Float,
+            ?video_views_60s: Float,
+            ?video_views_autoplayed: Float,
+            ?video_views_by_distribution_type: top,
+            ?video_views_clicked_to_play: Float,
+            ?video_views_organic: Float,
+            ?video_views_organic_unique: Float,
+            ?video_views_paid: Float,
+            ?video_views_paid_unique: Float,
+            ?video_views_sound_on: Float,
+            ?video_views_unique: Float,
+            ?viral_reach: Float
+          ) -> void
+
+          def to_hash: -> {
+            activity_by_action_type: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionType],
+            activity_by_action_type_unique: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionTypeUnique],
+            comments: Float,
+            fan_reach: Float,
+            media_views: Float,
+            nonviral_reach: Float,
+            organic_reach: Float,
+            paid_reach: Float,
+            reach: Float,
+            reactions_anger: Float,
+            reactions_by_type: top,
+            reactions_haha: Float,
+            reactions_like: Float,
+            reactions_love: Float,
+            reactions_sorry: Float,
+            reactions_total: Float,
+            reactions_wow: Float,
+            shares: Float,
+            video_avg_time_watched: Float,
+            video_complete_views_organic: Float,
+            video_complete_views_organic_unique: Float,
+            video_complete_views_paid: Float,
+            video_complete_views_paid_unique: Float,
+            video_length: Float,
+            video_retention_graph_autoplayed: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphAutoplayed],
+            video_retention_graph_clicked_to_play: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphClickedToPlay],
+            video_social_actions_unique: Float,
+            video_view_time: Float,
+            video_view_time_by_age_gender: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByAgeGender],
+            video_view_time_by_country: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByCountry],
+            video_view_time_by_distribution_type: top,
+            video_view_time_by_region: ::Array[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByRegion],
+            video_view_time_organic: Float,
+            video_views: Float,
+            :video_views_15s => Float,
+            :video_views_60s => Float,
+            video_views_autoplayed: Float,
+            video_views_by_distribution_type: top,
+            video_views_clicked_to_play: Float,
+            video_views_organic: Float,
+            video_views_organic_unique: Float,
+            video_views_paid: Float,
+            video_views_paid_unique: Float,
+            video_views_sound_on: Float,
+            video_views_unique: Float,
+            viral_reach: Float
+          }
+
+          type activity_by_action_type = { action_type: String, value: Float }
+
+          class ActivityByActionType < PostForMe::Internal::Type::BaseModel
+            attr_accessor action_type: String
+
+            attr_accessor value: Float
+
+            def initialize: (action_type: String, value: Float) -> void
+
+            def to_hash: -> { action_type: String, value: Float }
+          end
+
+          type activity_by_action_type_unique =
+            { action_type: String, value: Float }
+
+          class ActivityByActionTypeUnique < PostForMe::Internal::Type::BaseModel
+            attr_accessor action_type: String
+
+            attr_accessor value: Float
+
+            def initialize: (action_type: String, value: Float) -> void
+
+            def to_hash: -> { action_type: String, value: Float }
+          end
+
+          type video_retention_graph_autoplayed = { rate: Float, time: Float }
+
+          class VideoRetentionGraphAutoplayed < PostForMe::Internal::Type::BaseModel
+            attr_accessor rate: Float
+
+            attr_accessor time: Float
+
+            def initialize: (rate: Float, time: Float) -> void
+
+            def to_hash: -> { rate: Float, time: Float }
+          end
+
+          type video_retention_graph_clicked_to_play =
+            { rate: Float, time: Float }
+
+          class VideoRetentionGraphClickedToPlay < PostForMe::Internal::Type::BaseModel
+            attr_accessor rate: Float
+
+            attr_accessor time: Float
+
+            def initialize: (rate: Float, time: Float) -> void
+
+            def to_hash: -> { rate: Float, time: Float }
+          end
+
+          type video_view_time_by_age_gender = { key: String, value: Float }
+
+          class VideoViewTimeByAgeGender < PostForMe::Internal::Type::BaseModel
+            attr_accessor key: String
+
+            attr_accessor value: Float
+
+            def initialize: (key: String, value: Float) -> void
+
+            def to_hash: -> { key: String, value: Float }
+          end
+
+          type video_view_time_by_country = { key: String, value: Float }
+
+          class VideoViewTimeByCountry < PostForMe::Internal::Type::BaseModel
+            attr_accessor key: String
+
+            attr_accessor value: Float
+
+            def initialize: (key: String, value: Float) -> void
+
+            def to_hash: -> { key: String, value: Float }
+          end
+
+          type video_view_time_by_region = { key: String, value: Float }
+
+          class VideoViewTimeByRegion < PostForMe::Internal::Type::BaseModel
+            attr_accessor key: String
+
+            attr_accessor value: Float
+
+            def initialize: (key: String, value: Float) -> void
+
+            def to_hash: -> { key: String, value: Float }
+          end
+        end
+
+        type twitter_post_metrics_dto =
+          {
+            non_public_metrics: PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::NonPublicMetrics,
+            organic_metrics: PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::OrganicMetrics,
+            public_metrics: PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::PublicMetrics
+          }
+
+        class TwitterPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          attr_reader non_public_metrics: PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::NonPublicMetrics?
+
+          def non_public_metrics=: (
+            PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::NonPublicMetrics
+          ) -> PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::NonPublicMetrics
+
+          attr_reader organic_metrics: PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::OrganicMetrics?
+
+          def organic_metrics=: (
+            PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::OrganicMetrics
+          ) -> PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::OrganicMetrics
+
+          attr_reader public_metrics: PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::PublicMetrics?
+
+          def public_metrics=: (
+            PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::PublicMetrics
+          ) -> PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::PublicMetrics
+
+          def initialize: (
+            ?non_public_metrics: PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::NonPublicMetrics,
+            ?organic_metrics: PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::OrganicMetrics,
+            ?public_metrics: PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::PublicMetrics
+          ) -> void
+
+          def to_hash: -> {
+            non_public_metrics: PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::NonPublicMetrics,
+            organic_metrics: PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::OrganicMetrics,
+            public_metrics: PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::PublicMetrics
+          }
+
+          type non_public_metrics =
+            {
+              impression_count: Float,
+              url_link_clicks: Float,
+              user_profile_clicks: Float
+            }
+
+          class NonPublicMetrics < PostForMe::Internal::Type::BaseModel
+            attr_accessor impression_count: Float
+
+            attr_accessor url_link_clicks: Float
+
+            attr_accessor user_profile_clicks: Float
+
+            def initialize: (
+              impression_count: Float,
+              url_link_clicks: Float,
+              user_profile_clicks: Float
+            ) -> void
+
+            def to_hash: -> {
+              impression_count: Float,
+              url_link_clicks: Float,
+              user_profile_clicks: Float
+            }
+          end
+
+          type organic_metrics =
+            {
+              impression_count: Float,
+              like_count: Float,
+              reply_count: Float,
+              retweet_count: Float,
+              url_link_clicks: Float,
+              user_profile_clicks: Float
+            }
+
+          class OrganicMetrics < PostForMe::Internal::Type::BaseModel
+            attr_accessor impression_count: Float
+
+            attr_accessor like_count: Float
+
+            attr_accessor reply_count: Float
+
+            attr_accessor retweet_count: Float
+
+            attr_accessor url_link_clicks: Float
+
+            attr_accessor user_profile_clicks: Float
+
+            def initialize: (
+              impression_count: Float,
+              like_count: Float,
+              reply_count: Float,
+              retweet_count: Float,
+              url_link_clicks: Float,
+              user_profile_clicks: Float
+            ) -> void
+
+            def to_hash: -> {
+              impression_count: Float,
+              like_count: Float,
+              reply_count: Float,
+              retweet_count: Float,
+              url_link_clicks: Float,
+              user_profile_clicks: Float
+            }
+          end
+
+          type public_metrics =
+            {
+              bookmark_count: Float,
+              impression_count: Float,
+              like_count: Float,
+              quote_count: Float,
+              reply_count: Float,
+              retweet_count: Float
+            }
+
+          class PublicMetrics < PostForMe::Internal::Type::BaseModel
+            attr_accessor bookmark_count: Float
+
+            attr_accessor impression_count: Float
+
+            attr_accessor like_count: Float
+
+            attr_accessor quote_count: Float
+
+            attr_accessor reply_count: Float
+
+            attr_accessor retweet_count: Float
+
+            def initialize: (
+              bookmark_count: Float,
+              impression_count: Float,
+              like_count: Float,
+              quote_count: Float,
+              reply_count: Float,
+              retweet_count: Float
+            ) -> void
+
+            def to_hash: -> {
+              bookmark_count: Float,
+              impression_count: Float,
+              like_count: Float,
+              quote_count: Float,
+              reply_count: Float,
+              retweet_count: Float
+            }
+          end
+        end
+
+        type threads_post_metrics_dto =
+          {
+            likes: Float,
+            quotes: Float,
+            replies: Float,
+            reposts: Float,
+            shares: Float,
+            views: Float
+          }
+
+        class ThreadsPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          attr_accessor likes: Float
+
+          attr_accessor quotes: Float
+
+          attr_accessor replies: Float
+
+          attr_accessor reposts: Float
+
+          attr_accessor shares: Float
+
+          attr_accessor views: Float
+
+          def initialize: (
+            likes: Float,
+            quotes: Float,
+            replies: Float,
+            reposts: Float,
+            shares: Float,
+            views: Float
+          ) -> void
+
+          def to_hash: -> {
+            likes: Float,
+            quotes: Float,
+            replies: Float,
+            reposts: Float,
+            shares: Float,
+            views: Float
           }
         end
 

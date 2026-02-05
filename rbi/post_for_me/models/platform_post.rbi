@@ -55,7 +55,11 @@ module PostForMe
               PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::OrHash,
               PostForMe::PlatformPost::Metrics::TikTokPostMetricsDto::OrHash,
               PostForMe::PlatformPost::Metrics::InstagramPostMetricsDto::OrHash,
-              PostForMe::PlatformPost::Metrics::YouTubePostMetricsDto::OrHash
+              PostForMe::PlatformPost::Metrics::YouTubePostMetricsDto::OrHash,
+              PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::OrHash,
+              PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::OrHash,
+              PostForMe::PlatformPost::Metrics::ThreadsPostMetricsDto::OrHash,
+              T.anything
             )
         ).void
       end
@@ -92,7 +96,11 @@ module PostForMe
               PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::OrHash,
               PostForMe::PlatformPost::Metrics::TikTokPostMetricsDto::OrHash,
               PostForMe::PlatformPost::Metrics::InstagramPostMetricsDto::OrHash,
-              PostForMe::PlatformPost::Metrics::YouTubePostMetricsDto::OrHash
+              PostForMe::PlatformPost::Metrics::YouTubePostMetricsDto::OrHash,
+              PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::OrHash,
+              PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::OrHash,
+              PostForMe::PlatformPost::Metrics::ThreadsPostMetricsDto::OrHash,
+              T.anything
             ),
           posted_at: Time,
           social_post_id: T.nilable(String),
@@ -161,7 +169,11 @@ module PostForMe
               PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto,
               PostForMe::PlatformPost::Metrics::TikTokPostMetricsDto,
               PostForMe::PlatformPost::Metrics::InstagramPostMetricsDto,
-              PostForMe::PlatformPost::Metrics::YouTubePostMetricsDto
+              PostForMe::PlatformPost::Metrics::YouTubePostMetricsDto,
+              PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto,
+              PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto,
+              PostForMe::PlatformPost::Metrics::ThreadsPostMetricsDto,
+              T.anything
             )
           end
 
@@ -1269,6 +1281,1293 @@ module PostForMe
                 subscribers_lost: Float,
                 videos_added_to_playlists: Float,
                 videos_removed_from_playlists: Float
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        class FacebookPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto,
+                PostForMe::Internal::AnyHash
+              )
+            end
+
+          # Total activity breakdown by action type
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionType
+                ]
+              )
+            )
+          end
+          attr_reader :activity_by_action_type
+
+          sig do
+            params(
+              activity_by_action_type:
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionType::OrHash
+                ]
+            ).void
+          end
+          attr_writer :activity_by_action_type
+
+          # Unique users activity breakdown by action type
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionTypeUnique
+                ]
+              )
+            )
+          end
+          attr_reader :activity_by_action_type_unique
+
+          sig do
+            params(
+              activity_by_action_type_unique:
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionTypeUnique::OrHash
+                ]
+            ).void
+          end
+          attr_writer :activity_by_action_type_unique
+
+          # Number of comments (from post object)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :comments
+
+          sig { params(comments: Float).void }
+          attr_writer :comments
+
+          # Number of fans who saw the post
+          sig { returns(T.nilable(Float)) }
+          attr_reader :fan_reach
+
+          sig { params(fan_reach: Float).void }
+          attr_writer :fan_reach
+
+          # Number of times the photo or video was viewed
+          sig { returns(T.nilable(Float)) }
+          attr_reader :media_views
+
+          sig { params(media_views: Float).void }
+          attr_writer :media_views
+
+          # Number of people who saw the post via non-viral distribution
+          sig { returns(T.nilable(Float)) }
+          attr_reader :nonviral_reach
+
+          sig { params(nonviral_reach: Float).void }
+          attr_writer :nonviral_reach
+
+          # Number of people who saw the post via organic distribution
+          sig { returns(T.nilable(Float)) }
+          attr_reader :organic_reach
+
+          sig { params(organic_reach: Float).void }
+          attr_writer :organic_reach
+
+          # Number of people who saw the post via paid distribution
+          sig { returns(T.nilable(Float)) }
+          attr_reader :paid_reach
+
+          sig { params(paid_reach: Float).void }
+          attr_writer :paid_reach
+
+          # Total number of unique people who saw the post
+          sig { returns(T.nilable(Float)) }
+          attr_reader :reach
+
+          sig { params(reach: Float).void }
+          attr_writer :reach
+
+          # Number of anger reactions
+          sig { returns(T.nilable(Float)) }
+          attr_reader :reactions_anger
+
+          sig { params(reactions_anger: Float).void }
+          attr_writer :reactions_anger
+
+          # Breakdown of all reaction types
+          sig { returns(T.nilable(T.anything)) }
+          attr_reader :reactions_by_type
+
+          sig { params(reactions_by_type: T.anything).void }
+          attr_writer :reactions_by_type
+
+          # Number of haha reactions
+          sig { returns(T.nilable(Float)) }
+          attr_reader :reactions_haha
+
+          sig { params(reactions_haha: Float).void }
+          attr_writer :reactions_haha
+
+          # Number of like reactions
+          sig { returns(T.nilable(Float)) }
+          attr_reader :reactions_like
+
+          sig { params(reactions_like: Float).void }
+          attr_writer :reactions_like
+
+          # Number of love reactions
+          sig { returns(T.nilable(Float)) }
+          attr_reader :reactions_love
+
+          sig { params(reactions_love: Float).void }
+          attr_writer :reactions_love
+
+          # Number of sad reactions
+          sig { returns(T.nilable(Float)) }
+          attr_reader :reactions_sorry
+
+          sig { params(reactions_sorry: Float).void }
+          attr_writer :reactions_sorry
+
+          # Total number of reactions (all types)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :reactions_total
+
+          sig { params(reactions_total: Float).void }
+          attr_writer :reactions_total
+
+          # Number of wow reactions
+          sig { returns(T.nilable(Float)) }
+          attr_reader :reactions_wow
+
+          sig { params(reactions_wow: Float).void }
+          attr_writer :reactions_wow
+
+          # Number of shares (from post object)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :shares
+
+          sig { params(shares: Float).void }
+          attr_writer :shares
+
+          # Average time video was viewed in milliseconds
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_avg_time_watched
+
+          sig { params(video_avg_time_watched: Float).void }
+          attr_writer :video_avg_time_watched
+
+          # Number of times video was viewed to 95% organically
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_complete_views_organic
+
+          sig { params(video_complete_views_organic: Float).void }
+          attr_writer :video_complete_views_organic
+
+          # Number of unique people who viewed video to 95% organically
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_complete_views_organic_unique
+
+          sig { params(video_complete_views_organic_unique: Float).void }
+          attr_writer :video_complete_views_organic_unique
+
+          # Number of times video was viewed to 95% via paid distribution
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_complete_views_paid
+
+          sig { params(video_complete_views_paid: Float).void }
+          attr_writer :video_complete_views_paid
+
+          # Number of unique people who viewed video to 95% via paid distribution
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_complete_views_paid_unique
+
+          sig { params(video_complete_views_paid_unique: Float).void }
+          attr_writer :video_complete_views_paid_unique
+
+          # Length of the video in milliseconds
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_length
+
+          sig { params(video_length: Float).void }
+          attr_writer :video_length
+
+          # Video retention graph for autoplayed views
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphAutoplayed
+                ]
+              )
+            )
+          end
+          attr_reader :video_retention_graph_autoplayed
+
+          sig do
+            params(
+              video_retention_graph_autoplayed:
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphAutoplayed::OrHash
+                ]
+            ).void
+          end
+          attr_writer :video_retention_graph_autoplayed
+
+          # Video retention graph for clicked-to-play views
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphClickedToPlay
+                ]
+              )
+            )
+          end
+          attr_reader :video_retention_graph_clicked_to_play
+
+          sig do
+            params(
+              video_retention_graph_clicked_to_play:
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphClickedToPlay::OrHash
+                ]
+            ).void
+          end
+          attr_writer :video_retention_graph_clicked_to_play
+
+          # Number of unique people who performed social actions on the video
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_social_actions_unique
+
+          sig { params(video_social_actions_unique: Float).void }
+          attr_writer :video_social_actions_unique
+
+          # Total time video was viewed in milliseconds
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_view_time
+
+          sig { params(video_view_time: Float).void }
+          attr_writer :video_view_time
+
+          # Video view time breakdown by age and gender
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByAgeGender
+                ]
+              )
+            )
+          end
+          attr_reader :video_view_time_by_age_gender
+
+          sig do
+            params(
+              video_view_time_by_age_gender:
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByAgeGender::OrHash
+                ]
+            ).void
+          end
+          attr_writer :video_view_time_by_age_gender
+
+          # Video view time breakdown by country
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByCountry
+                ]
+              )
+            )
+          end
+          attr_reader :video_view_time_by_country
+
+          sig do
+            params(
+              video_view_time_by_country:
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByCountry::OrHash
+                ]
+            ).void
+          end
+          attr_writer :video_view_time_by_country
+
+          # Video view time breakdown by distribution type
+          sig { returns(T.nilable(T.anything)) }
+          attr_reader :video_view_time_by_distribution_type
+
+          sig { params(video_view_time_by_distribution_type: T.anything).void }
+          attr_writer :video_view_time_by_distribution_type
+
+          # Video view time breakdown by region
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByRegion
+                ]
+              )
+            )
+          end
+          attr_reader :video_view_time_by_region
+
+          sig do
+            params(
+              video_view_time_by_region:
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByRegion::OrHash
+                ]
+            ).void
+          end
+          attr_writer :video_view_time_by_region
+
+          # Total time video was viewed in milliseconds via organic distribution
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_view_time_organic
+
+          sig { params(video_view_time_organic: Float).void }
+          attr_writer :video_view_time_organic
+
+          # Number of times video was viewed for 3+ seconds
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_views
+
+          sig { params(video_views: Float).void }
+          attr_writer :video_views
+
+          # Number of times video was viewed for 15+ seconds
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_views_15s
+
+          sig { params(video_views_15s: Float).void }
+          attr_writer :video_views_15s
+
+          # Number of times video was viewed for 60+ seconds (excludes videos shorter than
+          # 60s)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_views_60s
+
+          sig { params(video_views_60s: Float).void }
+          attr_writer :video_views_60s
+
+          # Number of times video was autoplayed for 3+ seconds
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_views_autoplayed
+
+          sig { params(video_views_autoplayed: Float).void }
+          attr_writer :video_views_autoplayed
+
+          # Video views breakdown by distribution type
+          sig { returns(T.nilable(T.anything)) }
+          attr_reader :video_views_by_distribution_type
+
+          sig { params(video_views_by_distribution_type: T.anything).void }
+          attr_writer :video_views_by_distribution_type
+
+          # Number of times video was clicked to play for 3+ seconds
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_views_clicked_to_play
+
+          sig { params(video_views_clicked_to_play: Float).void }
+          attr_writer :video_views_clicked_to_play
+
+          # Number of times video was viewed for 3+ seconds organically
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_views_organic
+
+          sig { params(video_views_organic: Float).void }
+          attr_writer :video_views_organic
+
+          # Number of unique people who viewed the video for 3+ seconds organically
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_views_organic_unique
+
+          sig { params(video_views_organic_unique: Float).void }
+          attr_writer :video_views_organic_unique
+
+          # Number of times video was viewed for 3+ seconds via paid distribution
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_views_paid
+
+          sig { params(video_views_paid: Float).void }
+          attr_writer :video_views_paid
+
+          # Number of unique people who viewed the video for 3+ seconds via paid
+          # distribution
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_views_paid_unique
+
+          sig { params(video_views_paid_unique: Float).void }
+          attr_writer :video_views_paid_unique
+
+          # Number of times video was viewed with sound on
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_views_sound_on
+
+          sig { params(video_views_sound_on: Float).void }
+          attr_writer :video_views_sound_on
+
+          # Number of unique people who viewed the video for 3+ seconds
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_views_unique
+
+          sig { params(video_views_unique: Float).void }
+          attr_writer :video_views_unique
+
+          # Number of people who saw the post in News Feed via viral reach
+          sig { returns(T.nilable(Float)) }
+          attr_reader :viral_reach
+
+          sig { params(viral_reach: Float).void }
+          attr_writer :viral_reach
+
+          sig do
+            params(
+              activity_by_action_type:
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionType::OrHash
+                ],
+              activity_by_action_type_unique:
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionTypeUnique::OrHash
+                ],
+              comments: Float,
+              fan_reach: Float,
+              media_views: Float,
+              nonviral_reach: Float,
+              organic_reach: Float,
+              paid_reach: Float,
+              reach: Float,
+              reactions_anger: Float,
+              reactions_by_type: T.anything,
+              reactions_haha: Float,
+              reactions_like: Float,
+              reactions_love: Float,
+              reactions_sorry: Float,
+              reactions_total: Float,
+              reactions_wow: Float,
+              shares: Float,
+              video_avg_time_watched: Float,
+              video_complete_views_organic: Float,
+              video_complete_views_organic_unique: Float,
+              video_complete_views_paid: Float,
+              video_complete_views_paid_unique: Float,
+              video_length: Float,
+              video_retention_graph_autoplayed:
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphAutoplayed::OrHash
+                ],
+              video_retention_graph_clicked_to_play:
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphClickedToPlay::OrHash
+                ],
+              video_social_actions_unique: Float,
+              video_view_time: Float,
+              video_view_time_by_age_gender:
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByAgeGender::OrHash
+                ],
+              video_view_time_by_country:
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByCountry::OrHash
+                ],
+              video_view_time_by_distribution_type: T.anything,
+              video_view_time_by_region:
+                T::Array[
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByRegion::OrHash
+                ],
+              video_view_time_organic: Float,
+              video_views: Float,
+              video_views_15s: Float,
+              video_views_60s: Float,
+              video_views_autoplayed: Float,
+              video_views_by_distribution_type: T.anything,
+              video_views_clicked_to_play: Float,
+              video_views_organic: Float,
+              video_views_organic_unique: Float,
+              video_views_paid: Float,
+              video_views_paid_unique: Float,
+              video_views_sound_on: Float,
+              video_views_unique: Float,
+              viral_reach: Float
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Total activity breakdown by action type
+            activity_by_action_type: nil,
+            # Unique users activity breakdown by action type
+            activity_by_action_type_unique: nil,
+            # Number of comments (from post object)
+            comments: nil,
+            # Number of fans who saw the post
+            fan_reach: nil,
+            # Number of times the photo or video was viewed
+            media_views: nil,
+            # Number of people who saw the post via non-viral distribution
+            nonviral_reach: nil,
+            # Number of people who saw the post via organic distribution
+            organic_reach: nil,
+            # Number of people who saw the post via paid distribution
+            paid_reach: nil,
+            # Total number of unique people who saw the post
+            reach: nil,
+            # Number of anger reactions
+            reactions_anger: nil,
+            # Breakdown of all reaction types
+            reactions_by_type: nil,
+            # Number of haha reactions
+            reactions_haha: nil,
+            # Number of like reactions
+            reactions_like: nil,
+            # Number of love reactions
+            reactions_love: nil,
+            # Number of sad reactions
+            reactions_sorry: nil,
+            # Total number of reactions (all types)
+            reactions_total: nil,
+            # Number of wow reactions
+            reactions_wow: nil,
+            # Number of shares (from post object)
+            shares: nil,
+            # Average time video was viewed in milliseconds
+            video_avg_time_watched: nil,
+            # Number of times video was viewed to 95% organically
+            video_complete_views_organic: nil,
+            # Number of unique people who viewed video to 95% organically
+            video_complete_views_organic_unique: nil,
+            # Number of times video was viewed to 95% via paid distribution
+            video_complete_views_paid: nil,
+            # Number of unique people who viewed video to 95% via paid distribution
+            video_complete_views_paid_unique: nil,
+            # Length of the video in milliseconds
+            video_length: nil,
+            # Video retention graph for autoplayed views
+            video_retention_graph_autoplayed: nil,
+            # Video retention graph for clicked-to-play views
+            video_retention_graph_clicked_to_play: nil,
+            # Number of unique people who performed social actions on the video
+            video_social_actions_unique: nil,
+            # Total time video was viewed in milliseconds
+            video_view_time: nil,
+            # Video view time breakdown by age and gender
+            video_view_time_by_age_gender: nil,
+            # Video view time breakdown by country
+            video_view_time_by_country: nil,
+            # Video view time breakdown by distribution type
+            video_view_time_by_distribution_type: nil,
+            # Video view time breakdown by region
+            video_view_time_by_region: nil,
+            # Total time video was viewed in milliseconds via organic distribution
+            video_view_time_organic: nil,
+            # Number of times video was viewed for 3+ seconds
+            video_views: nil,
+            # Number of times video was viewed for 15+ seconds
+            video_views_15s: nil,
+            # Number of times video was viewed for 60+ seconds (excludes videos shorter than
+            # 60s)
+            video_views_60s: nil,
+            # Number of times video was autoplayed for 3+ seconds
+            video_views_autoplayed: nil,
+            # Video views breakdown by distribution type
+            video_views_by_distribution_type: nil,
+            # Number of times video was clicked to play for 3+ seconds
+            video_views_clicked_to_play: nil,
+            # Number of times video was viewed for 3+ seconds organically
+            video_views_organic: nil,
+            # Number of unique people who viewed the video for 3+ seconds organically
+            video_views_organic_unique: nil,
+            # Number of times video was viewed for 3+ seconds via paid distribution
+            video_views_paid: nil,
+            # Number of unique people who viewed the video for 3+ seconds via paid
+            # distribution
+            video_views_paid_unique: nil,
+            # Number of times video was viewed with sound on
+            video_views_sound_on: nil,
+            # Number of unique people who viewed the video for 3+ seconds
+            video_views_unique: nil,
+            # Number of people who saw the post in News Feed via viral reach
+            viral_reach: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                activity_by_action_type:
+                  T::Array[
+                    PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionType
+                  ],
+                activity_by_action_type_unique:
+                  T::Array[
+                    PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionTypeUnique
+                  ],
+                comments: Float,
+                fan_reach: Float,
+                media_views: Float,
+                nonviral_reach: Float,
+                organic_reach: Float,
+                paid_reach: Float,
+                reach: Float,
+                reactions_anger: Float,
+                reactions_by_type: T.anything,
+                reactions_haha: Float,
+                reactions_like: Float,
+                reactions_love: Float,
+                reactions_sorry: Float,
+                reactions_total: Float,
+                reactions_wow: Float,
+                shares: Float,
+                video_avg_time_watched: Float,
+                video_complete_views_organic: Float,
+                video_complete_views_organic_unique: Float,
+                video_complete_views_paid: Float,
+                video_complete_views_paid_unique: Float,
+                video_length: Float,
+                video_retention_graph_autoplayed:
+                  T::Array[
+                    PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphAutoplayed
+                  ],
+                video_retention_graph_clicked_to_play:
+                  T::Array[
+                    PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphClickedToPlay
+                  ],
+                video_social_actions_unique: Float,
+                video_view_time: Float,
+                video_view_time_by_age_gender:
+                  T::Array[
+                    PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByAgeGender
+                  ],
+                video_view_time_by_country:
+                  T::Array[
+                    PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByCountry
+                  ],
+                video_view_time_by_distribution_type: T.anything,
+                video_view_time_by_region:
+                  T::Array[
+                    PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByRegion
+                  ],
+                video_view_time_organic: Float,
+                video_views: Float,
+                video_views_15s: Float,
+                video_views_60s: Float,
+                video_views_autoplayed: Float,
+                video_views_by_distribution_type: T.anything,
+                video_views_clicked_to_play: Float,
+                video_views_organic: Float,
+                video_views_organic_unique: Float,
+                video_views_paid: Float,
+                video_views_paid_unique: Float,
+                video_views_sound_on: Float,
+                video_views_unique: Float,
+                viral_reach: Float
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class ActivityByActionType < PostForMe::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionType,
+                  PostForMe::Internal::AnyHash
+                )
+              end
+
+            # Action type (e.g., like, comment, share)
+            sig { returns(String) }
+            attr_accessor :action_type
+
+            # Number of actions
+            sig { returns(Float) }
+            attr_accessor :value
+
+            sig do
+              params(action_type: String, value: Float).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # Action type (e.g., like, comment, share)
+              action_type:,
+              # Number of actions
+              value:
+            )
+            end
+
+            sig { override.returns({ action_type: String, value: Float }) }
+            def to_hash
+            end
+          end
+
+          class ActivityByActionTypeUnique < PostForMe::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionTypeUnique,
+                  PostForMe::Internal::AnyHash
+                )
+              end
+
+            # Action type (e.g., like, comment, share)
+            sig { returns(String) }
+            attr_accessor :action_type
+
+            # Number of actions
+            sig { returns(Float) }
+            attr_accessor :value
+
+            sig do
+              params(action_type: String, value: Float).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # Action type (e.g., like, comment, share)
+              action_type:,
+              # Number of actions
+              value:
+            )
+            end
+
+            sig { override.returns({ action_type: String, value: Float }) }
+            def to_hash
+            end
+          end
+
+          class VideoRetentionGraphAutoplayed < PostForMe::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphAutoplayed,
+                  PostForMe::Internal::AnyHash
+                )
+              end
+
+            # Percentage of viewers at this time
+            sig { returns(Float) }
+            attr_accessor :rate
+
+            # Time in seconds
+            sig { returns(Float) }
+            attr_accessor :time
+
+            sig { params(rate: Float, time: Float).returns(T.attached_class) }
+            def self.new(
+              # Percentage of viewers at this time
+              rate:,
+              # Time in seconds
+              time:
+            )
+            end
+
+            sig { override.returns({ rate: Float, time: Float }) }
+            def to_hash
+            end
+          end
+
+          class VideoRetentionGraphClickedToPlay < PostForMe::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphClickedToPlay,
+                  PostForMe::Internal::AnyHash
+                )
+              end
+
+            # Percentage of viewers at this time
+            sig { returns(Float) }
+            attr_accessor :rate
+
+            # Time in seconds
+            sig { returns(Float) }
+            attr_accessor :time
+
+            sig { params(rate: Float, time: Float).returns(T.attached_class) }
+            def self.new(
+              # Percentage of viewers at this time
+              rate:,
+              # Time in seconds
+              time:
+            )
+            end
+
+            sig { override.returns({ rate: Float, time: Float }) }
+            def to_hash
+            end
+          end
+
+          class VideoViewTimeByAgeGender < PostForMe::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByAgeGender,
+                  PostForMe::Internal::AnyHash
+                )
+              end
+
+            # Demographic key (e.g., age_gender, region, country)
+            sig { returns(String) }
+            attr_accessor :key
+
+            # Total view time in milliseconds
+            sig { returns(Float) }
+            attr_accessor :value
+
+            sig { params(key: String, value: Float).returns(T.attached_class) }
+            def self.new(
+              # Demographic key (e.g., age_gender, region, country)
+              key:,
+              # Total view time in milliseconds
+              value:
+            )
+            end
+
+            sig { override.returns({ key: String, value: Float }) }
+            def to_hash
+            end
+          end
+
+          class VideoViewTimeByCountry < PostForMe::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByCountry,
+                  PostForMe::Internal::AnyHash
+                )
+              end
+
+            # Demographic key (e.g., age_gender, region, country)
+            sig { returns(String) }
+            attr_accessor :key
+
+            # Total view time in milliseconds
+            sig { returns(Float) }
+            attr_accessor :value
+
+            sig { params(key: String, value: Float).returns(T.attached_class) }
+            def self.new(
+              # Demographic key (e.g., age_gender, region, country)
+              key:,
+              # Total view time in milliseconds
+              value:
+            )
+            end
+
+            sig { override.returns({ key: String, value: Float }) }
+            def to_hash
+            end
+          end
+
+          class VideoViewTimeByRegion < PostForMe::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByRegion,
+                  PostForMe::Internal::AnyHash
+                )
+              end
+
+            # Demographic key (e.g., age_gender, region, country)
+            sig { returns(String) }
+            attr_accessor :key
+
+            # Total view time in milliseconds
+            sig { returns(Float) }
+            attr_accessor :value
+
+            sig { params(key: String, value: Float).returns(T.attached_class) }
+            def self.new(
+              # Demographic key (e.g., age_gender, region, country)
+              key:,
+              # Total view time in milliseconds
+              value:
+            )
+            end
+
+            sig { override.returns({ key: String, value: Float }) }
+            def to_hash
+            end
+          end
+        end
+
+        class TwitterPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto,
+                PostForMe::Internal::AnyHash
+              )
+            end
+
+          # Non-public metrics for the Tweet (available to the Tweet owner or advertisers)
+          sig do
+            returns(
+              T.nilable(
+                PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::NonPublicMetrics
+              )
+            )
+          end
+          attr_reader :non_public_metrics
+
+          sig do
+            params(
+              non_public_metrics:
+                PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::NonPublicMetrics::OrHash
+            ).void
+          end
+          attr_writer :non_public_metrics
+
+          # Organic metrics for the Tweet (available to the Tweet owner)
+          sig do
+            returns(
+              T.nilable(
+                PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::OrganicMetrics
+              )
+            )
+          end
+          attr_reader :organic_metrics
+
+          sig do
+            params(
+              organic_metrics:
+                PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::OrganicMetrics::OrHash
+            ).void
+          end
+          attr_writer :organic_metrics
+
+          # Publicly available metrics for the Tweet
+          sig do
+            returns(
+              T.nilable(
+                PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::PublicMetrics
+              )
+            )
+          end
+          attr_reader :public_metrics
+
+          sig do
+            params(
+              public_metrics:
+                PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::PublicMetrics::OrHash
+            ).void
+          end
+          attr_writer :public_metrics
+
+          sig do
+            params(
+              non_public_metrics:
+                PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::NonPublicMetrics::OrHash,
+              organic_metrics:
+                PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::OrganicMetrics::OrHash,
+              public_metrics:
+                PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::PublicMetrics::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Non-public metrics for the Tweet (available to the Tweet owner or advertisers)
+            non_public_metrics: nil,
+            # Organic metrics for the Tweet (available to the Tweet owner)
+            organic_metrics: nil,
+            # Publicly available metrics for the Tweet
+            public_metrics: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                non_public_metrics:
+                  PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::NonPublicMetrics,
+                organic_metrics:
+                  PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::OrganicMetrics,
+                public_metrics:
+                  PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::PublicMetrics
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class NonPublicMetrics < PostForMe::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::NonPublicMetrics,
+                  PostForMe::Internal::AnyHash
+                )
+              end
+
+            # Number of times this Tweet has been viewed via promoted distribution
+            sig { returns(Float) }
+            attr_accessor :impression_count
+
+            # Number of clicks on links in this Tweet via promoted distribution
+            sig { returns(Float) }
+            attr_accessor :url_link_clicks
+
+            # Number of clicks on the author's profile via promoted distribution
+            sig { returns(Float) }
+            attr_accessor :user_profile_clicks
+
+            # Non-public metrics for the Tweet (available to the Tweet owner or advertisers)
+            sig do
+              params(
+                impression_count: Float,
+                url_link_clicks: Float,
+                user_profile_clicks: Float
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Number of times this Tweet has been viewed via promoted distribution
+              impression_count:,
+              # Number of clicks on links in this Tweet via promoted distribution
+              url_link_clicks:,
+              # Number of clicks on the author's profile via promoted distribution
+              user_profile_clicks:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  impression_count: Float,
+                  url_link_clicks: Float,
+                  user_profile_clicks: Float
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          class OrganicMetrics < PostForMe::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::OrganicMetrics,
+                  PostForMe::Internal::AnyHash
+                )
+              end
+
+            # Number of times this Tweet has been viewed organically
+            sig { returns(Float) }
+            attr_accessor :impression_count
+
+            # Number of Likes of this Tweet from organic distribution
+            sig { returns(Float) }
+            attr_accessor :like_count
+
+            # Number of Replies of this Tweet from organic distribution
+            sig { returns(Float) }
+            attr_accessor :reply_count
+
+            # Number of Retweets of this Tweet from organic distribution
+            sig { returns(Float) }
+            attr_accessor :retweet_count
+
+            # Number of clicks on links in this Tweet from organic distribution
+            sig { returns(Float) }
+            attr_accessor :url_link_clicks
+
+            # Number of clicks on the author's profile from organic distribution
+            sig { returns(Float) }
+            attr_accessor :user_profile_clicks
+
+            # Organic metrics for the Tweet (available to the Tweet owner)
+            sig do
+              params(
+                impression_count: Float,
+                like_count: Float,
+                reply_count: Float,
+                retweet_count: Float,
+                url_link_clicks: Float,
+                user_profile_clicks: Float
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Number of times this Tweet has been viewed organically
+              impression_count:,
+              # Number of Likes of this Tweet from organic distribution
+              like_count:,
+              # Number of Replies of this Tweet from organic distribution
+              reply_count:,
+              # Number of Retweets of this Tweet from organic distribution
+              retweet_count:,
+              # Number of clicks on links in this Tweet from organic distribution
+              url_link_clicks:,
+              # Number of clicks on the author's profile from organic distribution
+              user_profile_clicks:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  impression_count: Float,
+                  like_count: Float,
+                  reply_count: Float,
+                  retweet_count: Float,
+                  url_link_clicks: Float,
+                  user_profile_clicks: Float
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          class PublicMetrics < PostForMe::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::PublicMetrics,
+                  PostForMe::Internal::AnyHash
+                )
+              end
+
+            # Number of times this Tweet has been bookmarked
+            sig { returns(Float) }
+            attr_accessor :bookmark_count
+
+            # Number of times this Tweet has been viewed
+            sig { returns(Float) }
+            attr_accessor :impression_count
+
+            # Number of Likes of this Tweet
+            sig { returns(Float) }
+            attr_accessor :like_count
+
+            # Number of Quotes of this Tweet
+            sig { returns(Float) }
+            attr_accessor :quote_count
+
+            # Number of Replies of this Tweet
+            sig { returns(Float) }
+            attr_accessor :reply_count
+
+            # Number of Retweets of this Tweet
+            sig { returns(Float) }
+            attr_accessor :retweet_count
+
+            # Publicly available metrics for the Tweet
+            sig do
+              params(
+                bookmark_count: Float,
+                impression_count: Float,
+                like_count: Float,
+                quote_count: Float,
+                reply_count: Float,
+                retweet_count: Float
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Number of times this Tweet has been bookmarked
+              bookmark_count:,
+              # Number of times this Tweet has been viewed
+              impression_count:,
+              # Number of Likes of this Tweet
+              like_count:,
+              # Number of Quotes of this Tweet
+              quote_count:,
+              # Number of Replies of this Tweet
+              reply_count:,
+              # Number of Retweets of this Tweet
+              retweet_count:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  bookmark_count: Float,
+                  impression_count: Float,
+                  like_count: Float,
+                  quote_count: Float,
+                  reply_count: Float,
+                  retweet_count: Float
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+        end
+
+        class ThreadsPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                PostForMe::PlatformPost::Metrics::ThreadsPostMetricsDto,
+                PostForMe::Internal::AnyHash
+              )
+            end
+
+          # Number of likes on the post
+          sig { returns(Float) }
+          attr_accessor :likes
+
+          # Number of quotes of the post
+          sig { returns(Float) }
+          attr_accessor :quotes
+
+          # Number of replies on the post
+          sig { returns(Float) }
+          attr_accessor :replies
+
+          # Number of reposts of the post
+          sig { returns(Float) }
+          attr_accessor :reposts
+
+          # Number of shares of the post
+          sig { returns(Float) }
+          attr_accessor :shares
+
+          # Number of views on the post
+          sig { returns(Float) }
+          attr_accessor :views
+
+          sig do
+            params(
+              likes: Float,
+              quotes: Float,
+              replies: Float,
+              reposts: Float,
+              shares: Float,
+              views: Float
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Number of likes on the post
+            likes:,
+            # Number of quotes of the post
+            quotes:,
+            # Number of replies on the post
+            replies:,
+            # Number of reposts of the post
+            reposts:,
+            # Number of shares of the post
+            shares:,
+            # Number of views on the post
+            views:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                likes: Float,
+                quotes: Float,
+                replies: Float,
+                reposts: Float,
+                shares: Float,
+                views: Float
               }
             )
           end
