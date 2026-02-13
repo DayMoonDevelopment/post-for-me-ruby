@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.16 (2026-02-07)
+
+Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
+
+### Bug Fixes
+
+* **client:** loosen json header parsing ([6df9efe](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/6df9efedaf862e1b45898fb6f262f143eb8426db))
+
 ## 0.1.0-alpha.15 (2026-02-04)
 
 Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
