@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.17 (2026-02-27)
+
+Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
+
+### Bug Fixes
+
+* properly mock time in ruby ci tests ([b3bc1c6](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/b3bc1c6aac26abe038ca47f3a8f6e408643b0ca2))
+
+
+### Chores
+
+* **internal:** remove mock server code ([58e7a2b](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/58e7a2b9818b78e2222286933bcd926875f0f1ec))
+* update mock server docs ([a88b3ca](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/a88b3cacb43e1d97515723f5c09f323b732d6290))
+
 ## 0.1.0-alpha.16 (2026-02-07)
 
 Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
