@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class PostForMe::Test::Resources::SocialAccountsTest < PostForMe::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @post_for_me.social_accounts.create(
@@ -37,7 +37,7 @@ class PostForMe::Test::Resources::SocialAccountsTest < PostForMe::Test::Resource
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @post_for_me.social_accounts.retrieve("id")
 
@@ -64,7 +64,7 @@ class PostForMe::Test::Resources::SocialAccountsTest < PostForMe::Test::Resource
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @post_for_me.social_accounts.update("id")
 
@@ -91,7 +91,7 @@ class PostForMe::Test::Resources::SocialAccountsTest < PostForMe::Test::Resource
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @post_for_me.social_accounts.list
 
@@ -108,7 +108,7 @@ class PostForMe::Test::Resources::SocialAccountsTest < PostForMe::Test::Resource
   end
 
   def test_create_auth_url_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @post_for_me.social_accounts.create_auth_url(platform: "platform")
 
@@ -125,7 +125,7 @@ class PostForMe::Test::Resources::SocialAccountsTest < PostForMe::Test::Resource
   end
 
   def test_disconnect
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @post_for_me.social_accounts.disconnect("id")
 

@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class PostForMe::Test::Resources::SocialAccountFeedsTest < PostForMe::Test::ResourceTest
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @post_for_me.social_account_feeds.list("social_account_id")
 
