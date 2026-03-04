@@ -2,6 +2,10 @@
 
 module PostForMe
   module Resources
+    # Social accounts represent platform-specific accounts (e.g. Twitter, LinkedIn,
+    # Facebook) that are used for publishing posts. Each social account has a unique
+    # `id` that can be referenced when creating or scheduling posts to specify which
+    # platforms the content should be published to.
     class SocialAccounts
       # If a social account with the same platform and user_id already exists, it will
       # be updated. If not, a new social account will be created.
@@ -114,10 +118,11 @@ module PostForMe
       # @see PostForMe::Models::SocialAccountListParams
       def list(params = {})
         parsed, options = PostForMe::SocialAccountListParams.dump_request(params)
+        query = PostForMe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "v1/social-accounts",
-          query: parsed,
+          query: query,
           model: PostForMe::Models::SocialAccountListResponse,
           options: options
         )

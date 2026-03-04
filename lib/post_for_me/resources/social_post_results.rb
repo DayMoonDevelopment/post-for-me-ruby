@@ -2,6 +2,12 @@
 
 module PostForMe
   module Resources
+    # Post results represent the outcome of publishing content to various social media
+    # platforms. They provide comprehensive information including:
+    #
+    # - Publication status (success/failure)
+    # - Any errors or issues encountered during posting
+    # - Platform url to view the published post
     class SocialPostResults
       # Get post result by ID
       #
@@ -47,10 +53,11 @@ module PostForMe
       # @see PostForMe::Models::SocialPostResultListParams
       def list(params = {})
         parsed, options = PostForMe::SocialPostResultListParams.dump_request(params)
+        query = PostForMe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "v1/social-post-results",
-          query: parsed,
+          query: query,
           model: PostForMe::Models::SocialPostResultListResponse,
           options: options
         )

@@ -2,6 +2,17 @@
 
 module PostForMe
   module Resources
+    # Posts represent content that can be published across multiple social media
+    # platforms. Each post can have platform-specific content variations, allowing
+    # customization for different platforms and accounts. Content can be defined at
+    # three levels:
+    #
+    # 1. Default content for all platforms
+    # 2. Platform-specific content overrides
+    # 3. Account-specific content overrides
+    #
+    # The system will use the most specific content override available when publishing
+    # to each platform and account.
     class SocialPosts
       # Some parameter documentations has been truncated, see
       # {PostForMe::Models::SocialPostCreateParams} for more details.
@@ -126,10 +137,11 @@ module PostForMe
       # @see PostForMe::Models::SocialPostListParams
       def list(params = {})
         parsed, options = PostForMe::SocialPostListParams.dump_request(params)
+        query = PostForMe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "v1/social-posts",
-          query: parsed,
+          query: query,
           model: PostForMe::Models::SocialPostListResponse,
           options: options
         )
