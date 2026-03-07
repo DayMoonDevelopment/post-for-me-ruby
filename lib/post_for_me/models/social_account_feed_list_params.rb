@@ -7,6 +7,11 @@ module PostForMe
       extend PostForMe::Internal::Type::RequestParameters::Converter
       include PostForMe::Internal::Type::RequestParameters
 
+      # @!attribute social_account_id
+      #
+      #   @return [String]
+      required :social_account_id, String
+
       # @!attribute cursor
       #   Cursor identifying next page of results
       #
@@ -50,9 +55,11 @@ module PostForMe
       #   @return [Array<String>, nil]
       optional :social_post_id, PostForMe::Internal::Type::ArrayOf[String]
 
-      # @!method initialize(cursor: nil, expand: nil, external_post_id: nil, limit: nil, platform_post_id: nil, social_post_id: nil, request_options: {})
+      # @!method initialize(social_account_id:, cursor: nil, expand: nil, external_post_id: nil, limit: nil, platform_post_id: nil, social_post_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {PostForMe::Models::SocialAccountFeedListParams} for more details.
+      #
+      #   @param social_account_id [String]
       #
       #   @param cursor [String] Cursor identifying next page of results
       #
