@@ -7,6 +7,11 @@ module PostForMe
       extend PostForMe::Internal::Type::RequestParameters::Converter
       include PostForMe::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute external_id
       #   The platform's external id of the social account
       #
@@ -19,7 +24,9 @@ module PostForMe
       #   @return [String, nil]
       optional :username, String
 
-      # @!method initialize(external_id: nil, username: nil, request_options: {})
+      # @!method initialize(id:, external_id: nil, username: nil, request_options: {})
+      #   @param id [String]
+      #
       #   @param external_id [String] The platform's external id of the social account
       #
       #   @param username [String] The platform's username of the social account

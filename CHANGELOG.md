@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.0-alpha.18 (2026-03-08)
+
+Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)
+
+### Chores
+
+* **ci:** add build step ([6391f3c](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/6391f3c681af595c2f73cddaace104dce2b15e12))
+* **ci:** skip uploading artifacts on stainless-internal branches ([46e23f9](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/46e23f927077632b32e60b5467b9e9c057031185))
+* **internal:** codegen related update ([f3c84a7](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/f3c84a76a70aa10335a783f0d98adc7e52c499fd))
+* **internal:** codegen related update ([1c6520b](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/1c6520b949d3cb853ec7ee8b46b0f4c55c655e9f))
+
 ## 0.1.0-alpha.17 (2026-02-27)
 
 Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)

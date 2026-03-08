@@ -14,6 +14,9 @@ module PostForMe
           )
         end
 
+      sig { returns(String) }
+      attr_accessor :social_account_id
+
       # Cursor identifying next page of results
       sig { returns(T.nilable(String)) }
       attr_reader :cursor
@@ -75,6 +78,7 @@ module PostForMe
 
       sig do
         params(
+          social_account_id: String,
           cursor: String,
           expand:
             T::Array[PostForMe::SocialAccountFeedListParams::Expand::OrSymbol],
@@ -86,6 +90,7 @@ module PostForMe
         ).returns(T.attached_class)
       end
       def self.new(
+        social_account_id:,
         # Cursor identifying next page of results
         cursor: nil,
         # Expand additional data in the response. Currently supports: "metrics" to include
@@ -111,6 +116,7 @@ module PostForMe
       sig do
         override.returns(
           {
+            social_account_id: String,
             cursor: String,
             expand:
               T::Array[
