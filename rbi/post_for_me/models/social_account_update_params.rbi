@@ -14,6 +14,9 @@ module PostForMe
           )
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # The platform's external id of the social account
       sig { returns(T.nilable(String)) }
       attr_reader :external_id
@@ -30,12 +33,14 @@ module PostForMe
 
       sig do
         params(
+          id: String,
           external_id: String,
           username: String,
           request_options: PostForMe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # The platform's external id of the social account
         external_id: nil,
         # The platform's username of the social account
@@ -47,6 +52,7 @@ module PostForMe
       sig do
         override.returns(
           {
+            id: String,
             external_id: String,
             username: String,
             request_options: PostForMe::RequestOptions

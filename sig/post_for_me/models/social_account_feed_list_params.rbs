@@ -2,6 +2,7 @@ module PostForMe
   module Models
     type social_account_feed_list_params =
       {
+        social_account_id: String,
         cursor: String,
         expand: ::Array[PostForMe::Models::SocialAccountFeedListParams::expand],
         external_post_id: ::Array[String],
@@ -14,6 +15,8 @@ module PostForMe
     class SocialAccountFeedListParams < PostForMe::Internal::Type::BaseModel
       extend PostForMe::Internal::Type::RequestParameters::Converter
       include PostForMe::Internal::Type::RequestParameters
+
+      attr_accessor social_account_id: String
 
       attr_reader cursor: String?
 
@@ -42,6 +45,7 @@ module PostForMe
       def social_post_id=: (::Array[String]) -> ::Array[String]
 
       def initialize: (
+        social_account_id: String,
         ?cursor: String,
         ?expand: ::Array[PostForMe::Models::SocialAccountFeedListParams::expand],
         ?external_post_id: ::Array[String],
@@ -52,6 +56,7 @@ module PostForMe
       ) -> void
 
       def to_hash: -> {
+        social_account_id: String,
         cursor: String,
         expand: ::Array[PostForMe::Models::SocialAccountFeedListParams::expand],
         external_post_id: ::Array[String],
