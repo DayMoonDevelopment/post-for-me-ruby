@@ -74,6 +74,7 @@ module PostForMe
       type media =
         {
           url: String,
+          skip_processing: bool?,
           tags: ::Array[PostForMe::TiktokConfiguration::Media::Tag]?,
           thumbnail_timestamp_ms: top?,
           thumbnail_url: top?
@@ -81,6 +82,8 @@ module PostForMe
 
       class Media < PostForMe::Internal::Type::BaseModel
         attr_accessor url: String
+
+        attr_accessor skip_processing: bool?
 
         attr_accessor tags: ::Array[PostForMe::TiktokConfiguration::Media::Tag]?
 
@@ -90,6 +93,7 @@ module PostForMe
 
         def initialize: (
           url: String,
+          ?skip_processing: bool?,
           ?tags: ::Array[PostForMe::TiktokConfiguration::Media::Tag]?,
           ?thumbnail_timestamp_ms: top?,
           ?thumbnail_url: top?
@@ -97,6 +101,7 @@ module PostForMe
 
         def to_hash: -> {
           url: String,
+          skip_processing: bool?,
           tags: ::Array[PostForMe::TiktokConfiguration::Media::Tag]?,
           thumbnail_timestamp_ms: top?,
           thumbnail_url: top?

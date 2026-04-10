@@ -31,7 +31,7 @@ module PostForMe
       #
       # @param is_draft [Boolean, nil] If isDraft is set then the post will not be processed
       #
-      # @param media [Array<PostForMe::Models::CreateSocialPost::Media>, nil] Array of media URLs associated with the post
+      # @param media [Array<PostForMe::Models::CreateSocialPost::Media>, nil] Array of media associated with the post. If multiple media items are provided an
       #
       # @param platform_configurations [PostForMe::Models::PlatformConfigurationsDto, nil] Platform-specific configurations for the post
       #
@@ -92,7 +92,7 @@ module PostForMe
       #
       # @param is_draft [Boolean, nil] If isDraft is set then the post will not be processed
       #
-      # @param media [Array<PostForMe::Models::CreateSocialPost::Media>, nil] Array of media URLs associated with the post
+      # @param media [Array<PostForMe::Models::CreateSocialPost::Media>, nil] Array of media associated with the post. If multiple media items are provided an
       #
       # @param platform_configurations [PostForMe::Models::PlatformConfigurationsDto, nil] Platform-specific configurations for the post
       #

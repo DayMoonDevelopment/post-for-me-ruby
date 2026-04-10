@@ -12,6 +12,7 @@ module PostForMe
         external_account_id: String?,
         external_post_id: String?,
         metrics: PostForMe::Models::PlatformPost::metrics,
+        platform_data: PostForMe::PlatformPost::PlatformData,
         posted_at: Time,
         social_post_id: String?,
         social_post_result_id: String?
@@ -42,6 +43,12 @@ module PostForMe
         PostForMe::Models::PlatformPost::metrics
       ) -> PostForMe::Models::PlatformPost::metrics
 
+      attr_reader platform_data: PostForMe::PlatformPost::PlatformData?
+
+      def platform_data=: (
+        PostForMe::PlatformPost::PlatformData
+      ) -> PostForMe::PlatformPost::PlatformData
+
       attr_reader posted_at: Time?
 
       def posted_at=: (Time) -> Time
@@ -61,6 +68,7 @@ module PostForMe
         ?external_account_id: String?,
         ?external_post_id: String?,
         ?metrics: PostForMe::Models::PlatformPost::metrics,
+        ?platform_data: PostForMe::PlatformPost::PlatformData,
         ?posted_at: Time,
         ?social_post_id: String?,
         ?social_post_result_id: String?
@@ -77,6 +85,7 @@ module PostForMe
         external_account_id: String?,
         external_post_id: String?,
         metrics: PostForMe::Models::PlatformPost::metrics,
+        platform_data: PostForMe::PlatformPost::PlatformData,
         posted_at: Time,
         social_post_id: String?,
         social_post_result_id: String?
@@ -90,7 +99,9 @@ module PostForMe
         | PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto
         | PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto
         | PostForMe::PlatformPost::Metrics::ThreadsPostMetricsDto
-        | top
+        | PostForMe::PlatformPost::Metrics::LinkedInPostMetricsDto
+        | PostForMe::PlatformPost::Metrics::BlueskyPostMetricsDto
+        | PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto
 
       module Metrics
         extend PostForMe::Internal::Type::Union
@@ -1283,7 +1294,373 @@ module PostForMe
           }
         end
 
+        type linked_in_post_metrics_dto =
+          {
+            click_count: Float,
+            comment_count: Float,
+            engagement: Float,
+            impression_count: Float,
+            like_count: Float,
+            share_count: Float,
+            time_watched: Float,
+            time_watched_for_video_views: Float,
+            video_view: Float,
+            viewer: Float
+          }
+
+        class LinkedInPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          attr_reader click_count: Float?
+
+          def click_count=: (Float) -> Float
+
+          attr_reader comment_count: Float?
+
+          def comment_count=: (Float) -> Float
+
+          attr_reader engagement: Float?
+
+          def engagement=: (Float) -> Float
+
+          attr_reader impression_count: Float?
+
+          def impression_count=: (Float) -> Float
+
+          attr_reader like_count: Float?
+
+          def like_count=: (Float) -> Float
+
+          attr_reader share_count: Float?
+
+          def share_count=: (Float) -> Float
+
+          attr_reader time_watched: Float?
+
+          def time_watched=: (Float) -> Float
+
+          attr_reader time_watched_for_video_views: Float?
+
+          def time_watched_for_video_views=: (Float) -> Float
+
+          attr_reader video_view: Float?
+
+          def video_view=: (Float) -> Float
+
+          attr_reader viewer: Float?
+
+          def viewer=: (Float) -> Float
+
+          def initialize: (
+            ?click_count: Float,
+            ?comment_count: Float,
+            ?engagement: Float,
+            ?impression_count: Float,
+            ?like_count: Float,
+            ?share_count: Float,
+            ?time_watched: Float,
+            ?time_watched_for_video_views: Float,
+            ?video_view: Float,
+            ?viewer: Float
+          ) -> void
+
+          def to_hash: -> {
+            click_count: Float,
+            comment_count: Float,
+            engagement: Float,
+            impression_count: Float,
+            like_count: Float,
+            share_count: Float,
+            time_watched: Float,
+            time_watched_for_video_views: Float,
+            video_view: Float,
+            viewer: Float
+          }
+        end
+
+        type bluesky_post_metrics_dto =
+          {
+            like_count: Float,
+            quote_count: Float,
+            reply_count: Float,
+            repost_count: Float
+          }
+
+        class BlueskyPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          attr_accessor like_count: Float
+
+          attr_accessor quote_count: Float
+
+          attr_accessor reply_count: Float
+
+          attr_accessor repost_count: Float
+
+          def initialize: (
+            like_count: Float,
+            quote_count: Float,
+            reply_count: Float,
+            repost_count: Float
+          ) -> void
+
+          def to_hash: -> {
+            like_count: Float,
+            quote_count: Float,
+            reply_count: Float,
+            repost_count: Float
+          }
+        end
+
+        type pinterest_post_metrics_dto =
+          {
+            :number_90d => PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d,
+            lifetime_metrics: PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics
+          }
+
+        class PinterestPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          attr_reader number_90d: PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d?
+
+          def number_90d=: (
+            PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d
+          ) -> PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d
+
+          attr_reader lifetime_metrics: PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics?
+
+          def lifetime_metrics=: (
+            PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics
+          ) -> PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics
+
+          def initialize: (
+            ?number_90d: PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d,
+            ?lifetime_metrics: PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics
+          ) -> void
+
+          def to_hash: -> {
+            :number_90d => PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d,
+            lifetime_metrics: PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics
+          }
+
+          type const90d =
+            {
+              comment: Float,
+              impression: Float,
+              last_updated: String,
+              outbound_click: Float,
+              pin_click: Float,
+              profile_visit: top?,
+              reaction: Float,
+              save: Float,
+              user_follow: top?,
+              :video_10s_views => Float,
+              video_average_time: Float,
+              :video_p95_views => Float,
+              video_total_time: Float,
+              video_views: Float
+            }
+
+          class Const90d < PostForMe::Internal::Type::BaseModel
+            attr_reader comment: Float?
+
+            def comment=: (Float) -> Float
+
+            attr_reader impression: Float?
+
+            def impression=: (Float) -> Float
+
+            attr_reader last_updated: String?
+
+            def last_updated=: (String) -> String
+
+            attr_reader outbound_click: Float?
+
+            def outbound_click=: (Float) -> Float
+
+            attr_reader pin_click: Float?
+
+            def pin_click=: (Float) -> Float
+
+            attr_accessor profile_visit: top?
+
+            attr_reader reaction: Float?
+
+            def reaction=: (Float) -> Float
+
+            attr_reader save: Float?
+
+            def save=: (Float) -> Float
+
+            attr_accessor user_follow: top?
+
+            attr_reader video_10s_views: Float?
+
+            def video_10s_views=: (Float) -> Float
+
+            attr_reader video_average_time: Float?
+
+            def video_average_time=: (Float) -> Float
+
+            attr_reader video_p95_views: Float?
+
+            def video_p95_views=: (Float) -> Float
+
+            attr_reader video_total_time: Float?
+
+            def video_total_time=: (Float) -> Float
+
+            attr_reader video_views: Float?
+
+            def video_views=: (Float) -> Float
+
+            def initialize: (
+              ?comment: Float,
+              ?impression: Float,
+              ?last_updated: String,
+              ?outbound_click: Float,
+              ?pin_click: Float,
+              ?profile_visit: top?,
+              ?reaction: Float,
+              ?save: Float,
+              ?user_follow: top?,
+              ?video_10s_views: Float,
+              ?video_average_time: Float,
+              ?video_p95_views: Float,
+              ?video_total_time: Float,
+              ?video_views: Float
+            ) -> void
+
+            def to_hash: -> {
+              comment: Float,
+              impression: Float,
+              last_updated: String,
+              outbound_click: Float,
+              pin_click: Float,
+              profile_visit: top?,
+              reaction: Float,
+              save: Float,
+              user_follow: top?,
+              :video_10s_views => Float,
+              video_average_time: Float,
+              :video_p95_views => Float,
+              video_total_time: Float,
+              video_views: Float
+            }
+          end
+
+          type lifetime_metrics =
+            {
+              comment: Float,
+              impression: Float,
+              last_updated: String,
+              outbound_click: Float,
+              pin_click: Float,
+              profile_visit: top?,
+              reaction: Float,
+              save: Float,
+              user_follow: top?,
+              :video_10s_views => Float,
+              video_average_time: Float,
+              :video_p95_views => Float,
+              video_total_time: Float,
+              video_views: Float
+            }
+
+          class LifetimeMetrics < PostForMe::Internal::Type::BaseModel
+            attr_reader comment: Float?
+
+            def comment=: (Float) -> Float
+
+            attr_reader impression: Float?
+
+            def impression=: (Float) -> Float
+
+            attr_reader last_updated: String?
+
+            def last_updated=: (String) -> String
+
+            attr_reader outbound_click: Float?
+
+            def outbound_click=: (Float) -> Float
+
+            attr_reader pin_click: Float?
+
+            def pin_click=: (Float) -> Float
+
+            attr_accessor profile_visit: top?
+
+            attr_reader reaction: Float?
+
+            def reaction=: (Float) -> Float
+
+            attr_reader save: Float?
+
+            def save=: (Float) -> Float
+
+            attr_accessor user_follow: top?
+
+            attr_reader video_10s_views: Float?
+
+            def video_10s_views=: (Float) -> Float
+
+            attr_reader video_average_time: Float?
+
+            def video_average_time=: (Float) -> Float
+
+            attr_reader video_p95_views: Float?
+
+            def video_p95_views=: (Float) -> Float
+
+            attr_reader video_total_time: Float?
+
+            def video_total_time=: (Float) -> Float
+
+            attr_reader video_views: Float?
+
+            def video_views=: (Float) -> Float
+
+            def initialize: (
+              ?comment: Float,
+              ?impression: Float,
+              ?last_updated: String,
+              ?outbound_click: Float,
+              ?pin_click: Float,
+              ?profile_visit: top?,
+              ?reaction: Float,
+              ?save: Float,
+              ?user_follow: top?,
+              ?video_10s_views: Float,
+              ?video_average_time: Float,
+              ?video_p95_views: Float,
+              ?video_total_time: Float,
+              ?video_views: Float
+            ) -> void
+
+            def to_hash: -> {
+              comment: Float,
+              impression: Float,
+              last_updated: String,
+              outbound_click: Float,
+              pin_click: Float,
+              profile_visit: top?,
+              reaction: Float,
+              save: Float,
+              user_follow: top?,
+              :video_10s_views => Float,
+              video_average_time: Float,
+              :video_p95_views => Float,
+              video_total_time: Float,
+              video_views: Float
+            }
+          end
+        end
+
         def self?.variants: -> ::Array[PostForMe::Models::PlatformPost::metrics]
+      end
+
+      type platform_data = { title: String }
+
+      class PlatformData < PostForMe::Internal::Type::BaseModel
+        attr_accessor title: String
+
+        def initialize: (title: String) -> void
+
+        def to_hash: -> { title: String }
       end
     end
   end

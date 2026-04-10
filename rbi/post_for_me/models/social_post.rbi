@@ -32,7 +32,7 @@ module PostForMe
       sig { returns(T.nilable(String)) }
       attr_accessor :external_id
 
-      # Array of media URLs associated with the post
+      # Array of media associated with the post
       sig { returns(T.nilable(T::Array[PostForMe::SocialPost::Media])) }
       attr_accessor :media
 
@@ -94,7 +94,7 @@ module PostForMe
         created_at:,
         # Provided unique identifier of the post
         external_id:,
-        # Array of media URLs associated with the post
+        # Array of media associated with the post
         media:,
         # Platform-specific configurations for the post
         platform_configurations:,
@@ -328,6 +328,11 @@ module PostForMe
           end
           attr_accessor :reply_settings
 
+          # If true, include the caption on each image in a Facebook carousel upload; if
+          # false, only include it on the final carousel post
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_accessor :set_caption_for_each_image
+
           # If false Instagram video posts will only be shown in the Reels tab
           sig { returns(T.nilable(T::Boolean)) }
           attr_accessor :share_to_feed
@@ -387,6 +392,7 @@ module PostForMe
                 T.nilable(
                   PostForMe::SocialPost::AccountConfiguration::Configuration::ReplySettings::OrSymbol
                 ),
+              set_caption_for_each_image: T.nilable(T::Boolean),
               share_to_feed: T.nilable(T::Boolean),
               title: T.nilable(String),
               trial_reel_type:
@@ -442,6 +448,9 @@ module PostForMe
             quote_tweet_id: nil,
             # Who can reply to the tweet
             reply_settings: nil,
+            # If true, include the caption on each image in a Facebook carousel upload; if
+            # false, only include it on the final carousel post
+            set_caption_for_each_image: nil,
             # If false Instagram video posts will only be shown in the Reels tab
             share_to_feed: nil,
             # Overrides the `title` from the post
@@ -492,6 +501,7 @@ module PostForMe
                   T.nilable(
                     PostForMe::SocialPost::AccountConfiguration::Configuration::ReplySettings::TaggedSymbol
                   ),
+                set_caption_for_each_image: T.nilable(T::Boolean),
                 share_to_feed: T.nilable(T::Boolean),
                 title: T.nilable(String),
                 trial_reel_type:
@@ -517,6 +527,12 @@ module PostForMe
             sig { returns(String) }
             attr_accessor :url
 
+            # If true the media will not be processed at all and instead be posted as is, this
+            # may increase chance of post failure if media does not meet platform's
+            # requirements. Best used for larger files.
+            sig { returns(T.nilable(T::Boolean)) }
+            attr_accessor :skip_processing
+
             # List of tags to attach to the media
             sig do
               returns(
@@ -540,6 +556,7 @@ module PostForMe
             sig do
               params(
                 url: String,
+                skip_processing: T.nilable(T::Boolean),
                 tags:
                   T.nilable(
                     T::Array[
@@ -553,6 +570,10 @@ module PostForMe
             def self.new(
               # Public URL of the media
               url:,
+              # If true the media will not be processed at all and instead be posted as is, this
+              # may increase chance of post failure if media does not meet platform's
+              # requirements. Best used for larger files.
+              skip_processing: nil,
               # List of tags to attach to the media
               tags: nil,
               # Timestamp in milliseconds of frame to use as thumbnail for the media
@@ -566,6 +587,7 @@ module PostForMe
               override.returns(
                 {
                   url: String,
+                  skip_processing: T.nilable(T::Boolean),
                   tags:
                     T.nilable(
                       T::Array[
@@ -1031,6 +1053,12 @@ module PostForMe
         sig { returns(String) }
         attr_accessor :url
 
+        # If true the media will not be processed at all and instead be posted as is, this
+        # may increase chance of post failure if media does not meet platform's
+        # requirements. Best used for larger files.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_accessor :skip_processing
+
         # List of tags to attach to the media
         sig { returns(T.nilable(T::Array[PostForMe::SocialPost::Media::Tag])) }
         attr_accessor :tags
@@ -1046,6 +1074,7 @@ module PostForMe
         sig do
           params(
             url: String,
+            skip_processing: T.nilable(T::Boolean),
             tags:
               T.nilable(T::Array[PostForMe::SocialPost::Media::Tag::OrHash]),
             thumbnail_timestamp_ms: T.nilable(T.anything),
@@ -1055,6 +1084,10 @@ module PostForMe
         def self.new(
           # Public URL of the media
           url:,
+          # If true the media will not be processed at all and instead be posted as is, this
+          # may increase chance of post failure if media does not meet platform's
+          # requirements. Best used for larger files.
+          skip_processing: nil,
           # List of tags to attach to the media
           tags: nil,
           # Timestamp in milliseconds of frame to use as thumbnail for the media
@@ -1068,6 +1101,7 @@ module PostForMe
           override.returns(
             {
               url: String,
+              skip_processing: T.nilable(T::Boolean),
               tags: T.nilable(T::Array[PostForMe::SocialPost::Media::Tag]),
               thumbnail_timestamp_ms: T.nilable(T.anything),
               thumbnail_url: T.nilable(T.anything)
