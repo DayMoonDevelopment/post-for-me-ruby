@@ -73,8 +73,7 @@ module PostForMe
     #   through TikTok Business
     # - **TikTok Business**,
     # - **Youtube**
-    # - **Threads**, If using our Quickstart project then metrics are currently
-    #   unavailable.
+    # - **Threads**
     # - **X (Twitter)**
     # - **Bluesky**, Bluesky does not expose views or impressions through their API.
     # - **Pinterest**

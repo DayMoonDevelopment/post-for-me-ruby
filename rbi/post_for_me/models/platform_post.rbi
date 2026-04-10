@@ -59,11 +59,24 @@ module PostForMe
               PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::OrHash,
               PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::OrHash,
               PostForMe::PlatformPost::Metrics::ThreadsPostMetricsDto::OrHash,
-              T.anything
+              PostForMe::PlatformPost::Metrics::LinkedInPostMetricsDto::OrHash,
+              PostForMe::PlatformPost::Metrics::BlueskyPostMetricsDto::OrHash,
+              PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::OrHash
             )
         ).void
       end
       attr_writer :metrics
+
+      # Platform-specific data for the post
+      sig { returns(T.nilable(PostForMe::PlatformPost::PlatformData)) }
+      attr_reader :platform_data
+
+      sig do
+        params(
+          platform_data: PostForMe::PlatformPost::PlatformData::OrHash
+        ).void
+      end
+      attr_writer :platform_data
 
       # Date the post was published
       sig { returns(T.nilable(Time)) }
@@ -100,8 +113,11 @@ module PostForMe
               PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::OrHash,
               PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto::OrHash,
               PostForMe::PlatformPost::Metrics::ThreadsPostMetricsDto::OrHash,
-              T.anything
+              PostForMe::PlatformPost::Metrics::LinkedInPostMetricsDto::OrHash,
+              PostForMe::PlatformPost::Metrics::BlueskyPostMetricsDto::OrHash,
+              PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::OrHash
             ),
+          platform_data: PostForMe::PlatformPost::PlatformData::OrHash,
           posted_at: Time,
           social_post_id: T.nilable(String),
           social_post_result_id: T.nilable(String)
@@ -128,6 +144,8 @@ module PostForMe
         external_post_id: nil,
         # Post metrics and analytics data
         metrics: nil,
+        # Platform-specific data for the post
+        platform_data: nil,
         # Date the post was published
         posted_at: nil,
         # ID of the social post
@@ -150,6 +168,7 @@ module PostForMe
             external_account_id: T.nilable(String),
             external_post_id: T.nilable(String),
             metrics: PostForMe::PlatformPost::Metrics::Variants,
+            platform_data: PostForMe::PlatformPost::PlatformData,
             posted_at: Time,
             social_post_id: T.nilable(String),
             social_post_result_id: T.nilable(String)
@@ -173,7 +192,9 @@ module PostForMe
               PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto,
               PostForMe::PlatformPost::Metrics::TwitterPostMetricsDto,
               PostForMe::PlatformPost::Metrics::ThreadsPostMetricsDto,
-              T.anything
+              PostForMe::PlatformPost::Metrics::LinkedInPostMetricsDto,
+              PostForMe::PlatformPost::Metrics::BlueskyPostMetricsDto,
+              PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto
             )
           end
 
@@ -2575,10 +2596,679 @@ module PostForMe
           end
         end
 
+        class LinkedInPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                PostForMe::PlatformPost::Metrics::LinkedInPostMetricsDto,
+                PostForMe::Internal::AnyHash
+              )
+            end
+
+          # Number of clicks
+          sig { returns(T.nilable(Float)) }
+          attr_reader :click_count
+
+          sig { params(click_count: Float).void }
+          attr_writer :click_count
+
+          # Number of comments
+          sig { returns(T.nilable(Float)) }
+          attr_reader :comment_count
+
+          sig { params(comment_count: Float).void }
+          attr_writer :comment_count
+
+          # Engagement rate
+          sig { returns(T.nilable(Float)) }
+          attr_reader :engagement
+
+          sig { params(engagement: Float).void }
+          attr_writer :engagement
+
+          # Number of impressions
+          sig { returns(T.nilable(Float)) }
+          attr_reader :impression_count
+
+          sig { params(impression_count: Float).void }
+          attr_writer :impression_count
+
+          # Number of likes
+          sig { returns(T.nilable(Float)) }
+          attr_reader :like_count
+
+          sig { params(like_count: Float).void }
+          attr_writer :like_count
+
+          # Number of shares
+          sig { returns(T.nilable(Float)) }
+          attr_reader :share_count
+
+          sig { params(share_count: Float).void }
+          attr_writer :share_count
+
+          # TIME_WATCHED: The time the video was watched in milliseconds. Video auto-looping
+          # will continue to increase this metric for each subsequent play
+          sig { returns(T.nilable(Float)) }
+          attr_reader :time_watched
+
+          sig { params(time_watched: Float).void }
+          attr_writer :time_watched
+
+          # TIME_WATCHED_FOR_VIDEO_VIEWS: The time watched in milliseconds for video
+          # play-pause cycles that are at least 3 seconds. Video auto-looping will continue
+          # to increase this metric for each subsequent play. Analytics data for this metric
+          # will be available for six months
+          sig { returns(T.nilable(Float)) }
+          attr_reader :time_watched_for_video_views
+
+          sig { params(time_watched_for_video_views: Float).void }
+          attr_writer :time_watched_for_video_views
+
+          # VIDEO_VIEW: Video views with play-pause cycles for at least 3 seconds.
+          # Auto-looping videos are counted as one when loaded. Each subsequent auto-looped
+          # play doesn't increase this metric. Analytics data for this metric won't be
+          # available after six months
+          sig { returns(T.nilable(Float)) }
+          attr_reader :video_view
+
+          sig { params(video_view: Float).void }
+          attr_writer :video_view
+
+          # VIEWER: Unique viewers who made engaged plays on the video. Auto-looping videos
+          # are counted as one when loaded. Each subsequent auto-looped play doesn't
+          # increase this metric. Analytics data for this metric won't be available after
+          # six months
+          sig { returns(T.nilable(Float)) }
+          attr_reader :viewer
+
+          sig { params(viewer: Float).void }
+          attr_writer :viewer
+
+          sig do
+            params(
+              click_count: Float,
+              comment_count: Float,
+              engagement: Float,
+              impression_count: Float,
+              like_count: Float,
+              share_count: Float,
+              time_watched: Float,
+              time_watched_for_video_views: Float,
+              video_view: Float,
+              viewer: Float
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Number of clicks
+            click_count: nil,
+            # Number of comments
+            comment_count: nil,
+            # Engagement rate
+            engagement: nil,
+            # Number of impressions
+            impression_count: nil,
+            # Number of likes
+            like_count: nil,
+            # Number of shares
+            share_count: nil,
+            # TIME_WATCHED: The time the video was watched in milliseconds. Video auto-looping
+            # will continue to increase this metric for each subsequent play
+            time_watched: nil,
+            # TIME_WATCHED_FOR_VIDEO_VIEWS: The time watched in milliseconds for video
+            # play-pause cycles that are at least 3 seconds. Video auto-looping will continue
+            # to increase this metric for each subsequent play. Analytics data for this metric
+            # will be available for six months
+            time_watched_for_video_views: nil,
+            # VIDEO_VIEW: Video views with play-pause cycles for at least 3 seconds.
+            # Auto-looping videos are counted as one when loaded. Each subsequent auto-looped
+            # play doesn't increase this metric. Analytics data for this metric won't be
+            # available after six months
+            video_view: nil,
+            # VIEWER: Unique viewers who made engaged plays on the video. Auto-looping videos
+            # are counted as one when loaded. Each subsequent auto-looped play doesn't
+            # increase this metric. Analytics data for this metric won't be available after
+            # six months
+            viewer: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                click_count: Float,
+                comment_count: Float,
+                engagement: Float,
+                impression_count: Float,
+                like_count: Float,
+                share_count: Float,
+                time_watched: Float,
+                time_watched_for_video_views: Float,
+                video_view: Float,
+                viewer: Float
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        class BlueskyPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                PostForMe::PlatformPost::Metrics::BlueskyPostMetricsDto,
+                PostForMe::Internal::AnyHash
+              )
+            end
+
+          # Number of likes on the post
+          sig { returns(Float) }
+          attr_accessor :like_count
+
+          # Number of quotes of the post
+          sig { returns(Float) }
+          attr_accessor :quote_count
+
+          # Number of replies on the post
+          sig { returns(Float) }
+          attr_accessor :reply_count
+
+          # Number of reposts of the post
+          sig { returns(Float) }
+          attr_accessor :repost_count
+
+          sig do
+            params(
+              like_count: Float,
+              quote_count: Float,
+              reply_count: Float,
+              repost_count: Float
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Number of likes on the post
+            like_count:,
+            # Number of quotes of the post
+            quote_count:,
+            # Number of replies on the post
+            reply_count:,
+            # Number of reposts of the post
+            repost_count:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                like_count: Float,
+                quote_count: Float,
+                reply_count: Float,
+                repost_count: Float
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        class PinterestPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto,
+                PostForMe::Internal::AnyHash
+              )
+            end
+
+          # Last 90 days of Pin metrics
+          sig do
+            returns(
+              T.nilable(
+                PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d
+              )
+            )
+          end
+          attr_reader :number_90d
+
+          sig do
+            params(
+              number_90d:
+                PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d::OrHash
+            ).void
+          end
+          attr_writer :number_90d
+
+          # Lifetime Pin metrics
+          sig do
+            returns(
+              T.nilable(
+                PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics
+              )
+            )
+          end
+          attr_reader :lifetime_metrics
+
+          sig do
+            params(
+              lifetime_metrics:
+                PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics::OrHash
+            ).void
+          end
+          attr_writer :lifetime_metrics
+
+          sig do
+            params(
+              number_90d:
+                PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d::OrHash,
+              lifetime_metrics:
+                PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Last 90 days of Pin metrics
+            number_90d: nil,
+            # Lifetime Pin metrics
+            lifetime_metrics: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                number_90d:
+                  PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d,
+                lifetime_metrics:
+                  PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Const90d < PostForMe::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d,
+                  PostForMe::Internal::AnyHash
+                )
+              end
+
+            # Number of comments on the Pin
+            sig { returns(T.nilable(Float)) }
+            attr_reader :comment
+
+            sig { params(comment: Float).void }
+            attr_writer :comment
+
+            # Number of times the Pin was shown (impressions)
+            sig { returns(T.nilable(Float)) }
+            attr_reader :impression
+
+            sig { params(impression: Float).void }
+            attr_writer :impression
+
+            # The last time Pinterest updated these metrics
+            sig { returns(T.nilable(String)) }
+            attr_reader :last_updated
+
+            sig { params(last_updated: String).void }
+            attr_writer :last_updated
+
+            # Number of clicks from the Pin to an external destination (outbound clicks)
+            sig { returns(T.nilable(Float)) }
+            attr_reader :outbound_click
+
+            sig { params(outbound_click: Float).void }
+            attr_writer :outbound_click
+
+            # Number of clicks on the Pin to view it in closeup (Pin clicks)
+            sig { returns(T.nilable(Float)) }
+            attr_reader :pin_click
+
+            sig { params(pin_click: Float).void }
+            attr_writer :pin_click
+
+            # Number of visits to the author's profile driven from the Pin
+            sig { returns(T.nilable(T.anything)) }
+            attr_accessor :profile_visit
+
+            # Total number of reactions on the Pin
+            sig { returns(T.nilable(Float)) }
+            attr_reader :reaction
+
+            sig { params(reaction: Float).void }
+            attr_writer :reaction
+
+            # Number of saves of the Pin
+            sig { returns(T.nilable(Float)) }
+            attr_reader :save
+
+            sig { params(save: Float).void }
+            attr_writer :save
+
+            # Number of follows driven from the Pin
+            sig { returns(T.nilable(T.anything)) }
+            attr_accessor :user_follow
+
+            # Number of video views of at least 10 seconds
+            sig { returns(T.nilable(Float)) }
+            attr_reader :video_10s_views
+
+            sig { params(video_10s_views: Float).void }
+            attr_writer :video_10s_views
+
+            # Average watch time for the video
+            sig { returns(T.nilable(Float)) }
+            attr_reader :video_average_time
+
+            sig { params(video_average_time: Float).void }
+            attr_writer :video_average_time
+
+            # Number of video views that reached 95% completion
+            sig { returns(T.nilable(Float)) }
+            attr_reader :video_p95_views
+
+            sig { params(video_p95_views: Float).void }
+            attr_writer :video_p95_views
+
+            # Total watch time for the video
+            sig { returns(T.nilable(Float)) }
+            attr_reader :video_total_time
+
+            sig { params(video_total_time: Float).void }
+            attr_writer :video_total_time
+
+            # Number of video views
+            sig { returns(T.nilable(Float)) }
+            attr_reader :video_views
+
+            sig { params(video_views: Float).void }
+            attr_writer :video_views
+
+            # Last 90 days of Pin metrics
+            sig do
+              params(
+                comment: Float,
+                impression: Float,
+                last_updated: String,
+                outbound_click: Float,
+                pin_click: Float,
+                profile_visit: T.nilable(T.anything),
+                reaction: Float,
+                save: Float,
+                user_follow: T.nilable(T.anything),
+                video_10s_views: Float,
+                video_average_time: Float,
+                video_p95_views: Float,
+                video_total_time: Float,
+                video_views: Float
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Number of comments on the Pin
+              comment: nil,
+              # Number of times the Pin was shown (impressions)
+              impression: nil,
+              # The last time Pinterest updated these metrics
+              last_updated: nil,
+              # Number of clicks from the Pin to an external destination (outbound clicks)
+              outbound_click: nil,
+              # Number of clicks on the Pin to view it in closeup (Pin clicks)
+              pin_click: nil,
+              # Number of visits to the author's profile driven from the Pin
+              profile_visit: nil,
+              # Total number of reactions on the Pin
+              reaction: nil,
+              # Number of saves of the Pin
+              save: nil,
+              # Number of follows driven from the Pin
+              user_follow: nil,
+              # Number of video views of at least 10 seconds
+              video_10s_views: nil,
+              # Average watch time for the video
+              video_average_time: nil,
+              # Number of video views that reached 95% completion
+              video_p95_views: nil,
+              # Total watch time for the video
+              video_total_time: nil,
+              # Number of video views
+              video_views: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  comment: Float,
+                  impression: Float,
+                  last_updated: String,
+                  outbound_click: Float,
+                  pin_click: Float,
+                  profile_visit: T.nilable(T.anything),
+                  reaction: Float,
+                  save: Float,
+                  user_follow: T.nilable(T.anything),
+                  video_10s_views: Float,
+                  video_average_time: Float,
+                  video_p95_views: Float,
+                  video_total_time: Float,
+                  video_views: Float
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          class LifetimeMetrics < PostForMe::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics,
+                  PostForMe::Internal::AnyHash
+                )
+              end
+
+            # Number of comments on the Pin
+            sig { returns(T.nilable(Float)) }
+            attr_reader :comment
+
+            sig { params(comment: Float).void }
+            attr_writer :comment
+
+            # Number of times the Pin was shown (impressions)
+            sig { returns(T.nilable(Float)) }
+            attr_reader :impression
+
+            sig { params(impression: Float).void }
+            attr_writer :impression
+
+            # The last time Pinterest updated these metrics
+            sig { returns(T.nilable(String)) }
+            attr_reader :last_updated
+
+            sig { params(last_updated: String).void }
+            attr_writer :last_updated
+
+            # Number of clicks from the Pin to an external destination (outbound clicks)
+            sig { returns(T.nilable(Float)) }
+            attr_reader :outbound_click
+
+            sig { params(outbound_click: Float).void }
+            attr_writer :outbound_click
+
+            # Number of clicks on the Pin to view it in closeup (Pin clicks)
+            sig { returns(T.nilable(Float)) }
+            attr_reader :pin_click
+
+            sig { params(pin_click: Float).void }
+            attr_writer :pin_click
+
+            # Number of visits to the author's profile driven from the Pin
+            sig { returns(T.nilable(T.anything)) }
+            attr_accessor :profile_visit
+
+            # Total number of reactions on the Pin
+            sig { returns(T.nilable(Float)) }
+            attr_reader :reaction
+
+            sig { params(reaction: Float).void }
+            attr_writer :reaction
+
+            # Number of saves of the Pin
+            sig { returns(T.nilable(Float)) }
+            attr_reader :save
+
+            sig { params(save: Float).void }
+            attr_writer :save
+
+            # Number of follows driven from the Pin
+            sig { returns(T.nilable(T.anything)) }
+            attr_accessor :user_follow
+
+            # Number of video views of at least 10 seconds
+            sig { returns(T.nilable(Float)) }
+            attr_reader :video_10s_views
+
+            sig { params(video_10s_views: Float).void }
+            attr_writer :video_10s_views
+
+            # Average watch time for the video
+            sig { returns(T.nilable(Float)) }
+            attr_reader :video_average_time
+
+            sig { params(video_average_time: Float).void }
+            attr_writer :video_average_time
+
+            # Number of video views that reached 95% completion
+            sig { returns(T.nilable(Float)) }
+            attr_reader :video_p95_views
+
+            sig { params(video_p95_views: Float).void }
+            attr_writer :video_p95_views
+
+            # Total watch time for the video
+            sig { returns(T.nilable(Float)) }
+            attr_reader :video_total_time
+
+            sig { params(video_total_time: Float).void }
+            attr_writer :video_total_time
+
+            # Number of video views
+            sig { returns(T.nilable(Float)) }
+            attr_reader :video_views
+
+            sig { params(video_views: Float).void }
+            attr_writer :video_views
+
+            # Lifetime Pin metrics
+            sig do
+              params(
+                comment: Float,
+                impression: Float,
+                last_updated: String,
+                outbound_click: Float,
+                pin_click: Float,
+                profile_visit: T.nilable(T.anything),
+                reaction: Float,
+                save: Float,
+                user_follow: T.nilable(T.anything),
+                video_10s_views: Float,
+                video_average_time: Float,
+                video_p95_views: Float,
+                video_total_time: Float,
+                video_views: Float
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Number of comments on the Pin
+              comment: nil,
+              # Number of times the Pin was shown (impressions)
+              impression: nil,
+              # The last time Pinterest updated these metrics
+              last_updated: nil,
+              # Number of clicks from the Pin to an external destination (outbound clicks)
+              outbound_click: nil,
+              # Number of clicks on the Pin to view it in closeup (Pin clicks)
+              pin_click: nil,
+              # Number of visits to the author's profile driven from the Pin
+              profile_visit: nil,
+              # Total number of reactions on the Pin
+              reaction: nil,
+              # Number of saves of the Pin
+              save: nil,
+              # Number of follows driven from the Pin
+              user_follow: nil,
+              # Number of video views of at least 10 seconds
+              video_10s_views: nil,
+              # Average watch time for the video
+              video_average_time: nil,
+              # Number of video views that reached 95% completion
+              video_p95_views: nil,
+              # Total watch time for the video
+              video_total_time: nil,
+              # Number of video views
+              video_views: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  comment: Float,
+                  impression: Float,
+                  last_updated: String,
+                  outbound_click: Float,
+                  pin_click: Float,
+                  profile_visit: T.nilable(T.anything),
+                  reaction: Float,
+                  save: Float,
+                  user_follow: T.nilable(T.anything),
+                  video_10s_views: Float,
+                  video_average_time: Float,
+                  video_p95_views: Float,
+                  video_total_time: Float,
+                  video_views: Float
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+        end
+
         sig do
           override.returns(T::Array[PostForMe::PlatformPost::Metrics::Variants])
         end
         def self.variants
+        end
+      end
+
+      class PlatformData < PostForMe::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              PostForMe::PlatformPost::PlatformData,
+              PostForMe::Internal::AnyHash
+            )
+          end
+
+        # Title of the post
+        sig { returns(String) }
+        attr_accessor :title
+
+        # Platform-specific data for the post
+        sig { params(title: String).returns(T.attached_class) }
+        def self.new(
+          # Title of the post
+          title:
+        )
+        end
+
+        sig { override.returns({ title: String }) }
+        def to_hash
         end
       end
     end

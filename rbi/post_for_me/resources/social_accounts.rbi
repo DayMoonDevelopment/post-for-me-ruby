@@ -88,6 +88,8 @@ module PostForMe
           limit: Float,
           offset: Float,
           platform: T::Array[String],
+          status:
+            T::Array[PostForMe::SocialAccountListParams::Status::OrSymbol],
           username: T::Array[String],
           request_options: PostForMe::RequestOptions::OrHash
         ).returns(PostForMe::Models::SocialAccountListResponse)
@@ -106,6 +108,9 @@ module PostForMe
         # Filter by platform(s). Multiple values imply OR logic (e.g.,
         # ?platform=x&platform=facebook).
         platform: nil,
+        # Filter by status. Multiple values imply OR logic (e.g.,
+        # ?status=connected&status=disconnected).
+        status: nil,
         # Filter by username(s). Multiple values imply OR logic (e.g.,
         # ?username=test&username=test2).
         username: nil,

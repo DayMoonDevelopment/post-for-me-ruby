@@ -7,6 +7,7 @@ module PostForMe
         limit: Float,
         offset: Float,
         platform: ::Array[String],
+        status: ::Array[PostForMe::Models::SocialAccountListParams::status],
         username: ::Array[String]
       }
       & PostForMe::Internal::Type::request_parameters
@@ -35,6 +36,12 @@ module PostForMe
 
       def platform=: (::Array[String]) -> ::Array[String]
 
+      attr_reader status: ::Array[PostForMe::Models::SocialAccountListParams::status]?
+
+      def status=: (
+        ::Array[PostForMe::Models::SocialAccountListParams::status]
+      ) -> ::Array[PostForMe::Models::SocialAccountListParams::status]
+
       attr_reader username: ::Array[String]?
 
       def username=: (::Array[String]) -> ::Array[String]
@@ -45,6 +52,7 @@ module PostForMe
         ?limit: Float,
         ?offset: Float,
         ?platform: ::Array[String],
+        ?status: ::Array[PostForMe::Models::SocialAccountListParams::status],
         ?username: ::Array[String],
         ?request_options: PostForMe::request_opts
       ) -> void
@@ -55,9 +63,21 @@ module PostForMe
         limit: Float,
         offset: Float,
         platform: ::Array[String],
+        status: ::Array[PostForMe::Models::SocialAccountListParams::status],
         username: ::Array[String],
         request_options: PostForMe::RequestOptions
       }
+
+      type status = :connected | :disconnected
+
+      module Status
+        extend PostForMe::Internal::Type::Enum
+
+        CONNECTED: :connected
+        DISCONNECTED: :disconnected
+
+        def self?.values: -> ::Array[PostForMe::Models::SocialAccountListParams::status]
+      end
     end
   end
 end

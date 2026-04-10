@@ -61,8 +61,14 @@ module PostForMe
       # @!attribute metrics
       #   Post metrics and analytics data
       #
-      #   @return [PostForMe::Models::PlatformPost::Metrics::TikTokBusinessMetricsDto, PostForMe::Models::PlatformPost::Metrics::TikTokPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::InstagramPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::YouTubePostMetricsDto, PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::TwitterPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::ThreadsPostMetricsDto, Object, nil]
+      #   @return [PostForMe::Models::PlatformPost::Metrics::TikTokBusinessMetricsDto, PostForMe::Models::PlatformPost::Metrics::TikTokPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::InstagramPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::YouTubePostMetricsDto, PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::TwitterPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::ThreadsPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::LinkedInPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::BlueskyPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto, nil]
       optional :metrics, union: -> { PostForMe::PlatformPost::Metrics }
+
+      # @!attribute platform_data
+      #   Platform-specific data for the post
+      #
+      #   @return [PostForMe::Models::PlatformPost::PlatformData, nil]
+      optional :platform_data, -> { PostForMe::PlatformPost::PlatformData }
 
       # @!attribute posted_at
       #   Date the post was published
@@ -82,7 +88,7 @@ module PostForMe
       #   @return [String, nil]
       optional :social_post_result_id, String, nil?: true
 
-      # @!method initialize(caption:, media:, platform:, platform_account_id:, platform_post_id:, platform_url:, social_account_id:, external_account_id: nil, external_post_id: nil, metrics: nil, posted_at: nil, social_post_id: nil, social_post_result_id: nil)
+      # @!method initialize(caption:, media:, platform:, platform_account_id:, platform_post_id:, platform_url:, social_account_id:, external_account_id: nil, external_post_id: nil, metrics: nil, platform_data: nil, posted_at: nil, social_post_id: nil, social_post_result_id: nil)
       #   @param caption [String] Caption or text content of the post
       #
       #   @param media [Array<Array<Object>>] Array of media items attached to the post
@@ -101,7 +107,9 @@ module PostForMe
       #
       #   @param external_post_id [String, nil] External post ID from the platform
       #
-      #   @param metrics [PostForMe::Models::PlatformPost::Metrics::TikTokBusinessMetricsDto, PostForMe::Models::PlatformPost::Metrics::TikTokPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::InstagramPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::YouTubePostMetricsDto, PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::TwitterPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::ThreadsPostMetricsDto, Object] Post metrics and analytics data
+      #   @param metrics [PostForMe::Models::PlatformPost::Metrics::TikTokBusinessMetricsDto, PostForMe::Models::PlatformPost::Metrics::TikTokPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::InstagramPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::YouTubePostMetricsDto, PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::TwitterPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::ThreadsPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::LinkedInPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::BlueskyPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto] Post metrics and analytics data
+      #
+      #   @param platform_data [PostForMe::Models::PlatformPost::PlatformData] Platform-specific data for the post
       #
       #   @param posted_at [Time] Date the post was published
       #
@@ -129,7 +137,11 @@ module PostForMe
 
         variant -> { PostForMe::PlatformPost::Metrics::ThreadsPostMetricsDto }
 
-        variant PostForMe::Internal::Type::Unknown
+        variant -> { PostForMe::PlatformPost::Metrics::LinkedInPostMetricsDto }
+
+        variant -> { PostForMe::PlatformPost::Metrics::BlueskyPostMetricsDto }
+
+        variant -> { PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto }
 
         class TikTokBusinessMetricsDto < PostForMe::Internal::Type::BaseModel
           # @!attribute address_clicks
@@ -1577,8 +1589,412 @@ module PostForMe
           #   @param views [Float] Number of views on the post
         end
 
+        class LinkedInPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          # @!attribute click_count
+          #   Number of clicks
+          #
+          #   @return [Float, nil]
+          optional :click_count, Float, api_name: :clickCount
+
+          # @!attribute comment_count
+          #   Number of comments
+          #
+          #   @return [Float, nil]
+          optional :comment_count, Float, api_name: :commentCount
+
+          # @!attribute engagement
+          #   Engagement rate
+          #
+          #   @return [Float, nil]
+          optional :engagement, Float
+
+          # @!attribute impression_count
+          #   Number of impressions
+          #
+          #   @return [Float, nil]
+          optional :impression_count, Float, api_name: :impressionCount
+
+          # @!attribute like_count
+          #   Number of likes
+          #
+          #   @return [Float, nil]
+          optional :like_count, Float, api_name: :likeCount
+
+          # @!attribute share_count
+          #   Number of shares
+          #
+          #   @return [Float, nil]
+          optional :share_count, Float, api_name: :shareCount
+
+          # @!attribute time_watched
+          #   TIME_WATCHED: The time the video was watched in milliseconds. Video auto-looping
+          #   will continue to increase this metric for each subsequent play
+          #
+          #   @return [Float, nil]
+          optional :time_watched, Float, api_name: :timeWatched
+
+          # @!attribute time_watched_for_video_views
+          #   TIME_WATCHED_FOR_VIDEO_VIEWS: The time watched in milliseconds for video
+          #   play-pause cycles that are at least 3 seconds. Video auto-looping will continue
+          #   to increase this metric for each subsequent play. Analytics data for this metric
+          #   will be available for six months
+          #
+          #   @return [Float, nil]
+          optional :time_watched_for_video_views, Float, api_name: :timeWatchedForVideoViews
+
+          # @!attribute video_view
+          #   VIDEO_VIEW: Video views with play-pause cycles for at least 3 seconds.
+          #   Auto-looping videos are counted as one when loaded. Each subsequent auto-looped
+          #   play doesn't increase this metric. Analytics data for this metric won't be
+          #   available after six months
+          #
+          #   @return [Float, nil]
+          optional :video_view, Float, api_name: :videoView
+
+          # @!attribute viewer
+          #   VIEWER: Unique viewers who made engaged plays on the video. Auto-looping videos
+          #   are counted as one when loaded. Each subsequent auto-looped play doesn't
+          #   increase this metric. Analytics data for this metric won't be available after
+          #   six months
+          #
+          #   @return [Float, nil]
+          optional :viewer, Float
+
+          # @!method initialize(click_count: nil, comment_count: nil, engagement: nil, impression_count: nil, like_count: nil, share_count: nil, time_watched: nil, time_watched_for_video_views: nil, video_view: nil, viewer: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {PostForMe::Models::PlatformPost::Metrics::LinkedInPostMetricsDto} for more
+          #   details.
+          #
+          #   @param click_count [Float] Number of clicks
+          #
+          #   @param comment_count [Float] Number of comments
+          #
+          #   @param engagement [Float] Engagement rate
+          #
+          #   @param impression_count [Float] Number of impressions
+          #
+          #   @param like_count [Float] Number of likes
+          #
+          #   @param share_count [Float] Number of shares
+          #
+          #   @param time_watched [Float] TIME_WATCHED: The time the video was watched in milliseconds. Video auto-looping
+          #
+          #   @param time_watched_for_video_views [Float] TIME_WATCHED_FOR_VIDEO_VIEWS: The time watched in milliseconds for video play-pa
+          #
+          #   @param video_view [Float] VIDEO_VIEW: Video views with play-pause cycles for at least 3 seconds. Auto-loop
+          #
+          #   @param viewer [Float] VIEWER: Unique viewers who made engaged plays on the video. Auto-looping videos
+        end
+
+        class BlueskyPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          # @!attribute like_count
+          #   Number of likes on the post
+          #
+          #   @return [Float]
+          required :like_count, Float, api_name: :likeCount
+
+          # @!attribute quote_count
+          #   Number of quotes of the post
+          #
+          #   @return [Float]
+          required :quote_count, Float, api_name: :quoteCount
+
+          # @!attribute reply_count
+          #   Number of replies on the post
+          #
+          #   @return [Float]
+          required :reply_count, Float, api_name: :replyCount
+
+          # @!attribute repost_count
+          #   Number of reposts of the post
+          #
+          #   @return [Float]
+          required :repost_count, Float, api_name: :repostCount
+
+          # @!method initialize(like_count:, quote_count:, reply_count:, repost_count:)
+          #   @param like_count [Float] Number of likes on the post
+          #
+          #   @param quote_count [Float] Number of quotes of the post
+          #
+          #   @param reply_count [Float] Number of replies on the post
+          #
+          #   @param repost_count [Float] Number of reposts of the post
+        end
+
+        class PinterestPostMetricsDto < PostForMe::Internal::Type::BaseModel
+          # @!attribute number_90d
+          #   Last 90 days of Pin metrics
+          #
+          #   @return [PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d, nil]
+          optional :number_90d,
+                   -> { PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d },
+                   api_name: :"90d"
+
+          # @!attribute lifetime_metrics
+          #   Lifetime Pin metrics
+          #
+          #   @return [PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics, nil]
+          optional :lifetime_metrics,
+                   -> { PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics }
+
+          # @!method initialize(number_90d: nil, lifetime_metrics: nil)
+          #   @param number_90d [PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d] Last 90 days of Pin metrics
+          #
+          #   @param lifetime_metrics [PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics] Lifetime Pin metrics
+
+          # @see PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto#number_90d
+          class Const90d < PostForMe::Internal::Type::BaseModel
+            # @!attribute comment
+            #   Number of comments on the Pin
+            #
+            #   @return [Float, nil]
+            optional :comment, Float
+
+            # @!attribute impression
+            #   Number of times the Pin was shown (impressions)
+            #
+            #   @return [Float, nil]
+            optional :impression, Float
+
+            # @!attribute last_updated
+            #   The last time Pinterest updated these metrics
+            #
+            #   @return [String, nil]
+            optional :last_updated, String
+
+            # @!attribute outbound_click
+            #   Number of clicks from the Pin to an external destination (outbound clicks)
+            #
+            #   @return [Float, nil]
+            optional :outbound_click, Float
+
+            # @!attribute pin_click
+            #   Number of clicks on the Pin to view it in closeup (Pin clicks)
+            #
+            #   @return [Float, nil]
+            optional :pin_click, Float
+
+            # @!attribute profile_visit
+            #   Number of visits to the author's profile driven from the Pin
+            #
+            #   @return [Object, nil]
+            optional :profile_visit, PostForMe::Internal::Type::Unknown, nil?: true
+
+            # @!attribute reaction
+            #   Total number of reactions on the Pin
+            #
+            #   @return [Float, nil]
+            optional :reaction, Float
+
+            # @!attribute save
+            #   Number of saves of the Pin
+            #
+            #   @return [Float, nil]
+            optional :save, Float
+
+            # @!attribute user_follow
+            #   Number of follows driven from the Pin
+            #
+            #   @return [Object, nil]
+            optional :user_follow, PostForMe::Internal::Type::Unknown, nil?: true
+
+            # @!attribute video_10s_views
+            #   Number of video views of at least 10 seconds
+            #
+            #   @return [Float, nil]
+            optional :video_10s_views, Float
+
+            # @!attribute video_average_time
+            #   Average watch time for the video
+            #
+            #   @return [Float, nil]
+            optional :video_average_time, Float
+
+            # @!attribute video_p95_views
+            #   Number of video views that reached 95% completion
+            #
+            #   @return [Float, nil]
+            optional :video_p95_views, Float
+
+            # @!attribute video_total_time
+            #   Total watch time for the video
+            #
+            #   @return [Float, nil]
+            optional :video_total_time, Float
+
+            # @!attribute video_views
+            #   Number of video views
+            #
+            #   @return [Float, nil]
+            optional :video_views, Float
+
+            # @!method initialize(comment: nil, impression: nil, last_updated: nil, outbound_click: nil, pin_click: nil, profile_visit: nil, reaction: nil, save: nil, user_follow: nil, video_10s_views: nil, video_average_time: nil, video_p95_views: nil, video_total_time: nil, video_views: nil)
+            #   Last 90 days of Pin metrics
+            #
+            #   @param comment [Float] Number of comments on the Pin
+            #
+            #   @param impression [Float] Number of times the Pin was shown (impressions)
+            #
+            #   @param last_updated [String] The last time Pinterest updated these metrics
+            #
+            #   @param outbound_click [Float] Number of clicks from the Pin to an external destination (outbound clicks)
+            #
+            #   @param pin_click [Float] Number of clicks on the Pin to view it in closeup (Pin clicks)
+            #
+            #   @param profile_visit [Object, nil] Number of visits to the author's profile driven from the Pin
+            #
+            #   @param reaction [Float] Total number of reactions on the Pin
+            #
+            #   @param save [Float] Number of saves of the Pin
+            #
+            #   @param user_follow [Object, nil] Number of follows driven from the Pin
+            #
+            #   @param video_10s_views [Float] Number of video views of at least 10 seconds
+            #
+            #   @param video_average_time [Float] Average watch time for the video
+            #
+            #   @param video_p95_views [Float] Number of video views that reached 95% completion
+            #
+            #   @param video_total_time [Float] Total watch time for the video
+            #
+            #   @param video_views [Float] Number of video views
+          end
+
+          # @see PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto#lifetime_metrics
+          class LifetimeMetrics < PostForMe::Internal::Type::BaseModel
+            # @!attribute comment
+            #   Number of comments on the Pin
+            #
+            #   @return [Float, nil]
+            optional :comment, Float
+
+            # @!attribute impression
+            #   Number of times the Pin was shown (impressions)
+            #
+            #   @return [Float, nil]
+            optional :impression, Float
+
+            # @!attribute last_updated
+            #   The last time Pinterest updated these metrics
+            #
+            #   @return [String, nil]
+            optional :last_updated, String
+
+            # @!attribute outbound_click
+            #   Number of clicks from the Pin to an external destination (outbound clicks)
+            #
+            #   @return [Float, nil]
+            optional :outbound_click, Float
+
+            # @!attribute pin_click
+            #   Number of clicks on the Pin to view it in closeup (Pin clicks)
+            #
+            #   @return [Float, nil]
+            optional :pin_click, Float
+
+            # @!attribute profile_visit
+            #   Number of visits to the author's profile driven from the Pin
+            #
+            #   @return [Object, nil]
+            optional :profile_visit, PostForMe::Internal::Type::Unknown, nil?: true
+
+            # @!attribute reaction
+            #   Total number of reactions on the Pin
+            #
+            #   @return [Float, nil]
+            optional :reaction, Float
+
+            # @!attribute save
+            #   Number of saves of the Pin
+            #
+            #   @return [Float, nil]
+            optional :save, Float
+
+            # @!attribute user_follow
+            #   Number of follows driven from the Pin
+            #
+            #   @return [Object, nil]
+            optional :user_follow, PostForMe::Internal::Type::Unknown, nil?: true
+
+            # @!attribute video_10s_views
+            #   Number of video views of at least 10 seconds
+            #
+            #   @return [Float, nil]
+            optional :video_10s_views, Float
+
+            # @!attribute video_average_time
+            #   Average watch time for the video
+            #
+            #   @return [Float, nil]
+            optional :video_average_time, Float
+
+            # @!attribute video_p95_views
+            #   Number of video views that reached 95% completion
+            #
+            #   @return [Float, nil]
+            optional :video_p95_views, Float
+
+            # @!attribute video_total_time
+            #   Total watch time for the video
+            #
+            #   @return [Float, nil]
+            optional :video_total_time, Float
+
+            # @!attribute video_views
+            #   Number of video views
+            #
+            #   @return [Float, nil]
+            optional :video_views, Float
+
+            # @!method initialize(comment: nil, impression: nil, last_updated: nil, outbound_click: nil, pin_click: nil, profile_visit: nil, reaction: nil, save: nil, user_follow: nil, video_10s_views: nil, video_average_time: nil, video_p95_views: nil, video_total_time: nil, video_views: nil)
+            #   Lifetime Pin metrics
+            #
+            #   @param comment [Float] Number of comments on the Pin
+            #
+            #   @param impression [Float] Number of times the Pin was shown (impressions)
+            #
+            #   @param last_updated [String] The last time Pinterest updated these metrics
+            #
+            #   @param outbound_click [Float] Number of clicks from the Pin to an external destination (outbound clicks)
+            #
+            #   @param pin_click [Float] Number of clicks on the Pin to view it in closeup (Pin clicks)
+            #
+            #   @param profile_visit [Object, nil] Number of visits to the author's profile driven from the Pin
+            #
+            #   @param reaction [Float] Total number of reactions on the Pin
+            #
+            #   @param save [Float] Number of saves of the Pin
+            #
+            #   @param user_follow [Object, nil] Number of follows driven from the Pin
+            #
+            #   @param video_10s_views [Float] Number of video views of at least 10 seconds
+            #
+            #   @param video_average_time [Float] Average watch time for the video
+            #
+            #   @param video_p95_views [Float] Number of video views that reached 95% completion
+            #
+            #   @param video_total_time [Float] Total watch time for the video
+            #
+            #   @param video_views [Float] Number of video views
+          end
+        end
+
         # @!method self.variants
-        #   @return [Array(PostForMe::Models::PlatformPost::Metrics::TikTokBusinessMetricsDto, PostForMe::Models::PlatformPost::Metrics::TikTokPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::InstagramPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::YouTubePostMetricsDto, PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::TwitterPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::ThreadsPostMetricsDto, Object)]
+        #   @return [Array(PostForMe::Models::PlatformPost::Metrics::TikTokBusinessMetricsDto, PostForMe::Models::PlatformPost::Metrics::TikTokPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::InstagramPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::YouTubePostMetricsDto, PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::TwitterPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::ThreadsPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::LinkedInPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::BlueskyPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto)]
+      end
+
+      # @see PostForMe::Models::PlatformPost#platform_data
+      class PlatformData < PostForMe::Internal::Type::BaseModel
+        # @!attribute title
+        #   Title of the post
+        #
+        #   @return [String]
+        required :title, String
+
+        # @!method initialize(title:)
+        #   Platform-specific data for the post
+        #
+        #   @param title [String] Title of the post
       end
     end
   end

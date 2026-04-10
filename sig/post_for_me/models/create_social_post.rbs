@@ -95,6 +95,7 @@ module PostForMe
             privacy_status: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::privacy_status?,
             quote_tweet_id: String,
             reply_settings: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::reply_settings?,
+            set_caption_for_each_image: bool?,
             share_to_feed: bool?,
             title: String?,
             trial_reel_type: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::trial_reel_type?
@@ -151,6 +152,8 @@ module PostForMe
 
           attr_accessor reply_settings: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::reply_settings?
 
+          attr_accessor set_caption_for_each_image: bool?
+
           attr_accessor share_to_feed: bool?
 
           attr_accessor title: String?
@@ -179,6 +182,7 @@ module PostForMe
             ?privacy_status: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::privacy_status?,
             ?quote_tweet_id: String,
             ?reply_settings: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::reply_settings?,
+            ?set_caption_for_each_image: bool?,
             ?share_to_feed: bool?,
             ?title: String?,
             ?trial_reel_type: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::trial_reel_type?
@@ -206,6 +210,7 @@ module PostForMe
             privacy_status: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::privacy_status?,
             quote_tweet_id: String,
             reply_settings: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::reply_settings?,
+            set_caption_for_each_image: bool?,
             share_to_feed: bool?,
             title: String?,
             trial_reel_type: PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::trial_reel_type?
@@ -214,6 +219,7 @@ module PostForMe
           type media =
             {
               url: String,
+              skip_processing: bool?,
               tags: ::Array[PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag]?,
               thumbnail_timestamp_ms: top?,
               thumbnail_url: top?
@@ -221,6 +227,8 @@ module PostForMe
 
           class Media < PostForMe::Internal::Type::BaseModel
             attr_accessor url: String
+
+            attr_accessor skip_processing: bool?
 
             attr_accessor tags: ::Array[PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag]?
 
@@ -230,6 +238,7 @@ module PostForMe
 
             def initialize: (
               url: String,
+              ?skip_processing: bool?,
               ?tags: ::Array[PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag]?,
               ?thumbnail_timestamp_ms: top?,
               ?thumbnail_url: top?
@@ -237,6 +246,7 @@ module PostForMe
 
             def to_hash: -> {
               url: String,
+              skip_processing: bool?,
               tags: ::Array[PostForMe::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag]?,
               thumbnail_timestamp_ms: top?,
               thumbnail_url: top?
@@ -405,6 +415,7 @@ module PostForMe
       type media =
         {
           url: String,
+          skip_processing: bool?,
           tags: ::Array[PostForMe::CreateSocialPost::Media::Tag]?,
           thumbnail_timestamp_ms: top?,
           thumbnail_url: top?
@@ -412,6 +423,8 @@ module PostForMe
 
       class Media < PostForMe::Internal::Type::BaseModel
         attr_accessor url: String
+
+        attr_accessor skip_processing: bool?
 
         attr_accessor tags: ::Array[PostForMe::CreateSocialPost::Media::Tag]?
 
@@ -421,6 +434,7 @@ module PostForMe
 
         def initialize: (
           url: String,
+          ?skip_processing: bool?,
           ?tags: ::Array[PostForMe::CreateSocialPost::Media::Tag]?,
           ?thumbnail_timestamp_ms: top?,
           ?thumbnail_url: top?
@@ -428,6 +442,7 @@ module PostForMe
 
         def to_hash: -> {
           url: String,
+          skip_processing: bool?,
           tags: ::Array[PostForMe::CreateSocialPost::Media::Tag]?,
           thumbnail_timestamp_ms: top?,
           thumbnail_url: top?

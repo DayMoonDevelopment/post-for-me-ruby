@@ -52,6 +52,24 @@ module PostForMe
       sig { params(platform: T::Array[String]).void }
       attr_writer :platform
 
+      # Filter by status. Multiple values imply OR logic (e.g.,
+      # ?status=connected&status=disconnected).
+      sig do
+        returns(
+          T.nilable(
+            T::Array[PostForMe::SocialAccountListParams::Status::OrSymbol]
+          )
+        )
+      end
+      attr_reader :status
+
+      sig do
+        params(
+          status: T::Array[PostForMe::SocialAccountListParams::Status::OrSymbol]
+        ).void
+      end
+      attr_writer :status
+
       # Filter by username(s). Multiple values imply OR logic (e.g.,
       # ?username=test&username=test2).
       sig { returns(T.nilable(T::Array[String])) }
@@ -67,6 +85,8 @@ module PostForMe
           limit: Float,
           offset: Float,
           platform: T::Array[String],
+          status:
+            T::Array[PostForMe::SocialAccountListParams::Status::OrSymbol],
           username: T::Array[String],
           request_options: PostForMe::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -85,6 +105,9 @@ module PostForMe
         # Filter by platform(s). Multiple values imply OR logic (e.g.,
         # ?platform=x&platform=facebook).
         platform: nil,
+        # Filter by status. Multiple values imply OR logic (e.g.,
+        # ?status=connected&status=disconnected).
+        status: nil,
         # Filter by username(s). Multiple values imply OR logic (e.g.,
         # ?username=test&username=test2).
         username: nil,
@@ -100,12 +123,43 @@ module PostForMe
             limit: Float,
             offset: Float,
             platform: T::Array[String],
+            status:
+              T::Array[PostForMe::SocialAccountListParams::Status::OrSymbol],
             username: T::Array[String],
             request_options: PostForMe::RequestOptions
           }
         )
       end
       def to_hash
+      end
+
+      module Status
+        extend PostForMe::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, PostForMe::SocialAccountListParams::Status)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        CONNECTED =
+          T.let(
+            :connected,
+            PostForMe::SocialAccountListParams::Status::TaggedSymbol
+          )
+        DISCONNECTED =
+          T.let(
+            :disconnected,
+            PostForMe::SocialAccountListParams::Status::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[PostForMe::SocialAccountListParams::Status::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
     end
   end
