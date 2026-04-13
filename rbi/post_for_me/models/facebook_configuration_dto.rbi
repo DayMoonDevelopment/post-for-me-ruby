@@ -37,6 +37,11 @@ module PostForMe
       end
       attr_accessor :placement
 
+      # If true, include the caption on each image in a carousel upload; if false, only
+      # include it on the final carousel post
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :set_caption_for_each_image
+
       sig do
         params(
           caption: T.nilable(T.anything),
@@ -47,7 +52,8 @@ module PostForMe
               T::Array[PostForMe::FacebookConfigurationDto::Media::OrHash]
             ),
           placement:
-            T.nilable(PostForMe::FacebookConfigurationDto::Placement::OrSymbol)
+            T.nilable(PostForMe::FacebookConfigurationDto::Placement::OrSymbol),
+          set_caption_for_each_image: T.nilable(T::Boolean)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -60,7 +66,10 @@ module PostForMe
         # Overrides the `media` from the post
         media: nil,
         # Facebook post placement
-        placement: nil
+        placement: nil,
+        # If true, include the caption on each image in a carousel upload; if false, only
+        # include it on the final carousel post
+        set_caption_for_each_image: nil
       )
       end
 
@@ -75,7 +84,8 @@ module PostForMe
             placement:
               T.nilable(
                 PostForMe::FacebookConfigurationDto::Placement::OrSymbol
-              )
+              ),
+            set_caption_for_each_image: T.nilable(T::Boolean)
           }
         )
       end
@@ -94,6 +104,12 @@ module PostForMe
         # Public URL of the media
         sig { returns(String) }
         attr_accessor :url
+
+        # If true the media will not be processed at all and instead be posted as is, this
+        # may increase chance of post failure if media does not meet platform's
+        # requirements. Best used for larger files.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_accessor :skip_processing
 
         # List of tags to attach to the media
         sig do
@@ -114,6 +130,7 @@ module PostForMe
         sig do
           params(
             url: String,
+            skip_processing: T.nilable(T::Boolean),
             tags:
               T.nilable(
                 T::Array[
@@ -127,6 +144,10 @@ module PostForMe
         def self.new(
           # Public URL of the media
           url:,
+          # If true the media will not be processed at all and instead be posted as is, this
+          # may increase chance of post failure if media does not meet platform's
+          # requirements. Best used for larger files.
+          skip_processing: nil,
           # List of tags to attach to the media
           tags: nil,
           # Timestamp in milliseconds of frame to use as thumbnail for the media
@@ -140,6 +161,7 @@ module PostForMe
           override.returns(
             {
               url: String,
+              skip_processing: T.nilable(T::Boolean),
               tags:
                 T.nilable(
                   T::Array[PostForMe::FacebookConfigurationDto::Media::Tag]

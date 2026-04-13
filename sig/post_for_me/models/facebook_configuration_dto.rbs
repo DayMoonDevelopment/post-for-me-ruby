@@ -6,7 +6,8 @@ module PostForMe
         collaborators: ::Array[::Array[top]]?,
         location: String?,
         media: ::Array[PostForMe::FacebookConfigurationDto::Media]?,
-        placement: PostForMe::Models::FacebookConfigurationDto::placement?
+        placement: PostForMe::Models::FacebookConfigurationDto::placement?,
+        set_caption_for_each_image: bool?
       }
 
     class FacebookConfigurationDto < PostForMe::Internal::Type::BaseModel
@@ -20,12 +21,15 @@ module PostForMe
 
       attr_accessor placement: PostForMe::Models::FacebookConfigurationDto::placement?
 
+      attr_accessor set_caption_for_each_image: bool?
+
       def initialize: (
         ?caption: top?,
         ?collaborators: ::Array[::Array[top]]?,
         ?location: String?,
         ?media: ::Array[PostForMe::FacebookConfigurationDto::Media]?,
-        ?placement: PostForMe::Models::FacebookConfigurationDto::placement?
+        ?placement: PostForMe::Models::FacebookConfigurationDto::placement?,
+        ?set_caption_for_each_image: bool?
       ) -> void
 
       def to_hash: -> {
@@ -33,12 +37,14 @@ module PostForMe
         collaborators: ::Array[::Array[top]]?,
         location: String?,
         media: ::Array[PostForMe::FacebookConfigurationDto::Media]?,
-        placement: PostForMe::Models::FacebookConfigurationDto::placement?
+        placement: PostForMe::Models::FacebookConfigurationDto::placement?,
+        set_caption_for_each_image: bool?
       }
 
       type media =
         {
           url: String,
+          skip_processing: bool?,
           tags: ::Array[PostForMe::FacebookConfigurationDto::Media::Tag]?,
           thumbnail_timestamp_ms: top?,
           thumbnail_url: top?
@@ -46,6 +52,8 @@ module PostForMe
 
       class Media < PostForMe::Internal::Type::BaseModel
         attr_accessor url: String
+
+        attr_accessor skip_processing: bool?
 
         attr_accessor tags: ::Array[PostForMe::FacebookConfigurationDto::Media::Tag]?
 
@@ -55,6 +63,7 @@ module PostForMe
 
         def initialize: (
           url: String,
+          ?skip_processing: bool?,
           ?tags: ::Array[PostForMe::FacebookConfigurationDto::Media::Tag]?,
           ?thumbnail_timestamp_ms: top?,
           ?thumbnail_url: top?
@@ -62,6 +71,7 @@ module PostForMe
 
         def to_hash: -> {
           url: String,
+          skip_processing: bool?,
           tags: ::Array[PostForMe::FacebookConfigurationDto::Media::Tag]?,
           thumbnail_timestamp_ms: top?,
           thumbnail_url: top?

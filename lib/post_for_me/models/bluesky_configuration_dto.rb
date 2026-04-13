@@ -29,6 +29,14 @@ module PostForMe
         #   @return [String]
         required :url, String
 
+        # @!attribute skip_processing
+        #   If true the media will not be processed at all and instead be posted as is, this
+        #   may increase chance of post failure if media does not meet platform's
+        #   requirements. Best used for larger files.
+        #
+        #   @return [Boolean, nil]
+        optional :skip_processing, PostForMe::Internal::Type::Boolean, nil?: true
+
         # @!attribute tags
         #   List of tags to attach to the media
         #
@@ -49,8 +57,13 @@ module PostForMe
         #   @return [Object, nil]
         optional :thumbnail_url, PostForMe::Internal::Type::Unknown, nil?: true
 
-        # @!method initialize(url:, tags: nil, thumbnail_timestamp_ms: nil, thumbnail_url: nil)
+        # @!method initialize(url:, skip_processing: nil, tags: nil, thumbnail_timestamp_ms: nil, thumbnail_url: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {PostForMe::Models::BlueskyConfigurationDto::Media} for more details.
+        #
         #   @param url [String] Public URL of the media
+        #
+        #   @param skip_processing [Boolean, nil] If true the media will not be processed at all and instead be posted as is, this
         #
         #   @param tags [Array<PostForMe::Models::BlueskyConfigurationDto::Media::Tag>, nil] List of tags to attach to the media
         #

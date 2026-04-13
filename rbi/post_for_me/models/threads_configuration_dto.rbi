@@ -77,6 +77,12 @@ module PostForMe
         sig { returns(String) }
         attr_accessor :url
 
+        # If true the media will not be processed at all and instead be posted as is, this
+        # may increase chance of post failure if media does not meet platform's
+        # requirements. Best used for larger files.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_accessor :skip_processing
+
         # List of tags to attach to the media
         sig do
           returns(
@@ -96,6 +102,7 @@ module PostForMe
         sig do
           params(
             url: String,
+            skip_processing: T.nilable(T::Boolean),
             tags:
               T.nilable(
                 T::Array[PostForMe::ThreadsConfigurationDto::Media::Tag::OrHash]
@@ -107,6 +114,10 @@ module PostForMe
         def self.new(
           # Public URL of the media
           url:,
+          # If true the media will not be processed at all and instead be posted as is, this
+          # may increase chance of post failure if media does not meet platform's
+          # requirements. Best used for larger files.
+          skip_processing: nil,
           # List of tags to attach to the media
           tags: nil,
           # Timestamp in milliseconds of frame to use as thumbnail for the media
@@ -120,6 +131,7 @@ module PostForMe
           override.returns(
             {
               url: String,
+              skip_processing: T.nilable(T::Boolean),
               tags:
                 T.nilable(
                   T::Array[PostForMe::ThreadsConfigurationDto::Media::Tag]

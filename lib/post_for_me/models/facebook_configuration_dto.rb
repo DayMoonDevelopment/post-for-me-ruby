@@ -37,7 +37,17 @@ module PostForMe
       #   @return [Symbol, PostForMe::Models::FacebookConfigurationDto::Placement, nil]
       optional :placement, enum: -> { PostForMe::FacebookConfigurationDto::Placement }, nil?: true
 
-      # @!method initialize(caption: nil, collaborators: nil, location: nil, media: nil, placement: nil)
+      # @!attribute set_caption_for_each_image
+      #   If true, include the caption on each image in a carousel upload; if false, only
+      #   include it on the final carousel post
+      #
+      #   @return [Boolean, nil]
+      optional :set_caption_for_each_image, PostForMe::Internal::Type::Boolean, nil?: true
+
+      # @!method initialize(caption: nil, collaborators: nil, location: nil, media: nil, placement: nil, set_caption_for_each_image: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {PostForMe::Models::FacebookConfigurationDto} for more details.
+      #
       #   @param caption [Object, nil] Overrides the `caption` from the post
       #
       #   @param collaborators [Array<Array<Object>>, nil] List of page ids to invite as collaborators for a Video Reel
@@ -47,6 +57,8 @@ module PostForMe
       #   @param media [Array<PostForMe::Models::FacebookConfigurationDto::Media>, nil] Overrides the `media` from the post
       #
       #   @param placement [Symbol, PostForMe::Models::FacebookConfigurationDto::Placement, nil] Facebook post placement
+      #
+      #   @param set_caption_for_each_image [Boolean, nil] If true, include the caption on each image in a carousel upload; if false, only
 
       class Media < PostForMe::Internal::Type::BaseModel
         # @!attribute url
@@ -54,6 +66,14 @@ module PostForMe
         #
         #   @return [String]
         required :url, String
+
+        # @!attribute skip_processing
+        #   If true the media will not be processed at all and instead be posted as is, this
+        #   may increase chance of post failure if media does not meet platform's
+        #   requirements. Best used for larger files.
+        #
+        #   @return [Boolean, nil]
+        optional :skip_processing, PostForMe::Internal::Type::Boolean, nil?: true
 
         # @!attribute tags
         #   List of tags to attach to the media
@@ -75,8 +95,13 @@ module PostForMe
         #   @return [Object, nil]
         optional :thumbnail_url, PostForMe::Internal::Type::Unknown, nil?: true
 
-        # @!method initialize(url:, tags: nil, thumbnail_timestamp_ms: nil, thumbnail_url: nil)
+        # @!method initialize(url:, skip_processing: nil, tags: nil, thumbnail_timestamp_ms: nil, thumbnail_url: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {PostForMe::Models::FacebookConfigurationDto::Media} for more details.
+        #
         #   @param url [String] Public URL of the media
+        #
+        #   @param skip_processing [Boolean, nil] If true the media will not be processed at all and instead be posted as is, this
         #
         #   @param tags [Array<PostForMe::Models::FacebookConfigurationDto::Media::Tag>, nil] List of tags to attach to the media
         #

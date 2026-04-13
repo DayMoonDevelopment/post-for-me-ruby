@@ -36,7 +36,8 @@ module PostForMe
       optional :is_draft, PostForMe::Internal::Type::Boolean, api_name: :isDraft, nil?: true
 
       # @!attribute media
-      #   Array of media URLs associated with the post
+      #   Array of media associated with the post. If multiple media items are provided
+      #   and the placement is `stories`, individual posts are created per media item.
       #
       #   @return [Array<PostForMe::Models::CreateSocialPost::Media>, nil]
       optional :media,
@@ -72,7 +73,7 @@ module PostForMe
       #
       #   @param is_draft [Boolean, nil] If isDraft is set then the post will not be processed
       #
-      #   @param media [Array<PostForMe::Models::CreateSocialPost::Media>, nil] Array of media URLs associated with the post
+      #   @param media [Array<PostForMe::Models::CreateSocialPost::Media>, nil] Array of media associated with the post. If multiple media items are provided an
       #
       #   @param platform_configurations [PostForMe::Models::PlatformConfigurationsDto, nil] Platform-specific configurations for the post
       #
@@ -244,6 +245,13 @@ module PostForMe
                    },
                    nil?: true
 
+          # @!attribute set_caption_for_each_image
+          #   If true, include the caption on each image in a Facebook carousel upload; if
+          #   false, only include it on the final carousel post
+          #
+          #   @return [Boolean, nil]
+          optional :set_caption_for_each_image, PostForMe::Internal::Type::Boolean, nil?: true
+
           # @!attribute share_to_feed
           #   If false Instagram video posts will only be shown in the Reels tab
           #
@@ -268,7 +276,7 @@ module PostForMe
                    },
                    nil?: true
 
-          # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, auto_add_music: nil, board_ids: nil, caption: nil, collaborators: nil, community_id: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, link: nil, location: nil, made_for_kids: nil, media: nil, placement: nil, poll: nil, privacy_status: nil, quote_tweet_id: nil, reply_settings: nil, share_to_feed: nil, title: nil, trial_reel_type: nil)
+          # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, auto_add_music: nil, board_ids: nil, caption: nil, collaborators: nil, community_id: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, link: nil, location: nil, made_for_kids: nil, media: nil, placement: nil, poll: nil, privacy_status: nil, quote_tweet_id: nil, reply_settings: nil, set_caption_for_each_image: nil, share_to_feed: nil, title: nil, trial_reel_type: nil)
           #   Some parameter documentations has been truncated, see
           #   {PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration} for
           #   more details.
@@ -317,6 +325,8 @@ module PostForMe
           #
           #   @param reply_settings [Symbol, PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::ReplySettings, nil] Who can reply to the tweet
           #
+          #   @param set_caption_for_each_image [Boolean, nil] If true, include the caption on each image in a Facebook carousel upload; if fal
+          #
           #   @param share_to_feed [Boolean, nil] If false Instagram video posts will only be shown in the Reels tab
           #
           #   @param title [String, nil] Overrides the `title` from the post
@@ -329,6 +339,14 @@ module PostForMe
             #
             #   @return [String]
             required :url, String
+
+            # @!attribute skip_processing
+            #   If true the media will not be processed at all and instead be posted as is, this
+            #   may increase chance of post failure if media does not meet platform's
+            #   requirements. Best used for larger files.
+            #
+            #   @return [Boolean, nil]
+            optional :skip_processing, PostForMe::Internal::Type::Boolean, nil?: true
 
             # @!attribute tags
             #   List of tags to attach to the media
@@ -352,8 +370,14 @@ module PostForMe
             #   @return [Object, nil]
             optional :thumbnail_url, PostForMe::Internal::Type::Unknown, nil?: true
 
-            # @!method initialize(url:, tags: nil, thumbnail_timestamp_ms: nil, thumbnail_url: nil)
+            # @!method initialize(url:, skip_processing: nil, tags: nil, thumbnail_timestamp_ms: nil, thumbnail_url: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Media}
+            #   for more details.
+            #
             #   @param url [String] Public URL of the media
+            #
+            #   @param skip_processing [Boolean, nil] If true the media will not be processed at all and instead be posted as is, this
             #
             #   @param tags [Array<PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::Media::Tag>, nil] List of tags to attach to the media
             #
@@ -555,6 +579,14 @@ module PostForMe
         #   @return [String]
         required :url, String
 
+        # @!attribute skip_processing
+        #   If true the media will not be processed at all and instead be posted as is, this
+        #   may increase chance of post failure if media does not meet platform's
+        #   requirements. Best used for larger files.
+        #
+        #   @return [Boolean, nil]
+        optional :skip_processing, PostForMe::Internal::Type::Boolean, nil?: true
+
         # @!attribute tags
         #   List of tags to attach to the media
         #
@@ -575,8 +607,13 @@ module PostForMe
         #   @return [Object, nil]
         optional :thumbnail_url, PostForMe::Internal::Type::Unknown, nil?: true
 
-        # @!method initialize(url:, tags: nil, thumbnail_timestamp_ms: nil, thumbnail_url: nil)
+        # @!method initialize(url:, skip_processing: nil, tags: nil, thumbnail_timestamp_ms: nil, thumbnail_url: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {PostForMe::Models::CreateSocialPost::Media} for more details.
+        #
         #   @param url [String] Public URL of the media
+        #
+        #   @param skip_processing [Boolean, nil] If true the media will not be processed at all and instead be posted as is, this
         #
         #   @param tags [Array<PostForMe::Models::CreateSocialPost::Media::Tag>, nil] List of tags to attach to the media
         #

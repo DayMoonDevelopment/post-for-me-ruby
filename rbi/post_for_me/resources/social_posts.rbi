@@ -46,7 +46,8 @@ module PostForMe
         external_id: nil,
         # If isDraft is set then the post will not be processed
         is_draft: nil,
-        # Array of media URLs associated with the post
+        # Array of media associated with the post. If multiple media items are provided
+        # and the placement is `stories`, individual posts are created per media item.
         media: nil,
         # Platform-specific configurations for the post
         platform_configurations: nil,
@@ -106,7 +107,8 @@ module PostForMe
         external_id: nil,
         # If isDraft is set then the post will not be processed
         is_draft: nil,
-        # Array of media URLs associated with the post
+        # Array of media associated with the post. If multiple media items are provided
+        # and the placement is `stories`, individual posts are created per media item.
         media: nil,
         # Platform-specific configurations for the post
         platform_configurations: nil,

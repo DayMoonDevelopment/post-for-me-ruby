@@ -97,7 +97,7 @@ module PostForMe
       #
       # Get a paginated result for social accounts based on the applied filters
       #
-      # @overload list(id: nil, external_id: nil, limit: nil, offset: nil, platform: nil, username: nil, request_options: {})
+      # @overload list(id: nil, external_id: nil, limit: nil, offset: nil, platform: nil, status: nil, username: nil, request_options: {})
       #
       # @param id [Array<String>] Filter by id(s). Multiple values imply OR logic (e.g., ?id=spc_xxxxxx&id=spc_yyy
       #
@@ -108,6 +108,8 @@ module PostForMe
       # @param offset [Float] Number of items to skip
       #
       # @param platform [Array<String>] Filter by platform(s). Multiple values imply OR logic (e.g., ?platform=x&platfor
+      #
+      # @param status [Array<Symbol, PostForMe::Models::SocialAccountListParams::Status>] Filter by status. Multiple values imply OR logic (e.g., ?status=connected&status
       #
       # @param username [Array<String>] Filter by username(s). Multiple values imply OR logic (e.g., ?username=test&user
       #
