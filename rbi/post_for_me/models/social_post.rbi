@@ -337,7 +337,7 @@ module PostForMe
           sig { returns(T.nilable(T::Boolean)) }
           attr_accessor :share_to_feed
 
-          # Overrides the `title` from the post
+          # Overrides the `title` from the post (Pinterest, TikTok, YouTube)
           sig { returns(T.nilable(String)) }
           attr_accessor :title
 
@@ -453,7 +453,7 @@ module PostForMe
             set_caption_for_each_image: nil,
             # If false Instagram video posts will only be shown in the Reels tab
             share_to_feed: nil,
-            # Overrides the `title` from the post
+            # Overrides the `title` from the post (Pinterest, TikTok, YouTube)
             title: nil,
             # Instagram trial reel type, when passed will be created as a trial reel. If
             # manual the trial reel can be manually graduated in the native app. If perfomance
