@@ -29,7 +29,13 @@ module PostForMe
                -> { PostForMe::Internal::Type::ArrayOf[PostForMe::PinterestConfigurationDto::Media] },
                nil?: true
 
-      # @!method initialize(board_ids: nil, caption: nil, link: nil, media: nil)
+      # @!attribute title
+      #   Overrides the `title` from the post for Pinterest
+      #
+      #   @return [String, nil]
+      optional :title, String, nil?: true
+
+      # @!method initialize(board_ids: nil, caption: nil, link: nil, media: nil, title: nil)
       #   @param board_ids [Array<String>, nil] Pinterest board IDs
       #
       #   @param caption [Object, nil] Overrides the `caption` from the post
@@ -37,6 +43,8 @@ module PostForMe
       #   @param link [String, nil] Pinterest post link
       #
       #   @param media [Array<PostForMe::Models::PinterestConfigurationDto::Media>, nil] Overrides the `media` from the post
+      #
+      #   @param title [String, nil] Overrides the `title` from the post for Pinterest
 
       class Media < PostForMe::Internal::Type::BaseModel
         # @!attribute url

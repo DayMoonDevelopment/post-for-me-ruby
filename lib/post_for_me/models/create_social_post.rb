@@ -259,7 +259,7 @@ module PostForMe
           optional :share_to_feed, PostForMe::Internal::Type::Boolean, nil?: true
 
           # @!attribute title
-          #   Overrides the `title` from the post
+          #   Overrides the `title` from the post (Pinterest, TikTok, YouTube)
           #
           #   @return [String, nil]
           optional :title, String, nil?: true
@@ -329,7 +329,7 @@ module PostForMe
           #
           #   @param share_to_feed [Boolean, nil] If false Instagram video posts will only be shown in the Reels tab
           #
-          #   @param title [String, nil] Overrides the `title` from the post
+          #   @param title [String, nil] Overrides the `title` from the post (Pinterest, TikTok, YouTube)
           #
           #   @param trial_reel_type [Symbol, PostForMe::Models::CreateSocialPost::AccountConfiguration::Configuration::TrialReelType, nil] Instagram trial reel type, when passed will be created as a trial reel. If manua
 
