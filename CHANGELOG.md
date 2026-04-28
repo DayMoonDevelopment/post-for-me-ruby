@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.20 (2026-04-28)
+
+Full Changelog: [v0.1.0-alpha.19...v0.1.0-alpha.20](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.19...v0.1.0-alpha.20)
+
+### Features
+
+* **api:** api update ([660592b](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/660592bfb078716516492819adbc4d6ac441705e))
+* support setting headers via env ([df33ef4](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/df33ef40c6e553fbb1492310a421384207093c34))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([ee0dc44](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/ee0dc4464e8d9e9e7027aa3a4b77a12fbb0d970d))
+
 ## 0.1.0-alpha.19 (2026-04-11)
 
 Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
