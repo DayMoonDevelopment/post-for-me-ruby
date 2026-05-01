@@ -31,6 +31,10 @@ module PostForMe
       end
       attr_accessor :media
 
+      # Overrides the `title` from the post for Pinterest
+      sig { returns(T.nilable(String)) }
+      attr_accessor :title
+
       sig do
         params(
           board_ids: T.nilable(T::Array[String]),
@@ -39,7 +43,8 @@ module PostForMe
           media:
             T.nilable(
               T::Array[PostForMe::PinterestConfigurationDto::Media::OrHash]
-            )
+            ),
+          title: T.nilable(String)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -50,7 +55,9 @@ module PostForMe
         # Pinterest post link
         link: nil,
         # Overrides the `media` from the post
-        media: nil
+        media: nil,
+        # Overrides the `title` from the post for Pinterest
+        title: nil
       )
       end
 
@@ -61,7 +68,8 @@ module PostForMe
             caption: T.nilable(T.anything),
             link: T.nilable(String),
             media:
-              T.nilable(T::Array[PostForMe::PinterestConfigurationDto::Media])
+              T.nilable(T::Array[PostForMe::PinterestConfigurationDto::Media]),
+            title: T.nilable(String)
           }
         )
       end
