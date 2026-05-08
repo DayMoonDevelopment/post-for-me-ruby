@@ -1,0 +1,52 @@
+module PostForMe
+  module Models
+    type webhook_create_params =
+      {
+        event_types: ::Array[PostForMe::Models::WebhookCreateParams::event_type],
+        url: String
+      }
+      & PostForMe::Internal::Type::request_parameters
+
+    class WebhookCreateParams < PostForMe::Internal::Type::BaseModel
+      extend PostForMe::Internal::Type::RequestParameters::Converter
+      include PostForMe::Internal::Type::RequestParameters
+
+      attr_accessor event_types: ::Array[PostForMe::Models::WebhookCreateParams::event_type]
+
+      attr_accessor url: String
+
+      def initialize: (
+        event_types: ::Array[PostForMe::Models::WebhookCreateParams::event_type],
+        url: String,
+        ?request_options: PostForMe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        event_types: ::Array[PostForMe::Models::WebhookCreateParams::event_type],
+        url: String,
+        request_options: PostForMe::RequestOptions
+      }
+
+      type event_type =
+        :"social.post.created"
+        | :"social.post.updated"
+        | :"social.post.deleted"
+        | :"social.post.result.created"
+        | :"social.account.created"
+        | :"social.account.updated"
+
+      module EventType
+        extend PostForMe::Internal::Type::Enum
+
+        SOCIAL_POST_CREATED: :"social.post.created"
+        SOCIAL_POST_UPDATED: :"social.post.updated"
+        SOCIAL_POST_DELETED: :"social.post.deleted"
+        SOCIAL_POST_RESULT_CREATED: :"social.post.result.created"
+        SOCIAL_ACCOUNT_CREATED: :"social.account.created"
+        SOCIAL_ACCOUNT_UPDATED: :"social.account.updated"
+
+        def self?.values: -> ::Array[PostForMe::Models::WebhookCreateParams::event_type]
+      end
+    end
+  end
+end

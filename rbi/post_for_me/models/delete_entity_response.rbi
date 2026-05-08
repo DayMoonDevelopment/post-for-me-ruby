@@ -2,13 +2,10 @@
 
 module PostForMe
   module Models
-    class SocialPostDeleteResponse < PostForMe::Internal::Type::BaseModel
+    class DeleteEntityResponse < PostForMe::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(
-            PostForMe::Models::SocialPostDeleteResponse,
-            PostForMe::Internal::AnyHash
-          )
+          T.any(PostForMe::DeleteEntityResponse, PostForMe::Internal::AnyHash)
         end
 
       # Whether or not the entity was deleted

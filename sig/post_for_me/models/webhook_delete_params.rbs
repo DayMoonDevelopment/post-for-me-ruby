@@ -1,0 +1,20 @@
+module PostForMe
+  module Models
+    type webhook_delete_params =
+      { id: String } & PostForMe::Internal::Type::request_parameters
+
+    class WebhookDeleteParams < PostForMe::Internal::Type::BaseModel
+      extend PostForMe::Internal::Type::RequestParameters::Converter
+      include PostForMe::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      def initialize: (
+        id: String,
+        ?request_options: PostForMe::request_opts
+      ) -> void
+
+      def to_hash: -> { id: String, request_options: PostForMe::RequestOptions }
+    end
+  end
+end

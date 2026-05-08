@@ -210,7 +210,7 @@ You can provide typesafe request parameters like so:
 post_for_me.social_posts.create(
   caption: "My first post!",
   social_accounts: ["sa_1234"],
-  media: [PostForMe::CreateSocialPost::Media.new(url: "https://picsum.photos/1080")]
+  media: [PostForMe::SocialPostMedia.new(url: "https://picsum.photos/1080")]
 )
 ```
 
@@ -228,7 +228,7 @@ post_for_me.social_posts.create(
 params = PostForMe::SocialPostCreateParams.new(
   caption: "My first post!",
   social_accounts: ["sa_1234"],
-  media: [PostForMe::CreateSocialPost::Media.new(url: "https://picsum.photos/1080")]
+  media: [PostForMe::SocialPostMedia.new(url: "https://picsum.photos/1080")]
 )
 post_for_me.social_posts.create(**params)
 ```

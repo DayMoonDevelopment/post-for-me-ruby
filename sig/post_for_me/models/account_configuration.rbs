@@ -1,0 +1,217 @@
+module PostForMe
+  module Models
+    type account_configuration =
+      {
+        configuration: PostForMe::AccountConfiguration::Configuration,
+        social_account_id: String
+      }
+
+    class AccountConfiguration < PostForMe::Internal::Type::BaseModel
+      attr_accessor configuration: PostForMe::AccountConfiguration::Configuration
+
+      attr_accessor social_account_id: String
+
+      def initialize: (
+        configuration: PostForMe::AccountConfiguration::Configuration,
+        social_account_id: String
+      ) -> void
+
+      def to_hash: -> {
+        configuration: PostForMe::AccountConfiguration::Configuration,
+        social_account_id: String
+      }
+
+      type configuration =
+        {
+          allow_comment: bool?,
+          allow_duet: bool?,
+          allow_stitch: bool?,
+          auto_add_music: bool?,
+          board_ids: ::Array[String]?,
+          caption: top?,
+          collaborators: ::Array[::Array[top]]?,
+          community_id: String,
+          disclose_branded_content: bool?,
+          disclose_your_brand: bool?,
+          is_ai_generated: bool?,
+          is_draft: bool?,
+          link: String?,
+          location: String?,
+          made_for_kids: bool?,
+          media: ::Array[PostForMe::SocialPostMedia]?,
+          placement: PostForMe::Models::AccountConfiguration::Configuration::placement?,
+          poll: PostForMe::TwitterPoll,
+          privacy_status: PostForMe::Models::AccountConfiguration::Configuration::privacy_status?,
+          quote_tweet_id: String,
+          reply_settings: PostForMe::Models::AccountConfiguration::Configuration::reply_settings?,
+          set_caption_for_each_image: bool?,
+          share_to_feed: bool?,
+          title: String?,
+          trial_reel_type: PostForMe::Models::AccountConfiguration::Configuration::trial_reel_type?
+        }
+
+      class Configuration < PostForMe::Internal::Type::BaseModel
+        attr_accessor allow_comment: bool?
+
+        attr_accessor allow_duet: bool?
+
+        attr_accessor allow_stitch: bool?
+
+        attr_accessor auto_add_music: bool?
+
+        attr_accessor board_ids: ::Array[String]?
+
+        attr_accessor caption: top?
+
+        attr_accessor collaborators: ::Array[::Array[top]]?
+
+        attr_reader community_id: String?
+
+        def community_id=: (String) -> String
+
+        attr_accessor disclose_branded_content: bool?
+
+        attr_accessor disclose_your_brand: bool?
+
+        attr_accessor is_ai_generated: bool?
+
+        attr_accessor is_draft: bool?
+
+        attr_accessor link: String?
+
+        attr_accessor location: String?
+
+        attr_accessor made_for_kids: bool?
+
+        attr_accessor media: ::Array[PostForMe::SocialPostMedia]?
+
+        attr_accessor placement: PostForMe::Models::AccountConfiguration::Configuration::placement?
+
+        attr_reader poll: PostForMe::TwitterPoll?
+
+        def poll=: (PostForMe::TwitterPoll) -> PostForMe::TwitterPoll
+
+        attr_accessor privacy_status: PostForMe::Models::AccountConfiguration::Configuration::privacy_status?
+
+        attr_reader quote_tweet_id: String?
+
+        def quote_tweet_id=: (String) -> String
+
+        attr_accessor reply_settings: PostForMe::Models::AccountConfiguration::Configuration::reply_settings?
+
+        attr_accessor set_caption_for_each_image: bool?
+
+        attr_accessor share_to_feed: bool?
+
+        attr_accessor title: String?
+
+        attr_accessor trial_reel_type: PostForMe::Models::AccountConfiguration::Configuration::trial_reel_type?
+
+        def initialize: (
+          ?allow_comment: bool?,
+          ?allow_duet: bool?,
+          ?allow_stitch: bool?,
+          ?auto_add_music: bool?,
+          ?board_ids: ::Array[String]?,
+          ?caption: top?,
+          ?collaborators: ::Array[::Array[top]]?,
+          ?community_id: String,
+          ?disclose_branded_content: bool?,
+          ?disclose_your_brand: bool?,
+          ?is_ai_generated: bool?,
+          ?is_draft: bool?,
+          ?link: String?,
+          ?location: String?,
+          ?made_for_kids: bool?,
+          ?media: ::Array[PostForMe::SocialPostMedia]?,
+          ?placement: PostForMe::Models::AccountConfiguration::Configuration::placement?,
+          ?poll: PostForMe::TwitterPoll,
+          ?privacy_status: PostForMe::Models::AccountConfiguration::Configuration::privacy_status?,
+          ?quote_tweet_id: String,
+          ?reply_settings: PostForMe::Models::AccountConfiguration::Configuration::reply_settings?,
+          ?set_caption_for_each_image: bool?,
+          ?share_to_feed: bool?,
+          ?title: String?,
+          ?trial_reel_type: PostForMe::Models::AccountConfiguration::Configuration::trial_reel_type?
+        ) -> void
+
+        def to_hash: -> {
+          allow_comment: bool?,
+          allow_duet: bool?,
+          allow_stitch: bool?,
+          auto_add_music: bool?,
+          board_ids: ::Array[String]?,
+          caption: top?,
+          collaborators: ::Array[::Array[top]]?,
+          community_id: String,
+          disclose_branded_content: bool?,
+          disclose_your_brand: bool?,
+          is_ai_generated: bool?,
+          is_draft: bool?,
+          link: String?,
+          location: String?,
+          made_for_kids: bool?,
+          media: ::Array[PostForMe::SocialPostMedia]?,
+          placement: PostForMe::Models::AccountConfiguration::Configuration::placement?,
+          poll: PostForMe::TwitterPoll,
+          privacy_status: PostForMe::Models::AccountConfiguration::Configuration::privacy_status?,
+          quote_tweet_id: String,
+          reply_settings: PostForMe::Models::AccountConfiguration::Configuration::reply_settings?,
+          set_caption_for_each_image: bool?,
+          share_to_feed: bool?,
+          title: String?,
+          trial_reel_type: PostForMe::Models::AccountConfiguration::Configuration::trial_reel_type?
+        }
+
+        type placement = :reels | :timeline | :stories
+
+        module Placement
+          extend PostForMe::Internal::Type::Enum
+
+          REELS: :reels
+          TIMELINE: :timeline
+          STORIES: :stories
+
+          def self?.values: -> ::Array[PostForMe::Models::AccountConfiguration::Configuration::placement]
+        end
+
+        type privacy_status = :public | :private | :unlisted
+
+        module PrivacyStatus
+          extend PostForMe::Internal::Type::Enum
+
+          PUBLIC: :public
+          PRIVATE: :private
+          UNLISTED: :unlisted
+
+          def self?.values: -> ::Array[PostForMe::Models::AccountConfiguration::Configuration::privacy_status]
+        end
+
+        type reply_settings =
+          :following | :mentionedUsers | :subscribers | :verified
+
+        module ReplySettings
+          extend PostForMe::Internal::Type::Enum
+
+          FOLLOWING: :following
+          MENTIONED_USERS: :mentionedUsers
+          SUBSCRIBERS: :subscribers
+          VERIFIED: :verified
+
+          def self?.values: -> ::Array[PostForMe::Models::AccountConfiguration::Configuration::reply_settings]
+        end
+
+        type trial_reel_type = :manual | :performance
+
+        module TrialReelType
+          extend PostForMe::Internal::Type::Enum
+
+          MANUAL: :manual
+          PERFORMANCE: :performance
+
+          def self?.values: -> ::Array[PostForMe::Models::AccountConfiguration::Configuration::trial_reel_type]
+        end
+      end
+    end
+  end
+end

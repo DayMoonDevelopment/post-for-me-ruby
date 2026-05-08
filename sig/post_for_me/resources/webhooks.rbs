@@ -1,0 +1,39 @@
+module PostForMe
+  module Resources
+    class Webhooks
+      def create: (
+        event_types: ::Array[PostForMe::Models::WebhookCreateParams::event_type],
+        url: String,
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::Webhook
+
+      def retrieve: (
+        String id,
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::Webhook
+
+      def update: (
+        String id,
+        ?event_types: ::Array[PostForMe::Models::WebhookUpdateParams::event_type],
+        ?url: String,
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::Webhook
+
+      def list: (
+        ?id: ::Array[String],
+        ?event_type: ::Array[String],
+        ?limit: Float,
+        ?offset: Float,
+        ?url: ::Array[String],
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::Models::WebhookListResponse
+
+      def delete: (
+        String id,
+        ?request_options: PostForMe::request_opts
+      ) -> PostForMe::DeleteEntityResponse
+
+      def initialize: (client: PostForMe::Client) -> void
+    end
+  end
+end

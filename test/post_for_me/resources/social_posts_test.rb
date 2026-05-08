@@ -15,11 +15,11 @@ class PostForMe::Test::Resources::SocialPostsTest < PostForMe::Test::ResourceTes
     assert_pattern do
       response => {
         id: String,
-        account_configurations: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPost::AccountConfiguration]) | nil,
+        account_configurations: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::AccountConfiguration]) | nil,
         caption: String,
         created_at: String,
         external_id: String | nil,
-        media: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPost::Media]) | nil,
+        media: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPostMedia]) | nil,
         platform_configurations: PostForMe::PlatformConfigurationsDto | nil,
         scheduled_at: String | nil,
         social_accounts: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialAccount]),
@@ -41,11 +41,11 @@ class PostForMe::Test::Resources::SocialPostsTest < PostForMe::Test::ResourceTes
     assert_pattern do
       response => {
         id: String,
-        account_configurations: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPost::AccountConfiguration]) | nil,
+        account_configurations: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::AccountConfiguration]) | nil,
         caption: String,
         created_at: String,
         external_id: String | nil,
-        media: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPost::Media]) | nil,
+        media: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPostMedia]) | nil,
         platform_configurations: PostForMe::PlatformConfigurationsDto | nil,
         scheduled_at: String | nil,
         social_accounts: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialAccount]),
@@ -67,11 +67,11 @@ class PostForMe::Test::Resources::SocialPostsTest < PostForMe::Test::ResourceTes
     assert_pattern do
       response => {
         id: String,
-        account_configurations: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPost::AccountConfiguration]) | nil,
+        account_configurations: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::AccountConfiguration]) | nil,
         caption: String,
         created_at: String,
         external_id: String | nil,
-        media: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPost::Media]) | nil,
+        media: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPostMedia]) | nil,
         platform_configurations: PostForMe::PlatformConfigurationsDto | nil,
         scheduled_at: String | nil,
         social_accounts: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialAccount]),
@@ -104,7 +104,7 @@ class PostForMe::Test::Resources::SocialPostsTest < PostForMe::Test::ResourceTes
     response = @post_for_me.social_posts.delete("id")
 
     assert_pattern do
-      response => PostForMe::Models::SocialPostDeleteResponse
+      response => PostForMe::DeleteEntityResponse
     end
 
     assert_pattern do

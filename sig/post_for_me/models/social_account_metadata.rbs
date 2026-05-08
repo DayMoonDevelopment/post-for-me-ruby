@@ -1,0 +1,5 @@
+module PostForMe
+  module Models
+    SocialAccountMetadata: PostForMe::Internal::Type::Converter
+  end
+end

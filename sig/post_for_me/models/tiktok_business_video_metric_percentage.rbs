@@ -1,0 +1,16 @@
+module PostForMe
+  module Models
+    type tiktok_business_video_metric_percentage =
+      { percentage: Float, second: String }
+
+    class TiktokBusinessVideoMetricPercentage < PostForMe::Internal::Type::BaseModel
+      attr_accessor percentage: Float
+
+      attr_accessor second: String
+
+      def initialize: (percentage: Float, second: String) -> void
+
+      def to_hash: -> { percentage: Float, second: String }
+    end
+  end
+end

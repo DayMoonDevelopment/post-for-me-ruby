@@ -17,7 +17,7 @@ class PostForMe::Test::Resources::SocialPostResultsTest < PostForMe::Test::Resou
         id: String,
         details: PostForMe::Internal::Type::Unknown,
         error: PostForMe::Internal::Type::Unknown,
-        media: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPostResult::Media]) | nil,
+        media: ^(PostForMe::Internal::Type::ArrayOf[PostForMe::SocialPostMedia]) | nil,
         platform_data: PostForMe::SocialPostResult::PlatformData,
         post_id: String,
         social_account_id: String,

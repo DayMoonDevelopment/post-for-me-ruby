@@ -3,7 +3,7 @@
 module PostForMe
   module Models
     # @see PostForMe::Resources::SocialPosts#delete
-    class SocialPostDeleteResponse < PostForMe::Internal::Type::BaseModel
+    class DeleteEntityResponse < PostForMe::Internal::Type::BaseModel
       # @!attribute success
       #   Whether or not the entity was deleted
       #
