@@ -1,0 +1,13 @@
+module PostForMe
+  module Models
+    type youtube_post_platform_data = { title: String }
+
+    class YoutubePostPlatformData < PostForMe::Internal::Type::BaseModel
+      attr_accessor title: String
+
+      def initialize: (title: String) -> void
+
+      def to_hash: -> { title: String }
+    end
+  end
+end

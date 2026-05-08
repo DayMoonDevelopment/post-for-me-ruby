@@ -25,13 +25,13 @@ module PostForMe
       #
       # @param social_accounts [Array<String>] Array of social account IDs for posting
       #
-      # @param account_configurations [Array<PostForMe::Models::CreateSocialPost::AccountConfiguration>, nil] Account-specific configurations for the post
+      # @param account_configurations [Array<PostForMe::Models::AccountConfiguration>, nil] Account-specific configurations for the post
       #
       # @param external_id [String, nil] Array of social account IDs for posting
       #
       # @param is_draft [Boolean, nil] If isDraft is set then the post will not be processed
       #
-      # @param media [Array<PostForMe::Models::CreateSocialPost::Media>, nil] Array of media associated with the post. If multiple media items are provided an
+      # @param media [Array<PostForMe::Models::SocialPostMedia>, nil] Array of media associated with the post. If multiple media items are provided an
       #
       # @param platform_configurations [PostForMe::Models::PlatformConfigurationsDto, nil] Platform-specific configurations for the post
       #
@@ -86,13 +86,13 @@ module PostForMe
       #
       # @param social_accounts [Array<String>] Array of social account IDs for posting
       #
-      # @param account_configurations [Array<PostForMe::Models::CreateSocialPost::AccountConfiguration>, nil] Account-specific configurations for the post
+      # @param account_configurations [Array<PostForMe::Models::AccountConfiguration>, nil] Account-specific configurations for the post
       #
       # @param external_id [String, nil] Array of social account IDs for posting
       #
       # @param is_draft [Boolean, nil] If isDraft is set then the post will not be processed
       #
-      # @param media [Array<PostForMe::Models::CreateSocialPost::Media>, nil] Array of media associated with the post. If multiple media items are provided an
+      # @param media [Array<PostForMe::Models::SocialPostMedia>, nil] Array of media associated with the post. If multiple media items are provided an
       #
       # @param platform_configurations [PostForMe::Models::PlatformConfigurationsDto, nil] Platform-specific configurations for the post
       #
@@ -155,14 +155,14 @@ module PostForMe
       #
       # @param request_options [PostForMe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [PostForMe::Models::SocialPostDeleteResponse]
+      # @return [PostForMe::Models::DeleteEntityResponse]
       #
       # @see PostForMe::Models::SocialPostDeleteParams
       def delete(id, params = {})
         @client.request(
           method: :delete,
           path: ["v1/social-posts/%1$s", id],
-          model: PostForMe::Models::SocialPostDeleteResponse,
+          model: PostForMe::DeleteEntityResponse,
           options: params[:request_options]
         )
       end

@@ -1,0 +1,109 @@
+module PostForMe
+  module Models
+    type pinterest_metrics_window =
+      {
+        comment: Float,
+        impression: Float,
+        last_updated: String,
+        outbound_click: Float,
+        pin_click: Float,
+        profile_visit: top?,
+        reaction: Float,
+        save: Float,
+        user_follow: top?,
+        :video_10s_views => Float,
+        video_average_time: Float,
+        :video_p95_views => Float,
+        video_total_time: Float,
+        video_views: Float
+      }
+
+    class PinterestMetricsWindow < PostForMe::Internal::Type::BaseModel
+      attr_reader comment: Float?
+
+      def comment=: (Float) -> Float
+
+      attr_reader impression: Float?
+
+      def impression=: (Float) -> Float
+
+      attr_reader last_updated: String?
+
+      def last_updated=: (String) -> String
+
+      attr_reader outbound_click: Float?
+
+      def outbound_click=: (Float) -> Float
+
+      attr_reader pin_click: Float?
+
+      def pin_click=: (Float) -> Float
+
+      attr_accessor profile_visit: top?
+
+      attr_reader reaction: Float?
+
+      def reaction=: (Float) -> Float
+
+      attr_reader save: Float?
+
+      def save=: (Float) -> Float
+
+      attr_accessor user_follow: top?
+
+      attr_reader video_10s_views: Float?
+
+      def video_10s_views=: (Float) -> Float
+
+      attr_reader video_average_time: Float?
+
+      def video_average_time=: (Float) -> Float
+
+      attr_reader video_p95_views: Float?
+
+      def video_p95_views=: (Float) -> Float
+
+      attr_reader video_total_time: Float?
+
+      def video_total_time=: (Float) -> Float
+
+      attr_reader video_views: Float?
+
+      def video_views=: (Float) -> Float
+
+      def initialize: (
+        ?comment: Float,
+        ?impression: Float,
+        ?last_updated: String,
+        ?outbound_click: Float,
+        ?pin_click: Float,
+        ?profile_visit: top?,
+        ?reaction: Float,
+        ?save: Float,
+        ?user_follow: top?,
+        ?video_10s_views: Float,
+        ?video_average_time: Float,
+        ?video_p95_views: Float,
+        ?video_total_time: Float,
+        ?video_views: Float
+      ) -> void
+
+      def to_hash: -> {
+        comment: Float,
+        impression: Float,
+        last_updated: String,
+        outbound_click: Float,
+        pin_click: Float,
+        profile_visit: top?,
+        reaction: Float,
+        save: Float,
+        user_follow: top?,
+        :video_10s_views => Float,
+        video_average_time: Float,
+        :video_p95_views => Float,
+        video_total_time: Float,
+        video_views: Float
+      }
+    end
+  end
+end

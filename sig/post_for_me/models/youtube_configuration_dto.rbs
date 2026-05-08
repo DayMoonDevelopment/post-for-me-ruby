@@ -4,7 +4,7 @@ module PostForMe
       {
         caption: top?,
         made_for_kids: bool?,
-        media: ::Array[PostForMe::YoutubeConfigurationDto::Media]?,
+        media: ::Array[PostForMe::SocialPostMedia]?,
         privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?,
         title: String?
       }
@@ -14,7 +14,7 @@ module PostForMe
 
       attr_accessor made_for_kids: bool?
 
-      attr_accessor media: ::Array[PostForMe::YoutubeConfigurationDto::Media]?
+      attr_accessor media: ::Array[PostForMe::SocialPostMedia]?
 
       attr_accessor privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?
 
@@ -23,7 +23,7 @@ module PostForMe
       def initialize: (
         ?caption: top?,
         ?made_for_kids: bool?,
-        ?media: ::Array[PostForMe::YoutubeConfigurationDto::Media]?,
+        ?media: ::Array[PostForMe::SocialPostMedia]?,
         ?privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?,
         ?title: String?
       ) -> void
@@ -31,110 +31,10 @@ module PostForMe
       def to_hash: -> {
         caption: top?,
         made_for_kids: bool?,
-        media: ::Array[PostForMe::YoutubeConfigurationDto::Media]?,
+        media: ::Array[PostForMe::SocialPostMedia]?,
         privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?,
         title: String?
       }
-
-      type media =
-        {
-          url: String,
-          skip_processing: bool?,
-          tags: ::Array[PostForMe::YoutubeConfigurationDto::Media::Tag]?,
-          thumbnail_timestamp_ms: top?,
-          thumbnail_url: top?
-        }
-
-      class Media < PostForMe::Internal::Type::BaseModel
-        attr_accessor url: String
-
-        attr_accessor skip_processing: bool?
-
-        attr_accessor tags: ::Array[PostForMe::YoutubeConfigurationDto::Media::Tag]?
-
-        attr_accessor thumbnail_timestamp_ms: top?
-
-        attr_accessor thumbnail_url: top?
-
-        def initialize: (
-          url: String,
-          ?skip_processing: bool?,
-          ?tags: ::Array[PostForMe::YoutubeConfigurationDto::Media::Tag]?,
-          ?thumbnail_timestamp_ms: top?,
-          ?thumbnail_url: top?
-        ) -> void
-
-        def to_hash: -> {
-          url: String,
-          skip_processing: bool?,
-          tags: ::Array[PostForMe::YoutubeConfigurationDto::Media::Tag]?,
-          thumbnail_timestamp_ms: top?,
-          thumbnail_url: top?
-        }
-
-        type tag =
-          {
-            id: String,
-            platform: PostForMe::Models::YoutubeConfigurationDto::Media::Tag::platform,
-            type: PostForMe::Models::YoutubeConfigurationDto::Media::Tag::type_,
-            x: Float,
-            y_: Float
-          }
-
-        class Tag < PostForMe::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          attr_accessor platform: PostForMe::Models::YoutubeConfigurationDto::Media::Tag::platform
-
-          attr_accessor type: PostForMe::Models::YoutubeConfigurationDto::Media::Tag::type_
-
-          attr_reader x: Float?
-
-          def x=: (Float) -> Float
-
-          attr_reader y_: Float?
-
-          def y_=: (Float) -> Float
-
-          def initialize: (
-            id: String,
-            platform: PostForMe::Models::YoutubeConfigurationDto::Media::Tag::platform,
-            type: PostForMe::Models::YoutubeConfigurationDto::Media::Tag::type_,
-            ?x: Float,
-            ?y_: Float
-          ) -> void
-
-          def to_hash: -> {
-            id: String,
-            platform: PostForMe::Models::YoutubeConfigurationDto::Media::Tag::platform,
-            type: PostForMe::Models::YoutubeConfigurationDto::Media::Tag::type_,
-            x: Float,
-            y_: Float
-          }
-
-          type platform = :facebook | :instagram
-
-          module Platform
-            extend PostForMe::Internal::Type::Enum
-
-            FACEBOOK: :facebook
-            INSTAGRAM: :instagram
-
-            def self?.values: -> ::Array[PostForMe::Models::YoutubeConfigurationDto::Media::Tag::platform]
-          end
-
-          type type_ = :user | :product
-
-          module Type
-            extend PostForMe::Internal::Type::Enum
-
-            USER: :user
-            PRODUCT: :product
-
-            def self?.values: -> ::Array[PostForMe::Models::YoutubeConfigurationDto::Media::Tag::type_]
-          end
-        end
-      end
 
       type privacy_status = :public | :private | :unlisted
 

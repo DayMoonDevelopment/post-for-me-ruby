@@ -4,8 +4,8 @@ module PostForMe
       {
         caption: top?,
         community_id: String,
-        media: ::Array[PostForMe::TwitterConfigurationDto::Media]?,
-        poll: PostForMe::TwitterConfigurationDto::Poll,
+        media: ::Array[PostForMe::SocialPostMedia]?,
+        poll: PostForMe::TwitterPoll,
         quote_tweet_id: String,
         reply_settings: PostForMe::Models::TwitterConfigurationDto::reply_settings?
       }
@@ -17,13 +17,11 @@ module PostForMe
 
       def community_id=: (String) -> String
 
-      attr_accessor media: ::Array[PostForMe::TwitterConfigurationDto::Media]?
+      attr_accessor media: ::Array[PostForMe::SocialPostMedia]?
 
-      attr_reader poll: PostForMe::TwitterConfigurationDto::Poll?
+      attr_reader poll: PostForMe::TwitterPoll?
 
-      def poll=: (
-        PostForMe::TwitterConfigurationDto::Poll
-      ) -> PostForMe::TwitterConfigurationDto::Poll
+      def poll=: (PostForMe::TwitterPoll) -> PostForMe::TwitterPoll
 
       attr_reader quote_tweet_id: String?
 
@@ -34,8 +32,8 @@ module PostForMe
       def initialize: (
         ?caption: top?,
         ?community_id: String,
-        ?media: ::Array[PostForMe::TwitterConfigurationDto::Media]?,
-        ?poll: PostForMe::TwitterConfigurationDto::Poll,
+        ?media: ::Array[PostForMe::SocialPostMedia]?,
+        ?poll: PostForMe::TwitterPoll,
         ?quote_tweet_id: String,
         ?reply_settings: PostForMe::Models::TwitterConfigurationDto::reply_settings?
       ) -> void
@@ -43,156 +41,11 @@ module PostForMe
       def to_hash: -> {
         caption: top?,
         community_id: String,
-        media: ::Array[PostForMe::TwitterConfigurationDto::Media]?,
-        poll: PostForMe::TwitterConfigurationDto::Poll,
+        media: ::Array[PostForMe::SocialPostMedia]?,
+        poll: PostForMe::TwitterPoll,
         quote_tweet_id: String,
         reply_settings: PostForMe::Models::TwitterConfigurationDto::reply_settings?
       }
-
-      type media =
-        {
-          url: String,
-          skip_processing: bool?,
-          tags: ::Array[PostForMe::TwitterConfigurationDto::Media::Tag]?,
-          thumbnail_timestamp_ms: top?,
-          thumbnail_url: top?
-        }
-
-      class Media < PostForMe::Internal::Type::BaseModel
-        attr_accessor url: String
-
-        attr_accessor skip_processing: bool?
-
-        attr_accessor tags: ::Array[PostForMe::TwitterConfigurationDto::Media::Tag]?
-
-        attr_accessor thumbnail_timestamp_ms: top?
-
-        attr_accessor thumbnail_url: top?
-
-        def initialize: (
-          url: String,
-          ?skip_processing: bool?,
-          ?tags: ::Array[PostForMe::TwitterConfigurationDto::Media::Tag]?,
-          ?thumbnail_timestamp_ms: top?,
-          ?thumbnail_url: top?
-        ) -> void
-
-        def to_hash: -> {
-          url: String,
-          skip_processing: bool?,
-          tags: ::Array[PostForMe::TwitterConfigurationDto::Media::Tag]?,
-          thumbnail_timestamp_ms: top?,
-          thumbnail_url: top?
-        }
-
-        type tag =
-          {
-            id: String,
-            platform: PostForMe::Models::TwitterConfigurationDto::Media::Tag::platform,
-            type: PostForMe::Models::TwitterConfigurationDto::Media::Tag::type_,
-            x: Float,
-            y_: Float
-          }
-
-        class Tag < PostForMe::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          attr_accessor platform: PostForMe::Models::TwitterConfigurationDto::Media::Tag::platform
-
-          attr_accessor type: PostForMe::Models::TwitterConfigurationDto::Media::Tag::type_
-
-          attr_reader x: Float?
-
-          def x=: (Float) -> Float
-
-          attr_reader y_: Float?
-
-          def y_=: (Float) -> Float
-
-          def initialize: (
-            id: String,
-            platform: PostForMe::Models::TwitterConfigurationDto::Media::Tag::platform,
-            type: PostForMe::Models::TwitterConfigurationDto::Media::Tag::type_,
-            ?x: Float,
-            ?y_: Float
-          ) -> void
-
-          def to_hash: -> {
-            id: String,
-            platform: PostForMe::Models::TwitterConfigurationDto::Media::Tag::platform,
-            type: PostForMe::Models::TwitterConfigurationDto::Media::Tag::type_,
-            x: Float,
-            y_: Float
-          }
-
-          type platform = :facebook | :instagram
-
-          module Platform
-            extend PostForMe::Internal::Type::Enum
-
-            FACEBOOK: :facebook
-            INSTAGRAM: :instagram
-
-            def self?.values: -> ::Array[PostForMe::Models::TwitterConfigurationDto::Media::Tag::platform]
-          end
-
-          type type_ = :user | :product
-
-          module Type
-            extend PostForMe::Internal::Type::Enum
-
-            USER: :user
-            PRODUCT: :product
-
-            def self?.values: -> ::Array[PostForMe::Models::TwitterConfigurationDto::Media::Tag::type_]
-          end
-        end
-      end
-
-      type poll =
-        {
-          duration_minutes: Float,
-          options: ::Array[String],
-          reply_settings: PostForMe::Models::TwitterConfigurationDto::Poll::reply_settings
-        }
-
-      class Poll < PostForMe::Internal::Type::BaseModel
-        attr_accessor duration_minutes: Float
-
-        attr_accessor options: ::Array[String]
-
-        attr_reader reply_settings: PostForMe::Models::TwitterConfigurationDto::Poll::reply_settings?
-
-        def reply_settings=: (
-          PostForMe::Models::TwitterConfigurationDto::Poll::reply_settings
-        ) -> PostForMe::Models::TwitterConfigurationDto::Poll::reply_settings
-
-        def initialize: (
-          duration_minutes: Float,
-          options: ::Array[String],
-          ?reply_settings: PostForMe::Models::TwitterConfigurationDto::Poll::reply_settings
-        ) -> void
-
-        def to_hash: -> {
-          duration_minutes: Float,
-          options: ::Array[String],
-          reply_settings: PostForMe::Models::TwitterConfigurationDto::Poll::reply_settings
-        }
-
-        type reply_settings =
-          :following | :mentionedUsers | :subscribers | :verified
-
-        module ReplySettings
-          extend PostForMe::Internal::Type::Enum
-
-          FOLLOWING: :following
-          MENTIONED_USERS: :mentionedUsers
-          SUBSCRIBERS: :subscribers
-          VERIFIED: :verified
-
-          def self?.values: -> ::Array[PostForMe::Models::TwitterConfigurationDto::Poll::reply_settings]
-        end
-      end
 
       type reply_settings =
         :following | :mentionedUsers | :subscribers | :verified

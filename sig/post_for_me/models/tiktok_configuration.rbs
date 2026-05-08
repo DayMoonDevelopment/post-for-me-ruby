@@ -11,7 +11,7 @@ module PostForMe
         disclose_your_brand: bool?,
         is_ai_generated: bool?,
         is_draft: bool?,
-        media: ::Array[PostForMe::TiktokConfiguration::Media]?,
+        media: ::Array[PostForMe::SocialPostMedia]?,
         privacy_status: String?,
         title: String?
       }
@@ -35,7 +35,7 @@ module PostForMe
 
       attr_accessor is_draft: bool?
 
-      attr_accessor media: ::Array[PostForMe::TiktokConfiguration::Media]?
+      attr_accessor media: ::Array[PostForMe::SocialPostMedia]?
 
       attr_accessor privacy_status: String?
 
@@ -51,7 +51,7 @@ module PostForMe
         ?disclose_your_brand: bool?,
         ?is_ai_generated: bool?,
         ?is_draft: bool?,
-        ?media: ::Array[PostForMe::TiktokConfiguration::Media]?,
+        ?media: ::Array[PostForMe::SocialPostMedia]?,
         ?privacy_status: String?,
         ?title: String?
       ) -> void
@@ -66,110 +66,10 @@ module PostForMe
         disclose_your_brand: bool?,
         is_ai_generated: bool?,
         is_draft: bool?,
-        media: ::Array[PostForMe::TiktokConfiguration::Media]?,
+        media: ::Array[PostForMe::SocialPostMedia]?,
         privacy_status: String?,
         title: String?
       }
-
-      type media =
-        {
-          url: String,
-          skip_processing: bool?,
-          tags: ::Array[PostForMe::TiktokConfiguration::Media::Tag]?,
-          thumbnail_timestamp_ms: top?,
-          thumbnail_url: top?
-        }
-
-      class Media < PostForMe::Internal::Type::BaseModel
-        attr_accessor url: String
-
-        attr_accessor skip_processing: bool?
-
-        attr_accessor tags: ::Array[PostForMe::TiktokConfiguration::Media::Tag]?
-
-        attr_accessor thumbnail_timestamp_ms: top?
-
-        attr_accessor thumbnail_url: top?
-
-        def initialize: (
-          url: String,
-          ?skip_processing: bool?,
-          ?tags: ::Array[PostForMe::TiktokConfiguration::Media::Tag]?,
-          ?thumbnail_timestamp_ms: top?,
-          ?thumbnail_url: top?
-        ) -> void
-
-        def to_hash: -> {
-          url: String,
-          skip_processing: bool?,
-          tags: ::Array[PostForMe::TiktokConfiguration::Media::Tag]?,
-          thumbnail_timestamp_ms: top?,
-          thumbnail_url: top?
-        }
-
-        type tag =
-          {
-            id: String,
-            platform: PostForMe::Models::TiktokConfiguration::Media::Tag::platform,
-            type: PostForMe::Models::TiktokConfiguration::Media::Tag::type_,
-            x: Float,
-            y_: Float
-          }
-
-        class Tag < PostForMe::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          attr_accessor platform: PostForMe::Models::TiktokConfiguration::Media::Tag::platform
-
-          attr_accessor type: PostForMe::Models::TiktokConfiguration::Media::Tag::type_
-
-          attr_reader x: Float?
-
-          def x=: (Float) -> Float
-
-          attr_reader y_: Float?
-
-          def y_=: (Float) -> Float
-
-          def initialize: (
-            id: String,
-            platform: PostForMe::Models::TiktokConfiguration::Media::Tag::platform,
-            type: PostForMe::Models::TiktokConfiguration::Media::Tag::type_,
-            ?x: Float,
-            ?y_: Float
-          ) -> void
-
-          def to_hash: -> {
-            id: String,
-            platform: PostForMe::Models::TiktokConfiguration::Media::Tag::platform,
-            type: PostForMe::Models::TiktokConfiguration::Media::Tag::type_,
-            x: Float,
-            y_: Float
-          }
-
-          type platform = :facebook | :instagram
-
-          module Platform
-            extend PostForMe::Internal::Type::Enum
-
-            FACEBOOK: :facebook
-            INSTAGRAM: :instagram
-
-            def self?.values: -> ::Array[PostForMe::Models::TiktokConfiguration::Media::Tag::platform]
-          end
-
-          type type_ = :user | :product
-
-          module Type
-            extend PostForMe::Internal::Type::Enum
-
-            USER: :user
-            PRODUCT: :product
-
-            def self?.values: -> ::Array[PostForMe::Models::TiktokConfiguration::Media::Tag::type_]
-          end
-        end
-      end
     end
   end
 end

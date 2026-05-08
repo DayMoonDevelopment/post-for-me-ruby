@@ -1,0 +1,30 @@
+module PostForMe
+  module Models
+    type webhook =
+      { id: String, event_types: ::Array[String], secret: String, url: String }
+
+    class Webhook < PostForMe::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor event_types: ::Array[String]
+
+      attr_accessor secret: String
+
+      attr_accessor url: String
+
+      def initialize: (
+        id: String,
+        event_types: ::Array[String],
+        secret: String,
+        url: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        event_types: ::Array[String],
+        secret: String,
+        url: String
+      }
+    end
+  end
+end

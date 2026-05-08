@@ -20,15 +20,10 @@ module PostForMe
           caption: String,
           social_accounts: T::Array[String],
           account_configurations:
-            T.nilable(
-              T::Array[
-                PostForMe::CreateSocialPost::AccountConfiguration::OrHash
-              ]
-            ),
+            T.nilable(T::Array[PostForMe::AccountConfiguration::OrHash]),
           external_id: T.nilable(String),
           is_draft: T.nilable(T::Boolean),
-          media:
-            T.nilable(T::Array[PostForMe::CreateSocialPost::Media::OrHash]),
+          media: T.nilable(T::Array[PostForMe::SocialPostMedia::OrHash]),
           platform_configurations:
             T.nilable(PostForMe::PlatformConfigurationsDto::OrHash),
           scheduled_at: T.nilable(Time),
@@ -79,15 +74,10 @@ module PostForMe
           caption: String,
           social_accounts: T::Array[String],
           account_configurations:
-            T.nilable(
-              T::Array[
-                PostForMe::CreateSocialPost::AccountConfiguration::OrHash
-              ]
-            ),
+            T.nilable(T::Array[PostForMe::AccountConfiguration::OrHash]),
           external_id: T.nilable(String),
           is_draft: T.nilable(T::Boolean),
-          media:
-            T.nilable(T::Array[PostForMe::CreateSocialPost::Media::OrHash]),
+          media: T.nilable(T::Array[PostForMe::SocialPostMedia::OrHash]),
           platform_configurations:
             T.nilable(PostForMe::PlatformConfigurationsDto::OrHash),
           scheduled_at: T.nilable(Time),
@@ -154,7 +144,7 @@ module PostForMe
         params(
           id: String,
           request_options: PostForMe::RequestOptions::OrHash
-        ).returns(PostForMe::Models::SocialPostDeleteResponse)
+        ).returns(PostForMe::DeleteEntityResponse)
       end
       def delete(
         # Post ID

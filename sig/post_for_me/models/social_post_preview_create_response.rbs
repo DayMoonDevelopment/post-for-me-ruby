@@ -1,0 +1,8 @@
+module PostForMe
+  module Models
+    type social_post_preview_create_response =
+      ::Array[PostForMe::SocialPostPreview]
+
+    SocialPostPreviewCreateResponse: PostForMe::Internal::Type::Converter
+  end
+end

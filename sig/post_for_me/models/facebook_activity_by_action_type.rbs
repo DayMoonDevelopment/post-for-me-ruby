@@ -1,0 +1,16 @@
+module PostForMe
+  module Models
+    type facebook_activity_by_action_type =
+      { action_type: String, value: Float }
+
+    class FacebookActivityByActionType < PostForMe::Internal::Type::BaseModel
+      attr_accessor action_type: String
+
+      attr_accessor value: Float
+
+      def initialize: (action_type: String, value: Float) -> void
+
+      def to_hash: -> { action_type: String, value: Float }
+    end
+  end
+end

@@ -1,0 +1,61 @@
+module PostForMe
+  module Models
+    type create_social_post_preview =
+      {
+        caption: String,
+        preview_social_accounts: ::Array[PostForMe::CreateSocialPostPreview::PreviewSocialAccount],
+        account_configurations: ::Array[PostForMe::AccountConfiguration]?,
+        media: ::Array[PostForMe::SocialPostMedia]?,
+        platform_configurations: PostForMe::PlatformConfigurationsDto?
+      }
+
+    class CreateSocialPostPreview < PostForMe::Internal::Type::BaseModel
+      attr_accessor caption: String
+
+      attr_accessor preview_social_accounts: ::Array[PostForMe::CreateSocialPostPreview::PreviewSocialAccount]
+
+      attr_accessor account_configurations: ::Array[PostForMe::AccountConfiguration]?
+
+      attr_accessor media: ::Array[PostForMe::SocialPostMedia]?
+
+      attr_accessor platform_configurations: PostForMe::PlatformConfigurationsDto?
+
+      def initialize: (
+        caption: String,
+        preview_social_accounts: ::Array[PostForMe::CreateSocialPostPreview::PreviewSocialAccount],
+        ?account_configurations: ::Array[PostForMe::AccountConfiguration]?,
+        ?media: ::Array[PostForMe::SocialPostMedia]?,
+        ?platform_configurations: PostForMe::PlatformConfigurationsDto?
+      ) -> void
+
+      def to_hash: -> {
+        caption: String,
+        preview_social_accounts: ::Array[PostForMe::CreateSocialPostPreview::PreviewSocialAccount],
+        account_configurations: ::Array[PostForMe::AccountConfiguration]?,
+        media: ::Array[PostForMe::SocialPostMedia]?,
+        platform_configurations: PostForMe::PlatformConfigurationsDto?
+      }
+
+      type preview_social_account =
+        { id: String, platform: String, username: String }
+
+      class PreviewSocialAccount < PostForMe::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor platform: String
+
+        attr_reader username: String?
+
+        def username=: (String) -> String
+
+        def initialize: (
+          id: String,
+          platform: String,
+          ?username: String
+        ) -> void
+
+        def to_hash: -> { id: String, platform: String, username: String }
+      end
+    end
+  end
+end
