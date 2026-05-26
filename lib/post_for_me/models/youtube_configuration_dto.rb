@@ -9,6 +9,15 @@ module PostForMe
       #   @return [Object, nil]
       optional :caption, PostForMe::Internal::Type::Unknown, nil?: true
 
+      # @!attribute contains_synthetic_media
+      #   If true, marks the video as containing altered or synthetic content per
+      #   YouTube's disclosure policy. Sets status.containsSyntheticMedia on the YouTube
+      #   Data API videos.insert call; YouTube adds a "How this content was made" label to
+      #   the description automatically.
+      #
+      #   @return [Boolean, nil]
+      optional :contains_synthetic_media, PostForMe::Internal::Type::Boolean, nil?: true
+
       # @!attribute made_for_kids
       #   If true will notify YouTube the video is intended for kids, defaults to false
       #
@@ -33,8 +42,13 @@ module PostForMe
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(caption: nil, made_for_kids: nil, media: nil, privacy_status: nil, title: nil)
+      # @!method initialize(caption: nil, contains_synthetic_media: nil, made_for_kids: nil, media: nil, privacy_status: nil, title: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {PostForMe::Models::YoutubeConfigurationDto} for more details.
+      #
       #   @param caption [Object, nil] Overrides the `caption` from the post
+      #
+      #   @param contains_synthetic_media [Boolean, nil] If true, marks the video as containing altered or synthetic content per YouTube'
       #
       #   @param made_for_kids [Boolean, nil] If true will notify YouTube the video is intended for kids, defaults to false
       #
