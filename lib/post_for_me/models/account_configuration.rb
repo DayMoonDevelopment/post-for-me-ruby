@@ -81,6 +81,15 @@ module PostForMe
         #   @return [String, nil]
         optional :community_id, String
 
+        # @!attribute contains_synthetic_media
+        #   If true, marks the YouTube video as containing altered or synthetic content per
+        #   YouTube's disclosure policy. Sets status.containsSyntheticMedia on the
+        #   videos.insert call; YouTube adds a "How this content was made" label to the
+        #   description automatically.
+        #
+        #   @return [Boolean, nil]
+        optional :contains_synthetic_media, PostForMe::Internal::Type::Boolean, nil?: true
+
         # @!attribute disclose_branded_content
         #   Disclose branded content on TikTok
         #
@@ -199,7 +208,7 @@ module PostForMe
                  enum: -> { PostForMe::AccountConfiguration::Configuration::TrialReelType },
                  nil?: true
 
-        # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, audio_name: nil, auto_add_music: nil, board_ids: nil, caption: nil, collaborators: nil, community_id: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, link: nil, location: nil, made_for_kids: nil, media: nil, placement: nil, poll: nil, privacy_status: nil, quote_tweet_id: nil, reply_settings: nil, set_caption_for_each_image: nil, share_to_feed: nil, title: nil, trial_reel_type: nil)
+        # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, audio_name: nil, auto_add_music: nil, board_ids: nil, caption: nil, collaborators: nil, community_id: nil, contains_synthetic_media: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, link: nil, location: nil, made_for_kids: nil, media: nil, placement: nil, poll: nil, privacy_status: nil, quote_tweet_id: nil, reply_settings: nil, set_caption_for_each_image: nil, share_to_feed: nil, title: nil, trial_reel_type: nil)
         #   Some parameter documentations has been truncated, see
         #   {PostForMe::Models::AccountConfiguration::Configuration} for more details.
         #
@@ -222,6 +231,8 @@ module PostForMe
         #   @param collaborators [Array<Array<Object>>, nil] List of page ids or users to invite as collaborators for a Video Reel (Instagram
         #
         #   @param community_id [String] Id of the twitter community to post to
+        #
+        #   @param contains_synthetic_media [Boolean, nil] If true, marks the YouTube video as containing altered or synthetic content per
         #
         #   @param disclose_branded_content [Boolean, nil] Disclose branded content on TikTok
         #

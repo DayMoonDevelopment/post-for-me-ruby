@@ -3,6 +3,7 @@ module PostForMe
     type youtube_configuration_dto =
       {
         caption: top?,
+        contains_synthetic_media: bool?,
         made_for_kids: bool?,
         media: ::Array[PostForMe::SocialPostMedia]?,
         privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?,
@@ -11,6 +12,8 @@ module PostForMe
 
     class YoutubeConfigurationDto < PostForMe::Internal::Type::BaseModel
       attr_accessor caption: top?
+
+      attr_accessor contains_synthetic_media: bool?
 
       attr_accessor made_for_kids: bool?
 
@@ -22,6 +25,7 @@ module PostForMe
 
       def initialize: (
         ?caption: top?,
+        ?contains_synthetic_media: bool?,
         ?made_for_kids: bool?,
         ?media: ::Array[PostForMe::SocialPostMedia]?,
         ?privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?,
@@ -30,6 +34,7 @@ module PostForMe
 
       def to_hash: -> {
         caption: top?,
+        contains_synthetic_media: bool?,
         made_for_kids: bool?,
         media: ::Array[PostForMe::SocialPostMedia]?,
         privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?,

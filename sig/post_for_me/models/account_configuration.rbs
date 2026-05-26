@@ -32,6 +32,7 @@ module PostForMe
           caption: top?,
           collaborators: ::Array[::Array[top]]?,
           community_id: String,
+          contains_synthetic_media: bool?,
           disclose_branded_content: bool?,
           disclose_your_brand: bool?,
           is_ai_generated: bool?,
@@ -71,6 +72,8 @@ module PostForMe
         attr_reader community_id: String?
 
         def community_id=: (String) -> String
+
+        attr_accessor contains_synthetic_media: bool?
 
         attr_accessor disclose_branded_content: bool?
 
@@ -120,6 +123,7 @@ module PostForMe
           ?caption: top?,
           ?collaborators: ::Array[::Array[top]]?,
           ?community_id: String,
+          ?contains_synthetic_media: bool?,
           ?disclose_branded_content: bool?,
           ?disclose_your_brand: bool?,
           ?is_ai_generated: bool?,
@@ -149,6 +153,7 @@ module PostForMe
           caption: top?,
           collaborators: ::Array[::Array[top]]?,
           community_id: String,
+          contains_synthetic_media: bool?,
           disclose_branded_content: bool?,
           disclose_your_brand: bool?,
           is_ai_generated: bool?,

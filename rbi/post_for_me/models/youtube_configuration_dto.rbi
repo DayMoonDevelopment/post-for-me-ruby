@@ -15,6 +15,13 @@ module PostForMe
       sig { returns(T.nilable(T.anything)) }
       attr_accessor :caption
 
+      # If true, marks the video as containing altered or synthetic content per
+      # YouTube's disclosure policy. Sets status.containsSyntheticMedia on the YouTube
+      # Data API videos.insert call; YouTube adds a "How this content was made" label to
+      # the description automatically.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :contains_synthetic_media
+
       # If true will notify YouTube the video is intended for kids, defaults to false
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :made_for_kids
@@ -38,6 +45,7 @@ module PostForMe
       sig do
         params(
           caption: T.nilable(T.anything),
+          contains_synthetic_media: T.nilable(T::Boolean),
           made_for_kids: T.nilable(T::Boolean),
           media: T.nilable(T::Array[PostForMe::SocialPostMedia::OrHash]),
           privacy_status:
@@ -50,6 +58,11 @@ module PostForMe
       def self.new(
         # Overrides the `caption` from the post
         caption: nil,
+        # If true, marks the video as containing altered or synthetic content per
+        # YouTube's disclosure policy. Sets status.containsSyntheticMedia on the YouTube
+        # Data API videos.insert call; YouTube adds a "How this content was made" label to
+        # the description automatically.
+        contains_synthetic_media: nil,
         # If true will notify YouTube the video is intended for kids, defaults to false
         made_for_kids: nil,
         # Overrides the `media` from the post
@@ -65,6 +78,7 @@ module PostForMe
         override.returns(
           {
             caption: T.nilable(T.anything),
+            contains_synthetic_media: T.nilable(T::Boolean),
             made_for_kids: T.nilable(T::Boolean),
             media: T.nilable(T::Array[PostForMe::SocialPostMedia]),
             privacy_status:

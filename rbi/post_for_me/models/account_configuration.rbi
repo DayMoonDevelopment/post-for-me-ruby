@@ -99,6 +99,13 @@ module PostForMe
         sig { params(community_id: String).void }
         attr_writer :community_id
 
+        # If true, marks the YouTube video as containing altered or synthetic content per
+        # YouTube's disclosure policy. Sets status.containsSyntheticMedia on the
+        # videos.insert call; YouTube adds a "How this content was made" label to the
+        # description automatically.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_accessor :contains_synthetic_media
+
         # Disclose branded content on TikTok
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :disclose_branded_content
@@ -215,6 +222,7 @@ module PostForMe
             caption: T.nilable(T.anything),
             collaborators: T.nilable(T::Array[T::Array[T.anything]]),
             community_id: String,
+            contains_synthetic_media: T.nilable(T::Boolean),
             disclose_branded_content: T.nilable(T::Boolean),
             disclose_your_brand: T.nilable(T::Boolean),
             is_ai_generated: T.nilable(T::Boolean),
@@ -268,6 +276,11 @@ module PostForMe
           collaborators: nil,
           # Id of the twitter community to post to
           community_id: nil,
+          # If true, marks the YouTube video as containing altered or synthetic content per
+          # YouTube's disclosure policy. Sets status.containsSyntheticMedia on the
+          # videos.insert call; YouTube adds a "How this content was made" label to the
+          # description automatically.
+          contains_synthetic_media: nil,
           # Disclose branded content on TikTok
           disclose_branded_content: nil,
           # Disclose your brand on TikTok
@@ -323,6 +336,7 @@ module PostForMe
               caption: T.nilable(T.anything),
               collaborators: T.nilable(T::Array[T::Array[T.anything]]),
               community_id: String,
+              contains_synthetic_media: T.nilable(T::Boolean),
               disclose_branded_content: T.nilable(T::Boolean),
               disclose_your_brand: T.nilable(T::Boolean),
               is_ai_generated: T.nilable(T::Boolean),
