@@ -3,6 +3,14 @@
 module PostForMe
   module Models
     class InstagramConfigurationDto < PostForMe::Internal::Type::BaseModel
+      # @!attribute audio_name
+      #   Display name for the audio track on Instagram Reels. Only honored on Reels
+      #   uploads, and only when the audio is original (Meta silently ignores it on
+      #   licensed/fingerprinted tracks).
+      #
+      #   @return [String, nil]
+      optional :audio_name, String, nil?: true
+
       # @!attribute caption
       #   Overrides the `caption` from the post
       #
@@ -47,9 +55,11 @@ module PostForMe
       #   @return [Symbol, PostForMe::Models::InstagramConfigurationDto::TrialReelType, nil]
       optional :trial_reel_type, enum: -> { PostForMe::InstagramConfigurationDto::TrialReelType }, nil?: true
 
-      # @!method initialize(caption: nil, collaborators: nil, location: nil, media: nil, placement: nil, share_to_feed: nil, trial_reel_type: nil)
+      # @!method initialize(audio_name: nil, caption: nil, collaborators: nil, location: nil, media: nil, placement: nil, share_to_feed: nil, trial_reel_type: nil)
       #   Some parameter documentations has been truncated, see
       #   {PostForMe::Models::InstagramConfigurationDto} for more details.
+      #
+      #   @param audio_name [String, nil] Display name for the audio track on Instagram Reels. Only honored on Reels uploa
       #
       #   @param caption [Object, nil] Overrides the `caption` from the post
       #

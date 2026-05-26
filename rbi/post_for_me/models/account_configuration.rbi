@@ -69,6 +69,12 @@ module PostForMe
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :allow_stitch
 
+        # Display name for the audio track on Instagram Reels. Only honored on Reels
+        # uploads, and only when the audio is original (Meta silently ignores it on
+        # licensed/fingerprinted tracks).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :audio_name
+
         # Will automatically add music to photo posts on TikTok
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :auto_add_music
@@ -203,6 +209,7 @@ module PostForMe
             allow_comment: T.nilable(T::Boolean),
             allow_duet: T.nilable(T::Boolean),
             allow_stitch: T.nilable(T::Boolean),
+            audio_name: T.nilable(String),
             auto_add_music: T.nilable(T::Boolean),
             board_ids: T.nilable(T::Array[String]),
             caption: T.nilable(T.anything),
@@ -246,6 +253,10 @@ module PostForMe
           allow_duet: nil,
           # Allow stitch on TikTok
           allow_stitch: nil,
+          # Display name for the audio track on Instagram Reels. Only honored on Reels
+          # uploads, and only when the audio is original (Meta silently ignores it on
+          # licensed/fingerprinted tracks).
+          audio_name: nil,
           # Will automatically add music to photo posts on TikTok
           auto_add_music: nil,
           # Pinterest board IDs
@@ -306,6 +317,7 @@ module PostForMe
               allow_comment: T.nilable(T::Boolean),
               allow_duet: T.nilable(T::Boolean),
               allow_stitch: T.nilable(T::Boolean),
+              audio_name: T.nilable(String),
               auto_add_music: T.nilable(T::Boolean),
               board_ids: T.nilable(T::Array[String]),
               caption: T.nilable(T.anything),

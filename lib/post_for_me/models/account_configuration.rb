@@ -40,6 +40,14 @@ module PostForMe
         #   @return [Boolean, nil]
         optional :allow_stitch, PostForMe::Internal::Type::Boolean, nil?: true
 
+        # @!attribute audio_name
+        #   Display name for the audio track on Instagram Reels. Only honored on Reels
+        #   uploads, and only when the audio is original (Meta silently ignores it on
+        #   licensed/fingerprinted tracks).
+        #
+        #   @return [String, nil]
+        optional :audio_name, String, nil?: true
+
         # @!attribute auto_add_music
         #   Will automatically add music to photo posts on TikTok
         #
@@ -191,7 +199,7 @@ module PostForMe
                  enum: -> { PostForMe::AccountConfiguration::Configuration::TrialReelType },
                  nil?: true
 
-        # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, auto_add_music: nil, board_ids: nil, caption: nil, collaborators: nil, community_id: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, link: nil, location: nil, made_for_kids: nil, media: nil, placement: nil, poll: nil, privacy_status: nil, quote_tweet_id: nil, reply_settings: nil, set_caption_for_each_image: nil, share_to_feed: nil, title: nil, trial_reel_type: nil)
+        # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, audio_name: nil, auto_add_music: nil, board_ids: nil, caption: nil, collaborators: nil, community_id: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, link: nil, location: nil, made_for_kids: nil, media: nil, placement: nil, poll: nil, privacy_status: nil, quote_tweet_id: nil, reply_settings: nil, set_caption_for_each_image: nil, share_to_feed: nil, title: nil, trial_reel_type: nil)
         #   Some parameter documentations has been truncated, see
         #   {PostForMe::Models::AccountConfiguration::Configuration} for more details.
         #
@@ -202,6 +210,8 @@ module PostForMe
         #   @param allow_duet [Boolean, nil] Allow duets on TikTok
         #
         #   @param allow_stitch [Boolean, nil] Allow stitch on TikTok
+        #
+        #   @param audio_name [String, nil] Display name for the audio track on Instagram Reels. Only honored on Reels uploa
         #
         #   @param auto_add_music [Boolean, nil] Will automatically add music to photo posts on TikTok
         #

@@ -11,6 +11,12 @@ module PostForMe
           )
         end
 
+      # Display name for the audio track on Instagram Reels. Only honored on Reels
+      # uploads, and only when the audio is original (Meta silently ignores it on
+      # licensed/fingerprinted tracks).
+      sig { returns(T.nilable(String)) }
+      attr_accessor :audio_name
+
       # Overrides the `caption` from the post
       sig { returns(T.nilable(T.anything)) }
       attr_accessor :caption
@@ -53,6 +59,7 @@ module PostForMe
 
       sig do
         params(
+          audio_name: T.nilable(String),
           caption: T.nilable(T.anything),
           collaborators: T.nilable(T::Array[String]),
           location: T.nilable(String),
@@ -69,6 +76,10 @@ module PostForMe
         ).returns(T.attached_class)
       end
       def self.new(
+        # Display name for the audio track on Instagram Reels. Only honored on Reels
+        # uploads, and only when the audio is original (Meta silently ignores it on
+        # licensed/fingerprinted tracks).
+        audio_name: nil,
         # Overrides the `caption` from the post
         caption: nil,
         # Instagram usernames to be tagged as a collaborator
@@ -91,6 +102,7 @@ module PostForMe
       sig do
         override.returns(
           {
+            audio_name: T.nilable(String),
             caption: T.nilable(T.anything),
             collaborators: T.nilable(T::Array[String]),
             location: T.nilable(String),
