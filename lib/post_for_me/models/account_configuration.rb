@@ -22,6 +22,16 @@ module PostForMe
 
       # @see PostForMe::Models::AccountConfiguration#configuration
       class Configuration < PostForMe::Internal::Type::BaseModel
+        # @!attribute localizations
+        #   Per-language localizations for the video title and description. Keys are BCP-47
+        #   language tags (e.g. "fr", "es"). Maps to localizations on the YouTube Data API
+        #   videos resource.
+        #
+        #   @return [Hash{Symbol=>Object}, nil]
+        required :localizations,
+                 PostForMe::Internal::Type::HashOf[PostForMe::Internal::Type::Unknown],
+                 nil?: true
+
         # @!attribute allow_comment
         #   Allow comments on TikTok
         #
@@ -66,6 +76,13 @@ module PostForMe
         #   @return [Object, nil]
         optional :caption, PostForMe::Internal::Type::Unknown, nil?: true
 
+        # @!attribute category_id
+        #   YouTube video category id (maps to snippet.categoryId; see YouTube Data API
+        #   videoCategories.list)
+        #
+        #   @return [String, nil]
+        optional :category_id, String, nil?: true
+
         # @!attribute collaborators
         #   List of page ids or users to invite as collaborators for a Video Reel (Instagram
         #   and Facebook)
@@ -90,6 +107,13 @@ module PostForMe
         #   @return [Boolean, nil]
         optional :contains_synthetic_media, PostForMe::Internal::Type::Boolean, nil?: true
 
+        # @!attribute default_language
+        #   Default language of the video (BCP-47 language tag, e.g. "en"). Maps to
+        #   snippet.defaultLanguage.
+        #
+        #   @return [String, nil]
+        optional :default_language, String, nil?: true
+
         # @!attribute disclose_branded_content
         #   Disclose branded content on TikTok
         #
@@ -101,6 +125,13 @@ module PostForMe
         #
         #   @return [Boolean, nil]
         optional :disclose_your_brand, PostForMe::Internal::Type::Boolean, nil?: true
+
+        # @!attribute embeddable
+        #   If true the video can be embedded on other websites (maps to status.embeddable).
+        #   Defaults to true.
+        #
+        #   @return [Boolean, nil]
+        optional :embeddable, PostForMe::Internal::Type::Boolean, nil?: true
 
         # @!attribute is_ai_generated
         #   Flag content as AI generated on TikTok
@@ -114,6 +145,13 @@ module PostForMe
         #
         #   @return [Boolean, nil]
         optional :is_draft, PostForMe::Internal::Type::Boolean, nil?: true
+
+        # @!attribute license
+        #   The video's license (maps to status.license). "youtube" is the standard YouTube
+        #   license; "creativeCommon" is Creative Commons.
+        #
+        #   @return [Symbol, PostForMe::Models::AccountConfiguration::Configuration::License, nil]
+        optional :license, enum: -> { PostForMe::AccountConfiguration::Configuration::License }, nil?: true
 
         # @!attribute link
         #   Pinterest post link
@@ -165,11 +203,32 @@ module PostForMe
                  enum: -> { PostForMe::AccountConfiguration::Configuration::PrivacyStatus },
                  nil?: true
 
+        # @!attribute public_stats_viewable
+        #   If true, the extended video statistics are publicly viewable (maps to
+        #   status.publicStatsViewable). Defaults to true.
+        #
+        #   @return [Boolean, nil]
+        optional :public_stats_viewable, PostForMe::Internal::Type::Boolean, nil?: true
+
+        # @!attribute publish_at
+        #   ISO 8601 datetime at which the video should be published. Only honoured when
+        #   privacy_status is "private" (maps to status.publishAt).
+        #
+        #   @return [String, nil]
+        optional :publish_at, String, nil?: true
+
         # @!attribute quote_tweet_id
         #   Id of the tweet you want to quote
         #
         #   @return [String, nil]
         optional :quote_tweet_id, String
+
+        # @!attribute recording_date
+        #   ISO 8601 date (YYYY-MM-DD) or datetime when the video was recorded (maps to
+        #   recordingDetails.recordingDate).
+        #
+        #   @return [String, nil]
+        optional :recording_date, String, nil?: true
 
         # @!attribute reply_settings
         #   Who can reply to the tweet
@@ -192,6 +251,12 @@ module PostForMe
         #   @return [Boolean, nil]
         optional :share_to_feed, PostForMe::Internal::Type::Boolean, nil?: true
 
+        # @!attribute tags
+        #   YouTube video tags
+        #
+        #   @return [Array<String>, nil]
+        optional :tags, PostForMe::Internal::Type::ArrayOf[String], nil?: true
+
         # @!attribute title
         #   Overrides the `title` from the post (Pinterest, TikTok, YouTube)
         #
@@ -208,11 +273,13 @@ module PostForMe
                  enum: -> { PostForMe::AccountConfiguration::Configuration::TrialReelType },
                  nil?: true
 
-        # @!method initialize(allow_comment: nil, allow_duet: nil, allow_stitch: nil, audio_name: nil, auto_add_music: nil, board_ids: nil, caption: nil, collaborators: nil, community_id: nil, contains_synthetic_media: nil, disclose_branded_content: nil, disclose_your_brand: nil, is_ai_generated: nil, is_draft: nil, link: nil, location: nil, made_for_kids: nil, media: nil, placement: nil, poll: nil, privacy_status: nil, quote_tweet_id: nil, reply_settings: nil, set_caption_for_each_image: nil, share_to_feed: nil, title: nil, trial_reel_type: nil)
+        # @!method initialize(localizations:, allow_comment: nil, allow_duet: nil, allow_stitch: nil, audio_name: nil, auto_add_music: nil, board_ids: nil, caption: nil, category_id: nil, collaborators: nil, community_id: nil, contains_synthetic_media: nil, default_language: nil, disclose_branded_content: nil, disclose_your_brand: nil, embeddable: nil, is_ai_generated: nil, is_draft: nil, license: nil, link: nil, location: nil, made_for_kids: nil, media: nil, placement: nil, poll: nil, privacy_status: nil, public_stats_viewable: nil, publish_at: nil, quote_tweet_id: nil, recording_date: nil, reply_settings: nil, set_caption_for_each_image: nil, share_to_feed: nil, tags: nil, title: nil, trial_reel_type: nil)
         #   Some parameter documentations has been truncated, see
         #   {PostForMe::Models::AccountConfiguration::Configuration} for more details.
         #
         #   Configuration for the social account
+        #
+        #   @param localizations [Hash{Symbol=>Object}, nil] Per-language localizations for the video title and description. Keys are BCP-47
         #
         #   @param allow_comment [Boolean, nil] Allow comments on TikTok
         #
@@ -228,19 +295,27 @@ module PostForMe
         #
         #   @param caption [Object, nil] Overrides the `caption` from the post
         #
+        #   @param category_id [String, nil] YouTube video category id (maps to snippet.categoryId; see YouTube Data API vide
+        #
         #   @param collaborators [Array<Array<Object>>, nil] List of page ids or users to invite as collaborators for a Video Reel (Instagram
         #
         #   @param community_id [String] Id of the twitter community to post to
         #
         #   @param contains_synthetic_media [Boolean, nil] If true, marks the YouTube video as containing altered or synthetic content per
         #
+        #   @param default_language [String, nil] Default language of the video (BCP-47 language tag, e.g. "en"). Maps to snippet.
+        #
         #   @param disclose_branded_content [Boolean, nil] Disclose branded content on TikTok
         #
         #   @param disclose_your_brand [Boolean, nil] Disclose your brand on TikTok
         #
+        #   @param embeddable [Boolean, nil] If true the video can be embedded on other websites (maps to status.embeddable).
+        #
         #   @param is_ai_generated [Boolean, nil] Flag content as AI generated on TikTok
         #
         #   @param is_draft [Boolean, nil] Will create a draft upload to TikTok, posting will need to be completed from wit
+        #
+        #   @param license [Symbol, PostForMe::Models::AccountConfiguration::Configuration::License, nil] The video's license (maps to status.license). "youtube" is the standard YouTube
         #
         #   @param link [String, nil] Pinterest post link
         #
@@ -256,7 +331,13 @@ module PostForMe
         #
         #   @param privacy_status [Symbol, PostForMe::Models::AccountConfiguration::Configuration::PrivacyStatus, nil] Sets the privacy status for TikTok (private, public), or YouTube (private, publi
         #
+        #   @param public_stats_viewable [Boolean, nil] If true, the extended video statistics are publicly viewable (maps to status.pub
+        #
+        #   @param publish_at [String, nil] ISO 8601 datetime at which the video should be published. Only honoured when pri
+        #
         #   @param quote_tweet_id [String] Id of the tweet you want to quote
+        #
+        #   @param recording_date [String, nil] ISO 8601 date (YYYY-MM-DD) or datetime when the video was recorded (maps to reco
         #
         #   @param reply_settings [Symbol, PostForMe::Models::AccountConfiguration::Configuration::ReplySettings, nil] Who can reply to the tweet
         #
@@ -264,9 +345,25 @@ module PostForMe
         #
         #   @param share_to_feed [Boolean, nil] If false Instagram video posts will only be shown in the Reels tab
         #
+        #   @param tags [Array<String>, nil] YouTube video tags
+        #
         #   @param title [String, nil] Overrides the `title` from the post (Pinterest, TikTok, YouTube)
         #
         #   @param trial_reel_type [Symbol, PostForMe::Models::AccountConfiguration::Configuration::TrialReelType, nil] Instagram trial reel type, when passed will be created as a trial reel. If manua
+
+        # The video's license (maps to status.license). "youtube" is the standard YouTube
+        # license; "creativeCommon" is Creative Commons.
+        #
+        # @see PostForMe::Models::AccountConfiguration::Configuration#license
+        module License
+          extend PostForMe::Internal::Type::Enum
+
+          YOUTUBE = :youtube
+          CREATIVE_COMMON = :creativeCommon
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
 
         # Post placement for Facebook/Instagram/Threads
         #
