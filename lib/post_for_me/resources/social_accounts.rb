@@ -136,7 +136,11 @@ module PostForMe
       # Generates a URL that initiates the authentication flow for a user's social media
       # account. When visited, the user is redirected to the selected social platform's
       # login/authorization page. Upon successful authentication, they are redirected
-      # back to your application
+      # back to your application.
+      #
+      # For Quickstart projects using Post for Me system credentials,
+      # `redirect_url_override` is not accepted. Configure the project redirect URL in
+      # the dashboard instead.
       #
       # @overload create_auth_url(platform:, external_id: nil, permissions: nil, platform_data: nil, redirect_url_override: nil, request_options: {})
       #
