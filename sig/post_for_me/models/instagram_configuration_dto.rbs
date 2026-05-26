@@ -2,6 +2,7 @@ module PostForMe
   module Models
     type instagram_configuration_dto =
       {
+        audio_name: String?,
         caption: top?,
         collaborators: ::Array[String]?,
         location: String?,
@@ -12,6 +13,8 @@ module PostForMe
       }
 
     class InstagramConfigurationDto < PostForMe::Internal::Type::BaseModel
+      attr_accessor audio_name: String?
+
       attr_accessor caption: top?
 
       attr_accessor collaborators: ::Array[String]?
@@ -27,6 +30,7 @@ module PostForMe
       attr_accessor trial_reel_type: PostForMe::Models::InstagramConfigurationDto::trial_reel_type?
 
       def initialize: (
+        ?audio_name: String?,
         ?caption: top?,
         ?collaborators: ::Array[String]?,
         ?location: String?,
@@ -37,6 +41,7 @@ module PostForMe
       ) -> void
 
       def to_hash: -> {
+        audio_name: String?,
         caption: top?,
         collaborators: ::Array[String]?,
         location: String?,

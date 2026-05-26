@@ -26,6 +26,7 @@ module PostForMe
           allow_comment: bool?,
           allow_duet: bool?,
           allow_stitch: bool?,
+          audio_name: String?,
           auto_add_music: bool?,
           board_ids: ::Array[String]?,
           caption: top?,
@@ -56,6 +57,8 @@ module PostForMe
         attr_accessor allow_duet: bool?
 
         attr_accessor allow_stitch: bool?
+
+        attr_accessor audio_name: String?
 
         attr_accessor auto_add_music: bool?
 
@@ -111,6 +114,7 @@ module PostForMe
           ?allow_comment: bool?,
           ?allow_duet: bool?,
           ?allow_stitch: bool?,
+          ?audio_name: String?,
           ?auto_add_music: bool?,
           ?board_ids: ::Array[String]?,
           ?caption: top?,
@@ -139,6 +143,7 @@ module PostForMe
           allow_comment: bool?,
           allow_duet: bool?,
           allow_stitch: bool?,
+          audio_name: String?,
           auto_add_music: bool?,
           board_ids: ::Array[String]?,
           caption: top?,
