@@ -2,18 +2,40 @@ module PostForMe
   module Models
     type youtube_configuration_dto =
       {
+        localizations: ::Hash[Symbol, top]?,
         caption: top?,
+        category_id: String?,
         contains_synthetic_media: bool?,
+        default_language: String?,
+        description: String?,
+        embeddable: bool?,
+        license: PostForMe::Models::YoutubeConfigurationDto::license?,
         made_for_kids: bool?,
         media: ::Array[PostForMe::SocialPostMedia]?,
         privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?,
+        public_stats_viewable: bool?,
+        publish_at: String?,
+        recording_date: String?,
+        tags: ::Array[String]?,
         title: String?
       }
 
     class YoutubeConfigurationDto < PostForMe::Internal::Type::BaseModel
+      attr_accessor localizations: ::Hash[Symbol, top]?
+
       attr_accessor caption: top?
 
+      attr_accessor category_id: String?
+
       attr_accessor contains_synthetic_media: bool?
+
+      attr_accessor default_language: String?
+
+      attr_accessor description: String?
+
+      attr_accessor embeddable: bool?
+
+      attr_accessor license: PostForMe::Models::YoutubeConfigurationDto::license?
 
       attr_accessor made_for_kids: bool?
 
@@ -21,25 +43,64 @@ module PostForMe
 
       attr_accessor privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?
 
+      attr_accessor public_stats_viewable: bool?
+
+      attr_accessor publish_at: String?
+
+      attr_accessor recording_date: String?
+
+      attr_accessor tags: ::Array[String]?
+
       attr_accessor title: String?
 
       def initialize: (
+        localizations: ::Hash[Symbol, top]?,
         ?caption: top?,
+        ?category_id: String?,
         ?contains_synthetic_media: bool?,
+        ?default_language: String?,
+        ?description: String?,
+        ?embeddable: bool?,
+        ?license: PostForMe::Models::YoutubeConfigurationDto::license?,
         ?made_for_kids: bool?,
         ?media: ::Array[PostForMe::SocialPostMedia]?,
         ?privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?,
+        ?public_stats_viewable: bool?,
+        ?publish_at: String?,
+        ?recording_date: String?,
+        ?tags: ::Array[String]?,
         ?title: String?
       ) -> void
 
       def to_hash: -> {
+        localizations: ::Hash[Symbol, top]?,
         caption: top?,
+        category_id: String?,
         contains_synthetic_media: bool?,
+        default_language: String?,
+        description: String?,
+        embeddable: bool?,
+        license: PostForMe::Models::YoutubeConfigurationDto::license?,
         made_for_kids: bool?,
         media: ::Array[PostForMe::SocialPostMedia]?,
         privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?,
+        public_stats_viewable: bool?,
+        publish_at: String?,
+        recording_date: String?,
+        tags: ::Array[String]?,
         title: String?
       }
+
+      type license = :youtube | :creativeCommon
+
+      module License
+        extend PostForMe::Internal::Type::Enum
+
+        YOUTUBE: :youtube
+        CREATIVE_COMMON: :creativeCommon
+
+        def self?.values: -> ::Array[PostForMe::Models::YoutubeConfigurationDto::license]
+      end
 
       type privacy_status = :public | :private | :unlisted
 
