@@ -37,7 +37,7 @@ module PostForMe
       #   Override the default redirect URL for the OAuth flow. If provided, this URL will
       #   be used instead of our redirect URL. Make sure this URL is included in your
       #   app's authorized redirect urls. This override will not work when using our
-      #   system credientals.
+      #   system credentials; configure the project redirect URL in the dashboard instead.
       #
       #   @return [String, nil]
       optional :redirect_url_override, String
@@ -238,7 +238,7 @@ module PostForMe
         class Linkedin < PostForMe::Internal::Type::BaseModel
           # @!attribute connection_type
           #   The type of connection; If using our provided credentials always use
-          #   "organization". If using your own crednetials then only use "organization" if
+          #   "organization". If using your own credentials then only use "organization" if
           #   you are using the Community API
           #
           #   @return [Symbol, PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::ConnectionType]
@@ -267,7 +267,7 @@ module PostForMe
           #   @param permission_overrides [Array<Array<Object>>] Override the default permissions/scopes requested during OAuth. Default personal
 
           # The type of connection; If using our provided credentials always use
-          # "organization". If using your own crednetials then only use "organization" if
+          # "organization". If using your own credentials then only use "organization" if
           # you are using the Community API
           #
           # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin#connection_type
