@@ -19,17 +19,24 @@ module PostForMe
       sig { returns(T.nilable(T::Array[PostForMe::SocialPostMedia])) }
       attr_accessor :media
 
+      # LinkedIn UGC post id to reshare. The caption is used as the reshare commentary.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :reshare_post_id
+
       sig do
         params(
           caption: T.nilable(T.anything),
-          media: T.nilable(T::Array[PostForMe::SocialPostMedia::OrHash])
+          media: T.nilable(T::Array[PostForMe::SocialPostMedia::OrHash]),
+          reshare_post_id: T.nilable(String)
         ).returns(T.attached_class)
       end
       def self.new(
         # Overrides the `caption` from the post
         caption: nil,
         # Overrides the `media` from the post
-        media: nil
+        media: nil,
+        # LinkedIn UGC post id to reshare. The caption is used as the reshare commentary.
+        reshare_post_id: nil
       )
       end
 
@@ -37,7 +44,8 @@ module PostForMe
         override.returns(
           {
             caption: T.nilable(T.anything),
-            media: T.nilable(T::Array[PostForMe::SocialPostMedia])
+            media: T.nilable(T::Array[PostForMe::SocialPostMedia]),
+            reshare_post_id: T.nilable(String)
           }
         )
       end

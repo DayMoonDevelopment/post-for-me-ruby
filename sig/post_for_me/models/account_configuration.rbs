@@ -54,6 +54,7 @@ module PostForMe
           quote_tweet_id: String,
           recording_date: String?,
           reply_settings: PostForMe::Models::AccountConfiguration::Configuration::reply_settings?,
+          reshare_post_id: String?,
           set_caption_for_each_image: bool?,
           share_to_feed: bool?,
           tags: ::Array[String]?,
@@ -130,6 +131,8 @@ module PostForMe
 
         attr_accessor reply_settings: PostForMe::Models::AccountConfiguration::Configuration::reply_settings?
 
+        attr_accessor reshare_post_id: String?
+
         attr_accessor set_caption_for_each_image: bool?
 
         attr_accessor share_to_feed: bool?
@@ -172,6 +175,7 @@ module PostForMe
           ?quote_tweet_id: String,
           ?recording_date: String?,
           ?reply_settings: PostForMe::Models::AccountConfiguration::Configuration::reply_settings?,
+          ?reshare_post_id: String?,
           ?set_caption_for_each_image: bool?,
           ?share_to_feed: bool?,
           ?tags: ::Array[String]?,
@@ -211,6 +215,7 @@ module PostForMe
           quote_tweet_id: String,
           recording_date: String?,
           reply_settings: PostForMe::Models::AccountConfiguration::Configuration::reply_settings?,
+          reshare_post_id: String?,
           set_caption_for_each_image: bool?,
           share_to_feed: bool?,
           tags: ::Array[String]?,
