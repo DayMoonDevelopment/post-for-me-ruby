@@ -1,21 +1,29 @@
 module PostForMe
   module Models
     type linkedin_configuration_dto =
-      { caption: top?, media: ::Array[PostForMe::SocialPostMedia]? }
+      {
+        caption: top?,
+        media: ::Array[PostForMe::SocialPostMedia]?,
+        reshare_post_id: String?
+      }
 
     class LinkedinConfigurationDto < PostForMe::Internal::Type::BaseModel
       attr_accessor caption: top?
 
       attr_accessor media: ::Array[PostForMe::SocialPostMedia]?
 
+      attr_accessor reshare_post_id: String?
+
       def initialize: (
         ?caption: top?,
-        ?media: ::Array[PostForMe::SocialPostMedia]?
+        ?media: ::Array[PostForMe::SocialPostMedia]?,
+        ?reshare_post_id: String?
       ) -> void
 
       def to_hash: -> {
         caption: top?,
-        media: ::Array[PostForMe::SocialPostMedia]?
+        media: ::Array[PostForMe::SocialPostMedia]?,
+        reshare_post_id: String?
       }
     end
   end

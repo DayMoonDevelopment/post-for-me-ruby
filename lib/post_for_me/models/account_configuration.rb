@@ -238,6 +238,12 @@ module PostForMe
                  enum: -> { PostForMe::AccountConfiguration::Configuration::ReplySettings },
                  nil?: true
 
+        # @!attribute reshare_post_id
+        #   LinkedIn UGC post id to reshare. The caption is used as the reshare commentary.
+        #
+        #   @return [String, nil]
+        optional :reshare_post_id, String, nil?: true
+
         # @!attribute set_caption_for_each_image
         #   If true, include the caption on each image in a Facebook carousel upload; if
         #   false, only include it on the final carousel post
@@ -273,7 +279,7 @@ module PostForMe
                  enum: -> { PostForMe::AccountConfiguration::Configuration::TrialReelType },
                  nil?: true
 
-        # @!method initialize(localizations:, allow_comment: nil, allow_duet: nil, allow_stitch: nil, audio_name: nil, auto_add_music: nil, board_ids: nil, caption: nil, category_id: nil, collaborators: nil, community_id: nil, contains_synthetic_media: nil, default_language: nil, disclose_branded_content: nil, disclose_your_brand: nil, embeddable: nil, is_ai_generated: nil, is_draft: nil, license: nil, link: nil, location: nil, made_for_kids: nil, media: nil, placement: nil, poll: nil, privacy_status: nil, public_stats_viewable: nil, publish_at: nil, quote_tweet_id: nil, recording_date: nil, reply_settings: nil, set_caption_for_each_image: nil, share_to_feed: nil, tags: nil, title: nil, trial_reel_type: nil)
+        # @!method initialize(localizations:, allow_comment: nil, allow_duet: nil, allow_stitch: nil, audio_name: nil, auto_add_music: nil, board_ids: nil, caption: nil, category_id: nil, collaborators: nil, community_id: nil, contains_synthetic_media: nil, default_language: nil, disclose_branded_content: nil, disclose_your_brand: nil, embeddable: nil, is_ai_generated: nil, is_draft: nil, license: nil, link: nil, location: nil, made_for_kids: nil, media: nil, placement: nil, poll: nil, privacy_status: nil, public_stats_viewable: nil, publish_at: nil, quote_tweet_id: nil, recording_date: nil, reply_settings: nil, reshare_post_id: nil, set_caption_for_each_image: nil, share_to_feed: nil, tags: nil, title: nil, trial_reel_type: nil)
         #   Some parameter documentations has been truncated, see
         #   {PostForMe::Models::AccountConfiguration::Configuration} for more details.
         #
@@ -340,6 +346,8 @@ module PostForMe
         #   @param recording_date [String, nil] ISO 8601 date (YYYY-MM-DD) or datetime when the video was recorded (maps to reco
         #
         #   @param reply_settings [Symbol, PostForMe::Models::AccountConfiguration::Configuration::ReplySettings, nil] Who can reply to the tweet
+        #
+        #   @param reshare_post_id [String, nil] LinkedIn UGC post id to reshare. The caption is used as the reshare commentary.
         #
         #   @param set_caption_for_each_image [Boolean, nil] If true, include the caption on each image in a Facebook carousel upload; if fal
         #

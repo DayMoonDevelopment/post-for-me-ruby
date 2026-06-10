@@ -232,6 +232,10 @@ module PostForMe
         end
         attr_accessor :reply_settings
 
+        # LinkedIn UGC post id to reshare. The caption is used as the reshare commentary.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :reshare_post_id
+
         # If true, include the caption on each image in a Facebook carousel upload; if
         # false, only include it on the final carousel post
         sig { returns(T.nilable(T::Boolean)) }
@@ -307,6 +311,7 @@ module PostForMe
               T.nilable(
                 PostForMe::AccountConfiguration::Configuration::ReplySettings::OrSymbol
               ),
+            reshare_post_id: T.nilable(String),
             set_caption_for_each_image: T.nilable(T::Boolean),
             share_to_feed: T.nilable(T::Boolean),
             tags: T.nilable(T::Array[String]),
@@ -398,6 +403,8 @@ module PostForMe
           recording_date: nil,
           # Who can reply to the tweet
           reply_settings: nil,
+          # LinkedIn UGC post id to reshare. The caption is used as the reshare commentary.
+          reshare_post_id: nil,
           # If true, include the caption on each image in a Facebook carousel upload; if
           # false, only include it on the final carousel post
           set_caption_for_each_image: nil,
@@ -460,6 +467,7 @@ module PostForMe
                 T.nilable(
                   PostForMe::AccountConfiguration::Configuration::ReplySettings::OrSymbol
                 ),
+              reshare_post_id: T.nilable(String),
               set_caption_for_each_image: T.nilable(T::Boolean),
               share_to_feed: T.nilable(T::Boolean),
               tags: T.nilable(T::Array[String]),
