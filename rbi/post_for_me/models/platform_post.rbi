@@ -1273,13 +1273,6 @@ module PostForMe
           sig { params(comments: Float).void }
           attr_writer :comments
 
-          # Number of fans who saw the post
-          sig { returns(T.nilable(Float)) }
-          attr_reader :fan_reach
-
-          sig { params(fan_reach: Float).void }
-          attr_writer :fan_reach
-
           # Number of times the photo or video was viewed
           sig { returns(T.nilable(Float)) }
           attr_reader :media_views
@@ -1287,28 +1280,7 @@ module PostForMe
           sig { params(media_views: Float).void }
           attr_writer :media_views
 
-          # Number of people who saw the post via non-viral distribution
-          sig { returns(T.nilable(Float)) }
-          attr_reader :nonviral_reach
-
-          sig { params(nonviral_reach: Float).void }
-          attr_writer :nonviral_reach
-
-          # Number of people who saw the post via organic distribution
-          sig { returns(T.nilable(Float)) }
-          attr_reader :organic_reach
-
-          sig { params(organic_reach: Float).void }
-          attr_writer :organic_reach
-
-          # Number of people who saw the post via paid distribution
-          sig { returns(T.nilable(Float)) }
-          attr_reader :paid_reach
-
-          sig { params(paid_reach: Float).void }
-          attr_writer :paid_reach
-
-          # Total number of unique people who saw the post
+          # Total number of unique people who viewed the post media
           sig { returns(T.nilable(Float)) }
           attr_reader :reach
 
@@ -1574,27 +1546,12 @@ module PostForMe
           sig { params(video_views_organic: Float).void }
           attr_writer :video_views_organic
 
-          # Number of unique people who viewed the video for 3+ seconds organically
-          sig { returns(T.nilable(Float)) }
-          attr_reader :video_views_organic_unique
-
-          sig { params(video_views_organic_unique: Float).void }
-          attr_writer :video_views_organic_unique
-
           # Number of times video was viewed for 3+ seconds via paid distribution
           sig { returns(T.nilable(Float)) }
           attr_reader :video_views_paid
 
           sig { params(video_views_paid: Float).void }
           attr_writer :video_views_paid
-
-          # Number of unique people who viewed the video for 3+ seconds via paid
-          # distribution
-          sig { returns(T.nilable(Float)) }
-          attr_reader :video_views_paid_unique
-
-          sig { params(video_views_paid_unique: Float).void }
-          attr_writer :video_views_paid_unique
 
           # Number of times video was viewed with sound on
           sig { returns(T.nilable(Float)) }
@@ -1603,20 +1560,6 @@ module PostForMe
           sig { params(video_views_sound_on: Float).void }
           attr_writer :video_views_sound_on
 
-          # Number of unique people who viewed the video for 3+ seconds
-          sig { returns(T.nilable(Float)) }
-          attr_reader :video_views_unique
-
-          sig { params(video_views_unique: Float).void }
-          attr_writer :video_views_unique
-
-          # Number of people who saw the post in News Feed via viral reach
-          sig { returns(T.nilable(Float)) }
-          attr_reader :viral_reach
-
-          sig { params(viral_reach: Float).void }
-          attr_writer :viral_reach
-
           sig do
             params(
               activity_by_action_type:
@@ -1624,11 +1567,7 @@ module PostForMe
               activity_by_action_type_unique:
                 T::Array[PostForMe::FacebookActivityByActionType::OrHash],
               comments: Float,
-              fan_reach: Float,
               media_views: Float,
-              nonviral_reach: Float,
-              organic_reach: Float,
-              paid_reach: Float,
               reach: Float,
               reactions_anger: Float,
               reactions_by_type: T.anything,
@@ -1666,12 +1605,8 @@ module PostForMe
               video_views_by_distribution_type: T.anything,
               video_views_clicked_to_play: Float,
               video_views_organic: Float,
-              video_views_organic_unique: Float,
               video_views_paid: Float,
-              video_views_paid_unique: Float,
-              video_views_sound_on: Float,
-              video_views_unique: Float,
-              viral_reach: Float
+              video_views_sound_on: Float
             ).returns(T.attached_class)
           end
           def self.new(
@@ -1681,17 +1616,9 @@ module PostForMe
             activity_by_action_type_unique: nil,
             # Number of comments (from post object)
             comments: nil,
-            # Number of fans who saw the post
-            fan_reach: nil,
             # Number of times the photo or video was viewed
             media_views: nil,
-            # Number of people who saw the post via non-viral distribution
-            nonviral_reach: nil,
-            # Number of people who saw the post via organic distribution
-            organic_reach: nil,
-            # Number of people who saw the post via paid distribution
-            paid_reach: nil,
-            # Total number of unique people who saw the post
+            # Total number of unique people who viewed the post media
             reach: nil,
             # Number of anger reactions
             reactions_anger: nil,
@@ -1756,19 +1683,10 @@ module PostForMe
             video_views_clicked_to_play: nil,
             # Number of times video was viewed for 3+ seconds organically
             video_views_organic: nil,
-            # Number of unique people who viewed the video for 3+ seconds organically
-            video_views_organic_unique: nil,
             # Number of times video was viewed for 3+ seconds via paid distribution
             video_views_paid: nil,
-            # Number of unique people who viewed the video for 3+ seconds via paid
-            # distribution
-            video_views_paid_unique: nil,
             # Number of times video was viewed with sound on
-            video_views_sound_on: nil,
-            # Number of unique people who viewed the video for 3+ seconds
-            video_views_unique: nil,
-            # Number of people who saw the post in News Feed via viral reach
-            viral_reach: nil
+            video_views_sound_on: nil
           )
           end
 
@@ -1780,11 +1698,7 @@ module PostForMe
                 activity_by_action_type_unique:
                   T::Array[PostForMe::FacebookActivityByActionType],
                 comments: Float,
-                fan_reach: Float,
                 media_views: Float,
-                nonviral_reach: Float,
-                organic_reach: Float,
-                paid_reach: Float,
                 reach: Float,
                 reactions_anger: Float,
                 reactions_by_type: T.anything,
@@ -1822,12 +1736,8 @@ module PostForMe
                 video_views_by_distribution_type: T.anything,
                 video_views_clicked_to_play: Float,
                 video_views_organic: Float,
-                video_views_organic_unique: Float,
                 video_views_paid: Float,
-                video_views_paid_unique: Float,
-                video_views_sound_on: Float,
-                video_views_unique: Float,
-                viral_reach: Float
+                video_views_sound_on: Float
               }
             )
           end

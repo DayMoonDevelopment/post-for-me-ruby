@@ -649,11 +649,7 @@ module PostForMe
             activity_by_action_type: ::Array[PostForMe::FacebookActivityByActionType],
             activity_by_action_type_unique: ::Array[PostForMe::FacebookActivityByActionType],
             comments: Float,
-            fan_reach: Float,
             media_views: Float,
-            nonviral_reach: Float,
-            organic_reach: Float,
-            paid_reach: Float,
             reach: Float,
             reactions_anger: Float,
             reactions_by_type: top,
@@ -686,12 +682,8 @@ module PostForMe
             video_views_by_distribution_type: top,
             video_views_clicked_to_play: Float,
             video_views_organic: Float,
-            video_views_organic_unique: Float,
             video_views_paid: Float,
-            video_views_paid_unique: Float,
-            video_views_sound_on: Float,
-            video_views_unique: Float,
-            viral_reach: Float
+            video_views_sound_on: Float
           }
 
         class FacebookPostMetricsDto < PostForMe::Internal::Type::BaseModel
@@ -711,25 +703,9 @@ module PostForMe
 
           def comments=: (Float) -> Float
 
-          attr_reader fan_reach: Float?
-
-          def fan_reach=: (Float) -> Float
-
           attr_reader media_views: Float?
 
           def media_views=: (Float) -> Float
-
-          attr_reader nonviral_reach: Float?
-
-          def nonviral_reach=: (Float) -> Float
-
-          attr_reader organic_reach: Float?
-
-          def organic_reach=: (Float) -> Float
-
-          attr_reader paid_reach: Float?
-
-          def paid_reach=: (Float) -> Float
 
           attr_reader reach: Float?
 
@@ -869,39 +845,19 @@ module PostForMe
 
           def video_views_organic=: (Float) -> Float
 
-          attr_reader video_views_organic_unique: Float?
-
-          def video_views_organic_unique=: (Float) -> Float
-
           attr_reader video_views_paid: Float?
 
           def video_views_paid=: (Float) -> Float
-
-          attr_reader video_views_paid_unique: Float?
-
-          def video_views_paid_unique=: (Float) -> Float
 
           attr_reader video_views_sound_on: Float?
 
           def video_views_sound_on=: (Float) -> Float
 
-          attr_reader video_views_unique: Float?
-
-          def video_views_unique=: (Float) -> Float
-
-          attr_reader viral_reach: Float?
-
-          def viral_reach=: (Float) -> Float
-
           def initialize: (
             ?activity_by_action_type: ::Array[PostForMe::FacebookActivityByActionType],
             ?activity_by_action_type_unique: ::Array[PostForMe::FacebookActivityByActionType],
             ?comments: Float,
-            ?fan_reach: Float,
             ?media_views: Float,
-            ?nonviral_reach: Float,
-            ?organic_reach: Float,
-            ?paid_reach: Float,
             ?reach: Float,
             ?reactions_anger: Float,
             ?reactions_by_type: top,
@@ -934,23 +890,15 @@ module PostForMe
             ?video_views_by_distribution_type: top,
             ?video_views_clicked_to_play: Float,
             ?video_views_organic: Float,
-            ?video_views_organic_unique: Float,
             ?video_views_paid: Float,
-            ?video_views_paid_unique: Float,
-            ?video_views_sound_on: Float,
-            ?video_views_unique: Float,
-            ?viral_reach: Float
+            ?video_views_sound_on: Float
           ) -> void
 
           def to_hash: -> {
             activity_by_action_type: ::Array[PostForMe::FacebookActivityByActionType],
             activity_by_action_type_unique: ::Array[PostForMe::FacebookActivityByActionType],
             comments: Float,
-            fan_reach: Float,
             media_views: Float,
-            nonviral_reach: Float,
-            organic_reach: Float,
-            paid_reach: Float,
             reach: Float,
             reactions_anger: Float,
             reactions_by_type: top,
@@ -983,12 +931,8 @@ module PostForMe
             video_views_by_distribution_type: top,
             video_views_clicked_to_play: Float,
             video_views_organic: Float,
-            video_views_organic_unique: Float,
             video_views_paid: Float,
-            video_views_paid_unique: Float,
-            video_views_sound_on: Float,
-            video_views_unique: Float,
-            viral_reach: Float
+            video_views_sound_on: Float
           }
         end
 
