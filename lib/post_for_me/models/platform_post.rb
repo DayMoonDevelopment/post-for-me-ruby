@@ -838,38 +838,14 @@ module PostForMe
           #   @return [Float, nil]
           optional :comments, Float
 
-          # @!attribute fan_reach
-          #   Number of fans who saw the post
-          #
-          #   @return [Float, nil]
-          optional :fan_reach, Float
-
           # @!attribute media_views
           #   Number of times the photo or video was viewed
           #
           #   @return [Float, nil]
           optional :media_views, Float
 
-          # @!attribute nonviral_reach
-          #   Number of people who saw the post via non-viral distribution
-          #
-          #   @return [Float, nil]
-          optional :nonviral_reach, Float
-
-          # @!attribute organic_reach
-          #   Number of people who saw the post via organic distribution
-          #
-          #   @return [Float, nil]
-          optional :organic_reach, Float
-
-          # @!attribute paid_reach
-          #   Number of people who saw the post via paid distribution
-          #
-          #   @return [Float, nil]
-          optional :paid_reach, Float
-
           # @!attribute reach
-          #   Total number of unique people who saw the post
+          #   Total number of unique people who viewed the post media
           #
           #   @return [Float, nil]
           optional :reach, Float
@@ -1066,24 +1042,11 @@ module PostForMe
           #   @return [Float, nil]
           optional :video_views_organic, Float
 
-          # @!attribute video_views_organic_unique
-          #   Number of unique people who viewed the video for 3+ seconds organically
-          #
-          #   @return [Float, nil]
-          optional :video_views_organic_unique, Float
-
           # @!attribute video_views_paid
           #   Number of times video was viewed for 3+ seconds via paid distribution
           #
           #   @return [Float, nil]
           optional :video_views_paid, Float
-
-          # @!attribute video_views_paid_unique
-          #   Number of unique people who viewed the video for 3+ seconds via paid
-          #   distribution
-          #
-          #   @return [Float, nil]
-          optional :video_views_paid_unique, Float
 
           # @!attribute video_views_sound_on
           #   Number of times video was viewed with sound on
@@ -1091,19 +1054,7 @@ module PostForMe
           #   @return [Float, nil]
           optional :video_views_sound_on, Float
 
-          # @!attribute video_views_unique
-          #   Number of unique people who viewed the video for 3+ seconds
-          #
-          #   @return [Float, nil]
-          optional :video_views_unique, Float
-
-          # @!attribute viral_reach
-          #   Number of people who saw the post in News Feed via viral reach
-          #
-          #   @return [Float, nil]
-          optional :viral_reach, Float
-
-          # @!method initialize(activity_by_action_type: nil, activity_by_action_type_unique: nil, comments: nil, fan_reach: nil, media_views: nil, nonviral_reach: nil, organic_reach: nil, paid_reach: nil, reach: nil, reactions_anger: nil, reactions_by_type: nil, reactions_haha: nil, reactions_like: nil, reactions_love: nil, reactions_sorry: nil, reactions_total: nil, reactions_wow: nil, shares: nil, video_avg_time_watched: nil, video_complete_views_organic: nil, video_complete_views_organic_unique: nil, video_complete_views_paid: nil, video_complete_views_paid_unique: nil, video_length: nil, video_retention_graph_autoplayed: nil, video_retention_graph_clicked_to_play: nil, video_social_actions_unique: nil, video_view_time: nil, video_view_time_by_age_gender: nil, video_view_time_by_country: nil, video_view_time_by_distribution_type: nil, video_view_time_by_region: nil, video_view_time_organic: nil, video_views: nil, video_views_15s: nil, video_views_60s: nil, video_views_autoplayed: nil, video_views_by_distribution_type: nil, video_views_clicked_to_play: nil, video_views_organic: nil, video_views_organic_unique: nil, video_views_paid: nil, video_views_paid_unique: nil, video_views_sound_on: nil, video_views_unique: nil, viral_reach: nil)
+          # @!method initialize(activity_by_action_type: nil, activity_by_action_type_unique: nil, comments: nil, media_views: nil, reach: nil, reactions_anger: nil, reactions_by_type: nil, reactions_haha: nil, reactions_like: nil, reactions_love: nil, reactions_sorry: nil, reactions_total: nil, reactions_wow: nil, shares: nil, video_avg_time_watched: nil, video_complete_views_organic: nil, video_complete_views_organic_unique: nil, video_complete_views_paid: nil, video_complete_views_paid_unique: nil, video_length: nil, video_retention_graph_autoplayed: nil, video_retention_graph_clicked_to_play: nil, video_social_actions_unique: nil, video_view_time: nil, video_view_time_by_age_gender: nil, video_view_time_by_country: nil, video_view_time_by_distribution_type: nil, video_view_time_by_region: nil, video_view_time_organic: nil, video_views: nil, video_views_15s: nil, video_views_60s: nil, video_views_autoplayed: nil, video_views_by_distribution_type: nil, video_views_clicked_to_play: nil, video_views_organic: nil, video_views_paid: nil, video_views_sound_on: nil)
           #   Some parameter documentations has been truncated, see
           #   {PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto} for more
           #   details.
@@ -1114,17 +1065,9 @@ module PostForMe
           #
           #   @param comments [Float] Number of comments (from post object)
           #
-          #   @param fan_reach [Float] Number of fans who saw the post
-          #
           #   @param media_views [Float] Number of times the photo or video was viewed
           #
-          #   @param nonviral_reach [Float] Number of people who saw the post via non-viral distribution
-          #
-          #   @param organic_reach [Float] Number of people who saw the post via organic distribution
-          #
-          #   @param paid_reach [Float] Number of people who saw the post via paid distribution
-          #
-          #   @param reach [Float] Total number of unique people who saw the post
+          #   @param reach [Float] Total number of unique people who viewed the post media
           #
           #   @param reactions_anger [Float] Number of anger reactions
           #
@@ -1188,17 +1131,9 @@ module PostForMe
           #
           #   @param video_views_organic [Float] Number of times video was viewed for 3+ seconds organically
           #
-          #   @param video_views_organic_unique [Float] Number of unique people who viewed the video for 3+ seconds organically
-          #
           #   @param video_views_paid [Float] Number of times video was viewed for 3+ seconds via paid distribution
           #
-          #   @param video_views_paid_unique [Float] Number of unique people who viewed the video for 3+ seconds via paid distributio
-          #
           #   @param video_views_sound_on [Float] Number of times video was viewed with sound on
-          #
-          #   @param video_views_unique [Float] Number of unique people who viewed the video for 3+ seconds
-          #
-          #   @param viral_reach [Float] Number of people who saw the post in News Feed via viral reach
         end
 
         class TwitterPostMetricsDto < PostForMe::Internal::Type::BaseModel
