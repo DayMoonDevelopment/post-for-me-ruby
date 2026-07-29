@@ -60,7 +60,16 @@ module PostForMe
         # Per-language localizations for the video title and description. Keys are BCP-47
         # language tags (e.g. "fr", "es"). Maps to localizations on the YouTube Data API
         # videos resource.
-        sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+        sig do
+          returns(
+            T.nilable(
+              T::Hash[
+                Symbol,
+                PostForMe::AccountConfiguration::Configuration::Localization
+              ]
+            )
+          )
+        end
         attr_accessor :localizations
 
         # Allow comments on TikTok
@@ -268,7 +277,13 @@ module PostForMe
         # Configuration for the social account
         sig do
           params(
-            localizations: T.nilable(T::Hash[Symbol, T.anything]),
+            localizations:
+              T.nilable(
+                T::Hash[
+                  Symbol,
+                  PostForMe::AccountConfiguration::Configuration::Localization::OrHash
+                ]
+              ),
             allow_comment: T.nilable(T::Boolean),
             allow_duet: T.nilable(T::Boolean),
             allow_stitch: T.nilable(T::Boolean),
@@ -424,7 +439,13 @@ module PostForMe
         sig do
           override.returns(
             {
-              localizations: T.nilable(T::Hash[Symbol, T.anything]),
+              localizations:
+                T.nilable(
+                  T::Hash[
+                    Symbol,
+                    PostForMe::AccountConfiguration::Configuration::Localization
+                  ]
+                ),
               allow_comment: T.nilable(T::Boolean),
               allow_duet: T.nilable(T::Boolean),
               allow_stitch: T.nilable(T::Boolean),
@@ -480,6 +501,39 @@ module PostForMe
           )
         end
         def to_hash
+        end
+
+        class Localization < PostForMe::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                PostForMe::AccountConfiguration::Configuration::Localization,
+                PostForMe::Internal::AnyHash
+              )
+            end
+
+          sig { returns(T.nilable(String)) }
+          attr_accessor :description
+
+          sig { returns(T.nilable(String)) }
+          attr_accessor :title
+
+          sig do
+            params(
+              description: T.nilable(String),
+              title: T.nilable(String)
+            ).returns(T.attached_class)
+          end
+          def self.new(description: nil, title: nil)
+          end
+
+          sig do
+            override.returns(
+              { description: T.nilable(String), title: T.nilable(String) }
+            )
+          end
+          def to_hash
+          end
         end
 
         # The video's license (maps to status.license). "youtube" is the standard YouTube

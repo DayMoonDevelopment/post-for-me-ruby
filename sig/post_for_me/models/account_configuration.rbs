@@ -23,7 +23,7 @@ module PostForMe
 
       type configuration =
         {
-          localizations: ::Hash[Symbol, top]?,
+          localizations: ::Hash[Symbol, PostForMe::AccountConfiguration::Configuration::Localization]?,
           allow_comment: bool?,
           allow_duet: bool?,
           allow_stitch: bool?,
@@ -63,7 +63,7 @@ module PostForMe
         }
 
       class Configuration < PostForMe::Internal::Type::BaseModel
-        attr_accessor localizations: ::Hash[Symbol, top]?
+        attr_accessor localizations: ::Hash[Symbol, PostForMe::AccountConfiguration::Configuration::Localization]?
 
         attr_accessor allow_comment: bool?
 
@@ -144,7 +144,7 @@ module PostForMe
         attr_accessor trial_reel_type: PostForMe::Models::AccountConfiguration::Configuration::trial_reel_type?
 
         def initialize: (
-          localizations: ::Hash[Symbol, top]?,
+          localizations: ::Hash[Symbol, PostForMe::AccountConfiguration::Configuration::Localization]?,
           ?allow_comment: bool?,
           ?allow_duet: bool?,
           ?allow_stitch: bool?,
@@ -184,7 +184,7 @@ module PostForMe
         ) -> void
 
         def to_hash: -> {
-          localizations: ::Hash[Symbol, top]?,
+          localizations: ::Hash[Symbol, PostForMe::AccountConfiguration::Configuration::Localization]?,
           allow_comment: bool?,
           allow_duet: bool?,
           allow_stitch: bool?,
@@ -222,6 +222,18 @@ module PostForMe
           title: String?,
           trial_reel_type: PostForMe::Models::AccountConfiguration::Configuration::trial_reel_type?
         }
+
+        type localization = { description: String?, title: String? }
+
+        class Localization < PostForMe::Internal::Type::BaseModel
+          attr_accessor description: String?
+
+          attr_accessor title: String?
+
+          def initialize: (?description: String?, ?title: String?) -> void
+
+          def to_hash: -> { description: String?, title: String? }
+        end
 
         type license = :youtube | :creativeCommon
 
