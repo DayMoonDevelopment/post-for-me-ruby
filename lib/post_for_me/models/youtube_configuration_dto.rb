@@ -8,9 +8,9 @@ module PostForMe
       #   language tags (e.g. "fr", "es"). Maps to localizations on the YouTube Data API
       #   videos resource.
       #
-      #   @return [Hash{Symbol=>Object}, nil]
+      #   @return [Hash{Symbol=>PostForMe::Models::YoutubeConfigurationDto::Localization}, nil]
       required :localizations,
-               PostForMe::Internal::Type::HashOf[PostForMe::Internal::Type::Unknown],
+               -> { PostForMe::Internal::Type::HashOf[PostForMe::YoutubeConfigurationDto::Localization] },
                nil?: true
 
       # @!attribute caption
@@ -119,7 +119,7 @@ module PostForMe
       #   Some parameter documentations has been truncated, see
       #   {PostForMe::Models::YoutubeConfigurationDto} for more details.
       #
-      #   @param localizations [Hash{Symbol=>Object}, nil] Per-language localizations for the video title and description. Keys are BCP-47
+      #   @param localizations [Hash{Symbol=>PostForMe::Models::YoutubeConfigurationDto::Localization}, nil] Per-language localizations for the video title and description. Keys are BCP-47
       #
       #   @param caption [Object, nil] Overrides the `caption` from the post
       #
@@ -150,6 +150,22 @@ module PostForMe
       #   @param tags [Array<String>, nil] YouTube video tags (maps to snippet.tags)
       #
       #   @param title [String, nil] Overrides the `title` from the post (maps to snippet.title)
+
+      class Localization < PostForMe::Internal::Type::BaseModel
+        # @!attribute description
+        #
+        #   @return [String, nil]
+        optional :description, String, nil?: true
+
+        # @!attribute title
+        #
+        #   @return [String, nil]
+        optional :title, String, nil?: true
+
+        # @!method initialize(description: nil, title: nil)
+        #   @param description [String, nil]
+        #   @param title [String, nil]
+      end
 
       # The video's license (maps to status.license). "youtube" is the standard YouTube
       # license; "creativeCommon" is Creative Commons.

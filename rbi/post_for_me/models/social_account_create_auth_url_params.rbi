@@ -474,19 +474,17 @@ module PostForMe
           # Override the default permissions/scopes requested during OAuth. Default scopes:
           # public_profile, pages_show_list, pages_read_engagement, pages_manage_posts,
           # business_management
-          sig { returns(T.nilable(T::Array[T::Array[T.anything]])) }
+          sig { returns(T.nilable(T::Array[String])) }
           attr_reader :permission_overrides
 
-          sig do
-            params(permission_overrides: T::Array[T::Array[T.anything]]).void
-          end
+          sig { params(permission_overrides: T::Array[String]).void }
           attr_writer :permission_overrides
 
           # Additional data for connecting facebook accounts
           sig do
-            params(
-              permission_overrides: T::Array[T::Array[T.anything]]
-            ).returns(T.attached_class)
+            params(permission_overrides: T::Array[String]).returns(
+              T.attached_class
+            )
           end
           def self.new(
             # Override the default permissions/scopes requested during OAuth. Default scopes:
@@ -496,11 +494,7 @@ module PostForMe
           )
           end
 
-          sig do
-            override.returns(
-              { permission_overrides: T::Array[T::Array[T.anything]] }
-            )
-          end
+          sig { override.returns({ permission_overrides: T::Array[String] }) }
           def to_hash
           end
         end
@@ -527,12 +521,10 @@ module PostForMe
           # instagram scopes: instagram_business_basic, instagram_business_content_publish.
           # Default facebook scopes: instagram_basic, instagram_content_publish,
           # pages_show_list, public_profile, business_management
-          sig { returns(T.nilable(T::Array[T::Array[T.anything]])) }
+          sig { returns(T.nilable(T::Array[String])) }
           attr_reader :permission_overrides
 
-          sig do
-            params(permission_overrides: T::Array[T::Array[T.anything]]).void
-          end
+          sig { params(permission_overrides: T::Array[String]).void }
           attr_writer :permission_overrides
 
           # Additional data for connecting instagram accounts
@@ -540,7 +532,7 @@ module PostForMe
             params(
               connection_type:
                 PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram::ConnectionType::OrSymbol,
-              permission_overrides: T::Array[T::Array[T.anything]]
+              permission_overrides: T::Array[String]
             ).returns(T.attached_class)
           end
           def self.new(
@@ -560,7 +552,7 @@ module PostForMe
               {
                 connection_type:
                   PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Instagram::ConnectionType::OrSymbol,
-                permission_overrides: T::Array[T::Array[T.anything]]
+                permission_overrides: T::Array[String]
               }
             )
           end
@@ -627,12 +619,10 @@ module PostForMe
           # scopes: openid, w_member_social, profile, email. Default organization scopes:
           # r_basicprofile, w_member_social, r_organization_social, w_organization_social,
           # rw_organization_admin
-          sig { returns(T.nilable(T::Array[T::Array[T.anything]])) }
+          sig { returns(T.nilable(T::Array[String])) }
           attr_reader :permission_overrides
 
-          sig do
-            params(permission_overrides: T::Array[T::Array[T.anything]]).void
-          end
+          sig { params(permission_overrides: T::Array[String]).void }
           attr_writer :permission_overrides
 
           # Additional data for connecting linkedin accounts
@@ -640,7 +630,7 @@ module PostForMe
             params(
               connection_type:
                 PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::ConnectionType::OrSymbol,
-              permission_overrides: T::Array[T::Array[T.anything]]
+              permission_overrides: T::Array[String]
             ).returns(T.attached_class)
           end
           def self.new(
@@ -661,7 +651,7 @@ module PostForMe
               {
                 connection_type:
                   PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::ConnectionType::OrSymbol,
-                permission_overrides: T::Array[T::Array[T.anything]]
+                permission_overrides: T::Array[String]
               }
             )
           end
@@ -717,19 +707,17 @@ module PostForMe
 
           # Override the default permissions/scopes requested during OAuth. Default scopes:
           # boards:read, boards:write, pins:read, pins:write, user_accounts:read
-          sig { returns(T.nilable(T::Array[T::Array[T.anything]])) }
+          sig { returns(T.nilable(T::Array[String])) }
           attr_reader :permission_overrides
 
-          sig do
-            params(permission_overrides: T::Array[T::Array[T.anything]]).void
-          end
+          sig { params(permission_overrides: T::Array[String]).void }
           attr_writer :permission_overrides
 
           # Additional data for connecting Pinterest accounts
           sig do
-            params(
-              permission_overrides: T::Array[T::Array[T.anything]]
-            ).returns(T.attached_class)
+            params(permission_overrides: T::Array[String]).returns(
+              T.attached_class
+            )
           end
           def self.new(
             # Override the default permissions/scopes requested during OAuth. Default scopes:
@@ -738,11 +726,7 @@ module PostForMe
           )
           end
 
-          sig do
-            override.returns(
-              { permission_overrides: T::Array[T::Array[T.anything]] }
-            )
-          end
+          sig { override.returns({ permission_overrides: T::Array[String] }) }
           def to_hash
           end
         end
@@ -758,19 +742,17 @@ module PostForMe
 
           # Override the default permissions/scopes requested during OAuth. Default scopes:
           # threads_basic, threads_content_publish
-          sig { returns(T.nilable(T::Array[T::Array[T.anything]])) }
+          sig { returns(T.nilable(T::Array[String])) }
           attr_reader :permission_overrides
 
-          sig do
-            params(permission_overrides: T::Array[T::Array[T.anything]]).void
-          end
+          sig { params(permission_overrides: T::Array[String]).void }
           attr_writer :permission_overrides
 
           # Additional data for connecting Threads accounts
           sig do
-            params(
-              permission_overrides: T::Array[T::Array[T.anything]]
-            ).returns(T.attached_class)
+            params(permission_overrides: T::Array[String]).returns(
+              T.attached_class
+            )
           end
           def self.new(
             # Override the default permissions/scopes requested during OAuth. Default scopes:
@@ -779,11 +761,7 @@ module PostForMe
           )
           end
 
-          sig do
-            override.returns(
-              { permission_overrides: T::Array[T::Array[T.anything]] }
-            )
-          end
+          sig { override.returns({ permission_overrides: T::Array[String] }) }
           def to_hash
           end
         end
@@ -799,19 +777,17 @@ module PostForMe
 
           # Override the default permissions/scopes requested during OAuth. Default scopes:
           # user.info.basic, video.list, video.upload, video.publish
-          sig { returns(T.nilable(T::Array[T::Array[T.anything]])) }
+          sig { returns(T.nilable(T::Array[String])) }
           attr_reader :permission_overrides
 
-          sig do
-            params(permission_overrides: T::Array[T::Array[T.anything]]).void
-          end
+          sig { params(permission_overrides: T::Array[String]).void }
           attr_writer :permission_overrides
 
           # Additional data for connecting TikTok accounts
           sig do
-            params(
-              permission_overrides: T::Array[T::Array[T.anything]]
-            ).returns(T.attached_class)
+            params(permission_overrides: T::Array[String]).returns(
+              T.attached_class
+            )
           end
           def self.new(
             # Override the default permissions/scopes requested during OAuth. Default scopes:
@@ -820,11 +796,7 @@ module PostForMe
           )
           end
 
-          sig do
-            override.returns(
-              { permission_overrides: T::Array[T::Array[T.anything]] }
-            )
-          end
+          sig { override.returns({ permission_overrides: T::Array[String] }) }
           def to_hash
           end
         end
@@ -843,19 +815,17 @@ module PostForMe
           # user.account.type, user.insights, video.list, video.insights, comment.list,
           # comment.list.manage, video.publish, video.upload, biz.spark.auth,
           # discovery.search.words
-          sig { returns(T.nilable(T::Array[T::Array[T.anything]])) }
+          sig { returns(T.nilable(T::Array[String])) }
           attr_reader :permission_overrides
 
-          sig do
-            params(permission_overrides: T::Array[T::Array[T.anything]]).void
-          end
+          sig { params(permission_overrides: T::Array[String]).void }
           attr_writer :permission_overrides
 
           # Additional data for connecting TikTok Business accounts
           sig do
-            params(
-              permission_overrides: T::Array[T::Array[T.anything]]
-            ).returns(T.attached_class)
+            params(permission_overrides: T::Array[String]).returns(
+              T.attached_class
+            )
           end
           def self.new(
             # Override the default permissions/scopes requested during OAuth. Default scopes:
@@ -867,11 +837,7 @@ module PostForMe
           )
           end
 
-          sig do
-            override.returns(
-              { permission_overrides: T::Array[T::Array[T.anything]] }
-            )
-          end
+          sig { override.returns({ permission_overrides: T::Array[String] }) }
           def to_hash
           end
         end
@@ -970,19 +936,17 @@ module PostForMe
           # https://www.googleapis.com/auth/youtube.upload,
           # https://www.googleapis.com/auth/youtube.readonly,
           # https://www.googleapis.com/auth/userinfo.profile
-          sig { returns(T.nilable(T::Array[T::Array[T.anything]])) }
+          sig { returns(T.nilable(T::Array[String])) }
           attr_reader :permission_overrides
 
-          sig do
-            params(permission_overrides: T::Array[T::Array[T.anything]]).void
-          end
+          sig { params(permission_overrides: T::Array[String]).void }
           attr_writer :permission_overrides
 
           # Additional data for connecting YouTube accounts
           sig do
-            params(
-              permission_overrides: T::Array[T::Array[T.anything]]
-            ).returns(T.attached_class)
+            params(permission_overrides: T::Array[String]).returns(
+              T.attached_class
+            )
           end
           def self.new(
             # Override the default permissions/scopes requested during OAuth. Default scopes:
@@ -994,11 +958,7 @@ module PostForMe
           )
           end
 
-          sig do
-            override.returns(
-              { permission_overrides: T::Array[T::Array[T.anything]] }
-            )
-          end
+          sig { override.returns({ permission_overrides: T::Array[String] }) }
           def to_hash
           end
         end

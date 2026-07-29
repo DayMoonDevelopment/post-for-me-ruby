@@ -178,43 +178,39 @@ module PostForMe
           def to_hash: -> { app_password: String, handle: String }
         end
 
-        type facebook = { permission_overrides: ::Array[::Array[top]] }
+        type facebook = { permission_overrides: ::Array[String] }
 
         class Facebook < PostForMe::Internal::Type::BaseModel
-          attr_reader permission_overrides: ::Array[::Array[top]]?
+          attr_reader permission_overrides: ::Array[String]?
 
-          def permission_overrides=: (
-            ::Array[::Array[top]]
-          ) -> ::Array[::Array[top]]
+          def permission_overrides=: (::Array[String]) -> ::Array[String]
 
-          def initialize: (?permission_overrides: ::Array[::Array[top]]) -> void
+          def initialize: (?permission_overrides: ::Array[String]) -> void
 
-          def to_hash: -> { permission_overrides: ::Array[::Array[top]] }
+          def to_hash: -> { permission_overrides: ::Array[String] }
         end
 
         type instagram =
           {
             connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::connection_type,
-            permission_overrides: ::Array[::Array[top]]
+            permission_overrides: ::Array[String]
           }
 
         class Instagram < PostForMe::Internal::Type::BaseModel
           attr_accessor connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::connection_type
 
-          attr_reader permission_overrides: ::Array[::Array[top]]?
+          attr_reader permission_overrides: ::Array[String]?
 
-          def permission_overrides=: (
-            ::Array[::Array[top]]
-          ) -> ::Array[::Array[top]]
+          def permission_overrides=: (::Array[String]) -> ::Array[String]
 
           def initialize: (
             connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::connection_type,
-            ?permission_overrides: ::Array[::Array[top]]
+            ?permission_overrides: ::Array[String]
           ) -> void
 
           def to_hash: -> {
             connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::connection_type,
-            permission_overrides: ::Array[::Array[top]]
+            permission_overrides: ::Array[String]
           }
 
           type connection_type = :instagram | :facebook
@@ -232,26 +228,24 @@ module PostForMe
         type linkedin =
           {
             connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type,
-            permission_overrides: ::Array[::Array[top]]
+            permission_overrides: ::Array[String]
           }
 
         class Linkedin < PostForMe::Internal::Type::BaseModel
           attr_accessor connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type
 
-          attr_reader permission_overrides: ::Array[::Array[top]]?
+          attr_reader permission_overrides: ::Array[String]?
 
-          def permission_overrides=: (
-            ::Array[::Array[top]]
-          ) -> ::Array[::Array[top]]
+          def permission_overrides=: (::Array[String]) -> ::Array[String]
 
           def initialize: (
             connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type,
-            ?permission_overrides: ::Array[::Array[top]]
+            ?permission_overrides: ::Array[String]
           ) -> void
 
           def to_hash: -> {
             connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::connection_type,
-            permission_overrides: ::Array[::Array[top]]
+            permission_overrides: ::Array[String]
           }
 
           type connection_type = :personal | :organization
@@ -266,60 +260,52 @@ module PostForMe
           end
         end
 
-        type pinterest = { permission_overrides: ::Array[::Array[top]] }
+        type pinterest = { permission_overrides: ::Array[String] }
 
         class Pinterest < PostForMe::Internal::Type::BaseModel
-          attr_reader permission_overrides: ::Array[::Array[top]]?
+          attr_reader permission_overrides: ::Array[String]?
 
-          def permission_overrides=: (
-            ::Array[::Array[top]]
-          ) -> ::Array[::Array[top]]
+          def permission_overrides=: (::Array[String]) -> ::Array[String]
 
-          def initialize: (?permission_overrides: ::Array[::Array[top]]) -> void
+          def initialize: (?permission_overrides: ::Array[String]) -> void
 
-          def to_hash: -> { permission_overrides: ::Array[::Array[top]] }
+          def to_hash: -> { permission_overrides: ::Array[String] }
         end
 
-        type threads = { permission_overrides: ::Array[::Array[top]] }
+        type threads = { permission_overrides: ::Array[String] }
 
         class Threads < PostForMe::Internal::Type::BaseModel
-          attr_reader permission_overrides: ::Array[::Array[top]]?
+          attr_reader permission_overrides: ::Array[String]?
 
-          def permission_overrides=: (
-            ::Array[::Array[top]]
-          ) -> ::Array[::Array[top]]
+          def permission_overrides=: (::Array[String]) -> ::Array[String]
 
-          def initialize: (?permission_overrides: ::Array[::Array[top]]) -> void
+          def initialize: (?permission_overrides: ::Array[String]) -> void
 
-          def to_hash: -> { permission_overrides: ::Array[::Array[top]] }
+          def to_hash: -> { permission_overrides: ::Array[String] }
         end
 
-        type tiktok = { permission_overrides: ::Array[::Array[top]] }
+        type tiktok = { permission_overrides: ::Array[String] }
 
         class Tiktok < PostForMe::Internal::Type::BaseModel
-          attr_reader permission_overrides: ::Array[::Array[top]]?
+          attr_reader permission_overrides: ::Array[String]?
 
-          def permission_overrides=: (
-            ::Array[::Array[top]]
-          ) -> ::Array[::Array[top]]
+          def permission_overrides=: (::Array[String]) -> ::Array[String]
 
-          def initialize: (?permission_overrides: ::Array[::Array[top]]) -> void
+          def initialize: (?permission_overrides: ::Array[String]) -> void
 
-          def to_hash: -> { permission_overrides: ::Array[::Array[top]] }
+          def to_hash: -> { permission_overrides: ::Array[String] }
         end
 
-        type tiktok_business = { permission_overrides: ::Array[::Array[top]] }
+        type tiktok_business = { permission_overrides: ::Array[String] }
 
         class TiktokBusiness < PostForMe::Internal::Type::BaseModel
-          attr_reader permission_overrides: ::Array[::Array[top]]?
+          attr_reader permission_overrides: ::Array[String]?
 
-          def permission_overrides=: (
-            ::Array[::Array[top]]
-          ) -> ::Array[::Array[top]]
+          def permission_overrides=: (::Array[String]) -> ::Array[String]
 
-          def initialize: (?permission_overrides: ::Array[::Array[top]]) -> void
+          def initialize: (?permission_overrides: ::Array[String]) -> void
 
-          def to_hash: -> { permission_overrides: ::Array[::Array[top]] }
+          def to_hash: -> { permission_overrides: ::Array[String] }
         end
 
         type x =
@@ -350,18 +336,16 @@ module PostForMe
           end
         end
 
-        type youtube = { permission_overrides: ::Array[::Array[top]] }
+        type youtube = { permission_overrides: ::Array[String] }
 
         class Youtube < PostForMe::Internal::Type::BaseModel
-          attr_reader permission_overrides: ::Array[::Array[top]]?
+          attr_reader permission_overrides: ::Array[String]?
 
-          def permission_overrides=: (
-            ::Array[::Array[top]]
-          ) -> ::Array[::Array[top]]
+          def permission_overrides=: (::Array[String]) -> ::Array[String]
 
-          def initialize: (?permission_overrides: ::Array[::Array[top]]) -> void
+          def initialize: (?permission_overrides: ::Array[String]) -> void
 
-          def to_hash: -> { permission_overrides: ::Array[::Array[top]] }
+          def to_hash: -> { permission_overrides: ::Array[String] }
         end
       end
     end

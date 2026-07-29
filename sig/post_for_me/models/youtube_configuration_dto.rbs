@@ -2,7 +2,7 @@ module PostForMe
   module Models
     type youtube_configuration_dto =
       {
-        localizations: ::Hash[Symbol, top]?,
+        localizations: ::Hash[Symbol, PostForMe::YoutubeConfigurationDto::Localization]?,
         caption: top?,
         category_id: String?,
         contains_synthetic_media: bool?,
@@ -21,7 +21,7 @@ module PostForMe
       }
 
     class YoutubeConfigurationDto < PostForMe::Internal::Type::BaseModel
-      attr_accessor localizations: ::Hash[Symbol, top]?
+      attr_accessor localizations: ::Hash[Symbol, PostForMe::YoutubeConfigurationDto::Localization]?
 
       attr_accessor caption: top?
 
@@ -54,7 +54,7 @@ module PostForMe
       attr_accessor title: String?
 
       def initialize: (
-        localizations: ::Hash[Symbol, top]?,
+        localizations: ::Hash[Symbol, PostForMe::YoutubeConfigurationDto::Localization]?,
         ?caption: top?,
         ?category_id: String?,
         ?contains_synthetic_media: bool?,
@@ -73,7 +73,7 @@ module PostForMe
       ) -> void
 
       def to_hash: -> {
-        localizations: ::Hash[Symbol, top]?,
+        localizations: ::Hash[Symbol, PostForMe::YoutubeConfigurationDto::Localization]?,
         caption: top?,
         category_id: String?,
         contains_synthetic_media: bool?,
@@ -90,6 +90,18 @@ module PostForMe
         tags: ::Array[String]?,
         title: String?
       }
+
+      type localization = { description: String?, title: String? }
+
+      class Localization < PostForMe::Internal::Type::BaseModel
+        attr_accessor description: String?
+
+        attr_accessor title: String?
+
+        def initialize: (?description: String?, ?title: String?) -> void
+
+        def to_hash: -> { description: String?, title: String? }
+      end
 
       type license = :youtube | :creativeCommon
 

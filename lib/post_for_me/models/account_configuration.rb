@@ -27,9 +27,11 @@ module PostForMe
         #   language tags (e.g. "fr", "es"). Maps to localizations on the YouTube Data API
         #   videos resource.
         #
-        #   @return [Hash{Symbol=>Object}, nil]
+        #   @return [Hash{Symbol=>PostForMe::Models::AccountConfiguration::Configuration::Localization}, nil]
         required :localizations,
-                 PostForMe::Internal::Type::HashOf[PostForMe::Internal::Type::Unknown],
+                 -> {
+                   PostForMe::Internal::Type::HashOf[PostForMe::AccountConfiguration::Configuration::Localization]
+                 },
                  nil?: true
 
         # @!attribute allow_comment
@@ -285,7 +287,7 @@ module PostForMe
         #
         #   Configuration for the social account
         #
-        #   @param localizations [Hash{Symbol=>Object}, nil] Per-language localizations for the video title and description. Keys are BCP-47
+        #   @param localizations [Hash{Symbol=>PostForMe::Models::AccountConfiguration::Configuration::Localization}, nil] Per-language localizations for the video title and description. Keys are BCP-47
         #
         #   @param allow_comment [Boolean, nil] Allow comments on TikTok
         #
@@ -358,6 +360,22 @@ module PostForMe
         #   @param title [String, nil] Overrides the `title` from the post (Pinterest, TikTok, YouTube)
         #
         #   @param trial_reel_type [Symbol, PostForMe::Models::AccountConfiguration::Configuration::TrialReelType, nil] Instagram trial reel type, when passed will be created as a trial reel. If manua
+
+        class Localization < PostForMe::Internal::Type::BaseModel
+          # @!attribute description
+          #
+          #   @return [String, nil]
+          optional :description, String, nil?: true
+
+          # @!attribute title
+          #
+          #   @return [String, nil]
+          optional :title, String, nil?: true
+
+          # @!method initialize(description: nil, title: nil)
+          #   @param description [String, nil]
+          #   @param title [String, nil]
+        end
 
         # The video's license (maps to status.license). "youtube" is the standard YouTube
         # license; "creativeCommon" is Creative Commons.
