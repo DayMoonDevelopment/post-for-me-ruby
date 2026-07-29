@@ -1,5 +1,36 @@
 # Changelog
 
+## 0.1.0-alpha.20 (2026-07-29)
+
+Full Changelog: [v0.1.0-alpha.19...v0.1.0-alpha.20](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.19...v0.1.0-alpha.20)
+
+### Features
+
+* **api:** api update ([cc42b0b](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/cc42b0b4a955070d6504799ed2cf65a7aa30b24d))
+* **api:** api update ([cea638b](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/cea638b36863e1acafd7c56a729e547101fdaaa2))
+* **api:** api update ([5401d88](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/5401d88c2b8d4d97f4516c3a429362a10474d985))
+* **api:** api update ([2563cec](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/2563cecfa66fb0f57b5a901fb6b1c6a5adf0d855))
+* **api:** api update ([b7dd794](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/b7dd79454f0c8f011b925724ab9150d7f688b352))
+* **api:** api update ([f03b4d5](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/f03b4d58047d8e48693f8e04df897217d678dee7))
+* **api:** api update ([69f5d77](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/69f5d77884c3af57980f3cd03c0049eb702278a1))
+* **api:** api update ([8135057](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/8135057ababb9efa1e04403e69240bd111253f90))
+* **api:** api update ([660592b](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/660592bfb078716516492819adbc4d6ac441705e))
+* **api:** manual updates ([ee67cbb](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/ee67cbb33219db6c6a5c370908d52fc9d043f104))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([6ce42b3](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/6ce42b32069b9e30ba1665e4a768e8a04f3aacec))
+* support setting headers via env ([df33ef4](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/df33ef40c6e553fbb1492310a421384207093c34))
+
+
+### Bug Fixes
+
+* **client:** elide content type header on requests without body ([e2f3fa7](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/e2f3fa7ec494317f5d419a98d0463db16c58f2ce))
+* **client:** send content-type header for requests with an omitted optional body ([fb1fdc4](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/fb1fdc408f78c145e056f940dbd73fcf6ed6a5fe))
+
+
+### Chores
+
+* **internal:** codegen related update ([c113ae9](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/c113ae9bbe6790e0cdef8822956ac57ec0408fd4))
+* **internal:** more robust bootstrap script ([ee0dc44](https://github.com/DayMoonDevelopment/post-for-me-ruby/commit/ee0dc4464e8d9e9e7027aa3a4b77a12fbb0d970d))
+
 ## 0.1.0-alpha.19 (2026-04-11)
 
 Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/DayMoonDevelopment/post-for-me-ruby/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
