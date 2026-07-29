@@ -118,13 +118,19 @@ module PostForMe
         optional :tiktok_business,
                  -> { PostForMe::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness }
 
+        # @!attribute x
+        #   Additional data for connecting X accounts
+        #
+        #   @return [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X, nil]
+        optional :x, -> { PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X }
+
         # @!attribute youtube
         #   Additional data for connecting YouTube accounts
         #
         #   @return [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Youtube, nil]
         optional :youtube, -> { PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Youtube }
 
-        # @!method initialize(bluesky: nil, facebook: nil, instagram: nil, linkedin: nil, pinterest: nil, threads: nil, tiktok: nil, tiktok_business: nil, youtube: nil)
+        # @!method initialize(bluesky: nil, facebook: nil, instagram: nil, linkedin: nil, pinterest: nil, threads: nil, tiktok: nil, tiktok_business: nil, x: nil, youtube: nil)
         #   Additional data needed for the provider
         #
         #   @param bluesky [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Bluesky] Additional data needed for connecting bluesky accounts
@@ -142,6 +148,8 @@ module PostForMe
         #   @param tiktok [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Tiktok] Additional data for connecting TikTok accounts
         #
         #   @param tiktok_business [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness] Additional data for connecting TikTok Business accounts
+        #
+        #   @param x [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X] Additional data for connecting X accounts
         #
         #   @param youtube [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Youtube] Additional data for connecting YouTube accounts
 
@@ -363,6 +371,40 @@ module PostForMe
           #   Additional data for connecting TikTok Business accounts
           #
           #   @param permission_overrides [Array<Array<Object>>] Override the default permissions/scopes requested during OAuth. Default scopes:
+        end
+
+        # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData#x
+        class X < PostForMe::Internal::Type::BaseModel
+          # @!attribute connection_type
+          #   The type of connection; oauth1 for OAuth 1.0a app credentials, oauth2 for OAuth
+          #   2.0 app credentials.
+          #
+          #   @return [Symbol, PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X::ConnectionType]
+          required :connection_type,
+                   enum: -> { PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X::ConnectionType }
+
+          # @!method initialize(connection_type:)
+          #   Some parameter documentations has been truncated, see
+          #   {PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X} for more
+          #   details.
+          #
+          #   Additional data for connecting X accounts
+          #
+          #   @param connection_type [Symbol, PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X::ConnectionType] The type of connection; oauth1 for OAuth 1.0a app credentials, oauth2 for OAuth
+
+          # The type of connection; oauth1 for OAuth 1.0a app credentials, oauth2 for OAuth
+          # 2.0 app credentials.
+          #
+          # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X#connection_type
+          module ConnectionType
+            extend PostForMe::Internal::Type::Enum
+
+            OAUTH1 = :oauth1
+            OAUTH2 = :oauth2
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
 
         # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData#youtube

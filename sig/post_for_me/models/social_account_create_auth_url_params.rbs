@@ -75,6 +75,7 @@ module PostForMe
           threads: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Threads,
           tiktok: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Tiktok,
           tiktok_business: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness,
+          x: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X,
           youtube: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Youtube
         }
 
@@ -127,6 +128,12 @@ module PostForMe
           PostForMe::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness
         ) -> PostForMe::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness
 
+        attr_reader x: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X?
+
+        def x=: (
+          PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X
+        ) -> PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X
+
         attr_reader youtube: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Youtube?
 
         def youtube=: (
@@ -142,6 +149,7 @@ module PostForMe
           ?threads: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Threads,
           ?tiktok: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Tiktok,
           ?tiktok_business: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness,
+          ?x: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X,
           ?youtube: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Youtube
         ) -> void
 
@@ -154,6 +162,7 @@ module PostForMe
           threads: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Threads,
           tiktok: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Tiktok,
           tiktok_business: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness,
+          x: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X,
           youtube: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Youtube
         }
 
@@ -311,6 +320,34 @@ module PostForMe
           def initialize: (?permission_overrides: ::Array[::Array[top]]) -> void
 
           def to_hash: -> { permission_overrides: ::Array[::Array[top]] }
+        end
+
+        type x =
+          {
+            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X::connection_type
+          }
+
+        class X < PostForMe::Internal::Type::BaseModel
+          attr_accessor connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X::connection_type
+
+          def initialize: (
+            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X::connection_type
+          ) -> void
+
+          def to_hash: -> {
+            connection_type: PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X::connection_type
+          }
+
+          type connection_type = :oauth1 | :oauth2
+
+          module ConnectionType
+            extend PostForMe::Internal::Type::Enum
+
+            OAUTH1: :oauth1
+            OAUTH2: :oauth2
+
+            def self?.values: -> ::Array[PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X::connection_type]
+          end
         end
 
         type youtube = { permission_overrides: ::Array[::Array[top]] }

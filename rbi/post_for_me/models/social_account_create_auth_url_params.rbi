@@ -313,6 +313,24 @@ module PostForMe
         end
         attr_writer :tiktok_business
 
+        # Additional data for connecting X accounts
+        sig do
+          returns(
+            T.nilable(
+              PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X
+            )
+          )
+        end
+        attr_reader :x
+
+        sig do
+          params(
+            x:
+              PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X::OrHash
+          ).void
+        end
+        attr_writer :x
+
         # Additional data for connecting YouTube accounts
         sig do
           returns(
@@ -350,6 +368,8 @@ module PostForMe
               PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Tiktok::OrHash,
             tiktok_business:
               PostForMe::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness::OrHash,
+            x:
+              PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X::OrHash,
             youtube:
               PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Youtube::OrHash
           ).returns(T.attached_class)
@@ -371,6 +391,8 @@ module PostForMe
           tiktok: nil,
           # Additional data for connecting TikTok Business accounts
           tiktok_business: nil,
+          # Additional data for connecting X accounts
+          x: nil,
           # Additional data for connecting YouTube accounts
           youtube: nil
         )
@@ -395,6 +417,7 @@ module PostForMe
                 PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Tiktok,
               tiktok_business:
                 PostForMe::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness,
+              x: PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X,
               youtube:
                 PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Youtube
             }
@@ -850,6 +873,86 @@ module PostForMe
             )
           end
           def to_hash
+          end
+        end
+
+        class X < PostForMe::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X,
+                PostForMe::Internal::AnyHash
+              )
+            end
+
+          # The type of connection; oauth1 for OAuth 1.0a app credentials, oauth2 for OAuth
+          # 2.0 app credentials.
+          sig do
+            returns(
+              PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X::ConnectionType::OrSymbol
+            )
+          end
+          attr_accessor :connection_type
+
+          # Additional data for connecting X accounts
+          sig do
+            params(
+              connection_type:
+                PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X::ConnectionType::OrSymbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The type of connection; oauth1 for OAuth 1.0a app credentials, oauth2 for OAuth
+            # 2.0 app credentials.
+            connection_type:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                connection_type:
+                  PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X::ConnectionType::OrSymbol
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # The type of connection; oauth1 for OAuth 1.0a app credentials, oauth2 for OAuth
+          # 2.0 app credentials.
+          module ConnectionType
+            extend PostForMe::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X::ConnectionType
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            OAUTH1 =
+              T.let(
+                :oauth1,
+                PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X::ConnectionType::TaggedSymbol
+              )
+            OAUTH2 =
+              T.let(
+                :oauth2,
+                PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X::ConnectionType::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X::ConnectionType::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
 
