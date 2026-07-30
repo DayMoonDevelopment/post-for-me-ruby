@@ -67,8 +67,8 @@ module PostForMe
       # @!attribute platform_data
       #   Platform-specific data for the post
       #
-      #   @return [PostForMe::Models::PlatformPost::PlatformData, nil]
-      optional :platform_data, -> { PostForMe::PlatformPost::PlatformData }
+      #   @return [PostForMe::Models::YoutubePostPlatformData, nil]
+      optional :platform_data, -> { PostForMe::YoutubePostPlatformData }
 
       # @!attribute posted_at
       #   Date the post was published
@@ -109,7 +109,7 @@ module PostForMe
       #
       #   @param metrics [PostForMe::Models::PlatformPost::Metrics::TikTokBusinessMetricsDto, PostForMe::Models::PlatformPost::Metrics::TikTokPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::InstagramPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::YouTubePostMetricsDto, PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::TwitterPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::ThreadsPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::LinkedInPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::BlueskyPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto] Post metrics and analytics data
       #
-      #   @param platform_data [PostForMe::Models::PlatformPost::PlatformData] Platform-specific data for the post
+      #   @param platform_data [PostForMe::Models::YoutubePostPlatformData] Platform-specific data for the post
       #
       #   @param posted_at [Time] Date the post was published
       #
@@ -205,9 +205,9 @@ module PostForMe
           # @!attribute engagement_likes
           #   Engagement likes data by percentage and time
           #
-          #   @return [Array<PostForMe::Models::PlatformPost::Metrics::TikTokBusinessMetricsDto::EngagementLike>]
+          #   @return [Array<PostForMe::Models::TiktokBusinessVideoMetricPercentage>]
           required :engagement_likes,
-                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::EngagementLike] }
+                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::TiktokBusinessVideoMetricPercentage] }
 
           # @!attribute favorites
           #   Number of favorites on the post
@@ -279,9 +279,9 @@ module PostForMe
           # @!attribute video_view_retention
           #   Video view retention data by percentage and time
           #
-          #   @return [Array<PostForMe::Models::PlatformPost::Metrics::TikTokBusinessMetricsDto::VideoViewRetention>]
+          #   @return [Array<PostForMe::Models::TiktokBusinessVideoMetricPercentage>]
           required :video_view_retention,
-                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::PlatformPost::Metrics::TikTokBusinessMetricsDto::VideoViewRetention] }
+                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::TiktokBusinessVideoMetricPercentage] }
 
           # @!attribute video_views
           #   Total number of video views
@@ -314,7 +314,7 @@ module PostForMe
           #
           #   @param email_clicks [Float] Number of email clicks
           #
-          #   @param engagement_likes [Array<PostForMe::Models::PlatformPost::Metrics::TikTokBusinessMetricsDto::EngagementLike>] Engagement likes data by percentage and time
+          #   @param engagement_likes [Array<PostForMe::Models::TiktokBusinessVideoMetricPercentage>] Engagement likes data by percentage and time
           #
           #   @param favorites [Float] Number of favorites on the post
           #
@@ -338,7 +338,7 @@ module PostForMe
           #
           #   @param total_time_watched [Float] Total time watched in seconds
           #
-          #   @param video_view_retention [Array<PostForMe::Models::PlatformPost::Metrics::TikTokBusinessMetricsDto::VideoViewRetention>] Video view retention data by percentage and time
+          #   @param video_view_retention [Array<PostForMe::Models::TiktokBusinessVideoMetricPercentage>] Video view retention data by percentage and time
           #
           #   @param video_views [Float] Total number of video views
           #
@@ -420,25 +420,6 @@ module PostForMe
             #   @param type [String] Type of audience
           end
 
-          class EngagementLike < PostForMe::Internal::Type::BaseModel
-            # @!attribute percentage
-            #   Percentage value for the metric
-            #
-            #   @return [Float]
-            required :percentage, Float
-
-            # @!attribute second
-            #   Time in seconds for the metric
-            #
-            #   @return [String]
-            required :second, String
-
-            # @!method initialize(percentage:, second:)
-            #   @param percentage [Float] Percentage value for the metric
-            #
-            #   @param second [String] Time in seconds for the metric
-          end
-
           class ImpressionSource < PostForMe::Internal::Type::BaseModel
             # @!attribute impression_source
             #   Name of the impression source
@@ -456,25 +437,6 @@ module PostForMe
             #   @param impression_source [String] Name of the impression source
             #
             #   @param percentage [Float] Percentage of impressions from this source
-          end
-
-          class VideoViewRetention < PostForMe::Internal::Type::BaseModel
-            # @!attribute percentage
-            #   Percentage value for the metric
-            #
-            #   @return [Float]
-            required :percentage, Float
-
-            # @!attribute second
-            #   Time in seconds for the metric
-            #
-            #   @return [String]
-            required :second, String
-
-            # @!method initialize(percentage:, second:)
-            #   @param percentage [Float] Percentage value for the metric
-            #
-            #   @param second [String] Time in seconds for the metric
           end
         end
 
@@ -859,16 +821,16 @@ module PostForMe
           # @!attribute activity_by_action_type
           #   Total activity breakdown by action type
           #
-          #   @return [Array<PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionType>, nil]
+          #   @return [Array<PostForMe::Models::FacebookActivityByActionType>, nil]
           optional :activity_by_action_type,
-                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionType] }
+                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::FacebookActivityByActionType] }
 
           # @!attribute activity_by_action_type_unique
           #   Unique users activity breakdown by action type
           #
-          #   @return [Array<PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionTypeUnique>, nil]
+          #   @return [Array<PostForMe::Models::FacebookActivityByActionType>, nil]
           optional :activity_by_action_type_unique,
-                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionTypeUnique] }
+                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::FacebookActivityByActionType] }
 
           # @!attribute comments
           #   Number of comments (from post object)
@@ -876,38 +838,14 @@ module PostForMe
           #   @return [Float, nil]
           optional :comments, Float
 
-          # @!attribute fan_reach
-          #   Number of fans who saw the post
-          #
-          #   @return [Float, nil]
-          optional :fan_reach, Float
-
           # @!attribute media_views
           #   Number of times the photo or video was viewed
           #
           #   @return [Float, nil]
           optional :media_views, Float
 
-          # @!attribute nonviral_reach
-          #   Number of people who saw the post via non-viral distribution
-          #
-          #   @return [Float, nil]
-          optional :nonviral_reach, Float
-
-          # @!attribute organic_reach
-          #   Number of people who saw the post via organic distribution
-          #
-          #   @return [Float, nil]
-          optional :organic_reach, Float
-
-          # @!attribute paid_reach
-          #   Number of people who saw the post via paid distribution
-          #
-          #   @return [Float, nil]
-          optional :paid_reach, Float
-
           # @!attribute reach
-          #   Total number of unique people who saw the post
+          #   Total number of unique people who viewed the post media
           #
           #   @return [Float, nil]
           optional :reach, Float
@@ -1005,16 +943,16 @@ module PostForMe
           # @!attribute video_retention_graph_autoplayed
           #   Video retention graph for autoplayed views
           #
-          #   @return [Array<PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphAutoplayed>, nil]
+          #   @return [Array<PostForMe::Models::FacebookVideoRetentionGraph>, nil]
           optional :video_retention_graph_autoplayed,
-                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphAutoplayed] }
+                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::FacebookVideoRetentionGraph] }
 
           # @!attribute video_retention_graph_clicked_to_play
           #   Video retention graph for clicked-to-play views
           #
-          #   @return [Array<PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphClickedToPlay>, nil]
+          #   @return [Array<PostForMe::Models::FacebookVideoRetentionGraph>, nil]
           optional :video_retention_graph_clicked_to_play,
-                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphClickedToPlay] }
+                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::FacebookVideoRetentionGraph] }
 
           # @!attribute video_social_actions_unique
           #   Number of unique people who performed social actions on the video
@@ -1031,16 +969,16 @@ module PostForMe
           # @!attribute video_view_time_by_age_gender
           #   Video view time breakdown by age and gender
           #
-          #   @return [Array<PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByAgeGender>, nil]
+          #   @return [Array<PostForMe::Models::FacebookVideoViewTimeByDemographic>, nil]
           optional :video_view_time_by_age_gender,
-                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByAgeGender] }
+                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::FacebookVideoViewTimeByDemographic] }
 
           # @!attribute video_view_time_by_country
           #   Video view time breakdown by country
           #
-          #   @return [Array<PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByCountry>, nil]
+          #   @return [Array<PostForMe::Models::FacebookVideoViewTimeByDemographic>, nil]
           optional :video_view_time_by_country,
-                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByCountry] }
+                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::FacebookVideoViewTimeByDemographic] }
 
           # @!attribute video_view_time_by_distribution_type
           #   Video view time breakdown by distribution type
@@ -1051,9 +989,9 @@ module PostForMe
           # @!attribute video_view_time_by_region
           #   Video view time breakdown by region
           #
-          #   @return [Array<PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByRegion>, nil]
+          #   @return [Array<PostForMe::Models::FacebookVideoViewTimeByDemographic>, nil]
           optional :video_view_time_by_region,
-                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByRegion] }
+                   -> { PostForMe::Internal::Type::ArrayOf[PostForMe::FacebookVideoViewTimeByDemographic] }
 
           # @!attribute video_view_time_organic
           #   Total time video was viewed in milliseconds via organic distribution
@@ -1104,24 +1042,11 @@ module PostForMe
           #   @return [Float, nil]
           optional :video_views_organic, Float
 
-          # @!attribute video_views_organic_unique
-          #   Number of unique people who viewed the video for 3+ seconds organically
-          #
-          #   @return [Float, nil]
-          optional :video_views_organic_unique, Float
-
           # @!attribute video_views_paid
           #   Number of times video was viewed for 3+ seconds via paid distribution
           #
           #   @return [Float, nil]
           optional :video_views_paid, Float
-
-          # @!attribute video_views_paid_unique
-          #   Number of unique people who viewed the video for 3+ seconds via paid
-          #   distribution
-          #
-          #   @return [Float, nil]
-          optional :video_views_paid_unique, Float
 
           # @!attribute video_views_sound_on
           #   Number of times video was viewed with sound on
@@ -1129,40 +1054,20 @@ module PostForMe
           #   @return [Float, nil]
           optional :video_views_sound_on, Float
 
-          # @!attribute video_views_unique
-          #   Number of unique people who viewed the video for 3+ seconds
-          #
-          #   @return [Float, nil]
-          optional :video_views_unique, Float
-
-          # @!attribute viral_reach
-          #   Number of people who saw the post in News Feed via viral reach
-          #
-          #   @return [Float, nil]
-          optional :viral_reach, Float
-
-          # @!method initialize(activity_by_action_type: nil, activity_by_action_type_unique: nil, comments: nil, fan_reach: nil, media_views: nil, nonviral_reach: nil, organic_reach: nil, paid_reach: nil, reach: nil, reactions_anger: nil, reactions_by_type: nil, reactions_haha: nil, reactions_like: nil, reactions_love: nil, reactions_sorry: nil, reactions_total: nil, reactions_wow: nil, shares: nil, video_avg_time_watched: nil, video_complete_views_organic: nil, video_complete_views_organic_unique: nil, video_complete_views_paid: nil, video_complete_views_paid_unique: nil, video_length: nil, video_retention_graph_autoplayed: nil, video_retention_graph_clicked_to_play: nil, video_social_actions_unique: nil, video_view_time: nil, video_view_time_by_age_gender: nil, video_view_time_by_country: nil, video_view_time_by_distribution_type: nil, video_view_time_by_region: nil, video_view_time_organic: nil, video_views: nil, video_views_15s: nil, video_views_60s: nil, video_views_autoplayed: nil, video_views_by_distribution_type: nil, video_views_clicked_to_play: nil, video_views_organic: nil, video_views_organic_unique: nil, video_views_paid: nil, video_views_paid_unique: nil, video_views_sound_on: nil, video_views_unique: nil, viral_reach: nil)
+          # @!method initialize(activity_by_action_type: nil, activity_by_action_type_unique: nil, comments: nil, media_views: nil, reach: nil, reactions_anger: nil, reactions_by_type: nil, reactions_haha: nil, reactions_like: nil, reactions_love: nil, reactions_sorry: nil, reactions_total: nil, reactions_wow: nil, shares: nil, video_avg_time_watched: nil, video_complete_views_organic: nil, video_complete_views_organic_unique: nil, video_complete_views_paid: nil, video_complete_views_paid_unique: nil, video_length: nil, video_retention_graph_autoplayed: nil, video_retention_graph_clicked_to_play: nil, video_social_actions_unique: nil, video_view_time: nil, video_view_time_by_age_gender: nil, video_view_time_by_country: nil, video_view_time_by_distribution_type: nil, video_view_time_by_region: nil, video_view_time_organic: nil, video_views: nil, video_views_15s: nil, video_views_60s: nil, video_views_autoplayed: nil, video_views_by_distribution_type: nil, video_views_clicked_to_play: nil, video_views_organic: nil, video_views_paid: nil, video_views_sound_on: nil)
           #   Some parameter documentations has been truncated, see
           #   {PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto} for more
           #   details.
           #
-          #   @param activity_by_action_type [Array<PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionType>] Total activity breakdown by action type
+          #   @param activity_by_action_type [Array<PostForMe::Models::FacebookActivityByActionType>] Total activity breakdown by action type
           #
-          #   @param activity_by_action_type_unique [Array<PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto::ActivityByActionTypeUnique>] Unique users activity breakdown by action type
+          #   @param activity_by_action_type_unique [Array<PostForMe::Models::FacebookActivityByActionType>] Unique users activity breakdown by action type
           #
           #   @param comments [Float] Number of comments (from post object)
           #
-          #   @param fan_reach [Float] Number of fans who saw the post
-          #
           #   @param media_views [Float] Number of times the photo or video was viewed
           #
-          #   @param nonviral_reach [Float] Number of people who saw the post via non-viral distribution
-          #
-          #   @param organic_reach [Float] Number of people who saw the post via organic distribution
-          #
-          #   @param paid_reach [Float] Number of people who saw the post via paid distribution
-          #
-          #   @param reach [Float] Total number of unique people who saw the post
+          #   @param reach [Float] Total number of unique people who viewed the post media
           #
           #   @param reactions_anger [Float] Number of anger reactions
           #
@@ -1194,21 +1099,21 @@ module PostForMe
           #
           #   @param video_length [Float] Length of the video in milliseconds
           #
-          #   @param video_retention_graph_autoplayed [Array<PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphAutoplayed>] Video retention graph for autoplayed views
+          #   @param video_retention_graph_autoplayed [Array<PostForMe::Models::FacebookVideoRetentionGraph>] Video retention graph for autoplayed views
           #
-          #   @param video_retention_graph_clicked_to_play [Array<PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto::VideoRetentionGraphClickedToPlay>] Video retention graph for clicked-to-play views
+          #   @param video_retention_graph_clicked_to_play [Array<PostForMe::Models::FacebookVideoRetentionGraph>] Video retention graph for clicked-to-play views
           #
           #   @param video_social_actions_unique [Float] Number of unique people who performed social actions on the video
           #
           #   @param video_view_time [Float] Total time video was viewed in milliseconds
           #
-          #   @param video_view_time_by_age_gender [Array<PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByAgeGender>] Video view time breakdown by age and gender
+          #   @param video_view_time_by_age_gender [Array<PostForMe::Models::FacebookVideoViewTimeByDemographic>] Video view time breakdown by age and gender
           #
-          #   @param video_view_time_by_country [Array<PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByCountry>] Video view time breakdown by country
+          #   @param video_view_time_by_country [Array<PostForMe::Models::FacebookVideoViewTimeByDemographic>] Video view time breakdown by country
           #
           #   @param video_view_time_by_distribution_type [Object] Video view time breakdown by distribution type
           #
-          #   @param video_view_time_by_region [Array<PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto::VideoViewTimeByRegion>] Video view time breakdown by region
+          #   @param video_view_time_by_region [Array<PostForMe::Models::FacebookVideoViewTimeByDemographic>] Video view time breakdown by region
           #
           #   @param video_view_time_organic [Float] Total time video was viewed in milliseconds via organic distribution
           #
@@ -1226,150 +1131,9 @@ module PostForMe
           #
           #   @param video_views_organic [Float] Number of times video was viewed for 3+ seconds organically
           #
-          #   @param video_views_organic_unique [Float] Number of unique people who viewed the video for 3+ seconds organically
-          #
           #   @param video_views_paid [Float] Number of times video was viewed for 3+ seconds via paid distribution
           #
-          #   @param video_views_paid_unique [Float] Number of unique people who viewed the video for 3+ seconds via paid distributio
-          #
           #   @param video_views_sound_on [Float] Number of times video was viewed with sound on
-          #
-          #   @param video_views_unique [Float] Number of unique people who viewed the video for 3+ seconds
-          #
-          #   @param viral_reach [Float] Number of people who saw the post in News Feed via viral reach
-
-          class ActivityByActionType < PostForMe::Internal::Type::BaseModel
-            # @!attribute action_type
-            #   Action type (e.g., like, comment, share)
-            #
-            #   @return [String]
-            required :action_type, String
-
-            # @!attribute value
-            #   Number of actions
-            #
-            #   @return [Float]
-            required :value, Float
-
-            # @!method initialize(action_type:, value:)
-            #   @param action_type [String] Action type (e.g., like, comment, share)
-            #
-            #   @param value [Float] Number of actions
-          end
-
-          class ActivityByActionTypeUnique < PostForMe::Internal::Type::BaseModel
-            # @!attribute action_type
-            #   Action type (e.g., like, comment, share)
-            #
-            #   @return [String]
-            required :action_type, String
-
-            # @!attribute value
-            #   Number of actions
-            #
-            #   @return [Float]
-            required :value, Float
-
-            # @!method initialize(action_type:, value:)
-            #   @param action_type [String] Action type (e.g., like, comment, share)
-            #
-            #   @param value [Float] Number of actions
-          end
-
-          class VideoRetentionGraphAutoplayed < PostForMe::Internal::Type::BaseModel
-            # @!attribute rate
-            #   Percentage of viewers at this time
-            #
-            #   @return [Float]
-            required :rate, Float
-
-            # @!attribute time
-            #   Time in seconds
-            #
-            #   @return [Float]
-            required :time, Float
-
-            # @!method initialize(rate:, time:)
-            #   @param rate [Float] Percentage of viewers at this time
-            #
-            #   @param time [Float] Time in seconds
-          end
-
-          class VideoRetentionGraphClickedToPlay < PostForMe::Internal::Type::BaseModel
-            # @!attribute rate
-            #   Percentage of viewers at this time
-            #
-            #   @return [Float]
-            required :rate, Float
-
-            # @!attribute time
-            #   Time in seconds
-            #
-            #   @return [Float]
-            required :time, Float
-
-            # @!method initialize(rate:, time:)
-            #   @param rate [Float] Percentage of viewers at this time
-            #
-            #   @param time [Float] Time in seconds
-          end
-
-          class VideoViewTimeByAgeGender < PostForMe::Internal::Type::BaseModel
-            # @!attribute key
-            #   Demographic key (e.g., age_gender, region, country)
-            #
-            #   @return [String]
-            required :key, String
-
-            # @!attribute value
-            #   Total view time in milliseconds
-            #
-            #   @return [Float]
-            required :value, Float
-
-            # @!method initialize(key:, value:)
-            #   @param key [String] Demographic key (e.g., age_gender, region, country)
-            #
-            #   @param value [Float] Total view time in milliseconds
-          end
-
-          class VideoViewTimeByCountry < PostForMe::Internal::Type::BaseModel
-            # @!attribute key
-            #   Demographic key (e.g., age_gender, region, country)
-            #
-            #   @return [String]
-            required :key, String
-
-            # @!attribute value
-            #   Total view time in milliseconds
-            #
-            #   @return [Float]
-            required :value, Float
-
-            # @!method initialize(key:, value:)
-            #   @param key [String] Demographic key (e.g., age_gender, region, country)
-            #
-            #   @param value [Float] Total view time in milliseconds
-          end
-
-          class VideoViewTimeByRegion < PostForMe::Internal::Type::BaseModel
-            # @!attribute key
-            #   Demographic key (e.g., age_gender, region, country)
-            #
-            #   @return [String]
-            required :key, String
-
-            # @!attribute value
-            #   Total view time in milliseconds
-            #
-            #   @return [Float]
-            required :value, Float
-
-            # @!method initialize(key:, value:)
-            #   @param key [String] Demographic key (e.g., age_gender, region, country)
-            #
-            #   @param value [Float] Total view time in milliseconds
-          end
         end
 
         class TwitterPostMetricsDto < PostForMe::Internal::Type::BaseModel
@@ -1725,276 +1489,23 @@ module PostForMe
           # @!attribute number_90d
           #   Last 90 days of Pin metrics
           #
-          #   @return [PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d, nil]
-          optional :number_90d,
-                   -> { PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d },
-                   api_name: :"90d"
+          #   @return [PostForMe::Models::PinterestMetricsWindow, nil]
+          optional :number_90d, -> { PostForMe::PinterestMetricsWindow }, api_name: :"90d"
 
           # @!attribute lifetime_metrics
           #   Lifetime Pin metrics
           #
-          #   @return [PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics, nil]
-          optional :lifetime_metrics,
-                   -> { PostForMe::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics }
+          #   @return [PostForMe::Models::PinterestMetricsWindow, nil]
+          optional :lifetime_metrics, -> { PostForMe::PinterestMetricsWindow }
 
           # @!method initialize(number_90d: nil, lifetime_metrics: nil)
-          #   @param number_90d [PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto::Const90d] Last 90 days of Pin metrics
+          #   @param number_90d [PostForMe::Models::PinterestMetricsWindow] Last 90 days of Pin metrics
           #
-          #   @param lifetime_metrics [PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto::LifetimeMetrics] Lifetime Pin metrics
-
-          # @see PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto#number_90d
-          class Const90d < PostForMe::Internal::Type::BaseModel
-            # @!attribute comment
-            #   Number of comments on the Pin
-            #
-            #   @return [Float, nil]
-            optional :comment, Float
-
-            # @!attribute impression
-            #   Number of times the Pin was shown (impressions)
-            #
-            #   @return [Float, nil]
-            optional :impression, Float
-
-            # @!attribute last_updated
-            #   The last time Pinterest updated these metrics
-            #
-            #   @return [String, nil]
-            optional :last_updated, String
-
-            # @!attribute outbound_click
-            #   Number of clicks from the Pin to an external destination (outbound clicks)
-            #
-            #   @return [Float, nil]
-            optional :outbound_click, Float
-
-            # @!attribute pin_click
-            #   Number of clicks on the Pin to view it in closeup (Pin clicks)
-            #
-            #   @return [Float, nil]
-            optional :pin_click, Float
-
-            # @!attribute profile_visit
-            #   Number of visits to the author's profile driven from the Pin
-            #
-            #   @return [Object, nil]
-            optional :profile_visit, PostForMe::Internal::Type::Unknown, nil?: true
-
-            # @!attribute reaction
-            #   Total number of reactions on the Pin
-            #
-            #   @return [Float, nil]
-            optional :reaction, Float
-
-            # @!attribute save
-            #   Number of saves of the Pin
-            #
-            #   @return [Float, nil]
-            optional :save, Float
-
-            # @!attribute user_follow
-            #   Number of follows driven from the Pin
-            #
-            #   @return [Object, nil]
-            optional :user_follow, PostForMe::Internal::Type::Unknown, nil?: true
-
-            # @!attribute video_10s_views
-            #   Number of video views of at least 10 seconds
-            #
-            #   @return [Float, nil]
-            optional :video_10s_views, Float
-
-            # @!attribute video_average_time
-            #   Average watch time for the video
-            #
-            #   @return [Float, nil]
-            optional :video_average_time, Float
-
-            # @!attribute video_p95_views
-            #   Number of video views that reached 95% completion
-            #
-            #   @return [Float, nil]
-            optional :video_p95_views, Float
-
-            # @!attribute video_total_time
-            #   Total watch time for the video
-            #
-            #   @return [Float, nil]
-            optional :video_total_time, Float
-
-            # @!attribute video_views
-            #   Number of video views
-            #
-            #   @return [Float, nil]
-            optional :video_views, Float
-
-            # @!method initialize(comment: nil, impression: nil, last_updated: nil, outbound_click: nil, pin_click: nil, profile_visit: nil, reaction: nil, save: nil, user_follow: nil, video_10s_views: nil, video_average_time: nil, video_p95_views: nil, video_total_time: nil, video_views: nil)
-            #   Last 90 days of Pin metrics
-            #
-            #   @param comment [Float] Number of comments on the Pin
-            #
-            #   @param impression [Float] Number of times the Pin was shown (impressions)
-            #
-            #   @param last_updated [String] The last time Pinterest updated these metrics
-            #
-            #   @param outbound_click [Float] Number of clicks from the Pin to an external destination (outbound clicks)
-            #
-            #   @param pin_click [Float] Number of clicks on the Pin to view it in closeup (Pin clicks)
-            #
-            #   @param profile_visit [Object, nil] Number of visits to the author's profile driven from the Pin
-            #
-            #   @param reaction [Float] Total number of reactions on the Pin
-            #
-            #   @param save [Float] Number of saves of the Pin
-            #
-            #   @param user_follow [Object, nil] Number of follows driven from the Pin
-            #
-            #   @param video_10s_views [Float] Number of video views of at least 10 seconds
-            #
-            #   @param video_average_time [Float] Average watch time for the video
-            #
-            #   @param video_p95_views [Float] Number of video views that reached 95% completion
-            #
-            #   @param video_total_time [Float] Total watch time for the video
-            #
-            #   @param video_views [Float] Number of video views
-          end
-
-          # @see PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto#lifetime_metrics
-          class LifetimeMetrics < PostForMe::Internal::Type::BaseModel
-            # @!attribute comment
-            #   Number of comments on the Pin
-            #
-            #   @return [Float, nil]
-            optional :comment, Float
-
-            # @!attribute impression
-            #   Number of times the Pin was shown (impressions)
-            #
-            #   @return [Float, nil]
-            optional :impression, Float
-
-            # @!attribute last_updated
-            #   The last time Pinterest updated these metrics
-            #
-            #   @return [String, nil]
-            optional :last_updated, String
-
-            # @!attribute outbound_click
-            #   Number of clicks from the Pin to an external destination (outbound clicks)
-            #
-            #   @return [Float, nil]
-            optional :outbound_click, Float
-
-            # @!attribute pin_click
-            #   Number of clicks on the Pin to view it in closeup (Pin clicks)
-            #
-            #   @return [Float, nil]
-            optional :pin_click, Float
-
-            # @!attribute profile_visit
-            #   Number of visits to the author's profile driven from the Pin
-            #
-            #   @return [Object, nil]
-            optional :profile_visit, PostForMe::Internal::Type::Unknown, nil?: true
-
-            # @!attribute reaction
-            #   Total number of reactions on the Pin
-            #
-            #   @return [Float, nil]
-            optional :reaction, Float
-
-            # @!attribute save
-            #   Number of saves of the Pin
-            #
-            #   @return [Float, nil]
-            optional :save, Float
-
-            # @!attribute user_follow
-            #   Number of follows driven from the Pin
-            #
-            #   @return [Object, nil]
-            optional :user_follow, PostForMe::Internal::Type::Unknown, nil?: true
-
-            # @!attribute video_10s_views
-            #   Number of video views of at least 10 seconds
-            #
-            #   @return [Float, nil]
-            optional :video_10s_views, Float
-
-            # @!attribute video_average_time
-            #   Average watch time for the video
-            #
-            #   @return [Float, nil]
-            optional :video_average_time, Float
-
-            # @!attribute video_p95_views
-            #   Number of video views that reached 95% completion
-            #
-            #   @return [Float, nil]
-            optional :video_p95_views, Float
-
-            # @!attribute video_total_time
-            #   Total watch time for the video
-            #
-            #   @return [Float, nil]
-            optional :video_total_time, Float
-
-            # @!attribute video_views
-            #   Number of video views
-            #
-            #   @return [Float, nil]
-            optional :video_views, Float
-
-            # @!method initialize(comment: nil, impression: nil, last_updated: nil, outbound_click: nil, pin_click: nil, profile_visit: nil, reaction: nil, save: nil, user_follow: nil, video_10s_views: nil, video_average_time: nil, video_p95_views: nil, video_total_time: nil, video_views: nil)
-            #   Lifetime Pin metrics
-            #
-            #   @param comment [Float] Number of comments on the Pin
-            #
-            #   @param impression [Float] Number of times the Pin was shown (impressions)
-            #
-            #   @param last_updated [String] The last time Pinterest updated these metrics
-            #
-            #   @param outbound_click [Float] Number of clicks from the Pin to an external destination (outbound clicks)
-            #
-            #   @param pin_click [Float] Number of clicks on the Pin to view it in closeup (Pin clicks)
-            #
-            #   @param profile_visit [Object, nil] Number of visits to the author's profile driven from the Pin
-            #
-            #   @param reaction [Float] Total number of reactions on the Pin
-            #
-            #   @param save [Float] Number of saves of the Pin
-            #
-            #   @param user_follow [Object, nil] Number of follows driven from the Pin
-            #
-            #   @param video_10s_views [Float] Number of video views of at least 10 seconds
-            #
-            #   @param video_average_time [Float] Average watch time for the video
-            #
-            #   @param video_p95_views [Float] Number of video views that reached 95% completion
-            #
-            #   @param video_total_time [Float] Total watch time for the video
-            #
-            #   @param video_views [Float] Number of video views
-          end
+          #   @param lifetime_metrics [PostForMe::Models::PinterestMetricsWindow] Lifetime Pin metrics
         end
 
         # @!method self.variants
         #   @return [Array(PostForMe::Models::PlatformPost::Metrics::TikTokBusinessMetricsDto, PostForMe::Models::PlatformPost::Metrics::TikTokPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::InstagramPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::YouTubePostMetricsDto, PostForMe::Models::PlatformPost::Metrics::FacebookPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::TwitterPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::ThreadsPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::LinkedInPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::BlueskyPostMetricsDto, PostForMe::Models::PlatformPost::Metrics::PinterestPostMetricsDto)]
-      end
-
-      # @see PostForMe::Models::PlatformPost#platform_data
-      class PlatformData < PostForMe::Internal::Type::BaseModel
-        # @!attribute title
-        #   Title of the post
-        #
-        #   @return [String]
-        required :title, String
-
-        # @!method initialize(title:)
-        #   Platform-specific data for the post
-        #
-        #   @param title [String] Title of the post
       end
     end
   end

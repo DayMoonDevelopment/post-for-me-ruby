@@ -2,23 +2,26 @@ module PostForMe
   module Models
     type instagram_configuration_dto =
       {
+        audio_name: String?,
         caption: top?,
         collaborators: ::Array[String]?,
         location: String?,
-        media: ::Array[PostForMe::InstagramConfigurationDto::Media]?,
+        media: ::Array[PostForMe::SocialPostMedia]?,
         placement: PostForMe::Models::InstagramConfigurationDto::placement?,
         share_to_feed: bool?,
         trial_reel_type: PostForMe::Models::InstagramConfigurationDto::trial_reel_type?
       }
 
     class InstagramConfigurationDto < PostForMe::Internal::Type::BaseModel
+      attr_accessor audio_name: String?
+
       attr_accessor caption: top?
 
       attr_accessor collaborators: ::Array[String]?
 
       attr_accessor location: String?
 
-      attr_accessor media: ::Array[PostForMe::InstagramConfigurationDto::Media]?
+      attr_accessor media: ::Array[PostForMe::SocialPostMedia]?
 
       attr_accessor placement: PostForMe::Models::InstagramConfigurationDto::placement?
 
@@ -27,124 +30,26 @@ module PostForMe
       attr_accessor trial_reel_type: PostForMe::Models::InstagramConfigurationDto::trial_reel_type?
 
       def initialize: (
+        ?audio_name: String?,
         ?caption: top?,
         ?collaborators: ::Array[String]?,
         ?location: String?,
-        ?media: ::Array[PostForMe::InstagramConfigurationDto::Media]?,
+        ?media: ::Array[PostForMe::SocialPostMedia]?,
         ?placement: PostForMe::Models::InstagramConfigurationDto::placement?,
         ?share_to_feed: bool?,
         ?trial_reel_type: PostForMe::Models::InstagramConfigurationDto::trial_reel_type?
       ) -> void
 
       def to_hash: -> {
+        audio_name: String?,
         caption: top?,
         collaborators: ::Array[String]?,
         location: String?,
-        media: ::Array[PostForMe::InstagramConfigurationDto::Media]?,
+        media: ::Array[PostForMe::SocialPostMedia]?,
         placement: PostForMe::Models::InstagramConfigurationDto::placement?,
         share_to_feed: bool?,
         trial_reel_type: PostForMe::Models::InstagramConfigurationDto::trial_reel_type?
       }
-
-      type media =
-        {
-          url: String,
-          skip_processing: bool?,
-          tags: ::Array[PostForMe::InstagramConfigurationDto::Media::Tag]?,
-          thumbnail_timestamp_ms: top?,
-          thumbnail_url: top?
-        }
-
-      class Media < PostForMe::Internal::Type::BaseModel
-        attr_accessor url: String
-
-        attr_accessor skip_processing: bool?
-
-        attr_accessor tags: ::Array[PostForMe::InstagramConfigurationDto::Media::Tag]?
-
-        attr_accessor thumbnail_timestamp_ms: top?
-
-        attr_accessor thumbnail_url: top?
-
-        def initialize: (
-          url: String,
-          ?skip_processing: bool?,
-          ?tags: ::Array[PostForMe::InstagramConfigurationDto::Media::Tag]?,
-          ?thumbnail_timestamp_ms: top?,
-          ?thumbnail_url: top?
-        ) -> void
-
-        def to_hash: -> {
-          url: String,
-          skip_processing: bool?,
-          tags: ::Array[PostForMe::InstagramConfigurationDto::Media::Tag]?,
-          thumbnail_timestamp_ms: top?,
-          thumbnail_url: top?
-        }
-
-        type tag =
-          {
-            id: String,
-            platform: PostForMe::Models::InstagramConfigurationDto::Media::Tag::platform,
-            type: PostForMe::Models::InstagramConfigurationDto::Media::Tag::type_,
-            x: Float,
-            y_: Float
-          }
-
-        class Tag < PostForMe::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          attr_accessor platform: PostForMe::Models::InstagramConfigurationDto::Media::Tag::platform
-
-          attr_accessor type: PostForMe::Models::InstagramConfigurationDto::Media::Tag::type_
-
-          attr_reader x: Float?
-
-          def x=: (Float) -> Float
-
-          attr_reader y_: Float?
-
-          def y_=: (Float) -> Float
-
-          def initialize: (
-            id: String,
-            platform: PostForMe::Models::InstagramConfigurationDto::Media::Tag::platform,
-            type: PostForMe::Models::InstagramConfigurationDto::Media::Tag::type_,
-            ?x: Float,
-            ?y_: Float
-          ) -> void
-
-          def to_hash: -> {
-            id: String,
-            platform: PostForMe::Models::InstagramConfigurationDto::Media::Tag::platform,
-            type: PostForMe::Models::InstagramConfigurationDto::Media::Tag::type_,
-            x: Float,
-            y_: Float
-          }
-
-          type platform = :facebook | :instagram
-
-          module Platform
-            extend PostForMe::Internal::Type::Enum
-
-            FACEBOOK: :facebook
-            INSTAGRAM: :instagram
-
-            def self?.values: -> ::Array[PostForMe::Models::InstagramConfigurationDto::Media::Tag::platform]
-          end
-
-          type type_ = :user | :product
-
-          module Type
-            extend PostForMe::Internal::Type::Enum
-
-            USER: :user
-            PRODUCT: :product
-
-            def self?.values: -> ::Array[PostForMe::Models::InstagramConfigurationDto::Media::Tag::type_]
-          end
-        end
-      end
 
       type placement = :reels | :stories | :timeline
 

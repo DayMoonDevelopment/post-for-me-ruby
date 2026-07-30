@@ -1,0 +1,56 @@
+module PostForMe
+  module Models
+    type social_post_preview =
+      {
+        caption: String,
+        platform: String,
+        social_account_id: String,
+        configuration: top,
+        media: ::Array[PostForMe::SocialPostMedia]?,
+        social_account_profile_picture_url: top,
+        social_account_username: top
+      }
+
+    class SocialPostPreview < PostForMe::Internal::Type::BaseModel
+      attr_accessor caption: String
+
+      attr_accessor platform: String
+
+      attr_accessor social_account_id: String
+
+      attr_reader configuration: top?
+
+      def configuration=: (top) -> top
+
+      attr_accessor media: ::Array[PostForMe::SocialPostMedia]?
+
+      attr_reader social_account_profile_picture_url: top?
+
+      def social_account_profile_picture_url=: (top) -> top
+
+      attr_reader social_account_username: top?
+
+      def social_account_username=: (top) -> top
+
+      def initialize: (
+        caption: String,
+        platform: String,
+        social_account_id: String,
+        ?configuration: top,
+        ?media: ::Array[PostForMe::SocialPostMedia]?,
+        ?social_account_profile_picture_url: top,
+        ?social_account_username: top
+      ) -> void
+
+      def to_hash: -> {
+        caption: String,
+        platform: String,
+        social_account_id: String,
+        configuration: top,
+        media: ::Array[PostForMe::SocialPostMedia]?,
+        social_account_profile_picture_url: top,
+        social_account_username: top
+      }
+    end
+  end
+end

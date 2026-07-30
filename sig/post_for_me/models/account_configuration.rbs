@@ -1,0 +1,300 @@
+module PostForMe
+  module Models
+    type account_configuration =
+      {
+        configuration: PostForMe::AccountConfiguration::Configuration,
+        social_account_id: String
+      }
+
+    class AccountConfiguration < PostForMe::Internal::Type::BaseModel
+      attr_accessor configuration: PostForMe::AccountConfiguration::Configuration
+
+      attr_accessor social_account_id: String
+
+      def initialize: (
+        configuration: PostForMe::AccountConfiguration::Configuration,
+        social_account_id: String
+      ) -> void
+
+      def to_hash: -> {
+        configuration: PostForMe::AccountConfiguration::Configuration,
+        social_account_id: String
+      }
+
+      type configuration =
+        {
+          localizations: ::Hash[Symbol, PostForMe::AccountConfiguration::Configuration::Localization]?,
+          allow_comment: bool?,
+          allow_duet: bool?,
+          allow_stitch: bool?,
+          audio_name: String?,
+          auto_add_music: bool?,
+          board_ids: ::Array[String]?,
+          caption: top?,
+          category_id: String?,
+          collaborators: ::Array[::Array[top]]?,
+          community_id: String,
+          contains_synthetic_media: bool?,
+          default_language: String?,
+          disclose_branded_content: bool?,
+          disclose_your_brand: bool?,
+          embeddable: bool?,
+          is_ai_generated: bool?,
+          is_draft: bool?,
+          license: PostForMe::Models::AccountConfiguration::Configuration::license?,
+          link: String?,
+          location: String?,
+          made_for_kids: bool?,
+          media: ::Array[PostForMe::SocialPostMedia]?,
+          placement: PostForMe::Models::AccountConfiguration::Configuration::placement?,
+          poll: PostForMe::TwitterPoll,
+          privacy_status: PostForMe::Models::AccountConfiguration::Configuration::privacy_status?,
+          public_stats_viewable: bool?,
+          publish_at: String?,
+          quote_tweet_id: String,
+          recording_date: String?,
+          reply_settings: PostForMe::Models::AccountConfiguration::Configuration::reply_settings?,
+          reshare_post_id: String?,
+          set_caption_for_each_image: bool?,
+          share_to_feed: bool?,
+          tags: ::Array[String]?,
+          title: String?,
+          trial_reel_type: PostForMe::Models::AccountConfiguration::Configuration::trial_reel_type?
+        }
+
+      class Configuration < PostForMe::Internal::Type::BaseModel
+        attr_accessor localizations: ::Hash[Symbol, PostForMe::AccountConfiguration::Configuration::Localization]?
+
+        attr_accessor allow_comment: bool?
+
+        attr_accessor allow_duet: bool?
+
+        attr_accessor allow_stitch: bool?
+
+        attr_accessor audio_name: String?
+
+        attr_accessor auto_add_music: bool?
+
+        attr_accessor board_ids: ::Array[String]?
+
+        attr_accessor caption: top?
+
+        attr_accessor category_id: String?
+
+        attr_accessor collaborators: ::Array[::Array[top]]?
+
+        attr_reader community_id: String?
+
+        def community_id=: (String) -> String
+
+        attr_accessor contains_synthetic_media: bool?
+
+        attr_accessor default_language: String?
+
+        attr_accessor disclose_branded_content: bool?
+
+        attr_accessor disclose_your_brand: bool?
+
+        attr_accessor embeddable: bool?
+
+        attr_accessor is_ai_generated: bool?
+
+        attr_accessor is_draft: bool?
+
+        attr_accessor license: PostForMe::Models::AccountConfiguration::Configuration::license?
+
+        attr_accessor link: String?
+
+        attr_accessor location: String?
+
+        attr_accessor made_for_kids: bool?
+
+        attr_accessor media: ::Array[PostForMe::SocialPostMedia]?
+
+        attr_accessor placement: PostForMe::Models::AccountConfiguration::Configuration::placement?
+
+        attr_reader poll: PostForMe::TwitterPoll?
+
+        def poll=: (PostForMe::TwitterPoll) -> PostForMe::TwitterPoll
+
+        attr_accessor privacy_status: PostForMe::Models::AccountConfiguration::Configuration::privacy_status?
+
+        attr_accessor public_stats_viewable: bool?
+
+        attr_accessor publish_at: String?
+
+        attr_reader quote_tweet_id: String?
+
+        def quote_tweet_id=: (String) -> String
+
+        attr_accessor recording_date: String?
+
+        attr_accessor reply_settings: PostForMe::Models::AccountConfiguration::Configuration::reply_settings?
+
+        attr_accessor reshare_post_id: String?
+
+        attr_accessor set_caption_for_each_image: bool?
+
+        attr_accessor share_to_feed: bool?
+
+        attr_accessor tags: ::Array[String]?
+
+        attr_accessor title: String?
+
+        attr_accessor trial_reel_type: PostForMe::Models::AccountConfiguration::Configuration::trial_reel_type?
+
+        def initialize: (
+          localizations: ::Hash[Symbol, PostForMe::AccountConfiguration::Configuration::Localization]?,
+          ?allow_comment: bool?,
+          ?allow_duet: bool?,
+          ?allow_stitch: bool?,
+          ?audio_name: String?,
+          ?auto_add_music: bool?,
+          ?board_ids: ::Array[String]?,
+          ?caption: top?,
+          ?category_id: String?,
+          ?collaborators: ::Array[::Array[top]]?,
+          ?community_id: String,
+          ?contains_synthetic_media: bool?,
+          ?default_language: String?,
+          ?disclose_branded_content: bool?,
+          ?disclose_your_brand: bool?,
+          ?embeddable: bool?,
+          ?is_ai_generated: bool?,
+          ?is_draft: bool?,
+          ?license: PostForMe::Models::AccountConfiguration::Configuration::license?,
+          ?link: String?,
+          ?location: String?,
+          ?made_for_kids: bool?,
+          ?media: ::Array[PostForMe::SocialPostMedia]?,
+          ?placement: PostForMe::Models::AccountConfiguration::Configuration::placement?,
+          ?poll: PostForMe::TwitterPoll,
+          ?privacy_status: PostForMe::Models::AccountConfiguration::Configuration::privacy_status?,
+          ?public_stats_viewable: bool?,
+          ?publish_at: String?,
+          ?quote_tweet_id: String,
+          ?recording_date: String?,
+          ?reply_settings: PostForMe::Models::AccountConfiguration::Configuration::reply_settings?,
+          ?reshare_post_id: String?,
+          ?set_caption_for_each_image: bool?,
+          ?share_to_feed: bool?,
+          ?tags: ::Array[String]?,
+          ?title: String?,
+          ?trial_reel_type: PostForMe::Models::AccountConfiguration::Configuration::trial_reel_type?
+        ) -> void
+
+        def to_hash: -> {
+          localizations: ::Hash[Symbol, PostForMe::AccountConfiguration::Configuration::Localization]?,
+          allow_comment: bool?,
+          allow_duet: bool?,
+          allow_stitch: bool?,
+          audio_name: String?,
+          auto_add_music: bool?,
+          board_ids: ::Array[String]?,
+          caption: top?,
+          category_id: String?,
+          collaborators: ::Array[::Array[top]]?,
+          community_id: String,
+          contains_synthetic_media: bool?,
+          default_language: String?,
+          disclose_branded_content: bool?,
+          disclose_your_brand: bool?,
+          embeddable: bool?,
+          is_ai_generated: bool?,
+          is_draft: bool?,
+          license: PostForMe::Models::AccountConfiguration::Configuration::license?,
+          link: String?,
+          location: String?,
+          made_for_kids: bool?,
+          media: ::Array[PostForMe::SocialPostMedia]?,
+          placement: PostForMe::Models::AccountConfiguration::Configuration::placement?,
+          poll: PostForMe::TwitterPoll,
+          privacy_status: PostForMe::Models::AccountConfiguration::Configuration::privacy_status?,
+          public_stats_viewable: bool?,
+          publish_at: String?,
+          quote_tweet_id: String,
+          recording_date: String?,
+          reply_settings: PostForMe::Models::AccountConfiguration::Configuration::reply_settings?,
+          reshare_post_id: String?,
+          set_caption_for_each_image: bool?,
+          share_to_feed: bool?,
+          tags: ::Array[String]?,
+          title: String?,
+          trial_reel_type: PostForMe::Models::AccountConfiguration::Configuration::trial_reel_type?
+        }
+
+        type localization = { description: String?, title: String? }
+
+        class Localization < PostForMe::Internal::Type::BaseModel
+          attr_accessor description: String?
+
+          attr_accessor title: String?
+
+          def initialize: (?description: String?, ?title: String?) -> void
+
+          def to_hash: -> { description: String?, title: String? }
+        end
+
+        type license = :youtube | :creativeCommon
+
+        module License
+          extend PostForMe::Internal::Type::Enum
+
+          YOUTUBE: :youtube
+          CREATIVE_COMMON: :creativeCommon
+
+          def self?.values: -> ::Array[PostForMe::Models::AccountConfiguration::Configuration::license]
+        end
+
+        type placement = :reels | :timeline | :stories
+
+        module Placement
+          extend PostForMe::Internal::Type::Enum
+
+          REELS: :reels
+          TIMELINE: :timeline
+          STORIES: :stories
+
+          def self?.values: -> ::Array[PostForMe::Models::AccountConfiguration::Configuration::placement]
+        end
+
+        type privacy_status = :public | :private | :unlisted
+
+        module PrivacyStatus
+          extend PostForMe::Internal::Type::Enum
+
+          PUBLIC: :public
+          PRIVATE: :private
+          UNLISTED: :unlisted
+
+          def self?.values: -> ::Array[PostForMe::Models::AccountConfiguration::Configuration::privacy_status]
+        end
+
+        type reply_settings =
+          :following | :mentionedUsers | :subscribers | :verified
+
+        module ReplySettings
+          extend PostForMe::Internal::Type::Enum
+
+          FOLLOWING: :following
+          MENTIONED_USERS: :mentionedUsers
+          SUBSCRIBERS: :subscribers
+          VERIFIED: :verified
+
+          def self?.values: -> ::Array[PostForMe::Models::AccountConfiguration::Configuration::reply_settings]
+        end
+
+        type trial_reel_type = :manual | :performance
+
+        module TrialReelType
+          extend PostForMe::Internal::Type::Enum
+
+          MANUAL: :manual
+          PERFORMANCE: :performance
+
+          def self?.values: -> ::Array[PostForMe::Models::AccountConfiguration::Configuration::trial_reel_type]
+        end
+      end
+    end
+  end
+end

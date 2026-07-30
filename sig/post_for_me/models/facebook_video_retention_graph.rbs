@@ -1,0 +1,15 @@
+module PostForMe
+  module Models
+    type facebook_video_retention_graph = { rate: Float, time: Float }
+
+    class FacebookVideoRetentionGraph < PostForMe::Internal::Type::BaseModel
+      attr_accessor rate: Float
+
+      attr_accessor time: Float
+
+      def initialize: (rate: Float, time: Float) -> void
+
+      def to_hash: -> { rate: Float, time: Float }
+    end
+  end
+end

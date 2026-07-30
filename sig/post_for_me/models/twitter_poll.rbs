@@ -1,0 +1,48 @@
+module PostForMe
+  module Models
+    type twitter_poll =
+      {
+        duration_minutes: Float,
+        options: ::Array[String],
+        reply_settings: PostForMe::Models::TwitterPoll::reply_settings
+      }
+
+    class TwitterPoll < PostForMe::Internal::Type::BaseModel
+      attr_accessor duration_minutes: Float
+
+      attr_accessor options: ::Array[String]
+
+      attr_reader reply_settings: PostForMe::Models::TwitterPoll::reply_settings?
+
+      def reply_settings=: (
+        PostForMe::Models::TwitterPoll::reply_settings
+      ) -> PostForMe::Models::TwitterPoll::reply_settings
+
+      def initialize: (
+        duration_minutes: Float,
+        options: ::Array[String],
+        ?reply_settings: PostForMe::Models::TwitterPoll::reply_settings
+      ) -> void
+
+      def to_hash: -> {
+        duration_minutes: Float,
+        options: ::Array[String],
+        reply_settings: PostForMe::Models::TwitterPoll::reply_settings
+      }
+
+      type reply_settings =
+        :following | :mentionedUsers | :subscribers | :verified
+
+      module ReplySettings
+        extend PostForMe::Internal::Type::Enum
+
+        FOLLOWING: :following
+        MENTIONED_USERS: :mentionedUsers
+        SUBSCRIBERS: :subscribers
+        VERIFIED: :verified
+
+        def self?.values: -> ::Array[PostForMe::Models::TwitterPoll::reply_settings]
+      end
+    end
+  end
+end

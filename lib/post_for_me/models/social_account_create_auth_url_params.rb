@@ -37,7 +37,7 @@ module PostForMe
       #   Override the default redirect URL for the OAuth flow. If provided, this URL will
       #   be used instead of our redirect URL. Make sure this URL is included in your
       #   app's authorized redirect urls. This override will not work when using our
-      #   system credientals.
+      #   system credentials; configure the project redirect URL in the dashboard instead.
       #
       #   @return [String, nil]
       optional :redirect_url_override, String
@@ -118,13 +118,19 @@ module PostForMe
         optional :tiktok_business,
                  -> { PostForMe::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness }
 
+        # @!attribute x
+        #   Additional data for connecting X accounts
+        #
+        #   @return [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X, nil]
+        optional :x, -> { PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X }
+
         # @!attribute youtube
         #   Additional data for connecting YouTube accounts
         #
         #   @return [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Youtube, nil]
         optional :youtube, -> { PostForMe::SocialAccountCreateAuthURLParams::PlatformData::Youtube }
 
-        # @!method initialize(bluesky: nil, facebook: nil, instagram: nil, linkedin: nil, pinterest: nil, threads: nil, tiktok: nil, tiktok_business: nil, youtube: nil)
+        # @!method initialize(bluesky: nil, facebook: nil, instagram: nil, linkedin: nil, pinterest: nil, threads: nil, tiktok: nil, tiktok_business: nil, x: nil, youtube: nil)
         #   Additional data needed for the provider
         #
         #   @param bluesky [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Bluesky] Additional data needed for connecting bluesky accounts
@@ -142,6 +148,8 @@ module PostForMe
         #   @param tiktok [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Tiktok] Additional data for connecting TikTok accounts
         #
         #   @param tiktok_business [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::TiktokBusiness] Additional data for connecting TikTok Business accounts
+        #
+        #   @param x [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X] Additional data for connecting X accounts
         #
         #   @param youtube [PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Youtube] Additional data for connecting YouTube accounts
 
@@ -174,9 +182,8 @@ module PostForMe
           #   public_profile, pages_show_list, pages_read_engagement, pages_manage_posts,
           #   business_management
           #
-          #   @return [Array<Array<Object>>, nil]
-          optional :permission_overrides,
-                   PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::Unknown]]
+          #   @return [Array<String>, nil]
+          optional :permission_overrides, PostForMe::Internal::Type::ArrayOf[String]
 
           # @!method initialize(permission_overrides: nil)
           #   Some parameter documentations has been truncated, see
@@ -185,7 +192,7 @@ module PostForMe
           #
           #   Additional data for connecting facebook accounts
           #
-          #   @param permission_overrides [Array<Array<Object>>] Override the default permissions/scopes requested during OAuth. Default scopes:
+          #   @param permission_overrides [Array<String>] Override the default permissions/scopes requested during OAuth. Default scopes:
         end
 
         # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData#instagram
@@ -204,9 +211,8 @@ module PostForMe
           #   Default facebook scopes: instagram_basic, instagram_content_publish,
           #   pages_show_list, public_profile, business_management
           #
-          #   @return [Array<Array<Object>>, nil]
-          optional :permission_overrides,
-                   PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::Unknown]]
+          #   @return [Array<String>, nil]
+          optional :permission_overrides, PostForMe::Internal::Type::ArrayOf[String]
 
           # @!method initialize(connection_type:, permission_overrides: nil)
           #   Some parameter documentations has been truncated, see
@@ -217,7 +223,7 @@ module PostForMe
           #
           #   @param connection_type [Symbol, PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Instagram::ConnectionType] The type of connection; instagram for using login with instagram, facebook for u
           #
-          #   @param permission_overrides [Array<Array<Object>>] Override the default permissions/scopes requested during OAuth. Default instagra
+          #   @param permission_overrides [Array<String>] Override the default permissions/scopes requested during OAuth. Default instagra
 
           # The type of connection; instagram for using login with instagram, facebook for
           # using login with facebook.
@@ -238,7 +244,7 @@ module PostForMe
         class Linkedin < PostForMe::Internal::Type::BaseModel
           # @!attribute connection_type
           #   The type of connection; If using our provided credentials always use
-          #   "organization". If using your own crednetials then only use "organization" if
+          #   "organization". If using your own credentials then only use "organization" if
           #   you are using the Community API
           #
           #   @return [Symbol, PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::ConnectionType]
@@ -251,9 +257,8 @@ module PostForMe
           #   r_basicprofile, w_member_social, r_organization_social, w_organization_social,
           #   rw_organization_admin
           #
-          #   @return [Array<Array<Object>>, nil]
-          optional :permission_overrides,
-                   PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::Unknown]]
+          #   @return [Array<String>, nil]
+          optional :permission_overrides, PostForMe::Internal::Type::ArrayOf[String]
 
           # @!method initialize(connection_type:, permission_overrides: nil)
           #   Some parameter documentations has been truncated, see
@@ -264,10 +269,10 @@ module PostForMe
           #
           #   @param connection_type [Symbol, PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin::ConnectionType] The type of connection; If using our provided credentials always use "organizati
           #
-          #   @param permission_overrides [Array<Array<Object>>] Override the default permissions/scopes requested during OAuth. Default personal
+          #   @param permission_overrides [Array<String>] Override the default permissions/scopes requested during OAuth. Default personal
 
           # The type of connection; If using our provided credentials always use
-          # "organization". If using your own crednetials then only use "organization" if
+          # "organization". If using your own credentials then only use "organization" if
           # you are using the Community API
           #
           # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::Linkedin#connection_type
@@ -288,9 +293,8 @@ module PostForMe
           #   Override the default permissions/scopes requested during OAuth. Default scopes:
           #   boards:read, boards:write, pins:read, pins:write, user_accounts:read
           #
-          #   @return [Array<Array<Object>>, nil]
-          optional :permission_overrides,
-                   PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::Unknown]]
+          #   @return [Array<String>, nil]
+          optional :permission_overrides, PostForMe::Internal::Type::ArrayOf[String]
 
           # @!method initialize(permission_overrides: nil)
           #   Some parameter documentations has been truncated, see
@@ -299,7 +303,7 @@ module PostForMe
           #
           #   Additional data for connecting Pinterest accounts
           #
-          #   @param permission_overrides [Array<Array<Object>>] Override the default permissions/scopes requested during OAuth. Default scopes:
+          #   @param permission_overrides [Array<String>] Override the default permissions/scopes requested during OAuth. Default scopes:
         end
 
         # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData#threads
@@ -308,9 +312,8 @@ module PostForMe
           #   Override the default permissions/scopes requested during OAuth. Default scopes:
           #   threads_basic, threads_content_publish
           #
-          #   @return [Array<Array<Object>>, nil]
-          optional :permission_overrides,
-                   PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::Unknown]]
+          #   @return [Array<String>, nil]
+          optional :permission_overrides, PostForMe::Internal::Type::ArrayOf[String]
 
           # @!method initialize(permission_overrides: nil)
           #   Some parameter documentations has been truncated, see
@@ -319,7 +322,7 @@ module PostForMe
           #
           #   Additional data for connecting Threads accounts
           #
-          #   @param permission_overrides [Array<Array<Object>>] Override the default permissions/scopes requested during OAuth. Default scopes:
+          #   @param permission_overrides [Array<String>] Override the default permissions/scopes requested during OAuth. Default scopes:
         end
 
         # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData#tiktok
@@ -328,9 +331,8 @@ module PostForMe
           #   Override the default permissions/scopes requested during OAuth. Default scopes:
           #   user.info.basic, video.list, video.upload, video.publish
           #
-          #   @return [Array<Array<Object>>, nil]
-          optional :permission_overrides,
-                   PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::Unknown]]
+          #   @return [Array<String>, nil]
+          optional :permission_overrides, PostForMe::Internal::Type::ArrayOf[String]
 
           # @!method initialize(permission_overrides: nil)
           #   Some parameter documentations has been truncated, see
@@ -339,7 +341,7 @@ module PostForMe
           #
           #   Additional data for connecting TikTok accounts
           #
-          #   @param permission_overrides [Array<Array<Object>>] Override the default permissions/scopes requested during OAuth. Default scopes:
+          #   @param permission_overrides [Array<String>] Override the default permissions/scopes requested during OAuth. Default scopes:
         end
 
         # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData#tiktok_business
@@ -351,9 +353,8 @@ module PostForMe
           #   comment.list.manage, video.publish, video.upload, biz.spark.auth,
           #   discovery.search.words
           #
-          #   @return [Array<Array<Object>>, nil]
-          optional :permission_overrides,
-                   PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::Unknown]]
+          #   @return [Array<String>, nil]
+          optional :permission_overrides, PostForMe::Internal::Type::ArrayOf[String]
 
           # @!method initialize(permission_overrides: nil)
           #   Some parameter documentations has been truncated, see
@@ -362,7 +363,41 @@ module PostForMe
           #
           #   Additional data for connecting TikTok Business accounts
           #
-          #   @param permission_overrides [Array<Array<Object>>] Override the default permissions/scopes requested during OAuth. Default scopes:
+          #   @param permission_overrides [Array<String>] Override the default permissions/scopes requested during OAuth. Default scopes:
+        end
+
+        # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData#x
+        class X < PostForMe::Internal::Type::BaseModel
+          # @!attribute connection_type
+          #   The type of connection; oauth1 for OAuth 1.0a app credentials, oauth2 for OAuth
+          #   2.0 app credentials.
+          #
+          #   @return [Symbol, PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X::ConnectionType]
+          required :connection_type,
+                   enum: -> { PostForMe::SocialAccountCreateAuthURLParams::PlatformData::X::ConnectionType }
+
+          # @!method initialize(connection_type:)
+          #   Some parameter documentations has been truncated, see
+          #   {PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X} for more
+          #   details.
+          #
+          #   Additional data for connecting X accounts
+          #
+          #   @param connection_type [Symbol, PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X::ConnectionType] The type of connection; oauth1 for OAuth 1.0a app credentials, oauth2 for OAuth
+
+          # The type of connection; oauth1 for OAuth 1.0a app credentials, oauth2 for OAuth
+          # 2.0 app credentials.
+          #
+          # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData::X#connection_type
+          module ConnectionType
+            extend PostForMe::Internal::Type::Enum
+
+            OAUTH1 = :oauth1
+            OAUTH2 = :oauth2
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
 
         # @see PostForMe::Models::SocialAccountCreateAuthURLParams::PlatformData#youtube
@@ -374,9 +409,8 @@ module PostForMe
           #   https://www.googleapis.com/auth/youtube.readonly,
           #   https://www.googleapis.com/auth/userinfo.profile
           #
-          #   @return [Array<Array<Object>>, nil]
-          optional :permission_overrides,
-                   PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::ArrayOf[PostForMe::Internal::Type::Unknown]]
+          #   @return [Array<String>, nil]
+          optional :permission_overrides, PostForMe::Internal::Type::ArrayOf[String]
 
           # @!method initialize(permission_overrides: nil)
           #   Some parameter documentations has been truncated, see
@@ -385,7 +419,7 @@ module PostForMe
           #
           #   Additional data for connecting YouTube accounts
           #
-          #   @param permission_overrides [Array<Array<Object>>] Override the default permissions/scopes requested during OAuth. Default scopes:
+          #   @param permission_overrides [Array<String>] Override the default permissions/scopes requested during OAuth. Default scopes:
         end
       end
     end

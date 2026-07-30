@@ -2,138 +2,116 @@ module PostForMe
   module Models
     type youtube_configuration_dto =
       {
+        localizations: ::Hash[Symbol, PostForMe::YoutubeConfigurationDto::Localization]?,
         caption: top?,
+        category_id: String?,
+        contains_synthetic_media: bool?,
+        default_language: String?,
+        description: String?,
+        embeddable: bool?,
+        license: PostForMe::Models::YoutubeConfigurationDto::license?,
         made_for_kids: bool?,
-        media: ::Array[PostForMe::YoutubeConfigurationDto::Media]?,
+        media: ::Array[PostForMe::SocialPostMedia]?,
         privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?,
+        public_stats_viewable: bool?,
+        publish_at: String?,
+        recording_date: String?,
+        tags: ::Array[String]?,
         title: String?
       }
 
     class YoutubeConfigurationDto < PostForMe::Internal::Type::BaseModel
+      attr_accessor localizations: ::Hash[Symbol, PostForMe::YoutubeConfigurationDto::Localization]?
+
       attr_accessor caption: top?
+
+      attr_accessor category_id: String?
+
+      attr_accessor contains_synthetic_media: bool?
+
+      attr_accessor default_language: String?
+
+      attr_accessor description: String?
+
+      attr_accessor embeddable: bool?
+
+      attr_accessor license: PostForMe::Models::YoutubeConfigurationDto::license?
 
       attr_accessor made_for_kids: bool?
 
-      attr_accessor media: ::Array[PostForMe::YoutubeConfigurationDto::Media]?
+      attr_accessor media: ::Array[PostForMe::SocialPostMedia]?
 
       attr_accessor privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?
+
+      attr_accessor public_stats_viewable: bool?
+
+      attr_accessor publish_at: String?
+
+      attr_accessor recording_date: String?
+
+      attr_accessor tags: ::Array[String]?
 
       attr_accessor title: String?
 
       def initialize: (
+        localizations: ::Hash[Symbol, PostForMe::YoutubeConfigurationDto::Localization]?,
         ?caption: top?,
+        ?category_id: String?,
+        ?contains_synthetic_media: bool?,
+        ?default_language: String?,
+        ?description: String?,
+        ?embeddable: bool?,
+        ?license: PostForMe::Models::YoutubeConfigurationDto::license?,
         ?made_for_kids: bool?,
-        ?media: ::Array[PostForMe::YoutubeConfigurationDto::Media]?,
+        ?media: ::Array[PostForMe::SocialPostMedia]?,
         ?privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?,
+        ?public_stats_viewable: bool?,
+        ?publish_at: String?,
+        ?recording_date: String?,
+        ?tags: ::Array[String]?,
         ?title: String?
       ) -> void
 
       def to_hash: -> {
+        localizations: ::Hash[Symbol, PostForMe::YoutubeConfigurationDto::Localization]?,
         caption: top?,
+        category_id: String?,
+        contains_synthetic_media: bool?,
+        default_language: String?,
+        description: String?,
+        embeddable: bool?,
+        license: PostForMe::Models::YoutubeConfigurationDto::license?,
         made_for_kids: bool?,
-        media: ::Array[PostForMe::YoutubeConfigurationDto::Media]?,
+        media: ::Array[PostForMe::SocialPostMedia]?,
         privacy_status: PostForMe::Models::YoutubeConfigurationDto::privacy_status?,
+        public_stats_viewable: bool?,
+        publish_at: String?,
+        recording_date: String?,
+        tags: ::Array[String]?,
         title: String?
       }
 
-      type media =
-        {
-          url: String,
-          skip_processing: bool?,
-          tags: ::Array[PostForMe::YoutubeConfigurationDto::Media::Tag]?,
-          thumbnail_timestamp_ms: top?,
-          thumbnail_url: top?
-        }
+      type localization = { description: String?, title: String? }
 
-      class Media < PostForMe::Internal::Type::BaseModel
-        attr_accessor url: String
+      class Localization < PostForMe::Internal::Type::BaseModel
+        attr_accessor description: String?
 
-        attr_accessor skip_processing: bool?
+        attr_accessor title: String?
 
-        attr_accessor tags: ::Array[PostForMe::YoutubeConfigurationDto::Media::Tag]?
+        def initialize: (?description: String?, ?title: String?) -> void
 
-        attr_accessor thumbnail_timestamp_ms: top?
+        def to_hash: -> { description: String?, title: String? }
+      end
 
-        attr_accessor thumbnail_url: top?
+      type license = :youtube | :creativeCommon
 
-        def initialize: (
-          url: String,
-          ?skip_processing: bool?,
-          ?tags: ::Array[PostForMe::YoutubeConfigurationDto::Media::Tag]?,
-          ?thumbnail_timestamp_ms: top?,
-          ?thumbnail_url: top?
-        ) -> void
+      module License
+        extend PostForMe::Internal::Type::Enum
 
-        def to_hash: -> {
-          url: String,
-          skip_processing: bool?,
-          tags: ::Array[PostForMe::YoutubeConfigurationDto::Media::Tag]?,
-          thumbnail_timestamp_ms: top?,
-          thumbnail_url: top?
-        }
+        YOUTUBE: :youtube
+        CREATIVE_COMMON: :creativeCommon
 
-        type tag =
-          {
-            id: String,
-            platform: PostForMe::Models::YoutubeConfigurationDto::Media::Tag::platform,
-            type: PostForMe::Models::YoutubeConfigurationDto::Media::Tag::type_,
-            x: Float,
-            y_: Float
-          }
-
-        class Tag < PostForMe::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          attr_accessor platform: PostForMe::Models::YoutubeConfigurationDto::Media::Tag::platform
-
-          attr_accessor type: PostForMe::Models::YoutubeConfigurationDto::Media::Tag::type_
-
-          attr_reader x: Float?
-
-          def x=: (Float) -> Float
-
-          attr_reader y_: Float?
-
-          def y_=: (Float) -> Float
-
-          def initialize: (
-            id: String,
-            platform: PostForMe::Models::YoutubeConfigurationDto::Media::Tag::platform,
-            type: PostForMe::Models::YoutubeConfigurationDto::Media::Tag::type_,
-            ?x: Float,
-            ?y_: Float
-          ) -> void
-
-          def to_hash: -> {
-            id: String,
-            platform: PostForMe::Models::YoutubeConfigurationDto::Media::Tag::platform,
-            type: PostForMe::Models::YoutubeConfigurationDto::Media::Tag::type_,
-            x: Float,
-            y_: Float
-          }
-
-          type platform = :facebook | :instagram
-
-          module Platform
-            extend PostForMe::Internal::Type::Enum
-
-            FACEBOOK: :facebook
-            INSTAGRAM: :instagram
-
-            def self?.values: -> ::Array[PostForMe::Models::YoutubeConfigurationDto::Media::Tag::platform]
-          end
-
-          type type_ = :user | :product
-
-          module Type
-            extend PostForMe::Internal::Type::Enum
-
-            USER: :user
-            PRODUCT: :product
-
-            def self?.values: -> ::Array[PostForMe::Models::YoutubeConfigurationDto::Media::Tag::type_]
-          end
-        end
+        def self?.values: -> ::Array[PostForMe::Models::YoutubeConfigurationDto::license]
       end
 
       type privacy_status = :public | :private | :unlisted

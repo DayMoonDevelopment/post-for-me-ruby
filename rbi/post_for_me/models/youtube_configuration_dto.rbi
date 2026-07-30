@@ -11,21 +11,68 @@ module PostForMe
           )
         end
 
+      # Per-language localizations for the video title and description. Keys are BCP-47
+      # language tags (e.g. "fr", "es"). Maps to localizations on the YouTube Data API
+      # videos resource.
+      sig do
+        returns(
+          T.nilable(
+            T::Hash[Symbol, PostForMe::YoutubeConfigurationDto::Localization]
+          )
+        )
+      end
+      attr_accessor :localizations
+
       # Overrides the `caption` from the post
       sig { returns(T.nilable(T.anything)) }
       attr_accessor :caption
 
-      # If true will notify YouTube the video is intended for kids, defaults to false
+      # YouTube video category id (maps to snippet.categoryId; see YouTube Data API
+      # videoCategories.list)
+      sig { returns(T.nilable(String)) }
+      attr_accessor :category_id
+
+      # If true, marks the video as containing altered or synthetic content per
+      # YouTube's disclosure policy (maps to status.containsSyntheticMedia). YouTube
+      # adds a "How this content was made" label to the description automatically.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :contains_synthetic_media
+
+      # Default language of the video (BCP-47 language tag, e.g. "en"). Maps to
+      # snippet.defaultLanguage.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :default_language
+
+      # Description for the YouTube video (maps to snippet.description). Falls back to
+      # the post caption when not provided.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :description
+
+      # If true the video can be embedded on other websites (maps to status.embeddable).
+      # Defaults to true.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :embeddable
+
+      # The video's license (maps to status.license). "youtube" is the standard YouTube
+      # license; "creativeCommon" is Creative Commons.
+      sig do
+        returns(
+          T.nilable(PostForMe::YoutubeConfigurationDto::License::OrSymbol)
+        )
+      end
+      attr_accessor :license
+
+      # If true will notify YouTube the video is intended for kids (maps to
+      # status.selfDeclaredMadeForKids), defaults to false
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :made_for_kids
 
       # Overrides the `media` from the post
-      sig do
-        returns(T.nilable(T::Array[PostForMe::YoutubeConfigurationDto::Media]))
-      end
+      sig { returns(T.nilable(T::Array[PostForMe::SocialPostMedia])) }
       attr_accessor :media
 
-      # Sets the privacy status of the video, will default to public
+      # Sets the privacy status of the video (maps to status.privacyStatus), will
+      # default to public
       sig do
         returns(
           T.nilable(PostForMe::YoutubeConfigurationDto::PrivacyStatus::OrSymbol)
@@ -33,35 +80,105 @@ module PostForMe
       end
       attr_accessor :privacy_status
 
-      # Overrides the `title` from the post
+      # If true, the extended video statistics are publicly viewable (maps to
+      # status.publicStatsViewable). Defaults to true.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :public_stats_viewable
+
+      # ISO 8601 datetime at which the video should be published. Only honoured when
+      # privacy_status is "private" (maps to status.publishAt).
+      sig { returns(T.nilable(String)) }
+      attr_accessor :publish_at
+
+      # ISO 8601 date (YYYY-MM-DD) or datetime when the video was recorded (maps to
+      # recordingDetails.recordingDate).
+      sig { returns(T.nilable(String)) }
+      attr_accessor :recording_date
+
+      # YouTube video tags (maps to snippet.tags)
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_accessor :tags
+
+      # Overrides the `title` from the post (maps to snippet.title)
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
       sig do
         params(
-          caption: T.nilable(T.anything),
-          made_for_kids: T.nilable(T::Boolean),
-          media:
+          localizations:
             T.nilable(
-              T::Array[PostForMe::YoutubeConfigurationDto::Media::OrHash]
+              T::Hash[
+                Symbol,
+                PostForMe::YoutubeConfigurationDto::Localization::OrHash
+              ]
             ),
+          caption: T.nilable(T.anything),
+          category_id: T.nilable(String),
+          contains_synthetic_media: T.nilable(T::Boolean),
+          default_language: T.nilable(String),
+          description: T.nilable(String),
+          embeddable: T.nilable(T::Boolean),
+          license:
+            T.nilable(PostForMe::YoutubeConfigurationDto::License::OrSymbol),
+          made_for_kids: T.nilable(T::Boolean),
+          media: T.nilable(T::Array[PostForMe::SocialPostMedia::OrHash]),
           privacy_status:
             T.nilable(
               PostForMe::YoutubeConfigurationDto::PrivacyStatus::OrSymbol
             ),
+          public_stats_viewable: T.nilable(T::Boolean),
+          publish_at: T.nilable(String),
+          recording_date: T.nilable(String),
+          tags: T.nilable(T::Array[String]),
           title: T.nilable(String)
         ).returns(T.attached_class)
       end
       def self.new(
+        # Per-language localizations for the video title and description. Keys are BCP-47
+        # language tags (e.g. "fr", "es"). Maps to localizations on the YouTube Data API
+        # videos resource.
+        localizations:,
         # Overrides the `caption` from the post
         caption: nil,
-        # If true will notify YouTube the video is intended for kids, defaults to false
+        # YouTube video category id (maps to snippet.categoryId; see YouTube Data API
+        # videoCategories.list)
+        category_id: nil,
+        # If true, marks the video as containing altered or synthetic content per
+        # YouTube's disclosure policy (maps to status.containsSyntheticMedia). YouTube
+        # adds a "How this content was made" label to the description automatically.
+        contains_synthetic_media: nil,
+        # Default language of the video (BCP-47 language tag, e.g. "en"). Maps to
+        # snippet.defaultLanguage.
+        default_language: nil,
+        # Description for the YouTube video (maps to snippet.description). Falls back to
+        # the post caption when not provided.
+        description: nil,
+        # If true the video can be embedded on other websites (maps to status.embeddable).
+        # Defaults to true.
+        embeddable: nil,
+        # The video's license (maps to status.license). "youtube" is the standard YouTube
+        # license; "creativeCommon" is Creative Commons.
+        license: nil,
+        # If true will notify YouTube the video is intended for kids (maps to
+        # status.selfDeclaredMadeForKids), defaults to false
         made_for_kids: nil,
         # Overrides the `media` from the post
         media: nil,
-        # Sets the privacy status of the video, will default to public
+        # Sets the privacy status of the video (maps to status.privacyStatus), will
+        # default to public
         privacy_status: nil,
-        # Overrides the `title` from the post
+        # If true, the extended video statistics are publicly viewable (maps to
+        # status.publicStatsViewable). Defaults to true.
+        public_stats_viewable: nil,
+        # ISO 8601 datetime at which the video should be published. Only honoured when
+        # privacy_status is "private" (maps to status.publishAt).
+        publish_at: nil,
+        # ISO 8601 date (YYYY-MM-DD) or datetime when the video was recorded (maps to
+        # recordingDetails.recordingDate).
+        recording_date: nil,
+        # YouTube video tags (maps to snippet.tags)
+        tags: nil,
+        # Overrides the `title` from the post (maps to snippet.title)
         title: nil
       )
       end
@@ -69,14 +186,31 @@ module PostForMe
       sig do
         override.returns(
           {
+            localizations:
+              T.nilable(
+                T::Hash[
+                  Symbol,
+                  PostForMe::YoutubeConfigurationDto::Localization
+                ]
+              ),
             caption: T.nilable(T.anything),
+            category_id: T.nilable(String),
+            contains_synthetic_media: T.nilable(T::Boolean),
+            default_language: T.nilable(String),
+            description: T.nilable(String),
+            embeddable: T.nilable(T::Boolean),
+            license:
+              T.nilable(PostForMe::YoutubeConfigurationDto::License::OrSymbol),
             made_for_kids: T.nilable(T::Boolean),
-            media:
-              T.nilable(T::Array[PostForMe::YoutubeConfigurationDto::Media]),
+            media: T.nilable(T::Array[PostForMe::SocialPostMedia]),
             privacy_status:
               T.nilable(
                 PostForMe::YoutubeConfigurationDto::PrivacyStatus::OrSymbol
               ),
+            public_stats_viewable: T.nilable(T::Boolean),
+            publish_at: T.nilable(String),
+            recording_date: T.nilable(String),
+            tags: T.nilable(T::Array[String]),
             title: T.nilable(String)
           }
         )
@@ -84,250 +218,72 @@ module PostForMe
       def to_hash
       end
 
-      class Media < PostForMe::Internal::Type::BaseModel
+      class Localization < PostForMe::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              PostForMe::YoutubeConfigurationDto::Media,
+              PostForMe::YoutubeConfigurationDto::Localization,
               PostForMe::Internal::AnyHash
             )
           end
 
-        # Public URL of the media
-        sig { returns(String) }
-        attr_accessor :url
+        sig { returns(T.nilable(String)) }
+        attr_accessor :description
 
-        # If true the media will not be processed at all and instead be posted as is, this
-        # may increase chance of post failure if media does not meet platform's
-        # requirements. Best used for larger files.
-        sig { returns(T.nilable(T::Boolean)) }
-        attr_accessor :skip_processing
-
-        # List of tags to attach to the media
-        sig do
-          returns(
-            T.nilable(T::Array[PostForMe::YoutubeConfigurationDto::Media::Tag])
-          )
-        end
-        attr_accessor :tags
-
-        # Timestamp in milliseconds of frame to use as thumbnail for the media
-        sig { returns(T.nilable(T.anything)) }
-        attr_accessor :thumbnail_timestamp_ms
-
-        # Public URL of the thumbnail for the media
-        sig { returns(T.nilable(T.anything)) }
-        attr_accessor :thumbnail_url
+        sig { returns(T.nilable(String)) }
+        attr_accessor :title
 
         sig do
           params(
-            url: String,
-            skip_processing: T.nilable(T::Boolean),
-            tags:
-              T.nilable(
-                T::Array[PostForMe::YoutubeConfigurationDto::Media::Tag::OrHash]
-              ),
-            thumbnail_timestamp_ms: T.nilable(T.anything),
-            thumbnail_url: T.nilable(T.anything)
+            description: T.nilable(String),
+            title: T.nilable(String)
           ).returns(T.attached_class)
         end
-        def self.new(
-          # Public URL of the media
-          url:,
-          # If true the media will not be processed at all and instead be posted as is, this
-          # may increase chance of post failure if media does not meet platform's
-          # requirements. Best used for larger files.
-          skip_processing: nil,
-          # List of tags to attach to the media
-          tags: nil,
-          # Timestamp in milliseconds of frame to use as thumbnail for the media
-          thumbnail_timestamp_ms: nil,
-          # Public URL of the thumbnail for the media
-          thumbnail_url: nil
-        )
+        def self.new(description: nil, title: nil)
         end
 
         sig do
           override.returns(
-            {
-              url: String,
-              skip_processing: T.nilable(T::Boolean),
-              tags:
-                T.nilable(
-                  T::Array[PostForMe::YoutubeConfigurationDto::Media::Tag]
-                ),
-              thumbnail_timestamp_ms: T.nilable(T.anything),
-              thumbnail_url: T.nilable(T.anything)
-            }
+            { description: T.nilable(String), title: T.nilable(String) }
           )
         end
         def to_hash
         end
+      end
 
-        class Tag < PostForMe::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                PostForMe::YoutubeConfigurationDto::Media::Tag,
-                PostForMe::Internal::AnyHash
-              )
-            end
+      # The video's license (maps to status.license). "youtube" is the standard YouTube
+      # license; "creativeCommon" is Creative Commons.
+      module License
+        extend PostForMe::Internal::Type::Enum
 
-          # Facebook User ID, Instagram Username or Instagram product id to tag
-          sig { returns(String) }
-          attr_accessor :id
-
-          # The platform for the tags
-          sig do
-            returns(
-              PostForMe::YoutubeConfigurationDto::Media::Tag::Platform::OrSymbol
-            )
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, PostForMe::YoutubeConfigurationDto::License)
           end
-          attr_accessor :platform
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          # The type of tag, user to tag accounts, product to tag products (only supported
-          # for instagram)
-          sig do
-            returns(
-              PostForMe::YoutubeConfigurationDto::Media::Tag::Type::OrSymbol
-            )
-          end
-          attr_accessor :type
-
-          # Percentage distance from left edge of the image, Not required for videos or
-          # stories
-          sig { returns(T.nilable(Float)) }
-          attr_reader :x
-
-          sig { params(x: Float).void }
-          attr_writer :x
-
-          # Percentage distance from top edge of the image, Not required for videos or
-          # stories
-          sig { returns(T.nilable(Float)) }
-          attr_reader :y_
-
-          sig { params(y_: Float).void }
-          attr_writer :y_
-
-          sig do
-            params(
-              id: String,
-              platform:
-                PostForMe::YoutubeConfigurationDto::Media::Tag::Platform::OrSymbol,
-              type:
-                PostForMe::YoutubeConfigurationDto::Media::Tag::Type::OrSymbol,
-              x: Float,
-              y_: Float
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # Facebook User ID, Instagram Username or Instagram product id to tag
-            id:,
-            # The platform for the tags
-            platform:,
-            # The type of tag, user to tag accounts, product to tag products (only supported
-            # for instagram)
-            type:,
-            # Percentage distance from left edge of the image, Not required for videos or
-            # stories
-            x: nil,
-            # Percentage distance from top edge of the image, Not required for videos or
-            # stories
-            y_: nil
+        YOUTUBE =
+          T.let(
+            :youtube,
+            PostForMe::YoutubeConfigurationDto::License::TaggedSymbol
           )
-          end
+        CREATIVE_COMMON =
+          T.let(
+            :creativeCommon,
+            PostForMe::YoutubeConfigurationDto::License::TaggedSymbol
+          )
 
-          sig do
-            override.returns(
-              {
-                id: String,
-                platform:
-                  PostForMe::YoutubeConfigurationDto::Media::Tag::Platform::OrSymbol,
-                type:
-                  PostForMe::YoutubeConfigurationDto::Media::Tag::Type::OrSymbol,
-                x: Float,
-                y_: Float
-              }
-            )
-          end
-          def to_hash
-          end
-
-          # The platform for the tags
-          module Platform
-            extend PostForMe::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  PostForMe::YoutubeConfigurationDto::Media::Tag::Platform
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            FACEBOOK =
-              T.let(
-                :facebook,
-                PostForMe::YoutubeConfigurationDto::Media::Tag::Platform::TaggedSymbol
-              )
-            INSTAGRAM =
-              T.let(
-                :instagram,
-                PostForMe::YoutubeConfigurationDto::Media::Tag::Platform::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  PostForMe::YoutubeConfigurationDto::Media::Tag::Platform::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
-          end
-
-          # The type of tag, user to tag accounts, product to tag products (only supported
-          # for instagram)
-          module Type
-            extend PostForMe::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  PostForMe::YoutubeConfigurationDto::Media::Tag::Type
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            USER =
-              T.let(
-                :user,
-                PostForMe::YoutubeConfigurationDto::Media::Tag::Type::TaggedSymbol
-              )
-            PRODUCT =
-              T.let(
-                :product,
-                PostForMe::YoutubeConfigurationDto::Media::Tag::Type::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  PostForMe::YoutubeConfigurationDto::Media::Tag::Type::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
-          end
+        sig do
+          override.returns(
+            T::Array[PostForMe::YoutubeConfigurationDto::License::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
 
-      # Sets the privacy status of the video, will default to public
+      # Sets the privacy status of the video (maps to status.privacyStatus), will
+      # default to public
       module PrivacyStatus
         extend PostForMe::Internal::Type::Enum
 

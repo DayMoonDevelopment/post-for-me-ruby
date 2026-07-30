@@ -20,6 +20,10 @@ module PostForMe
 
     attr_reader social_account_feeds: PostForMe::Resources::SocialAccountFeeds
 
+    attr_reader webhooks: PostForMe::Resources::Webhooks
+
+    attr_reader social_post_previews: PostForMe::Resources::SocialPostPreviews
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

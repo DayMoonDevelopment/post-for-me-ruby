@@ -1,0 +1,15 @@
+module PostForMe
+  module Models
+    type facebook_video_view_time_by_demographic = { key: String, value: Float }
+
+    class FacebookVideoViewTimeByDemographic < PostForMe::Internal::Type::BaseModel
+      attr_accessor key: String
+
+      attr_accessor value: Float
+
+      def initialize: (key: String, value: Float) -> void
+
+      def to_hash: -> { key: String, value: Float }
+    end
+  end
+end

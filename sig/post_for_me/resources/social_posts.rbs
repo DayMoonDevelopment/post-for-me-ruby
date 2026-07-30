@@ -4,10 +4,10 @@ module PostForMe
       def create: (
         caption: String,
         social_accounts: ::Array[String],
-        ?account_configurations: ::Array[PostForMe::CreateSocialPost::AccountConfiguration]?,
+        ?account_configurations: ::Array[PostForMe::AccountConfiguration]?,
         ?external_id: String?,
         ?is_draft: bool?,
-        ?media: ::Array[PostForMe::CreateSocialPost::Media]?,
+        ?media: ::Array[PostForMe::SocialPostMedia]?,
         ?platform_configurations: PostForMe::PlatformConfigurationsDto?,
         ?scheduled_at: Time?,
         ?request_options: PostForMe::request_opts
@@ -22,10 +22,10 @@ module PostForMe
         String id,
         caption: String,
         social_accounts: ::Array[String],
-        ?account_configurations: ::Array[PostForMe::CreateSocialPost::AccountConfiguration]?,
+        ?account_configurations: ::Array[PostForMe::AccountConfiguration]?,
         ?external_id: String?,
         ?is_draft: bool?,
-        ?media: ::Array[PostForMe::CreateSocialPost::Media]?,
+        ?media: ::Array[PostForMe::SocialPostMedia]?,
         ?platform_configurations: PostForMe::PlatformConfigurationsDto?,
         ?scheduled_at: Time?,
         ?request_options: PostForMe::request_opts
@@ -44,7 +44,7 @@ module PostForMe
       def delete: (
         String id,
         ?request_options: PostForMe::request_opts
-      ) -> PostForMe::Models::SocialPostDeleteResponse
+      ) -> PostForMe::DeleteEntityResponse
 
       def initialize: (client: PostForMe::Client) -> void
     end
